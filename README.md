@@ -6,7 +6,7 @@ The aim of this project is to create a chess engine, to improve the
 
 ## Members (name surname, github username, trello username, [role])
 
-**to be filled, since someone haven't got their Trello usernames yet**
+- Sirawit Pongnakintr, plumsirawit, plumsirawit, git leader
 
 ## Teams
 
