@@ -6,6 +6,8 @@ The aim of this project is to create a chess engine, to improve the
 
 ## Members (name surname, github username, trello username, [role])
 
+-Flahaut Ariel, arielflt, flahautariel@gmail.com, [member]
+
 **to be filled, since someone haven't got their Trello usernames yet**
 
 ## Teams
