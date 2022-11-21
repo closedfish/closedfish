@@ -9,6 +9,7 @@ The aim of this project is to create a chess engine, to improve the
 - Sirawit Pongnakintr, plumsirawit, plumsirawit, git leader
 - Rali Lahlou, Apllify, ralilahlou
 - Ba Cong Vu, souhhcong, souhhcong
+- Flahaut Ariel, arielflt, flahautariel, [member]
 
 ## Teams
 
