@@ -18,6 +18,11 @@ std::array<int, 64> generator(int pawns){
     return position_array;
 }
 
+std::array<int, 64> completion(std::array<int, 64>){
+    std::array<int, 64> position_array;
+    return position_array;
+}
+
 double closeness(std::array<int,64>){
     return 1.0;
 }

@@ -12,6 +12,8 @@
 
 #endif /* generator_hpp */
 std::array<int, 64> generator(int pawns); //Input number of pawns and return a random closed position
+std::array<int, 64> completion(std::array<int, 64>);// Shirelle, input only pawns and fill the board with other pieces randomly
+
 
 double closeness(std::array<int,64>); //input a position return a percentage
 
