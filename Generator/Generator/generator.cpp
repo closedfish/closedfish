@@ -13,9 +13,13 @@
 #include <array>        //for std::array
 #include "generator.hpp"
 
-std::array<int, 64> generator(int pawns){
+std::array<int, 64> single_generator(int pawns){
     std::array<int,64> position_array;
     return position_array;
+}
+
+void file_generator(int pawns){
+    
 }
 
 std::array<int, 64> completion(std::array<int, 64>){
