@@ -9,9 +9,9 @@
 #include <math.h>       // sin, cos
 #include <limits>       // numeric_limits
 #include <cmath>
-#include "generator.hpp"
 #include <algorithm>
-#include<array>
+#include <array>        //for std::array
+#include "generator.hpp"
 
 std::array<int, 64> generator(int pawns){
     std::array<int,64> position_array;
