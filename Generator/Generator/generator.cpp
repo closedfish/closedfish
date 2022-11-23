@@ -29,7 +29,8 @@ void database_edit(){
     std::ofstream outfile ("new_database.txt");
 }
 
-std::array<int, 64> completion(std::array<int, 64>){
+std::array<int, 64> completion(std::array<int, 64> input){
+    
     std::array<int, 64> position_array;
     return position_array;
 }

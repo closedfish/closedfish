@@ -17,7 +17,7 @@ void file_generator(int pawns); //Input number of pawns and return a file with e
 
 void database_edit(); //Etienne, open the database file, remove all of the unneeded pieces (not pawns) and create a new file with all of the new positions that have only pawns.
 
-std::array<int, 64> completion(std::array<int, 64>);// Shirelle, input only pawns and fill the board with other pieces randomly
+std::array<int, 64> completion(std::array<int, 64>);// Shirelle, input a board with only pawns and fill the board with other pieces randomly
 
 
 double closeness(std::array<int,64>); //input a position return a percentage
