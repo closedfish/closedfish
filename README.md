@@ -12,6 +12,7 @@ The aim of this project is to create a chess engine, to improve the
 - Flahaut Ariel, arielflt, flahautariel, [member]
 - Antonia Baies, abaiesu, abaiesu
 - Shirelle Benamou, shirellebenamou, shirellebenamou
+- Yoshimi-Théophile Etienne, Yoshimi-Theophile, yoshimitheophile
 
 ## Teams
 
