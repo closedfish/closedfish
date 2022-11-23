@@ -15,6 +15,7 @@ std::array<int, 64> single_generator(int pawns); //Input number of pawns and ret
 
 void file_generator(int pawns); //Input number of pawns and return a file with every possible closed position with only pawns
 
+void database_edit(); //Etienne, open the database file, remove all of the unneeded pieces (not pawns) and create a new file with all of the new positions that have only pawns.
 
 std::array<int, 64> completion(std::array<int, 64>);// Shirelle, input only pawns and fill the board with other pieces randomly
 
