@@ -1,0 +1,1 @@
+Takes care of the first moves in the game as long it recognise it as one of the well known chess openings.
