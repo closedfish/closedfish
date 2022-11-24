@@ -108,10 +108,28 @@ Chessboard Chessboard::replace_element(int position, ArrayElement element){
 int Chessboard::get_total_pawns(Chessboard input){
     int count=0;
     for (int i =0; i<64; i++){
-        if(input.board[i].get_piece()==1){
+        if(input.board[i].get_piece()==6){
             count+=1;
         }
     }
     return count;
 }
 
+int Chessboard::get_white_pawns(Chessboard input){
+    int count=0;
+    for (int i=0; i<64; i++){
+        if (input.board[i].get_piece()==6 and input.board[i].get_piece_color()==0){
+            count+=1;
+        }
+    }
+    return count;
+}
+int Chessboard::get_black_pawns(Chessboard input){
+    int count=0;
+    for (int i=0; i<64; i++){
+        if (input.board[i].get_piece()==6 and input.board[i].get_piece_color()==1){
+            count+=1;
+        }
+    }
+    return count;
+}
