@@ -14,6 +14,8 @@
 #include "generator.hpp"
 #include <fstream>      //For files
 
+using namespace std; //removes the need to type std::
+
 std::array<int, 64> single_generator(int pawns){
     std::array<int,64> position_array;
     return position_array;
@@ -27,6 +29,7 @@ void file_generator(int pawns){
 void database_edit(){
     std::fstream file;
     std::ofstream outfile ("new_database.txt");
+    
 }
 
 std::array<int, 64> completion(std::array<int, 64> input){
@@ -36,6 +39,7 @@ std::array<int, 64> completion(std::array<int, 64> input){
 }
 
 double closeness(std::array<int,64>){
+    
     return 1.0;
 }
 double openness(std::array<int,64>){
