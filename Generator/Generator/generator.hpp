@@ -84,9 +84,14 @@ private:
 */
 
 class Chessboard{
+    /* Chess board is an array of 64 where the elements are ArrayElements from the class above.
+     
+     To access an element in the board just do board[i] where i is a number from 1 to 64
+     
+     The goal of the function replace element is to intake a position and an ArrayElement and to replace the current element with the one that is inputed at the position which is inputed.*/
 public:
     Chessboard();
-    void replace_element(int, ArrayElement);
+    Chessboard replace_element(int, ArrayElement);
     ArrayElement board[64];
 
 }
