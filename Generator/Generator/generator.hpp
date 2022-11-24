@@ -20,7 +20,7 @@ void database_edit(); //Etienne, open the database file, remove all of the unnee
 
 class ArrayElement { // Array element class
 public:
-    ArrayElement(int piece, int piece_color, int square_color);
+    ArrayElement(int piece, int piece_color);
     ArrayElement();
 //    ArrayElement(){
 //
@@ -35,7 +35,7 @@ public:
 
     int get_piece_color();
     
-    int get_square_color();
+
     
 //    int set_piece();
 //
@@ -45,7 +45,6 @@ public:
     
     int piece;
     int piece_color;
-    int square_color;
 };
 
 /*Notation: Chess board representation

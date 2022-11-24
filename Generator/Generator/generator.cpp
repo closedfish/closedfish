@@ -23,10 +23,8 @@ using namespace std; //removes the need to type std::
      for (int i=0; i<=pawns; i++){
          int random_pos=rand()%64;
          if (position_array.board[random_pos].is_empty()){
-             position_array.board[random_pos].piece=0;
+             position_array.board[random_pos].piece=6;
              position_array.board[random_pos].piece_color=0;
-             
-             position_array.board[random_pos].square_color=0;
 
          }
  
@@ -65,15 +63,15 @@ Chessboard completion(Chessboard){
     return position_array;
 }
 
-double closeness(std::array<int,64>){
+double closeness(Chessboard){
     
     return 1.0;
 }
-double openness(std::array<int,64>){
+double openness(Chessboard){
     return 1.0;
 }
 
-ArrayElement::ArrayElement() :ArrayElement(0,0,0){
+ArrayElement::ArrayElement() :ArrayElement(0,0){
 }
 
 int ArrayElement::get_piece(){
@@ -82,9 +80,6 @@ int ArrayElement::get_piece(){
 
 int ArrayElement::get_piece_color(){
     return piece_color;
-}
-int ArrayElement::get_square_color(){
-    return square_color;
 }
 
 
