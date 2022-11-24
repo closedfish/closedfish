@@ -17,8 +17,17 @@
 
 using namespace std; //removes the need to type std::
 
-std::array<int, 64> single_generator(int pawns){
-    std::array<int,64> position_array;
+
+ Chessboard single_generator(int pawns){
+     Chessboard position_array;
+//    for (int i=0; i<=pawns; i++){
+//        int random_pos=rand()%64;
+//        if (position_array[random_pos].is_empty()){
+//
+//        }
+//
+//    }
+        
     return position_array;
 }
 
@@ -33,22 +42,22 @@ void database_edit(){
     
 }
 
-std::array<int, 64> completion(std::array<int, 64> input){
-    int* insertX(int n, int array[], int pos)
-        int i;
-        n++;
-        for (i=n; i>=pos; i--) {
-            if(array[i].is_empty()){
-                
-                int rand1 = rand()%3;
-                arr[pos - 1] = rand1;
-                int rand2 = rand()%3;
-                int rand3 = rand()%3;
-                int rand4 = rand()%2;
-                int rand5 = rand()%2;
-                array[i] = array[i - 1];
-    
-    std::array<int, 64> position_array;
+Chessboard completion(Chessboard){
+//    int* insertX(int n, int array[], int pos);
+//    int n=0;
+//        n++;
+//        for (int i=n; i>=pos; i--) {
+//            if(array[i].is_empty()){
+//
+//                int rand1 = rand()%3;
+//                arr[pos - 1] = rand1;
+//                int rand2 = rand()%3;
+//                int rand3 = rand()%3;
+//                int rand4 = rand()%2;
+//                int rand5 = rand()%2;
+//                array[i] = array[i - 1];
+//
+    Chessboard position_array;
     return position_array;
 }
 
@@ -59,4 +68,16 @@ double closeness(std::array<int,64>){
 double openness(std::array<int,64>){
     return 1.0;
 }
+
+Chessboard::Chessboard(){
+    for (int i =0;i<64; i++){
+        ArrayElement element={0,0,0};
+        board[i]=element;
+        
+    }
+}
+void Chessboard::replace_element(int position, ArrayElement element){
+    board[position]=element;
+}
+
 

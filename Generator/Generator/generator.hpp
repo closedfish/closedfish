@@ -11,7 +11,7 @@
 #include <stdio.h>
 
 #endif /* generator_hpp */
-std::array<int, 64> single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
+Chessboard single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
 
 void file_generator(int pawns); //Input number of pawns and return a file with every possible closed position with only pawns
 
@@ -83,3 +83,10 @@ private:
 
 */
 
+class Chessboard{
+public:
+    Chessboard();
+    void replace_element(int, ArrayElement);
+    ArrayElement board[64];
+
+}
