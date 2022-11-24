@@ -37,7 +37,12 @@ public:
     
     int get_square_color();
     
-private:
+//    int set_piece();
+//
+//    int set_piece_color();
+//
+//    int set_square_color();
+    
     int piece;
     int piece_color;
     int square_color;

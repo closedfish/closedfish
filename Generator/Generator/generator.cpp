@@ -20,13 +20,17 @@ using namespace std; //removes the need to type std::
 
  Chessboard single_generator(int pawns){
      Chessboard position_array;
-//    for (int i=0; i<=pawns; i++){
-//        int random_pos=rand()%64;
-//        if (position_array[random_pos].is_empty()){
-//
-//        }
-//
-//    }
+     for (int i=0; i<=pawns; i++){
+         int random_pos=rand()%64;
+         if (position_array.board[random_pos].is_empty()){
+             position_array.board[random_pos].piece=0;
+             position_array.board[random_pos].piece_color=0;
+             
+             position_array.board[random_pos].square_color=0;
+
+         }
+ 
+     }
         
     return position_array;
 }
@@ -82,6 +86,8 @@ int ArrayElement::get_piece_color(){
 int ArrayElement::get_square_color(){
     return square_color;
 }
+
+
 
 bool ArrayElement::is_empty(){
     if (piece == 0){
