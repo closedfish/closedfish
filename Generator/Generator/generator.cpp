@@ -52,99 +52,123 @@ void database_edit(){
 
 
 
-Chessboard completion(Chessboard){
-//    int* insertX(int n, int array[], int pos);
-//    int n=0;
-//        n++;
-//        for (int i=n; i>=pos; i--) {
-//            if(array[i].is_empty()){
-//
-//                int rand1 = rand()%3;
-//                arr[pos - 1] = rand1;
-//                int rand2 = rand()%3;
-//                int rand3 = rand()%3;
-//                int rand4 = rand()%2;
-//                int rand5 = rand()%2;
-//                array[i] = array[i - 1];
-//
-    Chessboard position_array;
-    return position_array;
-}
 
-
-double Chessboard::closeness(Chessboard){
-    
-    return 1.0;
-}
-double Chessboard::openness(Chessboard){
-    return 1.0;
-}
-
-
-
-
-
-
-ArrayElement::ArrayElement():ArrayElement(0,0){
-}
-
-int ArrayElement::get_piece(){
-    return piece;
-}
-
-int ArrayElement::get_piece_color(){
-    return piece_color;
-}
-
-
-
-bool ArrayElement::is_empty(){
-    if (piece == 0){
-        return true;
-    }
-    else {
-        return false;
-        }
-}
-
-
-
-Chessboard::Chessboard(){
-    for (int i =0;i<64; i++){
-        board[i]=element;
-        
-    }
-}
-Chessboard Chessboard::replace_element(int position, ArrayElement element, Chessboard input){
-    input.board[position]=element;
+Chessboard completion(Chessboard input){
     return input;
 }
-int Chessboard::get_total_pawns(Chessboard input){
-    int count=0;
-    for (int i =0; i<64; i++){
-        if(input.board[i].get_piece()==6){
-            count+=1;
-        }
-    }
-    return count;
-}
+    //    int* insertX(int n, int array[], int pos);
+    //    int n=0;
+    //        n++;
+    //        for (int i=n; i>=pos; i--) {
+    //            if(array[i].is_empty()){
+    //
+    //                int rand1 = rand()%3;
+    //                arr[pos - 1] = rand1;
+    //                int rand2 = rand()%3;
+    //                int rand3 = rand()%3;
+    //                int rand4 = rand()%2;
+    //                int rand5 = rand()%2;
+    //                array[i] = array[i - 1];
+    //
+    Chessboard position_array;
+    
+    //std::array<int, 64> completion(std::array<int, 64> input){
+    //    int* insertX(int n, int array[], int pos)
+    //    int i;
+    //    n++;
+    //    for (i=n; i>=pos; i--) {
+    //        if(array[i].is_empty()){
+    //
+    //            int rand1 = rand()%3;
+    //            arr[pos - 1] = rand1;
+    //            int rand2 = rand()%3;
+    //            int rand3 = rand()%3;
+    //            int rand4 = rand()%2;
+    //            int rand5 = rand()%2;
+    //            array[i] = array[i - 1];
+    //
+    //
+    //            std::array<int, 64> position_array;
+    //            >>>>>>> Stashed changes
+    //            return position_array;
+    //        }
 
-int Chessboard::get_white_pawns(Chessboard input){
-    int count=0;
-    for (int i=0; i<64; i++){
-        if (input.board[i].get_piece()==6 and input.board[i].get_piece_color()==0){
-            count+=1;
+        
+        
+        double Chessboard::closeness(Chessboard){
+            
+            return 1.0;
         }
-    }
-    return count;
-}
-int Chessboard::get_black_pawns(Chessboard input){
-    int count=0;
-    for (int i=0; i<64; i++){
-        if (input.board[i].get_piece()==6 and input.board[i].get_piece_color()==1){
-            count+=1;
+        double Chessboard::openness(Chessboard){
+            return 1.0;
         }
-    }
-    return count;
-}
-
+        
+       
+        
+        
+        
+        
+        
+        ArrayElement::ArrayElement():ArrayElement(0,0){
+        }
+        
+        int ArrayElement::get_piece(){
+            return piece;
+        }
+        
+        int ArrayElement::get_piece_color(){
+            return piece_color;
+        }
+        
+        
+        
+        bool ArrayElement::is_empty(){
+            if (piece == 0){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        
+        
+        
+        Chessboard::Chessboard(){
+            for (int i =0;i<64; i++){
+                board[i]=element;
+                
+            }
+        }
+        Chessboard Chessboard::replace_element(int position, ArrayElement element, Chessboard input){
+            input.board[position]=element;
+            return input;
+        }
+        int Chessboard::get_total_pawns(Chessboard input){
+            int count=0;
+            for (int i =0; i<64; i++){
+                if(input.board[i].get_piece()==6){
+                    count+=1;
+                }
+            }
+            return count;
+        }
+        
+        int Chessboard::get_white_pawns(Chessboard input){
+            int count=0;
+            for (int i=0; i<64; i++){
+                if (input.board[i].get_piece()==6 and input.board[i].get_piece_color()==0){
+                    count+=1;
+                }
+            }
+            return count;
+        }
+        int Chessboard::get_black_pawns(Chessboard input){
+            int count=0;
+            for (int i=0; i<64; i++){
+                if (input.board[i].get_piece()==6 and input.board[i].get_piece_color()==1){
+                    count+=1;
+                }
+            }
+            return count;
+        }
+    
