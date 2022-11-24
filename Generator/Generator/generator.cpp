@@ -69,14 +69,38 @@ double openness(std::array<int,64>){
     return 1.0;
 }
 
+ArrayElement::ArrayElement() :ArrayElement(0,0,0){
+}
+
+int ArrayElement::get_piece(){
+    return piece;
+}
+
+int ArrayElement::get_piece_color(){
+    return piece_color;
+}
+int ArrayElement::get_square_color(){
+    return square_color;
+}
+
+bool ArrayElement::is_empty(){
+    if (piece == 0){
+        return true;
+    }
+    else {
+        return false;
+        }
+}
+
+
+
 Chessboard::Chessboard(){
     for (int i =0;i<64; i++){
-        ArrayElement element={0,0,0};
         board[i]=element;
         
     }
 }
-void Chessboard::replace_element(int position, ArrayElement element){
+Chessboard Chessboard::replace_element(int position, ArrayElement element){
     board[position]=element;
 }
 

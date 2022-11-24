@@ -11,52 +11,32 @@
 #include <stdio.h>
 
 #endif /* generator_hpp */
-Chessboard single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
 
 void file_generator(int pawns); //Input number of pawns and return a file with every possible closed position with only pawns
 
 void database_edit(); //Etienne, open the database file, remove all of the unneeded pieces (not pawns) and create a new file with all of the new positions that have only pawns.
 
-std::array<int, 64> completion(std::array<int, 64>);// Shirelle, input a board with only pawns and fill the board with other pieces randomly
-
-
-double closeness(std::array<int,64>); //input a position consiting only of pawns, return a percentage
-
-double openness(std::array<int,64>); //input a position consiting only of pawns, return a percentage
-
 
 
 class ArrayElement { // Array element class
 public:
-    ArrayElement(){
-        
-    }
-    ArrayElement(int piece, int piece_color, int square_color){ // constructor
-        this->piece = piece;
-        this->piece_color = piece_color;
-        this->square_color = square_color;
-    }
-    
-    bool is_empty(){ // Checks if the position is empty
-        if (piece == 0){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+    ArrayElement(int piece, int piece_color, int square_color);
+    ArrayElement();
+//    ArrayElement(){
+//
+//    }
+
+
+    bool is_empty(); // Checks if the position is empty
+
     
     // Grabs private values
-    double get_piece(){
-        return piece;
-    }
-    double get_piece_color(){
-        return piece_color;
-    }
-    double get_square_color(){
-        return square_color;
-    }
-        
+    int get_piece();
+
+    int get_piece_color();
+    
+    int get_square_color();
+    
 private:
     int piece;
     int piece_color;
@@ -91,7 +71,14 @@ class Chessboard{
      The goal of the function replace element is to intake a position and an ArrayElement and to replace the current element with the one that is inputed at the position which is inputed.*/
 public:
     Chessboard();
+    Chessboard(ArrayElement);
     Chessboard replace_element(int, ArrayElement);
     ArrayElement board[64];
+    double closeness(Chessboard); //input a position consiting only of pawns, return a percentage
+    double openness(Chessboard); //input a position consiting only of pawns, return a percentage
+    Chessboard completion(Chessboard);// Shirelle, input a board with only pawns and fill the board with other pieces randomly
+    Chessboard single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
 
+private:
+    ArrayElement element;
 }
