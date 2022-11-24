@@ -25,6 +25,7 @@ using namespace std; //removes the need to type std::
          if (position_array.board[random_pos].is_empty()){
              position_array.board[random_pos].piece=6;
              position_array.board[random_pos].piece_color=0;
+    
 
          }
  
@@ -63,11 +64,11 @@ Chessboard completion(Chessboard){
     return position_array;
 }
 
-double closeness(Chessboard){
+double Chessboard::closeness(Chessboard){
     
     return 1.0;
 }
-double openness(Chessboard){
+double Chessboard::openness(Chessboard){
     return 1.0;
 }
 
@@ -104,5 +105,13 @@ Chessboard::Chessboard(){
 Chessboard Chessboard::replace_element(int position, ArrayElement element){
     board[position]=element;
 }
-
+int Chessboard::get_total_pawns(Chessboard input){
+    int count=0;
+    for (int i =0; i<64; i++){
+        if(input.board[i].get_piece()==1){
+            count+=1;
+        }
+    }
+    return count;
+}
 

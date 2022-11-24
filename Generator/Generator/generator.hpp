@@ -82,7 +82,7 @@ public:
     double openness(Chessboard); //input a position consiting only of pawns, return a percentage
     Chessboard completion(Chessboard);// Shirelle, input a board with only pawns and fill the board with other pieces randomly
     Chessboard single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
-
+    int get_total_pawns(Chessboard);
 private:
     ArrayElement element;
 }
