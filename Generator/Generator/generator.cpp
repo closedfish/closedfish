@@ -13,6 +13,7 @@
 #include <array>        //for std::array
 #include "generator.hpp"
 #include <fstream>      //For files
+#include <stdlib.h>     // include rand
 
 using namespace std; //removes the need to type std::
 
@@ -33,6 +34,19 @@ void database_edit(){
 }
 
 std::array<int, 64> completion(std::array<int, 64> input){
+    int* insertX(int n, int array[], int pos)
+        int i;
+        n++;
+        for (i=n; i>=pos; i--) {
+            if(array[i].is_empty()){
+                
+                int rand1 = rand()%3;
+                arr[pos - 1] = rand1;
+                int rand2 = rand()%3;
+                int rand3 = rand()%3;
+                int rand4 = rand()%2;
+                int rand5 = rand()%2;
+                array[i] = array[i - 1];
     
     std::array<int, 64> position_array;
     return position_array;
