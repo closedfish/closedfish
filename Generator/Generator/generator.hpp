@@ -11,21 +11,36 @@
 #include <stdio.h>
 
 #endif /* generator_hpp */
+
 // Chessboard single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
+
+
 
 void file_generator(int pawns); //Input number of pawns and return a file with every possible closed position with only pawns
 
 void database_edit(); //Etienne, open the database file, remove all of the unneeded pieces (not pawns) and create a new file with all of the new positions that have only pawns.
 
-std::array<int, 64> completion(std::array<int, 64>);// Shirelle, input a board with only pawns and fill the board with other pieces randomly
-
-
-double closeness(std::array<int,64>); //input a position consiting only of pawns, return a percentage
-
-double openness(std::array<int,64>); //input a position consiting only of pawns, return a percentage
 
 
 
+
+
+class ArrayElement { // Array element class
+public:
+    ArrayElement(int piece, int piece_color);
+    ArrayElement();
+    bool is_empty(); // Checks if the position is empty
+    // Grabs private values
+    int get_piece();
+    int get_piece_color();
+//    int set_piece();
+//
+//    int set_piece_color();
+//
+//    int set_square_color();
+    int piece;
+    int piece_color;
+};
 
 
 /*Notation: Chess board representation
@@ -48,15 +63,30 @@ double openness(std::array<int,64>); //input a position consiting only of pawns,
 
 */
 
+
 //class Chessboard{
+
+class Chessboard{
+
     /* Chess board is an array of 64 where the elements are ArrayElements from the class above.
      
      To access an element in the board just do board[i] where i is a number from 1 to 64
      
      The goal of the function replace element is to intake a position and an ArrayElement and to replace the current element with the one that is inputed at the position which is inputed.*/
-//public:
-    /* Chessboard();
-    Chessboard replace_element(int, ArrayElement);
-    ArrayElement board[64];
 
-}*/
+
+public:
+    Chessboard();
+    Chessboard(ArrayElement);
+    Chessboard replace_element(int, ArrayElement, Chessboard);
+    ArrayElement board[64];
+    double closeness(Chessboard); //input a position consiting only of pawns, return a percentage
+    double openness(Chessboard); //input a position consiting only of pawns, return a percentage
+    Chessboard completion(Chessboard);// Shirelle, input a board with only pawns and fill the board with other pieces randomly
+    Chessboard single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
+    int get_total_pawns(Chessboard);// inputs a chessboard and returns how many pawns are in the chess board
+    int get_white_pawns(Chessboard); //inputs a chessboard and returns how many white pawns there are
+    int get_black_pawns(Chessboard); //inputs a chessboard and returns how many black pawns there are
+    ArrayElement element;
+};
+
