@@ -11,7 +11,7 @@
 #include <stdio.h>
 
 #endif /* generator_hpp */
-std::array<int, 64> single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
+// Chessboard single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
 
 void file_generator(int pawns); //Input number of pawns and return a file with every possible closed position with only pawns
 
@@ -26,42 +26,7 @@ double openness(std::array<int,64>); //input a position consiting only of pawns,
 
 
 
-class ArrayElement { // Array element class
-public:
-    ArrayElement(){
-        
-    }
-    ArrayElement(int piece, int piece_color, int square_color){ // constructor
-        this->piece = piece;
-        this->piece_color = piece_color;
-        this->square_color = square_color;
-    }
-    
-    bool is_empty(){ // Checks if the position is empty
-        if (piece == 0){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    
-    // Grabs private values
-    double get_piece(){
-        return piece;
-    }
-    double get_piece_color(){
-        return piece_color;
-    }
-    double get_square_color(){
-        return square_color;
-    }
-        
-private:
-    int piece;
-    int piece_color;
-    int square_color;
-};
+
 
 /*Notation: Chess board representation
 
@@ -83,3 +48,15 @@ private:
 
 */
 
+//class Chessboard{
+    /* Chess board is an array of 64 where the elements are ArrayElements from the class above.
+     
+     To access an element in the board just do board[i] where i is a number from 1 to 64
+     
+     The goal of the function replace element is to intake a position and an ArrayElement and to replace the current element with the one that is inputed at the position which is inputed.*/
+//public:
+    /* Chessboard();
+    Chessboard replace_element(int, ArrayElement);
+    ArrayElement board[64];
+
+}*/
