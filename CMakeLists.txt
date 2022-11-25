@@ -50,17 +50,19 @@ endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 include(AddGitSubmodule)
 
+#add_git_submodule(external/stockfish)
+
 #Include Doxygen module
 include(Docs)
 
 #Include Conan Libraries
-#include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 
 #Includes subdirectories
 add_subdirectory(src)
 add_subdirectory(config)
 add_subdirectory(lib)
-
+ 
 
 #Enable unit testing
 option(ENABLE_TESTING "Whether to enable the unit testing build" ON)

@@ -11,7 +11,7 @@
 },
 {
   "directory": "/home/andrei/Desktop/Switch AI/build/src/play",
-  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/play/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -g -std=c++17 -o CMakeFiles/PlayingRoutine.dir/play_main.cc.o -c \"/home/andrei/Desktop/Switch AI/src/play/play_main.cc\"",
+  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/play/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -I\"/home/andrei/Desktop/Switch AI/src/Generator/.\" -g -std=c++17 -o CMakeFiles/PlayingRoutine.dir/play_main.cc.o -c \"/home/andrei/Desktop/Switch AI/src/play/play_main.cc\"",
   "file": "/home/andrei/Desktop/Switch AI/src/play/play_main.cc"
 },
 {
@@ -30,13 +30,23 @@
   "file": "/home/andrei/Desktop/Switch AI/src/connectors/Stockfish_connect/Stockfish_connect_main.cc"
 },
 {
+  "directory": "/home/andrei/Desktop/Switch AI/build/src/Generator",
+  "command": "/usr/bin/g++   -g -std=c++17 -o CMakeFiles/STATIC.dir/generator.cpp.o -c \"/home/andrei/Desktop/Switch AI/src/Generator/generator.cpp\"",
+  "file": "/home/andrei/Desktop/Switch AI/src/Generator/generator.cpp"
+},
+{
+  "directory": "/home/andrei/Desktop/Switch AI/build/src/Generator",
+  "command": "/usr/bin/g++   -g -std=c++17 -o CMakeFiles/STATIC.dir/main.cpp.o -c \"/home/andrei/Desktop/Switch AI/src/Generator/main.cpp\"",
+  "file": "/home/andrei/Desktop/Switch AI/src/Generator/main.cpp"
+},
+{
   "directory": "/home/andrei/Desktop/Switch AI/build/test",
-  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/connectors/Stockfish_connect/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -I\"/home/andrei/Desktop/Switch AI/src/connectors/general/.\" -I\"/home/andrei/Desktop/Switch AI/src/play/.\" -I\"/home/andrei/Desktop/Switch AI/src/input/.\" -I\"/home/andrei/Desktop/Switch AI/src/output/.\" -I\"/home/andrei/Desktop/Switch AI/src/opening/.\" -g -std=c++17 -o CMakeFiles/unit_tests.dir/test_main.cc.o -c \"/home/andrei/Desktop/Switch AI/test/test_main.cc\"",
+  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/connectors/Stockfish_connect/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -I\"/home/andrei/Desktop/Switch AI/src/connectors/general/.\" -I\"/home/andrei/Desktop/Switch AI/src/play/.\" -I\"/home/andrei/Desktop/Switch AI/src/Generator/.\" -I\"/home/andrei/Desktop/Switch AI/src/input/.\" -I\"/home/andrei/Desktop/Switch AI/src/output/.\" -I\"/home/andrei/Desktop/Switch AI/src/opening/.\" -g -std=c++17 -o CMakeFiles/unit_tests.dir/test_main.cc.o -c \"/home/andrei/Desktop/Switch AI/test/test_main.cc\"",
   "file": "/home/andrei/Desktop/Switch AI/test/test_main.cc"
 },
 {
   "directory": "/home/andrei/Desktop/Switch AI/build/app",
-  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/connectors/Stockfish_connect/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -I\"/home/andrei/Desktop/Switch AI/src/connectors/general/.\" -I\"/home/andrei/Desktop/Switch AI/src/play/.\" -I\"/home/andrei/Desktop/Switch AI/src/input/.\" -I\"/home/andrei/Desktop/Switch AI/src/output/.\" -I\"/home/andrei/Desktop/Switch AI/src/opening/.\" -g -std=c++17 -o CMakeFiles/Executable.dir/switch_main.cc.o -c \"/home/andrei/Desktop/Switch AI/app/switch_main.cc\"",
+  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/connectors/Stockfish_connect/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -I\"/home/andrei/Desktop/Switch AI/src/connectors/general/.\" -I\"/home/andrei/Desktop/Switch AI/src/play/.\" -I\"/home/andrei/Desktop/Switch AI/src/Generator/.\" -I\"/home/andrei/Desktop/Switch AI/src/input/.\" -I\"/home/andrei/Desktop/Switch AI/src/output/.\" -I\"/home/andrei/Desktop/Switch AI/src/opening/.\" -g -std=c++17 -o CMakeFiles/Executable.dir/switch_main.cc.o -c \"/home/andrei/Desktop/Switch AI/app/switch_main.cc\"",
   "file": "/home/andrei/Desktop/Switch AI/app/switch_main.cc"
 }
 ]

@@ -31,6 +31,5 @@ target_link_libraries(${EXECUTABLE} PUBLIC
     ${INPUT}    
     ${OUTPUT}
     ${OPENING}
-    ${CONAN_CATCH2}
-    external/stockfish)
+    ${CONAN_CATCH2})
   

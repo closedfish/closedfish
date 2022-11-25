@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"/home/andrei/Desktop/Switch AI/src/play/." -I"/home/andrei/Desktop/Switch AI/build/configured_files/include"
+CXX_INCLUDES = -I"/home/andrei/Desktop/Switch AI/src/play/." -I"/home/andrei/Desktop/Switch AI/build/configured_files/include" -I"/home/andrei/Desktop/Switch AI/src/Generator/."
 
 CXX_FLAGS = -g -std=c++17
 
