@@ -1,32 +1,32 @@
 [
 {
   "directory": "/home/andrei/Desktop/Switch AI/build/src/opening",
-  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/opening/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -g -std=c++17 -o CMakeFiles/DeceideOverOpening.dir/opening_main.cc.o -c \"/home/andrei/Desktop/Switch AI/src/opening/opening_main.cc\"",
+  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/opening/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -g -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wuseless-cast -std=c++17 -o CMakeFiles/DeceideOverOpening.dir/opening_main.cc.o -c \"/home/andrei/Desktop/Switch AI/src/opening/opening_main.cc\"",
   "file": "/home/andrei/Desktop/Switch AI/src/opening/opening_main.cc"
 },
 {
   "directory": "/home/andrei/Desktop/Switch AI/build/src/input",
-  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/input/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -g -std=c++17 -o CMakeFiles/ReceiveInputFromUI.dir/input.cc.o -c \"/home/andrei/Desktop/Switch AI/src/input/input.cc\"",
+  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/input/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -g -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wuseless-cast -std=c++17 -o CMakeFiles/ReceiveInputFromUI.dir/input.cc.o -c \"/home/andrei/Desktop/Switch AI/src/input/input.cc\"",
   "file": "/home/andrei/Desktop/Switch AI/src/input/input.cc"
 },
 {
   "directory": "/home/andrei/Desktop/Switch AI/build/src/play",
-  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/play/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -I\"/home/andrei/Desktop/Switch AI/src/Generator/.\" -g -std=c++17 -o CMakeFiles/PlayingRoutine.dir/play_main.cc.o -c \"/home/andrei/Desktop/Switch AI/src/play/play_main.cc\"",
+  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/play/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -g -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wuseless-cast -std=c++17 -o CMakeFiles/PlayingRoutine.dir/play_main.cc.o -c \"/home/andrei/Desktop/Switch AI/src/play/play_main.cc\"",
   "file": "/home/andrei/Desktop/Switch AI/src/play/play_main.cc"
 },
 {
   "directory": "/home/andrei/Desktop/Switch AI/build/src/output",
-  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/output/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -g -std=c++17 -o CMakeFiles/SendOutputToUI.dir/output.cc.o -c \"/home/andrei/Desktop/Switch AI/src/output/output.cc\"",
+  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/output/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -g -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wuseless-cast -std=c++17 -o CMakeFiles/SendOutputToUI.dir/output.cc.o -c \"/home/andrei/Desktop/Switch AI/src/output/output.cc\"",
   "file": "/home/andrei/Desktop/Switch AI/src/output/output.cc"
 },
 {
   "directory": "/home/andrei/Desktop/Switch AI/build/src/connectors/general",
-  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/connectors/general/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -g -std=c++17 -o CMakeFiles/GeneralConnectors.dir/general_main.cc.o -c \"/home/andrei/Desktop/Switch AI/src/connectors/general/general_main.cc\"",
+  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/connectors/general/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -g -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wuseless-cast -std=c++17 -o CMakeFiles/GeneralConnectors.dir/general_main.cc.o -c \"/home/andrei/Desktop/Switch AI/src/connectors/general/general_main.cc\"",
   "file": "/home/andrei/Desktop/Switch AI/src/connectors/general/general_main.cc"
 },
 {
   "directory": "/home/andrei/Desktop/Switch AI/build/src/connectors/Stockfish_connect",
-  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/connectors/Stockfish_connect/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -g -std=c++17 -o CMakeFiles/StockfishConectors.dir/Stockfish_connect_main.cc.o -c \"/home/andrei/Desktop/Switch AI/src/connectors/Stockfish_connect/Stockfish_connect_main.cc\"",
+  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/connectors/Stockfish_connect/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -g -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wuseless-cast -std=c++17 -o CMakeFiles/StockfishConectors.dir/Stockfish_connect_main.cc.o -c \"/home/andrei/Desktop/Switch AI/src/connectors/Stockfish_connect/Stockfish_connect_main.cc\"",
   "file": "/home/andrei/Desktop/Switch AI/src/connectors/Stockfish_connect/Stockfish_connect_main.cc"
 },
 {
@@ -41,12 +41,12 @@
 },
 {
   "directory": "/home/andrei/Desktop/Switch AI/build/test",
-  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/connectors/Stockfish_connect/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -I\"/home/andrei/Desktop/Switch AI/src/connectors/general/.\" -I\"/home/andrei/Desktop/Switch AI/src/play/.\" -I\"/home/andrei/Desktop/Switch AI/src/Generator/.\" -I\"/home/andrei/Desktop/Switch AI/src/input/.\" -I\"/home/andrei/Desktop/Switch AI/src/output/.\" -I\"/home/andrei/Desktop/Switch AI/src/opening/.\" -g -std=c++17 -o CMakeFiles/unit_tests.dir/test_main.cc.o -c \"/home/andrei/Desktop/Switch AI/test/test_main.cc\"",
+  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/connectors/Stockfish_connect/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -I\"/home/andrei/Desktop/Switch AI/src/connectors/general/.\" -I\"/home/andrei/Desktop/Switch AI/src/play/.\" -I\"/home/andrei/Desktop/Switch AI/src/input/.\" -I\"/home/andrei/Desktop/Switch AI/src/output/.\" -I\"/home/andrei/Desktop/Switch AI/src/opening/.\" -g -std=c++17 -o CMakeFiles/unit_tests.dir/test_main.cc.o -c \"/home/andrei/Desktop/Switch AI/test/test_main.cc\"",
   "file": "/home/andrei/Desktop/Switch AI/test/test_main.cc"
 },
 {
   "directory": "/home/andrei/Desktop/Switch AI/build/app",
-  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/connectors/Stockfish_connect/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -I\"/home/andrei/Desktop/Switch AI/src/connectors/general/.\" -I\"/home/andrei/Desktop/Switch AI/src/play/.\" -I\"/home/andrei/Desktop/Switch AI/src/Generator/.\" -I\"/home/andrei/Desktop/Switch AI/src/input/.\" -I\"/home/andrei/Desktop/Switch AI/src/output/.\" -I\"/home/andrei/Desktop/Switch AI/src/opening/.\" -g -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wuseless-cast -std=c++17 -o CMakeFiles/Executable.dir/switch_main.cc.o -c \"/home/andrei/Desktop/Switch AI/app/switch_main.cc\"",
+  "command": "/usr/bin/g++  -I\"/home/andrei/Desktop/Switch AI/src/connectors/Stockfish_connect/.\" -I\"/home/andrei/Desktop/Switch AI/build/configured_files/include\" -I\"/home/andrei/Desktop/Switch AI/src/connectors/general/.\" -I\"/home/andrei/Desktop/Switch AI/src/play/.\" -I\"/home/andrei/Desktop/Switch AI/src/input/.\" -I\"/home/andrei/Desktop/Switch AI/src/output/.\" -I\"/home/andrei/Desktop/Switch AI/src/opening/.\" -g -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wuseless-cast -std=c++17 -o CMakeFiles/Executable.dir/switch_main.cc.o -c \"/home/andrei/Desktop/Switch AI/app/switch_main.cc\"",
   "file": "/home/andrei/Desktop/Switch AI/app/switch_main.cc"
 }
 ]

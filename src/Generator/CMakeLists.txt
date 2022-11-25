@@ -7,7 +7,7 @@ set(GENERATOR_HEADERS
 add_library(${GENERATOR} STATIC
     ${GENERATOR_SOURCES}
     ${GENERATOR_HEADERS})
-    
-target_include_directories(${PLAY} PUBLIC
-    "./"
-    "${CMAKE_BINARY_DIR}/configured_files/include")
+
+if(${ENABLE_LTO})
+    target_enable_lto(${GENERATOR} optimized)
+endif()

@@ -262,35 +262,35 @@
 				{
 					"directoryIndex" : 2,
 					"id" : "DeceideOverOpening::@3b208530a387659e0465",
-					"jsonFile" : "target-DeceideOverOpening-Debug-5aa403c60deb4b00690f.json",
+					"jsonFile" : "target-DeceideOverOpening-Debug-433c306557c3f27d5873.json",
 					"name" : "DeceideOverOpening",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 13,
 					"id" : "Executable::@5f5a17c01335469806cb",
-					"jsonFile" : "target-Executable-Debug-c285ab4ecb88a5522a75.json",
+					"jsonFile" : "target-Executable-Debug-584c593b466200c8a5d3.json",
 					"name" : "Executable",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 7,
 					"id" : "GeneralConnectors::@8ed5133a869c9a5c0aa8",
-					"jsonFile" : "target-GeneralConnectors-Debug-b0cfec7217e2e37ff655.json",
+					"jsonFile" : "target-GeneralConnectors-Debug-e4e60aff9060a88d0b79.json",
 					"name" : "GeneralConnectors",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 4,
 					"id" : "PlayingRoutine::@667a96daa857e000067f",
-					"jsonFile" : "target-PlayingRoutine-Debug-e4afd205aa0738046351.json",
+					"jsonFile" : "target-PlayingRoutine-Debug-37ecb6eebcbb2da6b97a.json",
 					"name" : "PlayingRoutine",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 3,
 					"id" : "ReceiveInputFromUI::@fbb2a56cb88dc49cea17",
-					"jsonFile" : "target-ReceiveInputFromUI-Debug-c51b87a283ab46d09f74.json",
+					"jsonFile" : "target-ReceiveInputFromUI-Debug-edb3cce88bb481f2e689.json",
 					"name" : "ReceiveInputFromUI",
 					"projectIndex" : 0
 				},
@@ -304,14 +304,14 @@
 				{
 					"directoryIndex" : 5,
 					"id" : "SendOutputToUI::@7ca4fede0de1bc3e2a0f",
-					"jsonFile" : "target-SendOutputToUI-Debug-083a9a00c83484d903f8.json",
+					"jsonFile" : "target-SendOutputToUI-Debug-6f0dadfda44254b60fe2.json",
 					"name" : "SendOutputToUI",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 8,
 					"id" : "StockfishConectors::@1023c40771e6696b7958",
-					"jsonFile" : "target-StockfishConectors-Debug-466e3b2f5590860688f0.json",
+					"jsonFile" : "target-StockfishConectors-Debug-677b9e6e27b66c4e41c2.json",
 					"name" : "StockfishConectors",
 					"projectIndex" : 0
 				},
@@ -325,7 +325,7 @@
 				{
 					"directoryIndex" : 12,
 					"id" : "unit_tests::@36f028580bb02cc8272a",
-					"jsonFile" : "target-unit_tests-Debug-b1a9d1ae8f723d6485d6.json",
+					"jsonFile" : "target-unit_tests-Debug-8b0798f309130a5116e8.json",
 					"name" : "unit_tests",
 					"projectIndex" : 0
 				}

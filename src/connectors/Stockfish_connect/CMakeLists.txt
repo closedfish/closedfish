@@ -10,3 +10,11 @@ add_library(${SC} STATIC
 target_include_directories(${SC} PUBLIC 
     "./"
     "${CMAKE_BINARY_DIR}/configured_files/include")
+
+if (${ENABLE_WARNINGS})
+    target_set_warnings(TARGET ${SC} ENABLE ON AS_ERROR OFF)
+endif()
+
+if(${ENABLE_LTO})
+    target_enable_lto(${SC} optimized)
+endif()

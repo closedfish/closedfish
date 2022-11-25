@@ -12,11 +12,14 @@
 		"commands" : 
 		[
 			"add_library",
+			"target_compile_options",
+			"target_set_warnings",
 			"target_include_directories"
 		],
 		"files" : 
 		[
-			"src/connectors/general/CMakeLists.txt"
+			"src/connectors/general/CMakeLists.txt",
+			"cmake/Warnings.cmake"
 		],
 		"nodes" : 
 		[
@@ -30,7 +33,19 @@
 				"parent" : 0
 			},
 			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 15,
+				"parent" : 0
+			},
+			{
 				"command" : 1,
+				"file" : 1,
+				"line" : 80,
+				"parent" : 2
+			},
+			{
+				"command" : 3,
 				"file" : 0,
 				"line" : 10,
 				"parent" : 0
@@ -46,17 +61,89 @@
 					"fragment" : "-g"
 				},
 				{
+					"backtrace" : 3,
+					"fragment" : "-Wall"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Wextra"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Wshadow"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Wnon-virtual-dtor"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Wold-style-cast"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Wcast-align"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Wunused"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Woverloaded-virtual"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Wpedantic"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Wconversion"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Wnull-dereference"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Wdouble-promotion"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Wformat=2"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Wmisleading-indentation"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Wduplicated-cond"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Wduplicated-branches"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Wlogical-op"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Wuseless-cast"
+				},
+				{
 					"fragment" : "-std=c++17"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 2,
+					"backtrace" : 4,
 					"path" : "/home/andrei/Desktop/Switch AI/src/connectors/general/."
 				},
 				{
-					"backtrace" : 2,
+					"backtrace" : 4,
 					"path" : "/home/andrei/Desktop/Switch AI/build/configured_files/include"
 				}
 			],
