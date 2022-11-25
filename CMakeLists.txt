@@ -11,8 +11,13 @@ option(ENABLE_TESTING "Whether to enable the unit testing build" ON)
 #Enable warnings
 option(ENABLE_WARNINGS      "Enable to add warnings to a target."   ON)
 
-#Defining Variables
+#Options
+option(ENABLE_CLANG_TIDY    "Enable to add clang tidy."             OFF)
+option(ENABLE_CPPCHECK      "Enable to add cppcheck."               OFF)
+option(ENABLE_LTO           "Enable to add Link Time Optimization." OFF)
+option(ENABLE_CCACHE        "Enable to add Ccache."                 OFF)
 
+#Defining Variables
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -54,7 +59,12 @@ set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 include(AddGitSubmodule)
 
 #inlude warnings
-include(warnings)
+include(Warnings)
+
+#include option's cmake files
+include(StaticAnalyzers)
+include(LTO)
+include(Ccache)
 
 #Include Doxygen module
 include(Docs)

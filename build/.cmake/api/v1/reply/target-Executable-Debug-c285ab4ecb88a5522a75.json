@@ -18,7 +18,7 @@
 		"files" : 
 		[
 			"app/CMakeLists.txt",
-			"cmake/warnings.cmake"
+			"cmake/Warnings.cmake"
 		],
 		"nodes" : 
 		[

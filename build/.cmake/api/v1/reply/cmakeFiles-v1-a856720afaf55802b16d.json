@@ -91,7 +91,16 @@
 			"path" : "cmake/AddGitSubmodule.cmake"
 		},
 		{
-			"path" : "cmake/warnings.cmake"
+			"path" : "cmake/Warnings.cmake"
+		},
+		{
+			"path" : "cmake/StaticAnalyzers.cmake"
+		},
+		{
+			"path" : "cmake/LTO.cmake"
+		},
+		{
+			"path" : "cmake/Ccache.cmake"
 		},
 		{
 			"path" : "cmake/Docs.cmake"

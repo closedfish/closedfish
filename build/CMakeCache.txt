@@ -269,6 +269,18 @@ DOXYGEN_DOT_EXECUTABLE:FILEPATH=/usr/bin/dot
 //Doxygen documentation generation tool (http://www.doxygen.org)
 DOXYGEN_EXECUTABLE:FILEPATH=/usr/bin/doxygen
 
+//Enable to add Ccache.
+ENABLE_CCACHE:BOOL=OFF
+
+//Enable to add clang tidy.
+ENABLE_CLANG_TIDY:BOOL=OFF
+
+//Enable to add cppcheck.
+ENABLE_CPPCHECK:BOOL=OFF
+
+//Enable to add Link Time Optimization.
+ENABLE_LTO:BOOL=OFF
+
 //Whether to enable the unit testing build
 ENABLE_TESTING:BOOL=ON
 
