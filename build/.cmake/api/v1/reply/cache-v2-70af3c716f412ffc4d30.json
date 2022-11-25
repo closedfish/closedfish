@@ -1422,6 +1422,18 @@
 			"value" : "ON"
 		},
 		{
+			"name" : "ENABLE_WARNINGS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Enable to add warnings to a target."
+				}
+			],
+			"type" : "BOOL",
+			"value" : "ON"
+		},
+		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_Doxygen",
 			"properties" : 
 			[

@@ -272,6 +272,9 @@ DOXYGEN_EXECUTABLE:FILEPATH=/usr/bin/doxygen
 //Whether to enable the unit testing build
 ENABLE_TESTING:BOOL=ON
 
+//Enable to add warnings to a target.
+ENABLE_WARNINGS:BOOL=ON
+
 
 ########################
 # INTERNAL cache entries

@@ -91,6 +91,9 @@
 			"path" : "cmake/AddGitSubmodule.cmake"
 		},
 		{
+			"path" : "cmake/warnings.cmake"
+		},
+		{
 			"path" : "cmake/Docs.cmake"
 		},
 		{

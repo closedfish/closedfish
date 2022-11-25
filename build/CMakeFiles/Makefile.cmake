@@ -14,6 +14,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "conanbuildinfo.cmake"
   "../cmake/AddGitSubmodule.cmake"
   "../cmake/Docs.cmake"
+  "../cmake/warnings.cmake"
   "../config/CMakeLists.txt"
   "../config/config.hpp.in"
   "../docs/Doxyfile"

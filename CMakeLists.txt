@@ -8,6 +8,9 @@ include(GNUInstallDirs)
 #Enable unit testing
 option(ENABLE_TESTING "Whether to enable the unit testing build" ON)
 
+#Enable warnings
+option(ENABLE_WARNINGS      "Enable to add warnings to a target."   ON)
+
 #Defining Variables
 
 set(CMAKE_CXX_STANDARD 17)
@@ -50,7 +53,8 @@ endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 include(AddGitSubmodule)
 
-#add_git_submodule(external/stockfish)
+#inlude warnings
+include(warnings)
 
 #Include Doxygen module
 include(Docs)
