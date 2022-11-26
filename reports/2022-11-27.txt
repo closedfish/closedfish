@@ -1,0 +1,4 @@
+Sirawit:
+- Study the connection between closedfish and the switch
+- Setup Git codebase (with Andrei)
+
