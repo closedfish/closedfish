@@ -1,0 +1,321 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						9,
+						10,
+						11,
+						12
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"build" : "src",
+					"childIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"jsonFile" : "directory-src-Debug-b6cf2213fc5053b67c22.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src"
+				},
+				{
+					"build" : "src/opening",
+					"jsonFile" : "directory-src.opening-Debug-9ba00c7cb7b7eb689c21.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/opening",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "src/input",
+					"jsonFile" : "directory-src.input-Debug-f22e018e3cef74fb719b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/input",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "src/play",
+					"jsonFile" : "directory-src.play-Debug-02c90dad4e4c636dcdd9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/play",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "src/output",
+					"jsonFile" : "directory-src.output-Debug-a542cd211c41f534acef.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/output",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "src/connectors",
+					"childIndexes" : 
+					[
+						7,
+						8
+					],
+					"jsonFile" : "directory-src.connectors-Debug-a4eaa7c904280bba3995.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/connectors"
+				},
+				{
+					"build" : "src/connectors/general",
+					"jsonFile" : "directory-src.connectors.general-Debug-9bd04d125c0054c6ec4b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 6,
+					"projectIndex" : 0,
+					"source" : "src/connectors/general",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "src/connectors/Stockfish_connect",
+					"jsonFile" : "directory-src.connectors.Stockfish_connect-Debug-d947c8bd9e90b8bf31e8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 6,
+					"projectIndex" : 0,
+					"source" : "src/connectors/Stockfish_connect",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "config",
+					"jsonFile" : "directory-config-Debug-8b7a1d9837f139bfe82c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "config"
+				},
+				{
+					"build" : "lib",
+					"jsonFile" : "directory-lib-Debug-c12f15c6f888b43a891c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "lib"
+				},
+				{
+					"build" : "test",
+					"jsonFile" : "directory-test-Debug-451c0598f41488bb20b9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "test",
+					"targetIndexes" : 
+					[
+						8
+					]
+				},
+				{
+					"build" : "app",
+					"jsonFile" : "directory-app-Debug-94c5f210ca04b1028ae5.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "app",
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12
+					],
+					"name" : "ChessSwitchAI",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "DeceideOverOpening::@3b208530a387659e0465",
+					"jsonFile" : "target-DeceideOverOpening-Debug-5aa403c60deb4b00690f.json",
+					"name" : "DeceideOverOpening",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "Executable::@5f5a17c01335469806cb",
+					"jsonFile" : "target-Executable-Debug-314d26927fa2d8f9ca03.json",
+					"name" : "Executable",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "GeneralConnectors::@8ed5133a869c9a5c0aa8",
+					"jsonFile" : "target-GeneralConnectors-Debug-b0cfec7217e2e37ff655.json",
+					"name" : "GeneralConnectors",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "PlayingRoutine::@667a96daa857e000067f",
+					"jsonFile" : "target-PlayingRoutine-Debug-acdc6e7f38258dc0196e.json",
+					"name" : "PlayingRoutine",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "ReceiveInputFromUI::@fbb2a56cb88dc49cea17",
+					"jsonFile" : "target-ReceiveInputFromUI-Debug-c51b87a283ab46d09f74.json",
+					"name" : "ReceiveInputFromUI",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "SendOutputToUI::@7ca4fede0de1bc3e2a0f",
+					"jsonFile" : "target-SendOutputToUI-Debug-083a9a00c83484d903f8.json",
+					"name" : "SendOutputToUI",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "StockfishConectors::@1023c40771e6696b7958",
+					"jsonFile" : "target-StockfishConectors-Debug-466e3b2f5590860688f0.json",
+					"name" : "StockfishConectors",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "docs::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-docs-Debug-8a680da27298378c51b1.json",
+					"name" : "docs",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 11,
+					"id" : "unit_tests::@36f028580bb02cc8272a",
+					"jsonFile" : "target-unit_tests-Debug-8b0798f309130a5116e8.json",
+					"name" : "unit_tests",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/andrei/Desktop/Switch AI/build",
+		"source" : "/home/andrei/Desktop/Switch AI"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
