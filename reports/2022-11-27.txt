@@ -2,3 +2,7 @@ Sirawit:
 - Study the connection between closedfish and the switch
 - Setup Git codebase (with Andrei)
 
+Aarrya:
+- Organisde the entire work and made plans etc 
+- provided a small skeleton for the representation
+- started on the 1 person DFS 
