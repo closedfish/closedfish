@@ -19,6 +19,13 @@ public:
 
     std::string getRepr();
 
+    // Sirawit, 27/11/2022: I'm not sure we're going to implement this or not, but it would be really good for the switch part if we can do this
+    CFBoard(std::string FEN) : CFBoard() { fromFEN(FEN); }
+    void fromFEN(std::string FEN);
+    std::string toFEN();
+    // End (Sirawit, 27/11/2022)
+
+
     /*
     uint64_t getCardinals(int tile, bool color);
     uint64_t getDiagonals(int tile, bool color);
@@ -66,6 +73,14 @@ CFBoard::CFBoard() { //This is just the starter board.
     WhiteBoard = ((one << 16) - 1) << 48;
 
     turn = 1;
+}
+
+void CFBoard::fromFEN(std::string FEN){
+    // configure the current board from input FEN
+}
+std::string toFEN(){
+    // convert the current board to FEN
+    return "NotYetImplemented";
 }
 
 void CFBoard::addPiece(char pieceType, bool color, int tile) {
