@@ -1,0 +1,2 @@
+ccache /usr/bin/ar qc libStockfishConectors.a CMakeFiles/StockfishConectors.dir/Stockfish_connect_main.cc.o
+ccache /usr/bin/ranlib libStockfishConectors.a
