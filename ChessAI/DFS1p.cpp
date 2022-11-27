@@ -2,8 +2,6 @@
 using namespace std;
 
 /*
-* The representation is as follows char p will be K for king N for knight and so on4
-* 
 * a pawn has 5 possible moves 
 * n = 1 is a normal push
 * n = 2 is a push by 2 squares
@@ -40,7 +38,7 @@ using namespace std;
 
 /*
 * takes a coordinate from 0,0 upto 8,8 and returns -1 if the square is empty
-* even numbers will be a white peice and the following number will be te black version of the piece
+* even numbers will be a white peice and the following number will be the black version of the piece
 * 0 pawn (1 is black pawn)
 * 2 knight
 * 4 bishop
@@ -107,3 +105,7 @@ void make_move(int m, int i, int j)
 
 }
 
+void dfs()
+{
+
+}

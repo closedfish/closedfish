@@ -49,7 +49,8 @@ private:
 
     uint64_t BlackBoard;
     uint64_t WhiteBoard;
-
+    int active[16];
+    int passive[16];
     bool turn; // 0 for white, 1 for black
 
     /*
