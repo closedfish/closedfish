@@ -1,2 +1,0 @@
-ccache /usr/bin/ar qc libDeceideOverOpening.a CMakeFiles/DeceideOverOpening.dir/opening_main.cc.o
-ccache /usr/bin/ranlib libDeceideOverOpening.a

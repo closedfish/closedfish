@@ -1,1 +1,0 @@
-ccache /usr/bin/g++ -g CMakeFiles/Executable.dir/switch_main.cc.o -o Executable  ../src/connectors/Stockfish_connect/libStockfishConectors.a ../src/connectors/general/libGeneralConnectors.a ../src/play/libPlayingRoutine.a ../src/input/libReceiveInputFromUI.a ../src/output/libSendOutputToUI.a ../src/opening/libDeceideOverOpening.a -lexternal/stockfish 
