@@ -14,9 +14,13 @@ Aarrya:
 - provided a small skeleton for the representation
 - started on the 1 person DFS 
 
-Progress report Week 1 Dimitrije Zdrale:
-1) (TD) Installed OpenCV after some issues, implemented test function to open image from file.
-2) (At home) Wrote a program that opens a given image and finds the chess board, with a class storing each square of the board separately with coordinates on the screen. Everything was done using color recognition in the HVS basis. Classes are to be edited when merging with code that takes a screenshot.
+Dimitrije:
+This week:
+-  Installed OpenCV after some issues, implemented test function to open image from file.
+-  Wrote a program that opens a given image and finds the chess board, with a class storing each square of the board separately with coordinates on the screen. Everything was done using color recognition in the HVS basis. Classes are to be edited when merging with code that takes a screenshot.
+Next week:
+- Piece recognition and storing their position in a class.
+- Merging with code that saves the current board screenshot.
 
 Ariel
 This Week: 
