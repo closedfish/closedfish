@@ -1,0 +1,1 @@
+ccache /usr/bin/g++ -g CMakeFiles/unit_tests.dir/test_main.cc.o -o unit_tests  ../src/connectors/Stockfish_connect/libStockfishConectors.a ../src/connectors/general/libGeneralConnectors.a ../src/play/libPlayingRoutine.a ../src/input/libReceiveInputFromUI.a ../src/output/libSendOutputToUI.a ../src/opening/libDeceideOverOpening.a 
