@@ -13,6 +13,7 @@
 #include <cmath>
 #include <algorithm>
 #include <array>        //for std::array
+#include "generator.hpp"
 #include <fstream>      //For files
 #include <stdlib.h>     // include rand
 using namespace std; //removes the need to type std::
@@ -74,10 +75,7 @@ double Chessboard::openness(Chessboard){ //To be done
 
 ArrayElement::ArrayElement() :ArrayElement(0,0){
 }
-ArrayElement::ArrayElement(int piece, int piece_color){
-    piece=0;
-    piece_color=0;
-}
+
 int ArrayElement::get_piece(){
     return piece;
 }
@@ -105,9 +103,8 @@ Chessboard::Chessboard(){
         
     }
 }
-Chessboard Chessboard::replace_element(int position, ArrayElement element, Chessboard input){
+Chessboard Chessboard::replace_element(int position, ArrayElement element){
     board[position]=element;
-    return input;
 }
 int Chessboard::get_total_pawns(Chessboard input){
     int count=0;

@@ -63,7 +63,7 @@ class Chessboard{
 public:
     Chessboard();
     Chessboard(ArrayElement);
-    Chessboard replace_element(int, ArrayElement, Chessboard);
+    Chessboard replace_element(int, ArrayElement);
     ArrayElement board[64];
     double closeness(Chessboard); //input a position consiting only of pawns, return a percentage
     double openness(Chessboard); //input a position consiting only of pawns, return a percentage
