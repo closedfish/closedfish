@@ -37,5 +37,12 @@ Next week:
  - Finish the implementation of the connector class
  - Start working on a battery of tests of the performance of our algorithm.
 
+Etienne
+This week:
+- Researched closed positions in chess for me and my team.
+- Created the class representing the chess board, implemented the ArrayElement class with its respective functions to manipulate chessboard elements in collaboration with Ariel. Started work on file_generator. 
+Next Week:
+- Continue working on the Chessboard class and finish the closeness, openness functions and file_generator.
+
 
 
