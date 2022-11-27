@@ -1,8 +1,8 @@
 //
 //  main.cpp
-//  generator
+//  Generator
 //
-//  Created by Ariel Flahaut on 27/11/2022.
+//  Created by Ariel Flahaut on 23/11/2022.
 //
 
 #include <iostream>
