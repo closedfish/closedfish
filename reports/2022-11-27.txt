@@ -19,5 +19,8 @@ Progress report Week 1 Dimitrije Zdrale:
 2) (At home) Wrote a program that opens a given image and finds the chess board, with a class storing each square of the board separately with coordinates on the screen. Everything was done using color recognition in the HVS basis. Classes are to be edited when merging with code that takes a screenshot.
 
 Ariel
-This Week: Created two classes: (one to represent a chessboard with different functionalities and one to represent an element of a chessboard)
-Next Week: We will continue coding the functions mainly inside the Chessboard class (generating functions)
+This Week: 
+- Created the Chessboard Class with different functions which edit chessboards in different ways, retrieve information from chessboards as well as create chessboards
+- Created the Element of a chessboard class, each element is initialised to (0,0) where the first number is the piece and the second is the colour
+Next Week: 
+- Continue coding the functions mainly inside the Chessboard class (generating Chessboards and determining openness and closeness of chessboards
