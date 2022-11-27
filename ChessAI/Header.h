@@ -37,6 +37,12 @@ public:
     void move();
     */
 
+    // edits by Aarrya
+public: 
+    int active[32];
+    int dead[32];
+
+
 private:
     uint64_t one = 1;
 
@@ -49,8 +55,7 @@ private:
 
     uint64_t BlackBoard;
     uint64_t WhiteBoard;
-    int active[16];
-    int passive[16];
+
     bool turn; // 0 for white, 1 for black
 
     /*

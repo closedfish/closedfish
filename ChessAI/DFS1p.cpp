@@ -1,4 +1,8 @@
 #include "Header.h"
+#include <vector>
+#include <array>
+#include <iostream>
+
 using namespace std;
 
 /*
@@ -46,10 +50,13 @@ using namespace std;
 * 8 queen
 * 10 king 
 */
-int get_peice(int i, int j)
+int get_piece(int i, int j)
 {
 	return 0;
 }
+
+// the least space taking board 
+CFBoard noneBoard;
 
 /*
 * 1) We need to make sure that we do not go over any peices for any moves (except knights)
@@ -59,7 +66,7 @@ int get_peice(int i, int j)
 * 5) our king does not stay in check
 */
 
-bool is_move_legal()
+bool is_move_legal(CFBoard b, int i, int j, int n)
 {
 	return false;
 }
@@ -95,17 +102,109 @@ int piece_moves(int i, int j)
 	return 0;
 }
 
+// returns the coordinates of every peice of type n in an array/deque/vector/list and -1,-1 if its not
+std::array<int, 16> get_coords(int n)
+{
+	std::array<int,16> arr;
+	for (int i = 0; i < 10; i++)
+	{
+		arr[i] = 0;
+	}
+	return arr;
+}
 /*
 * makes the mth move for a piece on the square i,j 
-* checks if the move is legal
+* check if move is legal
 * checks if the opponent is in check stalemated or checkmated
 */
-void make_move(int m, int i, int j)
+CFBoard make_move(int m, int i, int j, CFBoard b)
 {
-
+	CFBoard board;
+	return board;
 }
 
-void dfs()
+CFBoard undo_move(int m, int i, int j, CFBoard b)
+{
+	CFBoard board;
+	return board;
+}
+
+//evaluates the position might be different from stockfish. NOT FOR YOSHI.
+int eval()
+{
+	return 0;
+}
+
+// returns new boards after each move has been made
+std::array<CFBoard,56> new_branch(int l,CFBoard b,int j,int i)
+{
+	std::array<CFBoard,56> moo;
+	for (int k = 0; k < l; k++)
+			moo[k] = make_move(k, j, i, b);
+	return moo;
+}
+
+//returns number of possible moves by every piece
+int num_moves(int n)
+{
+	if (n % 2 == 1)
+		n--;
+	if (n == 0)
+		return 5;
+	if (n == 2)
+		return 8;
+	if (n == 4)
+		return 28;
+	if (n == 6)
+		return 28;
+	if (n == 8)
+		return 56;
+	return 10;
+}
+
+/*
+* the main idea is to do the DFS like a normal chess engine except letting only one side make moves
+* the output will be an array/list/deque/vector
+* the first element will be time it takes measured in moves
+* the second element  will be the evaluation
+* the next elements will be the line with the highest evaluation it went through
+* the next task is to maintain a best solution array/list/deque/vector and keep on updating it
+* and finding a way to break it currently it breaks at time 10 for just a proof of concept
+* This significantly eases the minimax algorithm 
+* Also note that because of the negamax algorithm and that the total evaluation should be 0
+* we have that the algrithm for black would just be the negative for white
+*/
+void dfs_helper(CFBoard board, int count)
+{
+	if (count == 10)
+	{
+		return;
+	}
+	for(int i=0;i<32;i++)
+	{
+		if (board.active[i] == -1)
+			break;
+		else
+		{
+			std::array<int, 16> arr = get_coords(board.active[i]);
+			for (int j = 0; j < 16; j+=2)
+			{
+				std::array<CFBoard, 56> moo;
+				int piece = get_piece(arr[j],arr[j+1]);
+				if (piece == -1)
+					break;
+				else
+					moo = new_branch(num_moves(piece), board, arr[j], arr[j + 1]);
+				for (int k = 0; k < 56; k++)
+				{
+					dfs_helper(moo[k], count + 1);
+				}
+			}
+		}
+	}
+}
+
+void dfs_main(CFBoard& board)
 {
 
 }
