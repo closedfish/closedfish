@@ -18,7 +18,7 @@
 using namespace std; //removes the need to type std::
 
 
- Chessboard single_generator(int pawns){ //To be finished
+ Chessboard single_generator(int pawns){
      Chessboard position_array;
      for (int i=0; i<=pawns; i++){
          int random_pos=rand()%64;
@@ -34,12 +34,12 @@ using namespace std; //removes the need to type std::
     return position_array;
 }
 
-void file_generator(int pawns){ //To be finished
+void file_generator(int pawns){
     std::fstream file;
     std::ofstream outfile ("generated_position.txt");
 }
 
-void database_edit(){ //To be finished
+void database_edit(){
     std::fstream file;
     std::ofstream outfile ("new_database.txt");
     
@@ -64,11 +64,11 @@ Chessboard completion(Chessboard){
     return position_array;
 }
 
-double Chessboard::closeness(Chessboard){ //To be done
+double Chessboard::closeness(Chessboard){
     
     return 1.0;
 }
-double Chessboard::openness(Chessboard){ //To be done
+double Chessboard::openness(Chessboard){
     return 1.0;
 }
 
