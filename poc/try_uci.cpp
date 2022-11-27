@@ -1,6 +1,7 @@
 /**
  * try_uci.cpp -- Try calling stockfish using UCI protocol
- *
+ * NOTE: This file is currently unused, since manual piping is more difficult
+ * than calling the libraries directly.
  */
 
 #include <cstdio>
