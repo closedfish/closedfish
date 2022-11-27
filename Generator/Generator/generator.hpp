@@ -22,13 +22,26 @@ class ArrayElement { // Array element class
 public:
     ArrayElement(int piece, int piece_color);
     ArrayElement();
+//    ArrayElement(){
+//
+//    }
 
 
     bool is_empty(); // Checks if the position is empty
 
+    
+    // Grabs private values
     int get_piece();
 
     int get_piece_color();
+    
+
+    
+//    int set_piece();
+//
+//    int set_piece_color();
+//
+//    int set_square_color();
     
     int piece;
     int piece_color;
