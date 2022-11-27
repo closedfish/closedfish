@@ -29,7 +29,13 @@ Shirelle
 - This week I worked with my subteam on creating some functions And definitions of the variables we are going to use, we have chosen each algorithm we wanted to work on. 
 - Next week, I Will finish the algorithm that will output a chessboard with randomly chosen pawns. 
 
-
+Rali 
+This week : 
+ - Started learning about the StockFish codebase
+ - Started work on writing a class that connects our chess algorithm to the switch, in order to add an additional level of abstraction and normalize the data types.
+Next week:
+ - Finish the implementation of the connector class
+ - Start working on a battery of tests of the performance of our algorithm.
 
 
 
