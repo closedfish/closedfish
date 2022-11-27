@@ -24,3 +24,12 @@ This Week:
 - Created the Element of a chessboard class, each element is initialised to (0,0) where the first number is the piece and the second is the colour
 Next Week: 
 - Continue coding the functions mainly inside the Chessboard class (generating Chessboards and determining openness and closeness of chessboards
+
+Shirelle
+- This week I worked with my subteam on creating some functions And definitions of the variables we are going to use, we have chosen each algorithm we wanted to work on. 
+- Next week, I Will finish the algorithm that will output a chessboard with randomly chosen pawns. 
+
+
+
+
+
