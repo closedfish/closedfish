@@ -4,21 +4,24 @@
  */
 
 #include "../Board Implementation/CFBoard.cpp"
+#include "Stockfish/src/uci.cpp"
 #include <cstdio>
 #include <iostream>
 #include <vector>
 
-class Move {
-    // Placeholder class to store a single chess move
-};
-
-std::vector<Move> get_stockfish_output(CFBoard cfb) {
+/**
+ * @brief converts closedfish board to stockfish board
+ *
+ * @param cfb closedfish board
+ * @return Position stockfish board
+ */
+Position convert_CFBoard_to_Stockfish_Position(CFBoard cfb) {
     // to be implemented
-    ;
 }
 
-int main() {
-    // load board
-    // fetch stockfish output for this board
-    // output
+// look at uci.cpp for reference
+void call_stockfish(Position &pos, StateListPtr &states,
+                    Search::LimitsType limits, bool ponderMode) {
+    limits.startTime = now();
+    Threads.start_thinking(pos, states, limits, ponderMode);
 }
