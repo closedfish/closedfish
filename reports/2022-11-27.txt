@@ -45,4 +45,9 @@ Next Week:
 - Continue working on the Chessboard class and finish the closeness, openness functions and file_generator.
 
 
-
+Antonia
+This week:
+- started the implementation of the functions that tell us by how many pieces the target pawn is currently protected (need to finalize the check for bishops and queens)
+- adapted my code to Yoshi's board representation
+Next week:
+- check how many pieces can potentially protect the target pawn and in how many moves  
