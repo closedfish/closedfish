@@ -1,7 +1,7 @@
 set(SC_SOURCES 
-    "Stockfish_connect_main.cc")
+    "StockfishConnect.cpp")
 set(SC_HEADERS
-    "Stockfish_connect_main.hpp")
+    "StockfishConnect.hpp")
 
 add_library(${SC} STATIC
     ${SC_SOURCES}

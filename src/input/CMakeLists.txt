@@ -1,7 +1,7 @@
 set(INPUT_SOURCES 
-    "input.cc")
+    "Input.cc")
 set(INPUT_HEADERS
-    "input.hpp")
+    "Input.hpp")
 
 add_library(${INPUT} STATIC
     ${INPUT_SOURCES}
