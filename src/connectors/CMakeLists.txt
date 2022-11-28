@@ -1,0 +1,2 @@
+add_subdirectory(closedfish_connect)
+add_subdirectory(stockfish_connect)

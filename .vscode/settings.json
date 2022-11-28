@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "ostream": "cpp",
+        "streambuf": "cpp",
+        "chrono": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}
