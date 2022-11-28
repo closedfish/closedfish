@@ -18,9 +18,12 @@
 using namespace std; //removes the need to type std::
 
 /**
-* @brief
-* @param Example
-* @return
+ @brief this function has the goal of taking an amount of pawns (even or odd) and returning a random board with those pawns
+ 
+@param pawns which is the number of pawns you want on your board
+ 
+ 
+@return Chessboard with those pawns in the board
  */
 Chessboard single_generator(int pawns){ //To be fixed
     Chessboard position_array;
@@ -60,7 +63,7 @@ void database_edit(){ //To be finished
     
 }
 
-Chessboard completion(Chessboard){
+Chessboard completion(Chessboard input){
 //    int* insertX(int n, int array[], int pos);
 //    int n=0;
 //        n++;
