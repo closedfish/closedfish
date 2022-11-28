@@ -1,0 +1,5 @@
+add_subdirectory(opening)
+add_subdirectory(input)
+add_subdirectory(play)
+add_subdirectory(output)
+add_subdirectory(connectors)

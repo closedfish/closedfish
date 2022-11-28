@@ -16,6 +16,7 @@ The aim of this project is to create a chess engine, to improve the
 - Aarrya Saraf, AarryaSaraf, AarryaSaraf. [leader]
 - Dimitrije Zdrale, D-2n, @dimitrije32, [UI]
 
+
 ## Teams
 
 ### Algorithm
