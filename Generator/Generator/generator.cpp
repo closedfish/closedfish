@@ -64,14 +64,19 @@ void database_edit(){ //To be finished
 }
 
 /**
-* @brief generates a random chessboard with randomly chosen numbers of king, queen, bishop, knight, and rook.
-* @param  input
+@brief generates a random chessboard with randomly chosen numbers of king, queen, bishop, knight, and rook.
+
+@param  input
+
+
  
  
  
  */
 
+
 Chessboard completion(Chessboard input){
+
 //    int* insertX(int n, int array[], int pos);
 //    int n=0;
 //        n++;
