@@ -1,8 +1,10 @@
-﻿// Chess_AI.cpp : définit le point d'entrée de l'application.
+﻿// Chess_AI.cpp : définit le point d'entrée de l'application.
 //
 
 #include "Chess_AI.h"
 #include "Board Implementation/CFBoard.cpp"
+
+//change
 
 using namespace std;
 
