@@ -23,6 +23,9 @@
 /home/andrei/Desktop/Switch AI/build/src/connectors/Stockfish_connect/CMakeFiles/StockfishConectors.dir
 /home/andrei/Desktop/Switch AI/build/src/connectors/Stockfish_connect/CMakeFiles/edit_cache.dir
 /home/andrei/Desktop/Switch AI/build/src/connectors/Stockfish_connect/CMakeFiles/rebuild_cache.dir
+/home/andrei/Desktop/Switch AI/build/src/Generator/CMakeFiles/STATIC.dir
+/home/andrei/Desktop/Switch AI/build/src/Generator/CMakeFiles/edit_cache.dir
+/home/andrei/Desktop/Switch AI/build/src/Generator/CMakeFiles/rebuild_cache.dir
 /home/andrei/Desktop/Switch AI/build/config/CMakeFiles/edit_cache.dir
 /home/andrei/Desktop/Switch AI/build/config/CMakeFiles/rebuild_cache.dir
 /home/andrei/Desktop/Switch AI/build/lib/CMakeFiles/edit_cache.dir

@@ -141,6 +141,7 @@ src/all: src/input/all
 src/all: src/play/all
 src/all: src/output/all
 src/all: src/connectors/all
+src/all: src/Generator/all
 .PHONY : src/all
 
 # Recursive "preinstall" directory target.
@@ -149,6 +150,7 @@ src/preinstall: src/input/preinstall
 src/preinstall: src/play/preinstall
 src/preinstall: src/output/preinstall
 src/preinstall: src/connectors/preinstall
+src/preinstall: src/Generator/preinstall
 .PHONY : src/preinstall
 
 # Recursive "clean" directory target.
@@ -157,7 +159,23 @@ src/clean: src/input/clean
 src/clean: src/play/clean
 src/clean: src/output/clean
 src/clean: src/connectors/clean
+src/clean: src/Generator/clean
 .PHONY : src/clean
+
+#=============================================================================
+# Directory level rules for directory src/Generator
+
+# Recursive "all" directory target.
+src/Generator/all: src/Generator/CMakeFiles/STATIC.dir/all
+.PHONY : src/Generator/all
+
+# Recursive "preinstall" directory target.
+src/Generator/preinstall:
+.PHONY : src/Generator/preinstall
+
+# Recursive "clean" directory target.
+src/Generator/clean: src/Generator/CMakeFiles/STATIC.dir/clean
+.PHONY : src/Generator/clean
 
 #=============================================================================
 # Directory level rules for directory src/connectors
@@ -393,7 +411,7 @@ src/play/CMakeFiles/PlayingRoutine.dir/clean:
 src/output/CMakeFiles/SendOutputToUI.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/output/CMakeFiles/SendOutputToUI.dir/build.make src/output/CMakeFiles/SendOutputToUI.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/output/CMakeFiles/SendOutputToUI.dir/build.make src/output/CMakeFiles/SendOutputToUI.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/andrei/Desktop/Switch AI/build/CMakeFiles" --progress-num=11,12 "Built target SendOutputToUI"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/andrei/Desktop/Switch AI/build/CMakeFiles" --progress-num=14,15 "Built target SendOutputToUI"
 .PHONY : src/output/CMakeFiles/SendOutputToUI.dir/all
 
 # Build rule for subdir invocation for target.
@@ -445,7 +463,7 @@ src/connectors/general/CMakeFiles/GeneralConnectors.dir/clean:
 src/connectors/Stockfish_connect/CMakeFiles/StockfishConectors.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/connectors/Stockfish_connect/CMakeFiles/StockfishConectors.dir/build.make src/connectors/Stockfish_connect/CMakeFiles/StockfishConectors.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/connectors/Stockfish_connect/CMakeFiles/StockfishConectors.dir/build.make src/connectors/Stockfish_connect/CMakeFiles/StockfishConectors.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/andrei/Desktop/Switch AI/build/CMakeFiles" --progress-num=13,14 "Built target StockfishConectors"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/andrei/Desktop/Switch AI/build/CMakeFiles" --progress-num=16,17 "Built target StockfishConectors"
 .PHONY : src/connectors/Stockfish_connect/CMakeFiles/StockfishConectors.dir/all
 
 # Build rule for subdir invocation for target.
@@ -465,6 +483,32 @@ src/connectors/Stockfish_connect/CMakeFiles/StockfishConectors.dir/clean:
 .PHONY : src/connectors/Stockfish_connect/CMakeFiles/StockfishConectors.dir/clean
 
 #=============================================================================
+# Target rules for target src/Generator/CMakeFiles/STATIC.dir
+
+# All Build rule for target.
+src/Generator/CMakeFiles/STATIC.dir/all:
+	$(MAKE) $(MAKESILENT) -f src/Generator/CMakeFiles/STATIC.dir/build.make src/Generator/CMakeFiles/STATIC.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/Generator/CMakeFiles/STATIC.dir/build.make src/Generator/CMakeFiles/STATIC.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/andrei/Desktop/Switch AI/build/CMakeFiles" --progress-num=11,12,13 "Built target STATIC"
+.PHONY : src/Generator/CMakeFiles/STATIC.dir/all
+
+# Build rule for subdir invocation for target.
+src/Generator/CMakeFiles/STATIC.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/andrei/Desktop/Switch AI/build/CMakeFiles" 3
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/Generator/CMakeFiles/STATIC.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/andrei/Desktop/Switch AI/build/CMakeFiles" 0
+.PHONY : src/Generator/CMakeFiles/STATIC.dir/rule
+
+# Convenience name for target.
+STATIC: src/Generator/CMakeFiles/STATIC.dir/rule
+.PHONY : STATIC
+
+# clean rule for target.
+src/Generator/CMakeFiles/STATIC.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/Generator/CMakeFiles/STATIC.dir/build.make src/Generator/CMakeFiles/STATIC.dir/clean
+.PHONY : src/Generator/CMakeFiles/STATIC.dir/clean
+
+#=============================================================================
 # Target rules for target test/CMakeFiles/unit_tests.dir
 
 # All Build rule for target.
@@ -476,7 +520,7 @@ test/CMakeFiles/unit_tests.dir/all: src/connectors/general/CMakeFiles/GeneralCon
 test/CMakeFiles/unit_tests.dir/all: src/connectors/Stockfish_connect/CMakeFiles/StockfishConectors.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/unit_tests.dir/build.make test/CMakeFiles/unit_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/unit_tests.dir/build.make test/CMakeFiles/unit_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/andrei/Desktop/Switch AI/build/CMakeFiles" --progress-num=15,16 "Built target unit_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/andrei/Desktop/Switch AI/build/CMakeFiles" --progress-num=18,19 "Built target unit_tests"
 .PHONY : test/CMakeFiles/unit_tests.dir/all
 
 # Build rule for subdir invocation for target.
