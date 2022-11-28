@@ -4,9 +4,9 @@ if (ENABLE_TESTING)
     set(TEST_MAIN 
         "unit_tests")
     set(TEST_SOURCES
-        "TestMain.cpp")
+        "test_main.cpp")
     set(TEST_HEADERS 
-        "TestMain.hpp")
+        "test_main.hpp")
 
     add_executable(${TEST_MAIN} ${TEST_SOURCES})
     target_link_libraries(${TEST_MAIN} PUBLIC

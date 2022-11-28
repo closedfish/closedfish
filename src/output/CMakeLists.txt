@@ -1,7 +1,7 @@
 set(OUPUT_SOURCES 
-    "Output.cc")
+    "output.cc")
 set(OUPUT_HEADERS
-    "Output.hpp")
+    "output.hpp")
 
 add_library(${OUTPUT} STATIC
     ${OUPUT_SOURCES}

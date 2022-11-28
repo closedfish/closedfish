@@ -1,7 +1,7 @@
 set(PLAY_SOURCES 
-    "PlayMain.cpp")
+    "play_main.cpp")
 set(PLAY_HEADERS
-    "PlayMain.hpp")
+    "play_main.hpp")
 
 add_library(${PLAY} STATIC
     ${PLAY_SOURCES}

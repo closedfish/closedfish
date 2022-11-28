@@ -1,7 +1,7 @@
 set(OPENING_SOURCES 
-    "OpeningMain.cpp")
+    "opening_main.cpp")
 set(OPENING_HEADERS
-    "OpeningMain.hpp")
+    "opening_main.hpp")
 
 add_library(${OPENING} STATIC
     ${OPENING_SOURCES}
