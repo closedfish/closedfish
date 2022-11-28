@@ -2,7 +2,7 @@
 //
 
 #include "Chess_AI.h"
-#include "CFBoard.cpp"
+#include "Board Implementation/CFBoard.cpp"
 
 using namespace std;
 
@@ -42,14 +42,13 @@ int nb_protecting_horses(CFBoard &board, bool &color, int& pawn_i, int& pawn_j){
 	int count = 0;
 	for (int i = -2; i < 3; i++) {
 		for (int j = -2, j < 3; j++) {
-			if (i != j && i != 0 && j!= 0){
+			if (i != j && i != 0 && j!= 0 && abs(j) != abs(i)){
 				if (is_valid(pawn_i + i, pawn_j + j)){
 					int tile = get_bit_from_pos(pawn_i + i, pawn_j + j);
 					if (board.getBit('N', color, tile)) {
 						count++;
 					}
 				}
-				
 			}
 		}
 	}

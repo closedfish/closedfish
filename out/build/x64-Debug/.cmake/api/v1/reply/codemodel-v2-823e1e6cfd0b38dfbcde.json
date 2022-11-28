@@ -1,0 +1,309 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						9,
+						10,
+						11,
+						12
+					],
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "src",
+					"childIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"jsonFile" : "directory-src-Debug-c94b7c2814d5a21df52c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src"
+				},
+				{
+					"build" : "src/opening",
+					"jsonFile" : "directory-src.opening-Debug-1f6a73e210022949b967.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/opening",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "src/input",
+					"jsonFile" : "directory-src.input-Debug-2760c39d3d43637e5082.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/input",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "src/play",
+					"jsonFile" : "directory-src.play-Debug-9e7ba570c2947ff5a685.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/play",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "src/output",
+					"jsonFile" : "directory-src.output-Debug-589e3f7ba4510d464008.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/output",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "src/connectors",
+					"childIndexes" : 
+					[
+						7,
+						8
+					],
+					"jsonFile" : "directory-src.connectors-Debug-41580c2d40164f7d24a7.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/connectors"
+				},
+				{
+					"build" : "src/connectors/general",
+					"jsonFile" : "directory-src.connectors.general-Debug-06f9e4dea381a5445155.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 6,
+					"projectIndex" : 0,
+					"source" : "src/connectors/general",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "src/connectors/Stockfish_connect",
+					"jsonFile" : "directory-src.connectors.Stockfish_connect-Debug-5bc8762e2f7bfc6b3c81.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 6,
+					"projectIndex" : 0,
+					"source" : "src/connectors/Stockfish_connect",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "config",
+					"jsonFile" : "directory-config-Debug-4da22e615810e948ed22.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "config"
+				},
+				{
+					"build" : "lib",
+					"jsonFile" : "directory-lib-Debug-e9069484d90298468a11.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "lib"
+				},
+				{
+					"build" : "test",
+					"jsonFile" : "directory-test-Debug-f18be1977b403cfd1a50.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "test",
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"build" : "app",
+					"jsonFile" : "directory-app-Debug-7ab44524cbd5ada90c6a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "app",
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12
+					],
+					"name" : "ChessSwitchAI",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "DeceideOverOpening::@3b208530a387659e0465",
+					"jsonFile" : "target-DeceideOverOpening-Debug-3e6a7a7a6ed72d703449.json",
+					"name" : "DeceideOverOpening",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "Executable::@5f5a17c01335469806cb",
+					"jsonFile" : "target-Executable-Debug-e07b534026171259dd0d.json",
+					"name" : "Executable",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "GeneralConnectors::@8ed5133a869c9a5c0aa8",
+					"jsonFile" : "target-GeneralConnectors-Debug-a3130776c89d894c12ec.json",
+					"name" : "GeneralConnectors",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "PlayingRoutine::@667a96daa857e000067f",
+					"jsonFile" : "target-PlayingRoutine-Debug-2940319f659abec3e337.json",
+					"name" : "PlayingRoutine",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "ReceiveInputFromUI::@fbb2a56cb88dc49cea17",
+					"jsonFile" : "target-ReceiveInputFromUI-Debug-73d89e76fe205d11c67c.json",
+					"name" : "ReceiveInputFromUI",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "SendOutputToUI::@7ca4fede0de1bc3e2a0f",
+					"jsonFile" : "target-SendOutputToUI-Debug-843ce1ec734e5889d675.json",
+					"name" : "SendOutputToUI",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "StockfishConectors::@1023c40771e6696b7958",
+					"jsonFile" : "target-StockfishConectors-Debug-9300b737931b5c2003e5.json",
+					"name" : "StockfishConectors",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 11,
+					"id" : "unit_tests::@36f028580bb02cc8272a",
+					"jsonFile" : "target-unit_tests-Debug-93bf4deaee38167733ff.json",
+					"name" : "unit_tests",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Antonia/Documents/Ecole Polytechnique/CSE201/closedfish/out/build/x64-Debug",
+		"source" : "C:/Users/Antonia/Documents/Ecole Polytechnique/CSE201/closedfish"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}
