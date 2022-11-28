@@ -1,2 +1,15 @@
 .DS_Store
 .DS_Store~Stashed changes
+
+
+# Visual Studio 2015/2017 cache/options directory
+.vs/
+
+
+# VS Code files for those working on multiple tools
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
