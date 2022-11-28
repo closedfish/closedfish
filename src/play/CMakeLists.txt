@@ -1,5 +1,5 @@
 set(PLAY_SOURCES 
-    "play_main.cc")
+    "play_main.cpp")
 set(PLAY_HEADERS
     "play_main.hpp")
 

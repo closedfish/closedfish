@@ -1,5 +1,5 @@
 set(OPENING_SOURCES 
-    "opening_main.cc")
+    "opening_main.cpp")
 set(OPENING_HEADERS
     "opening_main.hpp")
 

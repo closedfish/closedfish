@@ -15,7 +15,7 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 
 set(EXE_SOURCES
-    "switch_main.cc")
+    "switch_main.cpp")
 set(EXE_HEADERS 
     "switch_main.hpp")
     
