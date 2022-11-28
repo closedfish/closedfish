@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['input_2ecc_2',['input.cc',['../input_8cc.html',1,'']]],
-  ['input_2ehpp_3',['input.hpp',['../input_8hpp.html',1,'']]]
+  ['database_5fedit_2',['database_edit',['../generator_8cpp.html#a5acd56997efce14d7778fbcadac3e41c',1,'database_edit():&#160;generator.cpp'],['../generator_8hpp.html#a5acd56997efce14d7778fbcadac3e41c',1,'database_edit():&#160;generator.cpp']]]
 ];

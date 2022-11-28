@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I"/home/andrei/Desktop/Switch AI/src/output/." -I"/home/andrei/Desktop/Switch AI/build/configured_files/include"
 
-CXX_FLAGS = -g -std=c++17
+CXX_FLAGS = -g -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wuseless-cast -std=c++17
 

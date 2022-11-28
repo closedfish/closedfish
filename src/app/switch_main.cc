@@ -6,7 +6,6 @@
 #include "input.hpp"
 #include "opening_main.hpp"
 #include "output.hpp"
-#include "bitboard.h"
 
 int main()
 {
