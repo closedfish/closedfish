@@ -41,7 +41,7 @@ Chessboard single_generator(int pawns){ //To be fixed
          int random_pos=rand()%64;
          if (position_array.board[random_pos].is_empty() and fullcolumns_black[random_pos%8]<2){
              position_array.board[random_pos].piece=6;
-             position_array.board[random_pos].piece_color=0;
+             position_array.board[random_pos].piece_color=1;
              black_counter+=1;
              fullcolumns_black[random_pos%8]+=1;           //make sure there are no more than two black pawns per column
          }
