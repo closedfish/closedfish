@@ -17,7 +17,11 @@
 #include <stdlib.h>     // include rand
 using namespace std; //removes the need to type std::
 
-
+/**
+* @brief
+* @param Example
+* @return
+ */
 Chessboard single_generator(int pawns){ //To be fixed
     Chessboard position_array;
     int white_counter=0;
