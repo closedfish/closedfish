@@ -1,0 +1,57 @@
+Sirawit:
+  This week:
+    - Studied the connection between closedfish and the switch
+    - Setup Git codebase (with Andrei)
+    - Implemented a function to convert from closedfish board to stockfish board using FEN
+  Next week:
+    - Improve the structure of the codebase (with Andrei)
+    - Study the output of stockfish go function
+    - (if possible) Brainstorm/invent the data model to be used for evaluation
+    - (if possible) Implement functionality to connect the output from stockfish to the switch
+
+Aarrya:
+- Organisde the entire work and made plans etc 
+- provided a small skeleton for the representation
+- started on the 1 person DFS 
+
+Dimitrije:
+This week:
+-  Installed OpenCV after some issues, implemented test function to open image from file.
+-  Wrote a program that opens a given image and finds the chess board, with a class storing each square of the board separately with coordinates on the screen. Everything was done using color recognition in the HVS basis. Classes are to be edited when merging with code that takes a screenshot.
+Next week:
+- Piece recognition and storing their position in a class.
+- Merging with code that saves the current board screenshot.
+
+Ariel
+This Week: 
+- Created the Chessboard Class with different functions which edit chessboards in different ways, retrieve information from chessboards as well as create chessboards
+- Created the Element of a chessboard class, each element is initialised to (0,0) where the first number is the piece and the second is the colour
+Next Week: 
+- Continue coding the functions mainly inside the Chessboard class (generating Chessboards and determining openness and closeness of chessboards
+
+Shirelle
+- This week I worked with my subteam on creating some functions And definitions of the variables we are going to use, we have chosen each algorithm we wanted to work on. 
+- Next week, I Will finish the algorithm that will output a chessboard with randomly chosen pawns. 
+
+Rali 
+This week : 
+ - Started learning about the StockFish codebase
+ - Started work on writing a class that connects our chess algorithm to the switch, in order to add an additional level of abstraction and normalize the data types.
+Next week:
+ - Finish the implementation of the connector class
+ - Start working on a battery of tests of the performance of our algorithm.
+
+Etienne
+This week:
+- Researched closed positions in chess for me and my team.
+- Created the class representing the chess board, implemented the ArrayElement class with its respective functions to manipulate chessboard elements in collaboration with Ariel. Started work on file_generator. 
+Next Week:
+- Continue working on the Chessboard class and finish the closeness, openness functions and file_generator.
+
+
+Antonia
+This week:
+- started the implementation of the functions that tell us by how many pieces the target pawn is currently protected (need to finalize the check for bishops and queens)
+- adapted my code to Yoshi's board representation
+Next week:
+- check how many pieces can potentially protect the target pawn and in how many moves  
