@@ -6,8 +6,16 @@ The aim of this project is to create a chess engine, to improve the
 
 ## Members (name surname, github username, trello username, [role])
 
+- Sirawit Pongnakintr, plumsirawit, plumsirawit, git leader
+- Rali Lahlou, Apllify, ralilahlou
+- Ba Cong Vu, souhhcong, souhhcong
+- Flahaut Ariel, arielflt, flahautariel, [member]
+- Antonia Baies, abaiesu, abaiesu
+- Shirelle Benamou, shirellebenamou, shirellebenamou
+- Yoshimi-Théophile Etienne, Yoshimi-Theophile, yoshimitheophile
+- Aarrya Saraf, AarryaSaraf, AarryaSaraf. [leader]
+- Dimitrije Zdrale, D-2n, @dimitrije32, [UI]
 
-**to be filled, since someone haven't got their Trello usernames yet**
 
 ## Teams
 
