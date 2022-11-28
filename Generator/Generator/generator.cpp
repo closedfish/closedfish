@@ -18,19 +18,30 @@
 using namespace std; //removes the need to type std::
 
 
-Chessboard single_generator(int pawns){ //To be finished
-     Chessboard position_array;
-     for (int i=0; i<=pawns; i++){
+Chessboard single_generator(int pawns){ //To be fixed
+    Chessboard position_array;
+    int white_counter=0;
+    int fullcolumns_white[]={0,0,0,0,0,0,0,0};
+    int fullcolumns_black[]={0,0,0,0,0,0,0,0};
+    while(white_counter<=pawns/2){
          int random_pos=rand()%64;
-         if (position_array.board[random_pos].is_empty()){
+         if (position_array.board[random_pos].is_empty() and fullcolumns_white[random_pos%8]<2){
              position_array.board[random_pos].piece=6;
              position_array.board[random_pos].piece_color=0;
-    
-
+             white_counter+=1;
+             fullcolumns_white[random_pos%8]+=1;           //make sure there are no more than two white pawns per column
          }
- 
      }
-        
+    int black_counter=0;
+    while(black_counter<=pawns/2){
+         int random_pos=rand()%64;
+         if (position_array.board[random_pos].is_empty() and fullcolumns_black[random_pos%8]<2){
+             position_array.board[random_pos].piece=6;
+             position_array.board[random_pos].piece_color=0;
+             black_counter+=1;
+             fullcolumns_black[random_pos%8]+=1;           //make sure there are no more than two black pawns per column
+         }
+     }
     return position_array;
 }
 
