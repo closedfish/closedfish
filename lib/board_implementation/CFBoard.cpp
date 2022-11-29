@@ -1,75 +1,82 @@
 #include <iostream>
 #include <stdint.h>
+#include <string>
 
+#include <bitset>
 #include "CFBoard.h"
 
 
 
 CFBoard::CFBoard() { //This is just the starter board.
-    PawnBoard = (((one << 8) - 1) << 48) + (((one << 8) - 1) << 8);
-    KingBoard = (one << 4) + (one << 60);
-    QueenBoard = (one << 3) + (one << 59);
-    RookBoard = (one << 0) + (one << 7) + (one << 56) + (one << 63);
-    KnightBoard = (one << 1) + (one << 6) + (one << 57) + (one << 62);
-    BishopBoard = (one << 2) + (one << 5) + (one << 58) + (one << 61);
-    BlackBoard = (one << 16) - 1;
-    WhiteBoard = ((one << 16) - 1) << 48;
+    pawnBoard = (((1ll << 8) - 1) << 48) + (((1ll << 8) - 1) << 8);
+    kingBoard = (1ll << 4) + (1ll << 60);
+    queenBoard = (1ll << 3) + (1ll << 59);
+    rookBoard = (1ll << 0) + (1ll << 7) + (1ll << 56) + (1ll << 63);
+    knightBoard = (1ll << 1) + (1ll << 6) + (1ll << 57) + (1ll << 62);
+    bishopBoard = (1ll << 2) + (1ll << 5) + (1ll << 58) + (1ll << 61);
+    blackBoard = (1ll << 16) - 1;
+    whiteBoard = ((1ll << 16) - 1) << 48;
 
-    turn = 1;
+	enPassantTarget = -1;
+	castleCheck = (1 << 4) - 1;
+
+    turn = 0;
 }
 
 void CFBoard::fromFEN(std::string FEN){
     // configure the current board from input FEN
 }
 std::string toFEN(){
-    // convert the current board to FEN
-    return "NotYetImplemented";
+	std::string result = "";
+
+
+	return result;
 }
 
 void CFBoard::addPiece(char pieceType, bool color, int tile) {
-    uint64_t PieceBoard = one << tile;
+    uint64_t PieceBoard = 1ll << tile;
     removePiece(tile);
 
     switch (pieceType) {
     case 'P':
-        PawnBoard = PawnBoard | PieceBoard;
+        pawnBoard = pawnBoard | PieceBoard;
         break;
     case 'K':
-        KingBoard = KingBoard | PieceBoard;
+        kingBoard = kingBoard | PieceBoard;
         break;
     case 'Q':
-        QueenBoard = QueenBoard | PieceBoard;
+        queenBoard = queenBoard | PieceBoard;
         break;
     case 'R':
-        RookBoard = RookBoard | PieceBoard;
+        rookBoard = rookBoard | PieceBoard;
         break;
     case 'N':
-        KnightBoard = KnightBoard | PieceBoard;
+        knightBoard = knightBoard | PieceBoard;
         break;
     case 'B':
-        BishopBoard = BishopBoard | PieceBoard;
+        bishopBoard = bishopBoard | PieceBoard;
         break;
     }
 
     if (color) {
-        BlackBoard = BlackBoard | PieceBoard;
+        blackBoard = blackBoard | PieceBoard;
     }
     else {
-        WhiteBoard = WhiteBoard | PieceBoard;
+        whiteBoard = whiteBoard | PieceBoard;
     }
 }
 void CFBoard::removePiece(int tile) {
-    uint64_t AntiPieceBoard = ~(one << tile);
-    PawnBoard = PawnBoard & AntiPieceBoard;
-    KingBoard = KingBoard & AntiPieceBoard;
-    QueenBoard = QueenBoard & AntiPieceBoard;
-    RookBoard = RookBoard & AntiPieceBoard;
-    KnightBoard = KnightBoard & AntiPieceBoard;
-    BishopBoard = BishopBoard & AntiPieceBoard;
-    BlackBoard = BlackBoard & AntiPieceBoard;
-    WhiteBoard = WhiteBoard & AntiPieceBoard;
-    BlackBoard = BlackBoard & AntiPieceBoard;
-    WhiteBoard = WhiteBoard & AntiPieceBoard;
+    uint64_t AntiPieceBoard = ~(1ll << tile);
+    pawnBoard = pawnBoard & AntiPieceBoard;
+    kingBoard = kingBoard & AntiPieceBoard;
+    queenBoard = queenBoard & AntiPieceBoard;
+    rookBoard = rookBoard & AntiPieceBoard;
+    knightBoard = knightBoard & AntiPieceBoard;
+    bishopBoard = bishopBoard & AntiPieceBoard;
+    blackBoard = blackBoard & AntiPieceBoard;
+    whiteBoard = whiteBoard & AntiPieceBoard;
+    blackBoard = blackBoard & AntiPieceBoard;
+    whiteBoard = whiteBoard & AntiPieceBoard;
 }
 
 //void CFBoard::naiveMovePiece(int starttile, int endtile) {}
@@ -82,64 +89,64 @@ bool CFBoard::getBit(char pieceType, bool color, int tile) {
 uint64_t CFBoard::getPieceBitBoard(char pieceType) {
     switch (pieceType) {
     case 'P':
-        return PawnBoard;
+        return pawnBoard;
     case 'K':
-        return KingBoard;
+        return kingBoard;
     case 'Q':
-        return QueenBoard;
+        return queenBoard;
     case 'R':
-        return RookBoard;
+        return rookBoard;
     case 'N':
-        return KnightBoard;
+        return knightBoard;
     case 'B':
-        return BishopBoard;
+        return bishopBoard;
     }
 }
 uint64_t CFBoard::getColorBitBoard(bool color) {
     if (color) {
-        return BlackBoard;
+        return blackBoard;
     }
-    return WhiteBoard;
+    return whiteBoard;
 }
 
 std::string CFBoard::getRepr() {
     std::string repr = "|";
     for (int i = 0; i < 64; i++) {
         repr += " ";
-        if ((BlackBoard >> i) & 1) {
+        if ((blackBoard >> i) & 1) {
 
-            if ((PawnBoard >> i) & 1) {
+            if ((pawnBoard >> i) & 1) {
                 repr += "p";
             }
-            else if ((KingBoard >> i) & 1) {
+            else if ((kingBoard >> i) & 1) {
                 repr += "k";
             }
-            else if ((QueenBoard >> i) & 1) {
+            else if ((queenBoard >> i) & 1) {
                 repr += "q";
             }
-            else if ((RookBoard >> i) & 1) {
+            else if ((rookBoard >> i) & 1) {
                 repr += "r";
             }
-            else if ((KnightBoard >> i) & 1) {
+            else if ((knightBoard >> i) & 1) {
                 repr += "n";
             } else {
                 repr += "b";
             }
         }
-        else if ((WhiteBoard >> i) & 1) {
-            if ((PawnBoard >> i) & 1) {
+        else if ((whiteBoard >> i) & 1) {
+            if ((pawnBoard >> i) & 1) {
                 repr += "P";
             }
-            else if ((KingBoard >> i) & 1) {
+            else if ((kingBoard >> i) & 1) {
                 repr += "K";
             }
-            else if ((QueenBoard >> i) & 1) {
+            else if ((queenBoard >> i) & 1) {
                 repr += "Q";
             }
-            else if ((RookBoard >> i) & 1) {
+            else if ((rookBoard >> i) & 1) {
                 repr += "R";
             }
-            else if ((KnightBoard >> i) & 1) {
+            else if ((knightBoard >> i) & 1) {
                 repr += "N";
             } else {
                 repr += "B";
@@ -155,3 +162,5 @@ std::string CFBoard::getRepr() {
     }
     return repr;
 }
+
+

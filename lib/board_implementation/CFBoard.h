@@ -11,8 +11,20 @@ public:
 
 	bool getBit(char pieceType, bool color, int tile);
 
-	// these create a copy (I think)
+
+
+	/**
+	* @brief Returns a copy of the bitboard associated to the input piece type.
+	*
+	* @param pieceType : a character like "P", "K", "N"...
+	*
+	* @return an unsigned 64 bit int with a binary representation corresponding to the bitboard.
+	*/
 	uint64_t getPieceBitBoard(char pieceType);
+
+
+
+
 	uint64_t getColorBitBoard(bool color);
 
 	std::string getRepr();
@@ -38,17 +50,21 @@ public:
 	*/
 
 private:
-	uint64_t one = 1;
 
-	uint64_t PawnBoard;
-	uint64_t KingBoard;
-	uint64_t QueenBoard;
-	uint64_t RookBoard;
-	uint64_t KnightBoard;
-	uint64_t BishopBoard;
+	uint64_t pawnBoard;
+	uint64_t kingBoard;
+	uint64_t queenBoard;
+	uint64_t rookBoard;
+	uint64_t knightBoard;
+	uint64_t bishopBoard;
 
-	uint64_t BlackBoard;
-	uint64_t WhiteBoard;
+
+	//TODO reduce both of these to the smallest int types
+	int enPassantTarget; //a single coordinate from 0-63 
+	int castleCheck; //4 bits of information (long white - short white - long black - short black)
+
+	uint64_t blackBoard;
+	uint64_t whiteBoard;
 
 	bool turn; // 0 for white, 1 for black
 
