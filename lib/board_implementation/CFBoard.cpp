@@ -18,15 +18,15 @@ std::string CFBoard::toFEN() {
 // ========== Methods after this comment are implemented ==========
 
 CFBoard::CFBoard() { //This is just the starter board.
-    pawnBoard = (((one << 8) - 1) << 48) + (((one << 8) - 1) << 8);
-    knightBoard = (one << 1) + (one << 6) + (one << 57) + (one << 62);
-    bishopBoard = (one << 2) + (one << 5) + (one << 58) + (one << 61);
-    rookBoard = (one << 0) + (one << 7) + (one << 56) + (one << 63);
-    queenBoard = (one << 3) + (one << 59);
-    kingBoard = (one << 4) + (one << 60);
+    pawnBoard = (((1ll << 8) - 1) << 48) + (((1ll << 8) - 1) << 8);
+    knightBoard = (1ll << 1) + (1ll << 6) + (1ll << 57) + (1ll << 62);
+    bishopBoard = (1ll << 2) + (1ll << 5) + (1ll << 58) + (1ll << 61);
+    rookBoard = (1ll << 0) + (1ll << 7) + (1ll << 56) + (1ll << 63);
+    queenBoard = (1ll << 3) + (1ll << 59);
+    kingBoard = (1ll << 4) + (1ll << 60);
 
-    whiteBoard = ((one << 16) - 1) << 48;
-    blackBoard = (one << 16) - 1;
+    whiteBoard = ((1ll << 16) - 1) << 48;
+    blackBoard = (1ll << 16) - 1;
 
     turn = 0;
 }
@@ -108,7 +108,7 @@ uint64_t& CFBoard::getPieceBoardFromIndex(int boardIndex) {
 }
 
 void CFBoard::addPiece(int pieceId, int tile) {
-    uint64_t pieceBoard = one << tile;
+    uint64_t pieceBoard = 1ll << tile;
     removePiece(tile);
 
     int pieceType = pieceId >> 1;
@@ -125,7 +125,7 @@ void CFBoard::addPiece(int pieceId, int tile) {
     }
 }
 void CFBoard::removePiece(int tile) {
-    uint64_t antiPieceBoard = ~(one << tile);
+    uint64_t antiPieceBoard = ~(1ll << tile);
 
     for (int pieceType = 0; pieceType < 6; pieceType++) {
         uint64_t& targetBoard = getPieceBoardFromIndex(pieceType);

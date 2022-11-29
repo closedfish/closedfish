@@ -44,8 +44,6 @@ public:
 	*/
 
 private:
-	uint64_t one = 1;
-
 	uint64_t PawnBoard;
 	uint64_t KingBoard;
 	uint64_t QueenBoard;
@@ -57,6 +55,9 @@ private:
 	uint64_t WhiteBoard;
 
 	bool turn; // 0 for white, 1 for black
+
+	int castleBools;
+	int enPassantTarget;
 
 	/*
 		a8 = 2^0
