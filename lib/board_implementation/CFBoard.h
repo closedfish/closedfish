@@ -1,5 +1,8 @@
 #pragma once
 
+#include <iostream>
+#include <stdint.h>
+
 class CFBoard {
 public:
 
@@ -10,7 +13,7 @@ public:
 	std::string getRepr();
 	std::string toFEN(); // TO DO
 
-	void addPiece(char pieceType, bool color, int tile); // pieceType in P,R,N,B,Q,K and 0<=tile<=63. Function replaces existing piece on the tile.
+	void addPiece(int pieceId, int tile); // pieceType in P,R,N,B,Q,K and 0<=tile<=63. Function replaces existing piece on the tile.
 	void removePiece(int tile);
 
 	// ----- formatting functions -----
@@ -20,11 +23,14 @@ public:
 
 	// ----- get functions -----
 
-	bool getBit(char pieceType, bool color, int tile);
+	bool getBit(int pieceId, int tile);
+
+	uint64_t& getPieceBoardFromIndex(int boardIndex);
 
 	// these create a copy
-	uint64_t getPieceBitBoard(char pieceType);
+
 	uint64_t getColorBitBoard(bool color);
+	uint64_t getPieceColorBitBoard(int pieceId);
 
 	int getPieceFromCoords(int tile); // output is [0,1,2,3,4,5]+(color)
 	
@@ -44,15 +50,15 @@ public:
 	*/
 
 private:
-	uint64_t PawnBoard;
-	uint64_t KingBoard;
-	uint64_t QueenBoard;
-	uint64_t RookBoard;
-	uint64_t KnightBoard;
-	uint64_t BishopBoard;
+	uint64_t pawnBoard;
+	uint64_t kingBoard;
+	uint64_t queenBoard;
+	uint64_t rookBoard;
+	uint64_t knightBoard;
+	uint64_t bishopBoard;
 
-	uint64_t BlackBoard;
-	uint64_t WhiteBoard;
+	uint64_t blackBoard;
+	uint64_t whiteBoard;
 
 	bool turn; // 0 for white, 1 for black
 
