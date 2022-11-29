@@ -1,155 +1,167 @@
 #include <iostream>
 #include <stdint.h>
+#include <cctype>
 
 #include "CFBoard.h"
 
 
-
-CFBoard::CFBoard() { //This is just the starter board.
-    PawnBoard = (((one << 8) - 1) << 48) + (((one << 8) - 1) << 8);
-    KingBoard = (one << 4) + (one << 60);
-    QueenBoard = (one << 3) + (one << 59);
-    RookBoard = (one << 0) + (one << 7) + (one << 56) + (one << 63);
-    KnightBoard = (one << 1) + (one << 6) + (one << 57) + (one << 62);
-    BishopBoard = (one << 2) + (one << 5) + (one << 58) + (one << 61);
-    BlackBoard = (one << 16) - 1;
-    WhiteBoard = ((one << 16) - 1) << 48;
-
-    turn = 1;
-}
-
-void CFBoard::fromFEN(std::string FEN){
+void CFBoard::fromFEN(std::string FEN) {
     // configure the current board from input FEN
 }
-std::string toFEN(){
+std::string CFBoard::toFEN() {
     // convert the current board to FEN
     return "NotYetImplemented";
 }
 
-void CFBoard::addPiece(char pieceType, bool color, int tile) {
-    uint64_t PieceBoard = one << tile;
-    removePiece(tile);
+//void CFBoard::naiveMovePiece(int starttile, int endtile) {}
 
-    switch (pieceType) {
+// ========== Methods after this comment are implemented ==========
+
+CFBoard::CFBoard() { //This is just the starter board.
+    pawnBoard = (((one << 8) - 1) << 48) + (((one << 8) - 1) << 8);
+    knightBoard = (one << 1) + (one << 6) + (one << 57) + (one << 62);
+    bishopBoard = (one << 2) + (one << 5) + (one << 58) + (one << 61);
+    rookBoard = (one << 0) + (one << 7) + (one << 56) + (one << 63);
+    queenBoard = (one << 3) + (one << 59);
+    kingBoard = (one << 4) + (one << 60);
+
+    whiteBoard = ((one << 16) - 1) << 48;
+    blackBoard = (one << 16) - 1;
+
+    turn = 0;
+}
+
+char CFBoard::pieceIdToChar(int pieceId) {
+    pieceId = pieceId >> 1;
+    switch (pieceId) {
+    case 0:
+        return 'P';
+    case 1:
+        return 'N';
+    case 2:
+        return 'B';
+    case 3:
+        return 'R';
+    case 4:
+        return 'Q';
+    case 5:
+        return 'K';
+    default:
+        return '.';
+    }
+}
+bool CFBoard::pieceIdToColor(int pieceId) {
+    return pieceId & 1;
+}
+int CFBoard::pieceCharColorToId(char pieceChar, bool pieceColor) {
+    int pieceId = NULL;
+    switch (pieceChar) {
     case 'P':
-        PawnBoard = PawnBoard | PieceBoard;
-        break;
-    case 'K':
-        KingBoard = KingBoard | PieceBoard;
-        break;
-    case 'Q':
-        QueenBoard = QueenBoard | PieceBoard;
-        break;
-    case 'R':
-        RookBoard = RookBoard | PieceBoard;
+        pieceId = 0;
         break;
     case 'N':
-        KnightBoard = KnightBoard | PieceBoard;
+        pieceId = 2;
         break;
     case 'B':
-        BishopBoard = BishopBoard | PieceBoard;
+        pieceId = 4;
+        break;
+    case 'R':
+        pieceId = 6;
+        break;
+    case 'Q':
+        pieceId = 8;
+        break;
+    case 'K':
+        pieceId = 10;
         break;
     }
+    if (pieceColor) {
+        pieceId += 1;
+    }
+    return pieceId;
+}
+
+int CFBoard::getPieceFromCoords(int tile) {
+    for (int i = 0; i < 6; i++) {
+        if ((getPieceBoardFromIndex(i) >> tile) & 1) {
+            return (i << 1) | ((blackBoard >> tile) & 1);
+        }
+    }
+    return -1;
+}
+
+uint64_t& CFBoard::getPieceBoardFromIndex(int boardIndex) {
+    switch (boardIndex) {
+    case 0:
+        return pawnBoard;
+    case 1:
+        return knightBoard;
+    case 2:
+        return bishopBoard;
+    case 3:
+        return rookBoard;
+    case 4:
+        return queenBoard;
+    case 5:
+        return kingBoard;
+    }
+}
+
+void CFBoard::addPiece(int pieceId, int tile) {
+    uint64_t pieceBoard = one << tile;
+    removePiece(tile);
+
+    int pieceType = pieceId >> 1;
+    bool color = pieceId & 1;
+
+    uint64_t& targetBoard = getPieceBoardFromIndex(pieceType);
+    targetBoard = targetBoard | pieceBoard;
 
     if (color) {
-        BlackBoard = BlackBoard | PieceBoard;
+        blackBoard = blackBoard | pieceBoard;
     }
     else {
-        WhiteBoard = WhiteBoard | PieceBoard;
+        whiteBoard = whiteBoard | pieceBoard;
     }
 }
 void CFBoard::removePiece(int tile) {
-    uint64_t AntiPieceBoard = ~(one << tile);
-    PawnBoard = PawnBoard & AntiPieceBoard;
-    KingBoard = KingBoard & AntiPieceBoard;
-    QueenBoard = QueenBoard & AntiPieceBoard;
-    RookBoard = RookBoard & AntiPieceBoard;
-    KnightBoard = KnightBoard & AntiPieceBoard;
-    BishopBoard = BishopBoard & AntiPieceBoard;
-    BlackBoard = BlackBoard & AntiPieceBoard;
-    WhiteBoard = WhiteBoard & AntiPieceBoard;
-    BlackBoard = BlackBoard & AntiPieceBoard;
-    WhiteBoard = WhiteBoard & AntiPieceBoard;
-}
+    uint64_t antiPieceBoard = ~(one << tile);
 
-//void CFBoard::naiveMovePiece(int starttile, int endtile) {}
-
-bool CFBoard::getBit(char pieceType, bool color, int tile) {
-    uint64_t Board = getPieceBitBoard(pieceType) & getColorBitBoard(color);
-    return (Board << tile);
-}
-
-uint64_t CFBoard::getPieceBitBoard(char pieceType) {
-    switch (pieceType) {
-    case 'P':
-        return PawnBoard;
-    case 'K':
-        return KingBoard;
-    case 'Q':
-        return QueenBoard;
-    case 'R':
-        return RookBoard;
-    case 'N':
-        return KnightBoard;
-    case 'B':
-        return BishopBoard;
+    for (int pieceType = 0; pieceType < 6; pieceType++) {
+        uint64_t& targetBoard = getPieceBoardFromIndex(pieceType);
+        targetBoard = targetBoard & antiPieceBoard;
     }
+    blackBoard = blackBoard & antiPieceBoard;
+    whiteBoard = whiteBoard & antiPieceBoard;
 }
+
+bool CFBoard::getBit(int pieceId, int tile) {
+    return (getPieceColorBitBoard(pieceId) >> tile) & 1;
+}
+
 uint64_t CFBoard::getColorBitBoard(bool color) {
     if (color) {
-        return BlackBoard;
+        return blackBoard;
     }
-    return WhiteBoard;
+    return whiteBoard;
 }
+uint64_t CFBoard::getPieceColorBitBoard(int pieceId) {
+    return getPieceBoardFromIndex(pieceId >> 1) & getColorBitBoard(pieceId & 1);
+}
+
 
 std::string CFBoard::getRepr() {
     std::string repr = "|";
-    for (int i = 0; i < 64; i++) {
+    for (int tile = 0; tile < 64; tile++) {
         repr += " ";
-        if ((BlackBoard >> i) & 1) {
 
-            if ((PawnBoard >> i) & 1) {
-                repr += "p";
-            }
-            else if ((KingBoard >> i) & 1) {
-                repr += "k";
-            }
-            else if ((QueenBoard >> i) & 1) {
-                repr += "q";
-            }
-            else if ((RookBoard >> i) & 1) {
-                repr += "r";
-            }
-            else if ((KnightBoard >> i) & 1) {
-                repr += "n";
-            } else {
-                repr += "b";
-            }
-        }
-        else if ((WhiteBoard >> i) & 1) {
-            if ((PawnBoard >> i) & 1) {
-                repr += "P";
-            }
-            else if ((KingBoard >> i) & 1) {
-                repr += "K";
-            }
-            else if ((QueenBoard >> i) & 1) {
-                repr += "Q";
-            }
-            else if ((RookBoard >> i) & 1) {
-                repr += "R";
-            }
-            else if ((KnightBoard >> i) & 1) {
-                repr += "N";
-            } else {
-                repr += "B";
-            }
-        }
-        else {
-            repr += ".";
-        }
+        int pieceId = getPieceFromCoords(tile);
+        char pieceChar = pieceIdToChar(pieceId);
+        if (pieceId & 1) { pieceChar = tolower(pieceChar); }
+        repr += pieceChar;
+
         repr += " |";
-        if ((i + 1) % 8 == 0) {
+        if ((tile + 1) % 8 == 0) {
             repr += "\n|";
         }
     }
