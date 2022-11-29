@@ -1,61 +1,97 @@
 #include <iostream>
 #include <cstring>
-#include "../Board Implementation/CFBoard.cpp"
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <string.h>
+#include "../../lib/board_implementation/CFBoard.cpp"
 
-void addPieceHeatMap(const char &piece, int (&heat_map)[8][8], int (&pawn_height)[8], const bool &current_turn) {
-    if (piece == 'N' || piece == 'R' || piece == 'Q') {
-        if (current_turn) {
-            for (int j = 0; j < 8; j++) {
-                for (int i = 0; i < pawn_height[j]; i++) {
-                    heat_map[i][j]++;
-                }
-            }
+bool validSquare(int i, int j) {
+    return i >= 0 && i < 8 && j >= 0 && j < 8;
+}
+std::vector<int> tileToPos(int tile) {
+    return {tile/8, tile%8};
+}
+
+int posToTile(std::vector<int> pos) {
+    return pos[0] * 8 + pos[1];
+}
+
+uint64_t reverseBit(uint64_t v) {
+    //credit to https://graphics.stanford.edu/~seander/bithacks.html#BitReverseObvious
+    uint64_t r = v; // r will be reversed bits of v; first get LSB of v
+    int s = sizeof(v) * CHAR_BIT - 1; // extra shift needed at end
+
+    for (v >>= 1; v; v >>= 1)
+    {   
+        r <<= 1;
+        r |= v & 1;
+        s--;
+    }
+    r <<= s; // shift when v's highest bits are zero
+    return r;
+}
+
+void displayPawnBoard(const uint64_t& pawnBoard) { // for testing only
+    uint64_t one = 1;
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            std::cout << ((pawnBoard>>(i*8+j))&one);
         }
-        else {
-            for (int j = 0; j < 8; j++) {
-                for (int i = 7; i > 7 - pawn_height[j] + 1; i--) {
-                    heat_map[i][j]++;
-                }
-            }
-        }
+        std::cout << '\n';
     }
 }
 
-void addHeatMap(CFBoard& board, int (&heat_map)[8][8]) {
+bool hasPawnOn(const uint64_t& pawn_board, const std::vector<int> &pos) {
+    return (pawn_board>>posToTile(pos))&1;
+}
+
+void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawns) {
     uint64_t one = 1;
 
     uint64_t mask_row[8], mask_col[8];
-    uint64_t mask_first_row = (one<<8)-1;
-    uint64_t mask_first_col = one + (one<<8) + (one<<16) + (one<<24) + (one<<32) + (one<<40) + (one<<48) + (one<<56);
-    for (int i = 0; i < 8; i++) {
-        mask_row[i] = mask_first_row<<(8*i);
+    mask_row[0] = (one<<8)-1;
+    mask_col[0] = one + (one<<8) + (one<<16) + (one<<24) + (one<<32) + (one<<40) + (one<<48) + (one<<56);
+    for (int i = 1; i < 8; i++) {
+        mask_row[i] = mask_row[i-1]<<8;
     }
     for (int j = 0; j < 8; j++) {
-        mask_col[j] = mask_first_col<<j;
+        mask_col[j] = mask_col[j-1]<<1;
     }
 
     bool current_turn = 1; // 0: white, 1: black
-    uint64_t pawn_board = board.getPieceBitBoard('P') & board.getColorBitBoard(current_turn);
+    uint64_t pawn_board = board.getPieceBitBoard('P') & board.getColorBitBoard(current_turn),
+    knight_board = board.getPieceBitBoard('N') & board.getColorBitBoard(current_turn),
+    bishop_board = board.getPieceBitBoard('B') & board.getColorBitBoard(current_turn),
+    rook_board = board.getPieceBitBoard('R') & board.getColorBitBoard(current_turn),
+    queen_board = board.getPieceBitBoard('Q') & board.getColorBitBoard(current_turn),
+    king_board = board.getPieceBitBoard('K') & board.getColorBitBoard(current_turn);
+    if (!current_turn) { // switch orientation from white to black for easier code
+        pawn_board = reverseBit(pawn_board);
+        knight_board = reverseBit(knight_board);
+        bishop_board = reverseBit(bishop_board);
+        rook_board = reverseBit(rook_board);
+        queen_board = reverseBit(queen_board);
+        king_board = reverseBit(king_board);
+    }
+
     int pawn_height[8] = {8, 8, 8, 8, 8, 8, 8, 8};
-    if (current_turn) {
-        for (int i = 0; i < 8; i++) {
-            uint64_t pawn_row = (pawn_board & mask_row[i]) >> (8*i);
-            if (!pawn_row) continue;
-            for (int j = 0; j < 8; j++) {
-                if ((pawn_row >> j)&1 && pawn_height[j] == 8) {
-                    pawn_height[j] = i;
-                }
+    // displayPawnBoard(pawn_board);
+
+    for (int i = 0; i < 8; i++) {
+        uint64_t pawn_row = (pawn_board & mask_row[i]) >> (8*i);
+        if (!pawn_row) continue;
+        for (int j = 0; j < 8; j++) {
+            if ((pawn_row >> j)&1 && pawn_height[j] == 8) {
+                pawn_height[j] = i;
             }
         }
-    } else {
-        for (int i = 7; i >= 0; i--) {
-            uint64_t pawn_row = (pawn_board & mask_row[i]) >> (8*i);
-            if (!pawn_row) continue;
-            for (int j = 0; j < 8; j++) {
-                if ((pawn_row >> j)&1 && pawn_height[j] == 8) {
-                    pawn_height[j] = 8-i;
-                }
-            }
+    }
+
+    std::vector<int> open_file;
+    for (int j = 0; j < 8; j++) {
+        if (pawn_height[j] == 8) {
+            open_file.push_back(j);
         }
     }
 
@@ -63,28 +99,71 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8]) {
     //     std::cout << pawn_height[j] << ' ';
     // std::cout << '\n';
 
-    int closed_rows = 8; // number of rows below the lowest pawn
-    for (int i = 0; i < 8; i++)
-        closed_rows = std::min(closed_rows, pawn_height[i]-1);
+    int closed_rows = (*std::min_element(pawn_height, pawn_height+8)) - 1; // number of rows below the lowest pawn
     // std::cout << closed_rows << '\n';
 
-    int no_bishops_same_pawn, // to be
-    no_bishops_diff_pawn,     // added
-    no_knights = __builtin_popcountll(board.getPieceBitBoard('N') & board.getColorBitBoard(current_turn)),
-    no_rooks = __builtin_popcountll(board.getPieceBitBoard('R') & board.getColorBitBoard(current_turn)),
-    no_queens = __builtin_popcountll(board.getPieceBitBoard('Q') & board.getColorBitBoard(current_turn));
-    // std::cout << no_knights << ' ' << no_rooks << ' ' << no_queens << '\n';
-    if (closed_rows >= 2 || 1) { // 2 free rows, knights, rooks and queens are essentially able to go anywhere
-        for (int _ = 0; _ < no_knights; _++)
-            addPieceHeatMap('N', heat_map, pawn_height, current_turn);
-        for (int _ = 0; _ < no_rooks; _++)
-            addPieceHeatMap('R', heat_map, pawn_height, current_turn);
-        for (int _ = 0; _ < no_queens; _++)
-            addPieceHeatMap('Q', heat_map, pawn_height, current_turn);
-        // To be added
-    } else {
+    if (open_file.size() > 0) { // there exists open files
+        uint64_t opponent_pawn_board = board.getPieceBitBoard('P') & board.getColorBitBoard(!current_turn);
+        if (!current_turn) {
+            opponent_pawn_board = reverseBit(opponent_pawn_board);
+        }
+        int no_rooks = __builtin_popcount(rook_board),
+            no_queens = __builtin_popcount(queen_board),
+            no_bishops = __builtin_popcount(bishop_board),
+            no_knights = __builtin_popcount(knight_board),
+        for (int file: open_file) {
+            int max_pawn_height = std::min(file > 0 ? pawn_height[file-1] : 8, file < 7 ? pawn_height[file+1] : 8)
+            // Rooks and Queens move to open file
+            for (int i = 0; i < max_pawn_height; i++) {
+                if ((file == 0 || !hasPawnOn(opponent_pawn_board, {i+1, file-1}))
+                && (file == 8 || !hasPawnOn(opponent_pawn_board, {i+1, file+1}))) // no opposing pawns
+                    heat_map[i][file] += no_rooks + no_queens;
+            }
+            // Knights move to square near open file, defending the nearby pawns and pieces
+            int di = {-1, -2, -2, -1, 1, 2, 2, 1};
+            int dj = {2, 1, -1, -2, -2, -1, 1, 2};
+            for (int i = 0; i < max_pawn_height; i++) {
+                for (int k = 0; k < 8; k++) {
+                    if (validSquare(i+di[k], file+dj[k])) {
+                        heat_map[i+di[k]][file+dj[k]] += no_knights;
+                    }
+                }
+            }
+            if (file >= 1 && pawn_height[file-1] < 8) {
+                for (int k = 0; k < 8; k++) {
+                    if (validSquare(pawn_height[file-1]+di[k], file-1+dj[k])) {
+                        heat_map[pawn_height[file-1]+di[k]][file-1+dj[k]] += no_knights;
+                    }
+                }
+            }
+            if (file <= 6 && pawn_height[file+1] < 8) {
+                for (int k = 0; k < 8; k++) {
+                    if (validSquare(pawn_height[file+1]+di[k], file+1+dj[k])) {
+                        heat_map[pawn_height[file+1]+di[k]][file+1+dj[k]] += no_knights;
+                    }
+                }
+            }
+            // Bishops
+            // Bishops same color with our pawn structure
+            for (int i = 0; i < max_pawn_height; i++) {
 
-        // To be added
+            }
+            // Bishops diff color with our pawn structure 
+        }
+        
+        for (int file: open_file) 
+        // Bishops
+    } else {
+        if (closed_rows >= 2) { // 2 free rows, knights, rooks and queens are essentially able to go anywhere
+            // Rooks and Queens
+            std::vector<int> weak_pawns_file = {}; // placeholder waiting for weak pawns implementation
+            for (int file: weak_pawns_file) {
+            }
+
+        } else {
+
+            // To be added
+        }
     }
 }
 
@@ -94,7 +173,8 @@ int main() {
 
     CFBoard board;
     // std::cout << board.getRepr();
-    addHeatMap(board, heat_map);
+    uint64_t weak_pawns = (1<<8)-1; // placeholder for finished weak pawns implementation
+    addHeatMap(board, heat_map, weak_pawns);
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             std::cout << heat_map[i][j] << ' ';
