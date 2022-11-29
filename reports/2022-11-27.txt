@@ -54,4 +54,12 @@ This week:
 - started the implementation of the functions that tell us by how many pieces the target pawn is currently protected (need to finalize the check for bishops and queens)
 - adapted my code to Yoshi's board representation
 Next week:
-- check how many pieces can potentially protect the target pawn and in how many moves  
+- check how many pieces can potentially protect the target pawn and in how many moves
+
+Ba Cong
+This week:
+- Started implementing a heat map representing which square is the most important so that we know which square to priotize placing pieces on
+- Added suggestions for cr
+Next week:
+- Take relative piece values into account when updating the heat map
+- Improve on the case where there are not a lot of free squares for pieces to maneuver easily.
