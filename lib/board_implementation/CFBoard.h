@@ -25,8 +25,8 @@ public:
 	// ----- get functions -----
 
 	/**
-  * obsolete - kept for reference
-  *
+	* obsolete - kept for reference
+	*
 	* @brief Returns a copy of the bitboard associated to the input piece type.
 	*
 	* @param pieceType : a character like "P", "K", "N"...
@@ -67,9 +67,9 @@ private:
 	uint64_t pawnBoard;
 	uint64_t knightBoard;
 	uint64_t bishopBoard;
-  uint64_t rookBoard;
+	uint64_t rookBoard;
 	uint64_t queenBoard;
-  uint64_t kingBoard;
+	uint64_t kingBoard;
 
 	//TODO reduce both of these to the smallest int types
 	int enPassantTarget; //a single coordinate from 0-63 
