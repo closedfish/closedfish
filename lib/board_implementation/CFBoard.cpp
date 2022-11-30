@@ -1,9 +1,9 @@
 #include <iostream>
 #include <stdint.h>
 #include <cctype>
-
+#include <string>
+#include <bitset>
 #include "CFBoard.h"
-
 
 void CFBoard::fromFEN(std::string FEN) {
     // configure the current board from input FEN
@@ -126,7 +126,6 @@ void CFBoard::addPiece(int pieceId, int tile) {
 }
 void CFBoard::removePiece(int tile) {
     uint64_t antiPieceBoard = ~(1ll << tile);
-
     for (int pieceType = 0; pieceType < 6; pieceType++) {
         uint64_t& targetBoard = getPieceBoardFromIndex(pieceType);
         targetBoard = targetBoard & antiPieceBoard;
@@ -167,3 +166,5 @@ std::string CFBoard::getRepr() {
     }
     return repr;
 }
+
+

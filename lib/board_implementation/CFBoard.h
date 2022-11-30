@@ -21,7 +21,20 @@ public:
 	bool pieceIdToColor(int pieceId);
 	int pieceCharColorToId(char pieceChar, bool color);
 
+
 	// ----- get functions -----
+
+	/**
+  * obsolete - kept for reference
+  *
+	* @brief Returns a copy of the bitboard associated to the input piece type.
+	*
+	* @param pieceType : a character like "P", "K", "N"...
+	*
+	* @return an unsigned 64 bit int with a binary representation corresponding to the bitboard.
+	*/
+
+	uint64_t getColorBitBoard(bool color);
 
 	bool getBit(int pieceId, int tile);
 
@@ -50,20 +63,22 @@ public:
 	*/
 
 private:
+
 	uint64_t pawnBoard;
-	uint64_t kingBoard;
-	uint64_t queenBoard;
-	uint64_t rookBoard;
 	uint64_t knightBoard;
 	uint64_t bishopBoard;
+  uint64_t rookBoard;
+	uint64_t queenBoard;
+  uint64_t kingBoard;
+
+	//TODO reduce both of these to the smallest int types
+	int enPassantTarget; //a single coordinate from 0-63 
+	int castleCheck; //4 bits of information (long white - short white - long black - short black)
 
 	uint64_t blackBoard;
 	uint64_t whiteBoard;
 
 	bool turn; // 0 for white, 1 for black
-
-	int castleBools;
-	int enPassantTarget;
 
 	/*
 		a8 = 2^0
