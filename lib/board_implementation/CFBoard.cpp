@@ -10,7 +10,316 @@ void CFBoard::fromFEN(std::string FEN) {
 }
 std::string CFBoard::toFEN() {
     // convert the current board to FEN
-    return "NotYetImplemented";
+    for (int row = 0; row < 8; row++){
+        for (int column = 0; column < 8; column++){
+
+        }
+    }
+}
+
+// ---- to test ----
+
+uint64_t CFBoard::getCardinals(int tile, bool color) {
+    uint64_t cardinalBoard = 0;
+    uint64_t tempBoard = 0;
+    int column = tile & 7;
+    int row = tile >> 3;
+    uint64_t allyBoard = getColorBitBoard(color);
+    uint64_t enemyBoard = getColorBitBoard(!color);
+    
+    // left
+    for (int i = 1; i <= column; i++) {
+        tempBoard = (1ll << (tile - i));
+        if (tempBoard & allyBoard) { break; }
+        else if (tempBoard & enemyBoard) {
+            cardinalBoard = cardinalBoard | tempBoard;
+            break;
+        } 
+        cardinalBoard = cardinalBoard | tempBoard;
+    }
+
+    // right
+    for (int i = 1; i <= (7 - column); i++) {
+        tempBoard = (1ll << (tile + i));
+        if (tempBoard & allyBoard) { break; }
+        else if (tempBoard & enemyBoard) {
+            cardinalBoard = cardinalBoard | tempBoard;
+            break;
+        }
+        cardinalBoard = cardinalBoard | tempBoard;
+    }
+
+    // up
+    for (int i = 1; i <= row; i++) {
+        tempBoard = (1ll << (tile - 8*i));
+        if (tempBoard & allyBoard) { break; }
+        else if (tempBoard & enemyBoard) {
+            cardinalBoard = cardinalBoard | tempBoard;
+            break;
+        }
+        cardinalBoard = cardinalBoard | tempBoard;
+    }
+
+    // down
+    for (int i = 1; i <= (7 - row); i++) {
+        tempBoard = (1ll << (tile + 8*i));
+        if (tempBoard & allyBoard) { break; }
+        else if (tempBoard & enemyBoard) {
+            cardinalBoard = cardinalBoard | tempBoard;
+            break;
+        }
+        cardinalBoard = cardinalBoard | tempBoard;
+    }
+
+    return cardinalBoard;
+
+}
+
+uint64_t CFBoard::getDiagonals(int tile, bool color) {
+    uint64_t diagonalBoard = 0;
+    uint64_t tempBoard = 0;
+    int column = tile & 7;
+    int row = tile >> 3;
+    uint64_t allyBoard = getColorBitBoard(color);
+    uint64_t enemyBoard = getColorBitBoard(!color);
+
+    // up-left
+    for (int i = 1; i <= (column ^ ((row ^ column) & -(row < column))); i++) { // y ^ ((x ^ y) & -(x < y)) = min(x,y)
+        tempBoard = (1ll << (tile - (9 * i)) );
+        if (tempBoard & allyBoard) { break; }
+        else if (tempBoard & enemyBoard) {
+            diagonalBoard = diagonalBoard | tempBoard;
+            break;
+        }
+        diagonalBoard = diagonalBoard | tempBoard;
+    }
+
+    // up-right
+    for (int i = 1; i <= ((7-column) ^ ((row ^ (7-column)) & -(row < (7-column)))); i++) {
+        tempBoard = (1ll << (tile - (7 * i)));
+        if (tempBoard & allyBoard) { break; }
+        else if (tempBoard & enemyBoard) {
+            diagonalBoard = diagonalBoard | tempBoard;
+            break;
+        }
+        diagonalBoard = diagonalBoard | tempBoard;
+    }
+
+    // down-left
+    for (int i = 1; i <= (column ^ (((7-row) ^ column) & -((7-row) < column))); i++) {
+        tempBoard = (1ll << (tile + (7 * i)));
+        if (tempBoard & allyBoard) { break; }
+        else if (tempBoard & enemyBoard) {
+            diagonalBoard = diagonalBoard | tempBoard;
+            break;
+        }
+        diagonalBoard = diagonalBoard | tempBoard;
+    }
+
+    // down-right
+    for (int i = 1; i <= ((7-column) ^ (((7-row) ^ (7-column)) & -((7-row) < (7-column)))); i++) {
+        tempBoard = (1ll << (tile + (9 * i)));
+        if (tempBoard & allyBoard) { break; }
+        else if (tempBoard & enemyBoard) {
+            diagonalBoard = diagonalBoard | tempBoard;
+            break;
+        }
+        diagonalBoard = diagonalBoard | tempBoard;
+    }
+
+    return diagonalBoard;
+}
+
+uint64_t CFBoard::getKnightPattern(int tile, bool color) {
+    uint64_t knightPattern = 0;
+    int column = tile & 7;
+    int row = tile >> 3;
+    uint64_t allyBoard = getColorBitBoard(color);
+
+    int knightPositions = (1 << 8) - 1;
+    /*
+    . 0 . 1 .
+    2 . . . 3
+    . . x . .
+    4 . . . 5
+    . 6 . 7 .
+    */
+
+
+    // may be able to be optimized
+    switch (column) {
+    case 0:
+        knightPositions = knightPositions & ~((1 << 2) + (1 << 4) + 1 + (1 << 6));
+        break;
+    case 1:
+        knightPositions = knightPositions & ~((1 << 2) + (1 << 4));
+        break;
+    case 6:
+        knightPositions = knightPositions & ~((1 << 3) + (1 << 5));
+        break;
+    case 7:
+        knightPositions = knightPositions & ~((1 << 3) + (1 << 5) + 2 + (1 << 7));
+        break;
+    default: break;
+    }
+
+    switch (row) {
+    case 0:
+        knightPositions = knightPositions & ~((1 << 4) - 1);
+        break;
+    case 1:
+        knightPositions = knightPositions & ~((1 << 2) - 1);
+        break;
+    case 6:
+        knightPositions = knightPositions & ~(((1 << 2) - 1) << 6);
+        break;
+    case 7:
+        knightPositions = knightPositions & ~(((1 << 4) - 1) << 4);
+        break;
+    default: break;
+    }
+
+    for (int i = 0; i < 8; i++) {
+        if ((knightPositions >> i) & 1) {
+            switch (i) {
+            case 0:
+                knightPattern = knightPattern | ((1ll << (tile - 17)) & ~allyBoard);
+                break;
+            case 1:
+                knightPattern = knightPattern | ((1ll << (tile - 15)) & ~allyBoard);
+                break;
+            case 2:
+                knightPattern = knightPattern | ((1ll << (tile - 10)) & ~allyBoard);
+                break;
+            case 3:
+                knightPattern = knightPattern | ((1ll << (tile - 6)) & ~allyBoard);
+                break;
+            case 4:
+                knightPattern = knightPattern | ((1ll << (tile + 6)) & ~allyBoard);
+                break;
+            case 5:
+                knightPattern = knightPattern | ((1ll << (tile + 10)) & ~allyBoard);
+                break;
+            case 6:
+                knightPattern = knightPattern | ((1ll << (tile + 15)) & ~allyBoard);
+                break;
+            case 7:
+                knightPattern = knightPattern | ((1ll << (tile + 17)) & ~allyBoard);
+                break;
+            }
+        }
+    }
+    
+    return knightPattern;
+}
+
+uint64_t CFBoard::getKingPattern(int tile, bool color) {
+    uint64_t kingPattern = 0;
+    int column = tile & 7;
+    int row = tile >> 3;
+    uint64_t allyBoard = getColorBitBoard(color);
+
+    if (column>0){
+        kingPattern += (1 << (tile-1));
+    }
+    if (row>0){
+        kingPattern += (1 << (tile-8));
+    }
+    if (column<7){
+        kingPattern += (1 << (tile+1));
+    }
+    if (row<7){
+        kingPattern += (1 << (tile+8));
+    }
+    if (column>0 && row>0){
+        kingPattern += (1 << (tile-9));
+    }
+    if (column>0 && row<7){
+        kingPattern += (1 << (tile+7));
+    }
+    if (column<7 && row>0){
+        kingPattern += (1 << (tile-7));
+    }
+    if (column<7 && row<7){
+        kingPattern += (1 << (tile+9));
+    }
+    return kingPattern
+}
+
+uint64_t CFBoard::getPawnPattern(int tile, bool color) {
+    uint64_t pawnPattern = 0;
+    int column = tile & 7;
+    int row = tile >> 3;
+    uint64_t allyBoard = getColorBitBoard(color);
+    uint64_t enemyBoard = getColorBitBoard(!color);
+
+    if (color){ // black
+
+        if (row == 7){ // just in case, should be useless in practice
+            return pawnPattern
+        } else {
+            if !(((allyBoard | enemyBoard) >> (tile + 8)) & 1){ //front
+                pawnPattern += (1ll << (tile + 8));
+                if ((row == 1) && (((allyBoard | enemyBoard) >> (tile + 16)) & 1)){ //frontfront
+                    pawnPattern += (1ll << (tile + 16));
+                }
+            }
+            // diagonals
+            if (column > 0){
+                if ((enPassantTarget == tile + 7) || (enemyBoard >> (tile + 7) & 1)){
+                    pawnPattern += (1ll << (tile + 7));
+                }
+            }
+            if (column < 7){
+                if ((enPassantTarget == tile + 9) || (enemyBoard >> (tile + 9) & 1)){   
+                    pawnPattern += (1ll << (tile + 9));
+                }
+            }
+        }
+
+    } else { // white
+
+        if (row == 0){ // just in case, should be useless in practice
+            return pawnPattern
+        } else {
+            if !(((allyBoard | enemyBoard) >> (tile - 8)) & 1){ //front
+                pawnPattern += (1ll << (tile - 8));
+                if ((row == 6) && (((allyBoard | enemyBoard) >> (tile - 16)) & 1)){ //frontfront
+                    pawnPattern += (1ll << (tile - 16));
+                }
+            }
+            // diagonals
+            if (column > 0){
+                if ((enPassantTarget == tile - 9) || (enemyBoard >> (tile - 9) & 1)){
+                    pawnPattern += (1ll << (tile - 9));
+                }
+            }
+            if (column < 7){
+                if ((enPassantTarget == tile - 7) || (enemyBoard >> (tile - 7) & 1)){   
+                    pawnPattern += (1ll << (tile - 7));
+                }
+            }
+        }
+
+    }
+}
+
+uint64_t CFBoard::getLegalMoves(int pieceId, int tile) {
+    bool color = pieceId & 1;
+    switch (pieceId >> 1) {
+    case 0: // pawn
+        return getPawnPattern(tile, color);
+    case 1: // knight
+        return getKnightPattern(tile, color);
+    case 2: // bishop
+        return getDiagonals(tile, color);
+    case 3: // rook
+        return getCardinals(tile, color);
+    case 4: // queen
+        return getDiagonals(tile, color) | getCardinals(tile, color);
+    case 5: // king
+        return getKingPattern(tile, color);
+    }
 }
 
 //void CFBoard::naiveMovePiece(int starttile, int endtile) {}

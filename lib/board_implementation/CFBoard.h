@@ -27,6 +27,15 @@ public:
 
 	uint64_t& getPieceBoardFromIndex(int boardIndex);
 
+	uint64_t getCardinals(int tile, bool color);
+	uint64_t getDiagonals(int tile, bool color);
+	uint64_t getKnightPattern(int tile, bool color);
+	uint64_t getKingPattern(int tile, bool color);
+	uint64_t getPawnPattern(int tile, bool color);
+
+	// currently doesn't check for check
+	uint64_t getLegalMoves(int pieceId, int tile);
+
 	// these create a copy
 
 	uint64_t getColorBitBoard(bool color);
