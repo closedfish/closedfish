@@ -211,6 +211,7 @@ void CFBoard::forceUndo(int startTileLastTurn, int endTileLastTurn, int captured
         addPiece(capturedPiece, endTileLastTurn);
     }
     addPiece(piece, startTileLastTurn);
+    enPassantTarget = -1;
 }
 
 // void CFBoard::naiveMovePiece(int starttile, int endtile) {}
