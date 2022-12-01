@@ -5,10 +5,15 @@
 //  Created by Ariel Flahaut on 23/11/2022.
 //
 
-#include <iostream>
 
+#include "generator.hpp"
+#include <iostream>
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    Chessboard chessboard;
+    chessboard.single_generator(16);
+    chessboard.visualize();
+    std::cout<<std::endl;
+    chessboard.completion();
+    chessboard.visualize();
     return 0;
 }

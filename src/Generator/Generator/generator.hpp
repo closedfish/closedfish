@@ -5,10 +5,6 @@
 //  Created by Ariel Flahaut on 27/11/2022.
 //
 
-#ifndef generator_hpp
-#define generator_hpp
-
-#include <stdio.h>
 
 
 void file_generator(int pawns); //Input number of pawns and return a file with every possible closed position with only pawns
@@ -64,14 +60,22 @@ public:
     Chessboard(ArrayElement);
     Chessboard replace_element(int, ArrayElement, Chessboard);
     ArrayElement board[64];
-    double closeness(Chessboard); //input a position consiting only of pawns, return a percentage
-    double openness(Chessboard); //input a position consiting only of pawns, return a percentage
+
+    double closeness(Chessboard); //Etienne, input a position consiting only of pawns, return a percentage
+    /*Strategy:
+     Since we are only considering pawns, we iterate over the board, counting the number of closed pawns (pawns that have another pawn in front of them and that don't have a pawn to their diagonal). Then, since we know the total number of pawns on the board, we return a ratio of the number of closed pawns to the total number of pawns.
+     */
+    
+    double openness(Chessboard); //Etienne, input a position consiting only of pawns, return a percentage
+    /*Strategy:
+    We iterate over the board, counting the number of open pawns (pawns that don't have another pawn in front of them or that have at least one pawn to their diagonal). We return a ratio of the number of closed pawns to the total number of pawns.
+     */
     void completion();// Shirelle, input a board with only pawns and fill the board with other pieces randomly
-    Chessboard single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
     int get_total_pawns(Chessboard);// inputs a chessboard and returns how many pawns are in the chess board
     int get_white_pawns(Chessboard); //inputs a chessboard and returns how many white pawns there are
     int get_black_pawns(Chessboard); //inputs a chessboard and returns how many black pawns there are
+    void visualize();
+    void single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
     ArrayElement element;
 };
 
-#endif /* generator_hpp */
