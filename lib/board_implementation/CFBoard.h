@@ -183,11 +183,43 @@ public:
 	bool getCurrentPlayer();
 
 	/*
+	void movePiece(int starttile, int endtile){
+		int piece = getPieceFromCoords(starttile)
+		if ~((1ll << endtile) & getLegalMoves(pieceIdToChar, starttile)){
+			exit(-1);
+		}
+		if ((piece & 1) ^ turn){
+			exit(-1);
+		}
+
+		removePiece(starttile);
+		addPiece(piece, endtile);
+
+		if (~turn){ // white
+			if ((piece>>1) == 3){
+				if (starttile == 63){
+					castleCheck -= 1;
+				} else if 
+			}
+		}
+
+		
+
+
+
+		turn = ~turn;
+	}
+	*/
+
+	/*
 	void naiveMovePiece(int starttile, int endtile);
 
 	void move();
 
 	*/
+
+
+
 	bool naiveCheckCheck();
 
 private:
@@ -201,7 +233,7 @@ private:
 
 	//TODO reduce both of these to the smallest int types
 	int enPassantTarget; //a single coordinate from 0-63 
-	int castleCheck; //4 bits of information (long white - short white - long black - short black)
+	int castleCheck; //4 bits of information (long black - short black- long white - short white)
 
 	uint64_t blackBoard;
 	uint64_t whiteBoard;

@@ -18,7 +18,7 @@ void CFBoard::fromFEN(std::string FEN) {
     blackBoard = 0LL;
     whiteBoard = 0LL;
     turn = 0;
-    castleBools = 0;
+    castleCheck = 0;
     enPassantTarget = 0;
 
     // split a string python-like
@@ -67,16 +67,16 @@ void CFBoard::fromFEN(std::string FEN) {
         // temporarily I use the first four bits of castleBools for K, Q, k, q
         // respectively
         if (string_castling.find('K') != std::string::npos) {
-            castleBools |= 1;
+            castleCheck |= 1;
         }
         if (string_castling.find('Q') != std::string::npos) {
-            castleBools |= 2;
+            castleCheck |= 2;
         }
         if (string_castling.find('k') != std::string::npos) {
-            castleBools |= 4;
+            castleCheck |= 4;
         }
         if (string_castling.find('q') != std::string::npos) {
-            castleBools |= 8;
+            castleCheck |= 8;
         }
     }
 
