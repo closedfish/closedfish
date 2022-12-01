@@ -13,16 +13,23 @@ inline bool isPositionValid(const int &row, const int &col) {
 }
 
 /**
- * @brief Checks if the white king is being checked by black or not
+ * @brief Checks if the current king is being checked by the opponent or not
  *
+ * @param color current color
+ * @param coordA (optional) pretend that there is nothing here
+ * @param coordB (optional) pretend that there is something here with the
+ * current color
  * @return true if it is checked
  * @return false if it is not checked
  */
-bool CFBoard::naiveCheckCheck(bool color) {
+bool CFBoard::naiveCheckCheck(bool color, int coordA = -1, int coordB = -1) {
     uint64_t thisKingBoard = kingBoard & getColorBitBoard(color);
     uint64_t kingTile = 63ll - __builtin_clzll(thisKingBoard);
-    uint64_t otherBoard = getColorBitBoard(!color);
-    uint64_t allBoard = whiteBoard | blackBoard;
+    // make sure kingTile is not coordA or coordB
+    uint64_t otherBoard =
+        getColorBitBoard(!color) & ~(1ll << coordA) & ~(1ll << coordB);
+    uint64_t allBoard =
+        ((whiteBoard | blackBoard) | (1ll << coordB)) & (1ll << coordA);
     int kingRow = kingTile >> 3;
     int kingCol = kingTile & 7;
     // Check P, N
