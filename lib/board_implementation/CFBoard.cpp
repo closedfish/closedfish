@@ -92,11 +92,7 @@ void CFBoard::fromFEN(std::string FEN) {
         // 16 bits used for squares a6->h6, then a3->h3
         int col = string_enpassant[0] - 'a';
         int row = string_enpassant[1] - '1';
-        if (row == 2) { // 3 rank
-            enPassantTarget |= (1 << col + 8);
-        } else if (row == 5) { // 6 rank
-            enPassantTarget |= (1 << col);
-        }
+        enPassantTarget = row * 8 + col;
     }
 }
 
