@@ -19,7 +19,7 @@ void CFBoard::fromFEN(std::string FEN) {
     whiteBoard = 0LL;
     turn = 0;
     castleCheck = 0;
-    enPassantTarget = 0;
+    enPassantTarget = -1;
 
     // split a string python-like
     auto split = [](const std::string &text, char sep) {
@@ -86,20 +86,70 @@ void CFBoard::fromFEN(std::string FEN) {
         // 16 bits used for squares a6->h6, then a3->h3
         int col = string_enpassant[0] - 'a';
         int row = string_enpassant[1] - '1';
-        if (row == 2) { // 3 rank
-            enPassantTarget |= (1 << col + 8);
-        } else if (row == 5) { // 6 rank
-            enPassantTarget |= (1 << col);
-        }
+        enPassantTarget = row * 8 + col;
     }
 }
 
 std::string CFBoard::toFEN() {
-    // convert the current board to FEN
+    std::string fenString = "";
+    // 1. piece placement data
     for (int row = 0; row < 8; row++) {
-        for (int column = 0; column < 8; column++) {
+        std::string currentRow = "";
+        int emptyStreak = 0;
+        for (int col = 0; col < 8; col++) {
+            uint64_t bit = 1ll << (row * 8ll + col);
+            if ((whiteBoard | blackBoard) & bit) {
+                if (emptyStreak) {
+                    currentRow.push_back(emptyStreak + '0');
+                    emptyStreak = 0;
+                }
+                int pieceCode = getPieceFromCoords(row * 8 + col);
+                char pieceChar = pieceIdToChar(pieceCode);
+                if (blackBoard & bit)
+                    pieceChar = tolower(pieceChar);
+                currentRow.push_back(pieceChar);
+            } else {
+                emptyStreak++;
+            }
         }
+        if (row)
+            fenString.append('/');
+        fenString += currentRow;
     }
+    fenString.push_back(' ');
+    // 2. active color
+    if (turn)
+        fenString.push_back('b');
+    else
+        fenString.push_back('w');
+    // 3. castling
+    fenString.push_back(' ');
+    if (castleCheck & 1)
+        fenString.push_back('K');
+    if (castleCheck & 2)
+        fenString.push_back('Q');
+    if (castleCheck & 4)
+        fenString.push_back('k');
+    if (castleCheck & 8)
+        fenString.push_back('q');
+    if ((castleCheck & 15) == 0)
+        fenString.push_back('-');
+    // 4. en passant
+    fenString.push_back(' ');
+    if (enPassantTarget == -1) {
+        fenString.push_back('-');
+    } else {
+        int row = enPassantTarget >> 3;
+        int col = enPassantTarget & 7;
+        fenString.push_back(col + 'a');
+        fenString.push_back(row + '1');
+    }
+    // (optional: not that important)
+    // 5. halfmove clock
+    fenString += " 0";
+    // 6. fullmove number
+    fenString += " 0";
+    return fenString;
 }
 
 void CFBoard::movePiece(int startTile, int endTile){
@@ -169,16 +219,15 @@ void CFBoard::forceUndo(int startTileLastTurn, int endTileLastTurn, int captured
 
 // __builtin_popcountll()
 
-int CFBoard::getMaterialCount(bool color){
-    return \
-    __builtin_popcountll(pawnBoard) * 1 + \
-    __builtin_popcountll(knightBoard) * 3 + \
-    __builtin_popcountll(bishopBoard) * 3 + \
-    __builtin_popcountll(rookBoard) * 5 + \
-    __builtin_popcountll(queenBoard) * 9 ;
+int CFBoard::getMaterialCount(bool color) {
+    return __builtin_popcountll(pawnBoard) * 1 +
+           __builtin_popcountll(knightBoard) * 3 +
+           __builtin_popcountll(bishopBoard) * 3 +
+           __builtin_popcountll(rookBoard) * 5 +
+           __builtin_popcountll(queenBoard) * 9;
 }
 
-bool CFBoard::getCurrentPlayer(){return turn;}
+bool CFBoard::getCurrentPlayer() { return turn; }
 
 uint64_t CFBoard::getCardinals(int tile, bool color) {
     uint64_t cardinalBoard = 0;
