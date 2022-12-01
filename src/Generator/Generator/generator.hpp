@@ -10,7 +10,6 @@
 
 #include <stdio.h>
 
-#endif /* generator_hpp */
 
 void file_generator(int pawns); //Input number of pawns and return a file with every possible closed position with only pawns
 
@@ -67,10 +66,12 @@ public:
     ArrayElement board[64];
     double closeness(Chessboard); //input a position consiting only of pawns, return a percentage
     double openness(Chessboard); //input a position consiting only of pawns, return a percentage
-    Chessboard completion(Chessboard);// Shirelle, input a board with only pawns and fill the board with other pieces randomly
+    void completion();// Shirelle, input a board with only pawns and fill the board with other pieces randomly
     Chessboard single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
     int get_total_pawns(Chessboard);// inputs a chessboard and returns how many pawns are in the chess board
     int get_white_pawns(Chessboard); //inputs a chessboard and returns how many white pawns there are
     int get_black_pawns(Chessboard); //inputs a chessboard and returns how many black pawns there are
     ArrayElement element;
 };
+
+#endif /* generator_hpp */

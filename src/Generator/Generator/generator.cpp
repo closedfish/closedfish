@@ -63,37 +63,130 @@ void database_edit(){ //To be finished
     
 }
 
+
 /**
-@brief generates a random chessboard with randomly chosen numbers of king, queen, bishop, knight, and rook.
+@brief this function has the goal of adding  randomly chosen numbers of king, queen, bishop, knight, and rook to an initial chessboard of pawns.
 
-@param  input
-
-
- 
- 
- 
  */
 
 
-Chessboard completion(Chessboard input){
+void Chessboard::completion(){
+    
 
-//    int* insertX(int n, int array[], int pos);
-//    int n=0;
-//        n++;
-//        for (int i=n; i>=pos; i--) {
-//            if(array[i].is_empty()){
-//
-//                int rand1 = rand()%3;
-//                arr[pos - 1] = rand1;
-//                int rand2 = rand()%3;
-//                int rand3 = rand()%3;
-//                int rand4 = rand()%2;
-//                int rand5 = rand()%2;
-//                array[i] = array[i - 1];
-//
-    Chessboard position_array;
-    return position_array;
-}
+    int rand_knight = rand()%3;
+    int knightcounter=0;
+    while(knightcounter<=rand_knight){
+        int random_pos=rand()%64;
+        if(board[random_pos].is_empty()){
+            board[random_pos].piece=4;
+            board[random_pos].piece_color=0;
+            knightcounter+=1;
+        }
+    }
+    
+
+    int rand_bishop = rand()%3;
+    int bishopcounter=0;
+    while(bishopcounter<=rand_bishop){
+        int random_pos=rand()%64;
+        if(board[random_pos].is_empty()){
+           board[random_pos].piece=3;
+           board[random_pos].piece_color=0;
+            bishopcounter+=1;
+        }
+    }
+    
+    int rand_rook = rand()%3;
+    int rookcounter=0;
+    while(rookcounter<=rand_rook){
+        int random_pos=rand()%64;
+        if(board[random_pos].is_empty()){
+           board[random_pos].piece=5;
+           board[random_pos].piece_color=0;
+            rookcounter+=1;
+        }
+    }
+                    
+                    
+    int kingcounter=0;
+    while(kingcounter<=1){
+        int random_pos=rand()%64;
+        if(board[random_pos].is_empty()){
+           board[random_pos].piece=1;
+           board[random_pos].piece_color=0;
+            kingcounter+=1;
+        }
+    }
+    
+                                
+    int rand_queen = rand()%2;
+    int queencounter=0;
+    while(queencounter<=rand_queen){
+        int random_pos=rand()%64;
+        if(board[random_pos].is_empty()){
+           board[random_pos].piece=2;
+           board[random_pos].piece_color=0;
+            queencounter+=1;
+        }
+    }
+        
+        rand_knight = rand()%3;
+        while(knightcounter<=rand_knight){
+            int random_pos=rand()%64;
+            if(board[random_pos].is_empty()){
+               board[random_pos].piece=4;
+               board[random_pos].piece_color=1;
+                knightcounter+=1;
+            }
+        }
+        
+        rand_bishop = rand()%3;
+        while(bishopcounter<=rand_bishop){
+            int random_pos=rand()%64;
+            if(board[random_pos].is_empty()){
+               board[random_pos].piece=3;
+               board[random_pos].piece_color=1;
+                bishopcounter+=1;
+            }
+        }
+    
+        rand_rook = rand()%3;
+        while(rookcounter<=rand_rook){
+            int random_pos=rand()%64;
+            if(board[random_pos].is_empty()){
+               board[random_pos].piece=5;
+               board[random_pos].piece_color=1;
+                rookcounter+=1;
+            }
+        }
+                        
+                        
+    int kingcounter_black=0;
+    while(kingcounter<=1){
+        int random_pos=rand()%64;
+        if(board[random_pos].is_empty()){
+           board[random_pos].piece=1;
+           board[random_pos].piece_color=1;
+            kingcounter_black+=1;
+        }
+    }
+        
+                            
+        rand_queen = rand()%2;
+        while(queencounter<=rand_queen){
+            int random_pos=rand()%64;
+            if(board[random_pos].is_empty()){
+               board[random_pos].piece=2;
+               board[random_pos].piece_color=1;
+                queencounter+=1;
+            }
+        }
+                        
+                    
+                    }
+                   
+                
+            
 
 double Chessboard::closeness(Chessboard){ //To be done
     
