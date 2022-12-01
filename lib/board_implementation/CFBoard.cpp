@@ -102,7 +102,22 @@ std::string CFBoard::toFEN() {
     }
 }
 
+// void CFBoard::naiveMovePiece(int starttile, int endtile) {}
+
 // ---- to test ----
+
+// __builtin_popcountll()
+
+int CFBoard::getMaterialCount(bool color){
+    return \
+    __builtin_popcountll(pawnBoard) * 1 + \
+    __builtin_popcountll(knightBoard) * 3 + \
+    __builtin_popcountll(bishopBoard) * 3 + \
+    __builtin_popcountll(rookBoard) * 5 + \
+    __builtin_popcountll(queenBoard) * 9 ;
+}
+
+bool CFBoard::getCurrentPlayer(){return turn;}
 
 uint64_t CFBoard::getCardinals(int tile, bool color) {
     uint64_t cardinalBoard = 0;
@@ -435,10 +450,6 @@ uint64_t CFBoard::getLegalMoves(int pieceId, int tile) {
         return getKingPattern(tile, color);
     }
 }
-
-// void CFBoard::naiveMovePiece(int starttile, int endtile) {}
-
-// ========== Methods after this comment are implemented ==========
 
 CFBoard::CFBoard() { // This is just the starter board.
     pawnBoard = (((1ll << 8) - 1) << 48) + (((1ll << 8) - 1) << 8);

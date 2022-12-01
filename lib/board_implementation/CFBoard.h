@@ -49,7 +49,7 @@ public:
 	/**
 	* @brief This function takes a pieceId and returns the associated character.
 	*
-	* @param pieceId : P/N/B/R/Q/K depending on the piece, lowercase if black piece.
+	* @param pieceChar : <char> P/N/B/R/Q/K depending on the piece, lowercase if black piece.
 	*
 	* @return <int> equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the piece is black.
 	*/
@@ -69,7 +69,7 @@ public:
 	/**
 	* @brief This function returns whether or not there is a piece of pieceId in the specified tile.
 	*
-	* @param pieceId : P/N/B/R/Q/K depending on the piece, lowercase if black piece.
+	* @param pieceId : <int> equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the piece is black.
 	* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ..., h7, ......, a1, ..., h1).
 	*
 	* @return <bool> 1 if the piece is on that tile, 0 otherwise.
@@ -139,7 +139,7 @@ public:
 	/**
 	* @brief This function returns the naive move pattern for a pieceId piece.
 	*
-	* @param pieceId : P/N/B/R/Q/K depending on the piece, lowercase if black piece.
+	* @param pieceId : <int> equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the piece is black.
 	* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ..., h7, ......, a1, ..., h1).
 	*
 	* @return <uint64_t> bitboard for where a piece of pieceId at tile can move/capture.
@@ -151,24 +151,39 @@ public:
 	/**
 	* @brief This function returns a bitboard for a piece of a specific color.
 	*
-	* @param pieceId : P/N/B/R/Q/K depending on the piece, lowercase if black piece.
+	* @param pieceId : <int> equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the piece is black.
 	*
 	* @return <uint64_t> bitboard for the specified piece (color taken into account).
 	*/
 	uint64_t getPieceColorBitBoard(int pieceId);
 
-	int getPieceFromCoords(int tile); // output is [0,1,2,3,4,5]+(color)
+	/**
+	* @brief This function returns a bitboard for a piece of a specific color.
+	*
+	* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ..., h7, ......, a1, ..., h1).
+	*
+	* @return <int> equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the piece is black.
+	*/
+	int getPieceFromCoords(int tile);
 	
+	/**
+	* @brief Computes the material count for a specific color.
+	*
+	* @param color : 1 for black, 0 for white.
+	*
+	* @return Material count for that color.
+	*/
+	int getMaterialCount(bool color);
+
+	/**
+	* @brief Returns whose turn it is to play.
+	*
+	* @return Material count for that color.
+	*/
+	bool getCurrentPlayer();
 
 	/*
 	void naiveMovePiece(int starttile, int endtile);
-	uint64_t getCardinals(int tile, bool color);
-	uint64_t getDiagonals(int tile, bool color);
-
-	uint64_t getNaiveLegalMoves(); // What should input be here?
-
-	bool checkCheck();
-	bool checkCheckmate(); // maybe?
 
 	void move();
 
