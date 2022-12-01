@@ -11,6 +11,7 @@ The aim of this project is to create a chess engine, to improve the
 - Ba Cong Vu, souhhcong, souhhcong
 - Flahaut Ariel, arielflt, flahautariel, [member]
 - Antonia Baies, abaiesu, abaiesu
+- Cassidy Kevorkian-Mielly, Cassidy-Kevorkian, cassidykevorkianmielly [member of switch team].
 - Shirelle Benamou, shirellebenamou, shirellebenamou
 - Yoshimi-Théophile Etienne, Yoshimi-Theophile, yoshimitheophile
 - Aarrya Saraf, AarryaSaraf, AarryaSaraf. [leader]
