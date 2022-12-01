@@ -7,9 +7,9 @@
 
 
 void CFBoard::fromFEN(std::string FEN) {
-    // configure the current board from input FEN
-    // Clearing the board
-    pawnBoard = 0LL;
+	// configure the current board from input FEN
+	// Clearing the board
+	pawnBoard = 0LL;
 	kingBoard = 0LL;
 	queenBoard = 0LL;
 	rookBoard = 0LL;
@@ -18,75 +18,75 @@ void CFBoard::fromFEN(std::string FEN) {
 	blackBoard = 0LL;
 	whiteBoard = 0LL;
 	turn = 0;
-    castleBools = 0;
+	castleBools = 0;
 	enPassantTarget = 0;
 
-    // split a string python-like
-    auto split = [] (const std::string &text, char sep) {
-        std::vector<std::string> tokens;
-        std::size_t start = 0, end = 0;
-        while ((end = text.find(sep, start)) != std::string::npos) {
-            tokens.push_back(text.substr(start, end - start));
-            start = end + 1;
-        }
-        tokens.push_back(text.substr(start));
-        return tokens;
-    };
+	// split a string python-like
+	auto split = [] (const std::string &text, char sep) {
+		std::vector<std::string> tokens;
+		std::size_t start = 0, end = 0;
+		while ((end = text.find(sep, start)) != std::string::npos) {
+			tokens.push_back(text.substr(start, end - start));
+			start = end + 1;
+		}
+		tokens.push_back(text.substr(start));
+		return tokens;
+	};
 
-    // Vector of fields of FEN, index 0: board, 1: current turn, 2: castling, 3: e.p., 4: half-move clock, 5: full-move counter
-    std::vector<std::string> fields = split(FEN, ' ');
+	// Vector of fields of FEN, index 0: board, 1: current turn, 2: castling, 3: e.p., 4: half-move clock, 5: full-move counter
+	std::vector<std::string> fields = split(FEN, ' ');
 
-    // Board
-    std::string string_board = fields[0];
-    std::vector<std::string> rows = split(string_board, '/');
+	// Board
+	std::string string_board = fields[0];
+	std::vector<std::string> rows = split(string_board, '/');
 
-    for (int row_index = 0; row_index < 8; row_index++) {
-        int col_index = 0;
-        for (auto ch: rows[row_index]) {
-            // ch can be digit meaning consecutive empty squares in a row,
-            // or characters representing a piece (upper case if white pieces)
-            if (isdigit(ch)) {
-                col_index += ch-'0';
-            } else {
-                if (isupper(ch)) { // white pieces
-                    int pieceId = pieceCharColorToId(ch, 0);
-                    this->addPiece(pieceId, row_index*8 + col_index);
-                } else { // black pieces
-                    int pieceId = pieceCharColorToId(ch + 'A' - 'a', 1); // convert to upper case
-                    this->addPiece(pieceId, row_index*8 + col_index);
-                }
-                col_index++;
-            }
-        }
-    }
+	for (int row_index = 0; row_index < 8; row_index++) {
+		int col_index = 0;
+		for (auto ch: rows[row_index]) {
+			// ch can be digit meaning consecutive empty squares in a row,
+			// or characters representing a piece (upper case if white pieces)
+			if (isdigit(ch)) {
+				col_index += ch-'0';
+			} else {
+				if (isupper(ch)) { // white pieces
+					int pieceId = pieceCharColorToId(ch, 0);
+					this->addPiece(pieceId, row_index*8 + col_index);
+				} else { // black pieces
+					int pieceId = pieceCharColorToId(ch + 'A' - 'a', 1); // convert to upper case
+					this->addPiece(pieceId, row_index*8 + col_index);
+				}
+				col_index++;
+			}
+		}
+	}
 
-    // Current turn
-    std::string string_current_turn = fields[1];
-    turn = (string_current_turn == "b");
+	// Current turn
+	std::string string_current_turn = fields[1];
+	turn = (string_current_turn == "b");
 
-    // Castling
-    std::string string_castling = fields[2];
-    if (string_castling != "-") {
-        // dependent on how you want to store castling availability
-        // temporarily I use the first four bits of castleBools for K, Q, k, q respectively
-        if (string_castling.find('K') != std::string::npos) { castleBools |= 1; }
-        if (string_castling.find('Q') != std::string::npos) { castleBools |= 2; }
-        if (string_castling.find('k') != std::string::npos) { castleBools |= 4; }
-        if (string_castling.find('q') != std::string::npos) { castleBools |= 8; }
-    }
+	// Castling
+	std::string string_castling = fields[2];
+	if (string_castling != "-") {
+		// dependent on how you want to store castling availability
+		// temporarily I use the first four bits of castleBools for K, Q, k, q respectively
+		if (string_castling.find('K') != std::string::npos) { castleBools |= 1; }
+		if (string_castling.find('Q') != std::string::npos) { castleBools |= 2; }
+		if (string_castling.find('k') != std::string::npos) { castleBools |= 4; }
+		if (string_castling.find('q') != std::string::npos) { castleBools |= 8; }
+	}
 
-    // En passant
-    std::string string_enpassant = fields[3];
-    if (string_enpassant != "-") {
-        // 16 bits used for squares a6->h6, then a3->h3
-        int col = string_enpassant[0] - 'a';
-        int row = string_enpassant[1] - '1';
-        if (row == 2) { // 3 rank
-            enPassantTarget |= (1 << col + 8);
-        } else if (row == 5) { // 6 rank
-            enPassantTarget |= (1 << col);
-        }
-    }
+	// En passant
+	std::string string_enpassant = fields[3];
+	if (string_enpassant != "-") {
+		// 16 bits used for squares a6->h6, then a3->h3
+		int col = string_enpassant[0] - 'a';
+		int row = string_enpassant[1] - '1';
+		if (row == 2) { // 3 rank
+			enPassantTarget |= (1 << col + 8);
+		} else if (row == 5) { // 6 rank
+			enPassantTarget |= (1 << col);
+		}
+	}
 }
 
 std::string CFBoard::toFEN() {
