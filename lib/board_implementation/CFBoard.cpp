@@ -102,6 +102,67 @@ std::string CFBoard::toFEN() {
     }
 }
 
+void CFBoard::movePiece(int startTile, int endTile){
+		int piece = getPieceFromCoords(starttile);
+		if ~((1ll << endtile) & getLegalMoves(pieceIdToChar, starttile)){
+			exit(-1);
+		}
+		if ((piece & 1) ^ turn){
+			exit(-1);
+		}
+
+		removePiece(starttile);
+		addPiece(piece, endtile);
+
+		if (~turn){ // white
+			if ((piece>>1) == 3){ // rook
+				if (starttile == 63){
+					castleCheck -= 1;
+				} else if (starttile == 56){
+                    castleCheck -= 2;
+                }
+			}
+            if ((piece>>1) == 5){ // king
+                castleCheck -= 3;
+            }
+
+            if ((piece>>1) == 0){ // pawn
+                if ((starttile - endtile) == 16){
+                    enPassantTarget = starttile - 8;
+                }
+            }
+		} else {
+            if ((piece>>1) == 3){ // rook
+				if (starttile == 0){
+					castleCheck -= 8;
+				} else if (starttile == 7){
+                    castleCheck -= 4;
+                }
+			}
+            if ((piece>>1) == 5){ // king
+                castleCheck -= 12;
+            }
+
+            if ((piece>>1) == 0){ // pawn
+                if ((endtile - starttile) == 16){
+                    enPassantTarget = starttile + 8;
+                }
+            }
+        }
+
+		turn = ~turn;
+	}
+
+void CFBoard::forceUndo(int startTileLastTurn, int endTileLastTurn, int capturedPiece = -1){
+    int piece = getPieceFromCoords(endTileLastTurn);
+    if (capturedPiece == -1){
+        removePiece(endTileLastTurn);
+    } else {
+        addPiece(capturedPiece, endTileLastTurn);
+    }
+    addPiece(piece, startTileLastTurn);
+}
+
 // void CFBoard::naiveMovePiece(int starttile, int endtile) {}
 
 // ---- to test ----

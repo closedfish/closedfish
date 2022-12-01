@@ -182,34 +182,26 @@ public:
 	*/
 	bool getCurrentPlayer();
 
-	/*
-	void movePiece(int starttile, int endtile){
-		int piece = getPieceFromCoords(starttile)
-		if ~((1ll << endtile) & getLegalMoves(pieceIdToChar, starttile)){
-			exit(-1);
-		}
-		if ((piece & 1) ^ turn){
-			exit(-1);
-		}
-
-		removePiece(starttile);
-		addPiece(piece, endtile);
-
-		if (~turn){ // white
-			if ((piece>>1) == 3){
-				if (starttile == 63){
-					castleCheck -= 1;
-				} else if 
-			}
-		}
-
-		
-
-
-
-		turn = ~turn;
-	}
+	/**
+	* @brief Does a legal move of chess
+	*
+	* @param startTile : tile from which a piece is moved.
+	* @param endTile : tile to which a piece is moved.
+	*
+	* @return void
 	*/
+	void movePiece(int startTile, int endTile);
+
+	/**
+	* @brief Forces an undo.
+	*
+	* @param startTileLastTurn : tile from which a piece was moved.
+	* @param endTileLastTurn : tile to which a piece was moved.
+	* @param capturedPiece : piece captured at endTileLastTurn last turn if any, defaulted to -1 (no piece).
+	*
+	* @return void
+	*/
+	void forceUndo(int startTileLastTurn, int endTileLastTurn, int capturedPiece = -1);
 
 	/*
 	void naiveMovePiece(int starttile, int endtile);
