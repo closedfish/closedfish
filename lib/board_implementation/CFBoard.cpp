@@ -420,20 +420,31 @@ uint64_t CFBoard::getPawnPattern(int tile, bool color) {
 
 uint64_t CFBoard::getLegalMoves(int pieceId, int tile) {
     bool color = pieceId & 1;
+    uint64_t retBoard;
     switch (pieceId >> 1) {
     case 0: // pawn
-        return getPawnPattern(tile, color);
+        retBoard = getPawnPattern(tile, color);
     case 1: // knight
-        return getKnightPattern(tile, color);
+        retBoard = getKnightPattern(tile, color);
     case 2: // bishop
-        return getDiagonals(tile, color);
+        retBoard = getDiagonals(tile, color);
     case 3: // rook
-        return getCardinals(tile, color);
+        retBoard = getCardinals(tile, color);
     case 4: // queen
-        return getDiagonals(tile, color) | getCardinals(tile, color);
+        retBoard = getDiagonals(tile, color) | getCardinals(tile, color);
     case 5: // king
-        return getKingPattern(tile, color);
+        retBoard = getKingPattern(tile, color);
     }
+    uint64_t tmpBoard = retBoard;
+    while (tmpBoard) {
+        uint64_t lsb = tmpBoard & -tmpBoard;
+        tmpBoard ^= lsb;
+        int coordB = 63ll - __builtin_clzll(lsb);
+        if (naiveCheckCheck(pieceId & 1, tile, coordB)) {
+            retBoard ^= lsb;
+        }
+    }
+    return retBoard;
 }
 
 // void CFBoard::naiveMovePiece(int starttile, int endtile) {}
