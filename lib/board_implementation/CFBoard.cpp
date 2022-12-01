@@ -19,7 +19,7 @@ void CFBoard::fromFEN(std::string FEN) {
     whiteBoard = 0LL;
     turn = 0;
     castleCheck = 0;
-    enPassantTarget = 0;
+    enPassantTarget = -1;
 
     // split a string python-like
     auto split = [](const std::string &text, char sep) {
