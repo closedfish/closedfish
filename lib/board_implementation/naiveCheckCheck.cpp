@@ -18,9 +18,11 @@ inline bool isPositionValid(const int &row, const int &col) {
  * @return true if it is checked
  * @return false if it is not checked
  */
-bool CFBoard::naiveCheckCheck() {
-    uint64_t whiteKingBoard = kingBoard & whiteBoard;
-    uint64_t kingTile = 63ll - __builtin_clzll(whiteKingBoard);
+bool CFBoard::naiveCheckCheck(bool color) {
+    uint64_t thisKingBoard = kingBoard & getColorBitBoard(color);
+    uint64_t kingTile = 63ll - __builtin_clzll(thisKingBoard);
+    uint64_t otherBoard = getColorBitBoard(!color);
+    uint64_t allBoard = whiteBoard | blackBoard;
     int kingRow = kingTile >> 3;
     int kingCol = kingTile & 7;
     // Check P, N
@@ -32,7 +34,7 @@ bool CFBoard::naiveCheckCheck() {
         int px = kingRow + dx[i];
         int py = kingCol + dy[i];
         uint64_t pTile = 1ll << (uint64_t)(px * 8 + py);
-        if (isPositionValid(px, py) && (blackBoard & pTile)) {
+        if (isPositionValid(px, py) && (otherBoard & pTile)) {
             return true;
         }
     }
@@ -40,66 +42,66 @@ bool CFBoard::naiveCheckCheck() {
     for (int i = kingRow - 1; i >= 0; i--) {
         // Not sure if the compiler is smart enough to unroll this loop
         uint64_t pTile = 1ll << (uint64_t)(i * 8 + kingCol);
-        if (blackBoard & rookBoard & pTile) {
+        if (otherBoard & rookBoard & pTile) {
             return true;
-        } else if ((blackBoard | whiteBoard) & pTile) {
+        } else if (allBoard & pTile) {
             break;
         }
     }
     for (int i = kingRow + 1; i < 8; i++) {
         uint64_t pTile = 1ll << (uint64_t)(i * 8 + kingCol);
-        if (blackBoard & rookBoard & pTile) {
+        if (otherBoard & rookBoard & pTile) {
             return true;
-        } else if ((blackBoard | whiteBoard) & pTile) {
+        } else if (allBoard & pTile) {
             break;
         }
     }
     for (int i = kingCol - 1; i >= 0; i--) {
         uint64_t pTile = 1ll << (uint64_t)(kingRow * 8 + i);
-        if (blackBoard & rookBoard & pTile) {
+        if (otherBoard & rookBoard & pTile) {
             return true;
-        } else if ((blackBoard | whiteBoard) & pTile) {
+        } else if (allBoard & pTile) {
             break;
         }
     }
     for (int i = kingCol + 1; i < 8; i++) {
         uint64_t pTile = 1ll << (uint64_t)(kingRow * 8 + i);
-        if (blackBoard & rookBoard & pTile) {
+        if (otherBoard & rookBoard & pTile) {
             return true;
-        } else if ((blackBoard | whiteBoard) & pTile) {
+        } else if (allBoard & pTile) {
             break;
         }
     }
     // Check B, Q
     for (int i = 1; isPositionValid(kingRow - i, kingCol - i); i++) {
         uint64_t pTile = 1ll << (uint64_t)((kingRow - i) * 8 + (kingCol - i));
-        if (blackBoard & (bishopBoard | queenBoard) & pTile) {
+        if (otherBoard & (bishopBoard | queenBoard) & pTile) {
             return true;
-        } else if ((blackBoard | whiteBoard) & pTile) {
+        } else if (allBoard & pTile) {
             break;
         }
     }
     for (int i = 1; isPositionValid(kingRow - i, kingCol + i); i++) {
         uint64_t pTile = 1ll << (uint64_t)((kingRow - i) * 8 + (kingCol + i));
-        if (blackBoard & (bishopBoard | queenBoard) & pTile) {
+        if (otherBoard & (bishopBoard | queenBoard) & pTile) {
             return true;
-        } else if ((blackBoard | whiteBoard) & pTile) {
+        } else if (allBoard & pTile) {
             break;
         }
     }
     for (int i = 1; isPositionValid(kingRow + i, kingCol - i); i++) {
         uint64_t pTile = 1ll << (uint64_t)((kingRow + i) * 8 + (kingCol - i));
-        if (blackBoard & (bishopBoard | queenBoard) & pTile) {
+        if (otherBoard & (bishopBoard | queenBoard) & pTile) {
             return true;
-        } else if ((blackBoard | whiteBoard) & pTile) {
+        } else if (allBoard & pTile) {
             break;
         }
     }
     for (int i = 1; isPositionValid(kingRow + i, kingCol + i); i++) {
         uint64_t pTile = 1ll << (uint64_t)((kingRow + i) * 8 + (kingCol + i));
-        if (blackBoard & (bishopBoard | queenBoard) & pTile) {
+        if (otherBoard & (bishopBoard | queenBoard) & pTile) {
             return true;
-        } else if ((blackBoard | whiteBoard) & pTile) {
+        } else if (allBoard & pTile) {
             break;
         }
     }

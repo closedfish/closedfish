@@ -173,7 +173,7 @@ public:
 	void move();
 
 	*/
-	bool naiveCheckCheck();
+	bool naiveCheckCheck(bool color);
 
 private:
 
