@@ -188,7 +188,7 @@ public:
 	void move();
 
 	*/
-	bool naiveCheckCheck();
+	bool naiveCheckCheck(bool color, int coordA = -1, int coordB = -1);
 
 private:
 
