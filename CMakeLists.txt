@@ -8,8 +8,16 @@ include(GNUInstallDirs)
 #Enable unit testing
 option(ENABLE_TESTING "Whether to enable the unit testing build" ON)
 
-#Defining Variables
+#Enable warnings
+option(ENABLE_WARNINGS      "Enable to add warnings to a target."   ON)
 
+#Options
+option(ENABLE_CLANG_TIDY    "Enable to add clang tidy."             OFF)
+option(ENABLE_CPPCHECK      "Enable to add cppcheck."               OFF)
+option(ENABLE_LTO           "Enable to add Link Time Optimization." OFF)
+option(ENABLE_CCACHE        "Enable to add Ccache."                 OFF)
+
+#Defining Variables
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -50,17 +58,25 @@ endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 include(AddGitSubmodule)
 
+#inlude warnings
+include(Warnings)
+
+#include option's cmake files
+include(StaticAnalyzers)
+include(LTO)
+include(Ccache)
+
 #Include Doxygen module
 include(Docs)
 
 #Include Conan Libraries
-#include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 
 #Includes subdirectories
 add_subdirectory(src)
 add_subdirectory(config)
 add_subdirectory(lib)
-
+ 
 
 #Enable unit testing
 option(ENABLE_TESTING "Whether to enable the unit testing build" ON)

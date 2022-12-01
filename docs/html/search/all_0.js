@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['general_5fmain_2ecc_0',['general_main.cc',['../general__main_8cc.html',1,'']]],
-  ['general_5fmain_2ehpp_1',['general_main.hpp',['../general__main_8hpp.html',1,'']]]
+  ['closeness_0',['closeness',['../generator_8cpp.html#ab9f3722726900bec18f90ed8eeac2697',1,'closeness(std::array&lt; int, 64 &gt;):&#160;generator.cpp'],['../generator_8hpp.html#ab9f3722726900bec18f90ed8eeac2697',1,'closeness(std::array&lt; int, 64 &gt;):&#160;generator.cpp']]],
+  ['completion_1',['completion',['../generator_8cpp.html#ad1a7d24e2fe2a7cbbea127b552bf5c4e',1,'completion(std::array&lt; int, 64 &gt; input):&#160;generator.cpp'],['../generator_8hpp.html#a637ef4dc759d86f9f88cc7079b04e154',1,'completion(std::array&lt; int, 64 &gt;):&#160;generator.cpp']]]
 ];

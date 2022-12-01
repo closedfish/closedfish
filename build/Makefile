@@ -208,6 +208,19 @@ StockfishConectors/fast:
 .PHONY : StockfishConectors/fast
 
 #=============================================================================
+# Target rules for targets named STATIC
+
+# Build rule for target.
+STATIC: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STATIC
+.PHONY : STATIC
+
+# fast build rule for target.
+STATIC/fast:
+	$(MAKE) $(MAKESILENT) -f src/Generator/CMakeFiles/STATIC.dir/build.make src/Generator/CMakeFiles/STATIC.dir/build
+.PHONY : STATIC/fast
+
+#=============================================================================
 # Target rules for targets named unit_tests
 
 # Build rule for target.
@@ -247,6 +260,7 @@ help:
 	@echo "... GeneralConnectors"
 	@echo "... PlayingRoutine"
 	@echo "... ReceiveInputFromUI"
+	@echo "... STATIC"
 	@echo "... SendOutputToUI"
 	@echo "... StockfishConectors"
 	@echo "... unit_tests"

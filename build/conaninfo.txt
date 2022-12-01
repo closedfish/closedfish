@@ -1,0 +1,38 @@
+[settings]
+    arch=x86_64
+    build_type=Release
+    compiler=gcc
+    compiler.libcxx=libstdc++
+    compiler.version=11
+    os=Linux
+
+[requires]
+    catch2/3.Y.Z
+
+[options]
+
+
+[full_settings]
+    arch=x86_64
+    arch_build=x86_64
+    build_type=Release
+    compiler=gcc
+    compiler.libcxx=libstdc++
+    compiler.version=11
+    os=Linux
+    os_build=Linux
+
+[full_requires]
+    catch2/3.2.0:d8d8aba822aaa76849d2f1bafe4a2a62a9f83b74
+
+[full_options]
+    catch2:default_reporter=None
+    catch2:fPIC=True
+    catch2:shared=False
+    catch2:with_prefix=False
+
+[recipe_hash]
+
+
+[env]
+
