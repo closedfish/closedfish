@@ -173,20 +173,20 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
                 no_bishops_color[tile%2 == 0]++;
             }
             // Bishops same color with our pawn structure
-            if (tile > 1) { // Protect left pawn
-                for (int i = 1; validSquare(pawn_height[tile-1]-i, tile-i); i++) {
-                    heat_map[pawn_height[tile-1]-i][tile-i] += 1;
-                }
-                for (int i = 1; validSquare(pawn_height[tile+1]))
-            }
-            for (int i = 0; i < max_pawn_height; i++) {
-                for (int j = pawn_structure_color_main; )
-                heat_map += no_bishops_color[pawn_structure_color_main]
-            }
-            // Bishops diff color with our pawn structure
-            for (int i = 0; i < max_pawn_height; i++) {
-                heat_map += no_bishops_color[!pawn_structure_color_main];
-            }
+            // if (tile > 1) { // Protect left pawn
+            //     for (int i = 1; validSquare(pawn_height[tile-1]-i, tile-i); i++) {
+            //         heat_map[pawn_height[tile-1]-i][tile-i] += 1;
+            //     }
+            //     for (int i = 1; validSquare(pawn_height[tile+1]))
+            // }
+            // for (int i = 0; i < max_pawn_height; i++) {
+            //     for (int j = pawn_structure_color_main; )
+            //     heat_map += no_bishops_color[pawn_structure_color_main];
+            // }
+            // // Bishops diff color with our pawn structure
+            // for (int i = 0; i < max_pawn_height; i++) {
+            //     heat_map += no_bishops_color[!pawn_structure_color_main];
+            // }
         }
     } else { // No open files
         if (closed_rows >= 2) { // 2 free rows, knights, rooks and queens are essentially able to go anywhere
