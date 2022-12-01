@@ -51,6 +51,14 @@ void file_generator(int pawns){ //To be finished
     std::ofstream outfile ("generated_position.txt");
 }
 
+/**
+ @brief this function has the goal of taking a .cbv chess database and creating a copy of said database with only pawns
+ 
+@param the chess database
+ 
+ 
+@return a .cbv file containing the same moves, excluding pieces other than pawns
+ */
 void database_edit(){ //To be finished
     std::fstream file;
     std::ofstream outfile ("new_database.txt");
@@ -62,10 +70,6 @@ void database_edit(){ //To be finished
 
 @param  input
 
-
- 
- 
- 
  */
 
 
@@ -89,16 +93,130 @@ Chessboard completion(Chessboard input){
     return position_array;
 }
 
-double Chessboard::closeness(Chessboard){ //To be done
+/**
+@brief this function has the goal of taking a chess position in the form of our chessboard array and returning the coefficient of closeness
+@param input array
+@return coefficient of closeness
+ */
+double Chessboard::closeness(Chessboard input){ //Etienne, NOT FINISHED, flaw in logic
+    int tot_pawn = get_total_pawns(input);
+    int tot_white = get_white_pawns(input);
+    int tot_black = get_black_pawns(input);
     
-    return 1.0;
+    int closed_pawns = 0;
+    int open_pawns = 0;
+    
+    for (int i = 0; i < 64; i++){
+        if (input.board[i].get_piece() == 6){ // if a pawn
+            
+            if (input.board[i].get_piece_color() == 1){ // if black (check status going down array)
+                if (input.board[i+8].get_piece() == 6){ // if blocking pawn in front (8 positions down the array)
+                    
+                    if (i%8 == 1 && input.board[i+9].get_piece() != 6){ // if pawn along "a" column without a pawn to lower right
+                        closed_pawns += 1;
+                    }
+                    
+                    else if (i%8 == 0 && input.board[i+7].get_piece() != 6){ // if pawn along "h" column without a pawn to lower left
+                        closed_pawns += 1;
+                    }
+                    
+                    else if (input.board[i+9].get_piece() != 6 && // if pawn not along edges, without a pawn to lower left or right
+                             input.board[i+7].get_piece() != 6){
+                        closed_pawns += 1;
+                    }
+                }
+            }
+            
+            if (input.board[i].get_piece_color() == 0){
+                if (input.board[i-8].get_piece() == 6){ // if blocking pawn in front (8 positions up the array)
+                    
+                    if (i%8 == 1 && input.board[i-7].get_piece() != 6){ // if pawn along "a" column without a pawn to upper right
+                        closed_pawns += 1;
+                    }
+                    
+                    else if (i%8 == 0 && input.board[i-9].get_piece() != 6){ // if pawn along "h" column without a pawn to upper left
+                        closed_pawns += 1;
+                    }
+                    
+                    else if (input.board[i-9].get_piece() != 6 && // if pawn not along edges, without a pawn to lower left or right
+                             input.board[i-7].get_piece() != 6){
+                        closed_pawns += 1;
+                    }
+                }
+            }
+        }
+    }
+    return closed_pawns/tot_pawn;
 }
-double Chessboard::openness(Chessboard){ //To be done
-    return 1.0;
+
+/**
+@brief this function has the goal of taking a chess position in the form of our chessboard array and returning the coefficient of openness
+@param input array
+@return coefficient of openness
+ */
+
+double Chessboard::openness(Chessboard input){ //Etienne, NOT FINISHED, flaw in logic 
+    int tot_pawn = get_total_pawns(input);
+    int tot_white = get_white_pawns(input);
+    int tot_black = get_black_pawns(input);
+    
+    int closed_pawns = 0;
+    int open_pawns = 0;
+    
+    for (int i = 0; i < 64; i++){
+        if (input.board[i].get_piece() == 6){ // if a pawn
+            
+            if (input.board[i].get_piece_color() == 1){ // if black (check status going down array)
+                if (input.board[i+8].get_piece() != 6){ // if no blocking pawn in front (8 positions down the array)
+                    open_pawns += 1;
+                }
+                
+                else {
+                    
+                    if (i%8 == 1 && input.board[i+9].get_piece() == 6){ // if pawn along "a" column with a pawn to lower right
+                        open_pawns += 1;
+                    }
+                    
+                    else if (i%8 == 0 && input.board[i+7].get_piece() == 6){ // if pawn along "h" column with a pawn to lower left
+                        open_pawns += 1;
+                    }
+                    
+                    else if (input.board[i+9].get_piece() == 6 ||
+                             input.board[i+7].get_piece() == 6){ // if pawn not along edges, with a pawn to either its lower left or right (or both)
+                        open_pawns += 1;
+                    }
+                }
+            }
+            
+            if (input.board[i].get_piece_color() == 1){ // if black (check status going down array)
+                if (input.board[i-8].get_piece() != 6){ // if no blocking pawn in front (8 positions down the array)
+                    open_pawns += 1;
+                }
+                
+                else {
+                    
+                    if (i%8 == 1 && input.board[i-7].get_piece() == 6){ // if pawn along "a" column with a pawn to upper right
+                        open_pawns += 1;
+                    }
+                    
+                    else if (i%8 == 0 && input.board[i-9].get_piece() == 6){ // if pawn along "h" column with a pawn to upper left
+                        open_pawns += 1;
+                    }
+                    
+                    else if (input.board[i-9].get_piece() == 6 ||
+                             input.board[i-7].get_piece() == 6){ // if pawn not along edges, with a pawn to either its upper left or right (or both)
+                        open_pawns += 1;
+                    }
+                }
+            }
+        }
+    }
+    return open_pawns/tot_pawn;
 }
 
 ArrayElement::ArrayElement() :ArrayElement(0,0){
 }
+
 ArrayElement::ArrayElement(int piece, int piece_color){
     piece=0;
     piece_color=0;
@@ -112,7 +230,6 @@ int ArrayElement::get_piece_color(){
 }
 
 
-
 bool ArrayElement::is_empty(){
     if (piece == 0){
         return true;
@@ -121,7 +238,6 @@ bool ArrayElement::is_empty(){
         return false;
         }
 }
-
 
 
 Chessboard::Chessboard(){

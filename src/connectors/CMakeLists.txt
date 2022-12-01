@@ -1,2 +1,2 @@
-add_subdirectory(general)
-add_subdirectory(Stockfish_connect)
+add_subdirectory(closedfish_connect)
+add_subdirectory(stockfish_connect)

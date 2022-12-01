@@ -269,11 +269,23 @@ DOXYGEN_DOT_EXECUTABLE:FILEPATH=/usr/bin/dot
 //Doxygen documentation generation tool (http://www.doxygen.org)
 DOXYGEN_EXECUTABLE:FILEPATH=/usr/bin/doxygen
 
+//Enable to add Ccache.
+ENABLE_CCACHE:BOOL=OFF
+
+//Enable to add clang tidy.
+ENABLE_CLANG_TIDY:BOOL=OFF
+
+//Enable to add cppcheck.
+ENABLE_CPPCHECK:BOOL=OFF
+
+//Enable to add Link Time Optimization.
+ENABLE_LTO:BOOL=OFF
+
 //Whether to enable the unit testing build
 ENABLE_TESTING:BOOL=ON
 
-//Git command line client
-GIT_EXECUTABLE:FILEPATH=/usr/bin/git
+//Enable to add warnings to a target.
+ENABLE_WARNINGS:BOOL=ON
 
 
 ########################
@@ -394,7 +406,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=13
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=14
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -443,10 +455,6 @@ DOXYGEN_DOT_EXECUTABLE-ADVANCED:INTERNAL=1
 DOXYGEN_EXECUTABLE-ADVANCED:INTERNAL=1
 //Details about finding Doxygen
 FIND_PACKAGE_MESSAGE_DETAILS_Doxygen:INTERNAL=[/usr/bin/doxygen][cfound components: doxygen dot ][v1.9.1()]
-//Details about finding Git
-FIND_PACKAGE_MESSAGE_DETAILS_Git:INTERNAL=[/usr/bin/git][v2.34.1()]
-//ADVANCED property for variable: GIT_EXECUTABLE
-GIT_EXECUTABLE-ADVANCED:INTERNAL=1
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/home/andrei/Desktop/Switch AI/build/install
 

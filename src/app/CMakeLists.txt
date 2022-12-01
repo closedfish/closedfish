@@ -15,7 +15,7 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 
 set(EXE_SOURCES
-    "switch_main.cc")
+    "switch_main.cpp")
 set(EXE_HEADERS 
     "switch_main.hpp")
     
@@ -23,6 +23,9 @@ add_executable(${EXECUTABLE}
     ${EXE_SOURCES}
     ${EXE_HEADERS})
 
+if (${ENABLE_WARNINGS})
+    target_set_warnings(TARGET ${EXECUTABLE} ENABLE ON AS_ERROR OFF)
+endif()
 
 target_link_libraries(${EXECUTABLE} PUBLIC 
     ${SC}
@@ -31,6 +34,6 @@ target_link_libraries(${EXECUTABLE} PUBLIC
     ${INPUT}    
     ${OUTPUT}
     ${OPENING}
-    ${CONAN_CATCH2}
-    external/stockfish)
-  
+    ${CONAN_CATCH2})
+
+
