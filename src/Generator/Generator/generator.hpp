@@ -75,10 +75,10 @@ public:
     We iterate over the board, counting the number of open pawns (pawns that don't have another pawn in front of them or that have at least one pawn to their diagonal). We return a ratio of the number of closed pawns to the total number of pawns.
      */
     Chessboard completion(Chessboard);// Shirelle, input a board with only pawns and fill the board with other pieces randomly
-    Chessboard single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
     int get_total_pawns(Chessboard);// inputs a chessboard and returns how many pawns are in the chess board
     int get_white_pawns(Chessboard); //inputs a chessboard and returns how many white pawns there are
     int get_black_pawns(Chessboard); //inputs a chessboard and returns how many black pawns there are
     void visualize();
+    void single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
     ArrayElement element;
 };

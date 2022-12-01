@@ -15,35 +15,33 @@ using namespace std; //removes the need to type std::
 @brief this function has the goal of taking an amount of pawns (even or odd) and returning a random board with those pawns
  
 @param pawns which is the number of pawns you want on your board for now it should be even
- 
-@return Chessboard with those pawns in the board
+
  */
-Chessboard single_generator(int pawns){ //To be fixed
-    Chessboard position_array;
+void Chessboard::single_generator(int pawns){ //To be fixed
     int white_counter=0;
     int fullcolumns_white[]={0,0,0,0,0,0,0,0};
-    int fullcolumns_black[]={0,0,0,0,0,0,0,0};
-    while(white_counter<=pawns/2){
-         int random_pos=rand()%64;
-         if ((position_array.board[random_pos].is_empty()) and (fullcolumns_white[random_pos%8]<2) and (random_pos>8) and random_pos<48){
-             position_array.board[random_pos].piece=6;
-             position_array.board[random_pos].piece_color=0;
-             white_counter+=1;
-             fullcolumns_white[random_pos%8]+=1;           //make sure there are no more than two white pawns per column
-         }
-     }
-    int black_counter=0;
-    for (int i=0; i<64;i++){
-        if (position_array.board[i].piece==6){
-            if (fullcolumns_white[i%64]==1){
-                position_array.board[i+8].piece=6;
-                position_array.board[i+8].piece_color=1;
-                black_counter+=1;
-                fullcolumns_black[i%8]+=1;
+    if (pawns%2!=0 or pawns>16 or pawns<0){
+        std::cout<<"Please input a correct amount of pawns for completely closed positions i.e even number and less than 16 and more than 0. The board will not be generated."<<std::endl;
+    }
+    else{
+        while(white_counter<=pawns/2){
+            int random_pos=rand()%64;
+            if ((board[random_pos].is_empty()) and (fullcolumns_white[random_pos%8]<2) and (random_pos>8) and random_pos<48){
+                board[random_pos].piece=6;
+                board[random_pos].piece_color=0;
+                white_counter+=1;
+                fullcolumns_white[random_pos%8]+=1;           //make sure there are no more than two white pawns per column
             }
         }
+        for (int i=0; i<64;i++){
+            if (board[i].piece==6 and board[i].piece_color==0){
+                board[i+8].piece=6;
+                board[i+8].piece_color=1;
+
+        }
     }
-    return position_array;
+    }
+
 }
 
 void file_generator(int pawns){ //To be finished
@@ -52,12 +50,8 @@ void file_generator(int pawns){ //To be finished
 }
 
 /**
- @brief this function has the goal of taking a .cbv chess database and creating a copy of said database with only pawns
+@brief this function has the goal of taking a .cbv chess database and creating a copy of said database with only pawns
  
-@param the chess database
- 
- 
-@return a .cbv file containing the same moves, excluding pieces other than pawns
  */
 void database_edit(){ //To be finished
     std::fstream file;
