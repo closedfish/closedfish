@@ -112,8 +112,12 @@ std::string CFBoard::toFEN() {
                 emptyStreak++;
             }
         }
+        if (emptyStreak) {
+            currentRow.push_back(emptyStreak + '0');
+            emptyStreak = 0;
+        }
         if (row)
-            fenString.append('/');
+            fenString.push_back('/');
         fenString += currentRow;
     }
     fenString.push_back(' ');
@@ -148,7 +152,7 @@ std::string CFBoard::toFEN() {
     // 5. halfmove clock
     fenString += " 0";
     // 6. fullmove number
-    fenString += " 0";
+    fenString += " 1";
     return fenString;
 }
 
@@ -542,6 +546,7 @@ uint64_t CFBoard::getPawnPattern(int tile, bool color) {
             }
         }
     }
+    return pawnPattern;
 }
 
 uint64_t CFBoard::getLegalMoves(int pieceId, int tile) {
@@ -585,6 +590,8 @@ CFBoard::CFBoard() { // This is just the starter board.
     blackBoard = (1ll << 16) - 1;
 
     turn = 0;
+    enPassantTarget = -1;
+    castleCheck = 15;
 }
 
 char CFBoard::pieceIdToChar(int pieceId) {
@@ -616,7 +623,7 @@ char CFBoard::pieceIdToChar(int pieceId) {
     if (color) {
         pieceChar = tolower(pieceChar);
     }
-    return pieceChar
+    return pieceChar;
 }
 
 int CFBoard::pieceCharToId(char pieceChar) {
@@ -671,7 +678,7 @@ uint64_t &CFBoard::getPieceBoardFromIndex(int boardIndex) {
         return rookBoard;
     case 4:
         return queenBoard;
-    case 5:
+    default:
         return kingBoard;
     }
 }
