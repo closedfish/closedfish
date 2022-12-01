@@ -20,7 +20,7 @@ inline bool isPositionValid(const int &row, const int &col) {
  */
 bool CFBoard::naiveCheckCheck() {
     uint64_t whiteKingBoard = kingBoard & whiteBoard;
-    uint64_t kingTile = whiteKingBoard & -whiteKingBoard;
+    uint64_t kingTile = 63ll - __builtin_clzll(whiteKingBoard);
     int kingRow = kingTile >> 3;
     int kingCol = kingTile & 7;
     // Check P, N
