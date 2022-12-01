@@ -5,12 +5,12 @@
 //  Created by Ariel Flahaut on 27/11/2022.
 //
 
-#ifndef generator_hpp
-#define generator_hpp
+//#ifndef generator_hpp
+//#define generator_hpp
 
-#include <stdio.h>
 
-#endif /* generator_hpp */
+
+//#endif /* generator_hpp */
 
 void file_generator(int pawns); //Input number of pawns and return a file with every possible closed position with only pawns
 
@@ -72,5 +72,6 @@ public:
     int get_total_pawns(Chessboard);// inputs a chessboard and returns how many pawns are in the chess board
     int get_white_pawns(Chessboard); //inputs a chessboard and returns how many white pawns there are
     int get_black_pawns(Chessboard); //inputs a chessboard and returns how many black pawns there are
+    void visualize();
     ArrayElement element;
 };

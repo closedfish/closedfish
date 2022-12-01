@@ -6,22 +6,15 @@
 //
 
 #include "generator.hpp"
-#include <iostream>     // std::cout, std::fixed
-#include <iomanip>      // std::setprecision
-#include <math.h>       // sin, cos
-#include <limits>       // numeric_limits
-#include <cmath>
-#include <algorithm>
-#include <array>        //for std::array
 #include <fstream>      //For files
 #include <stdlib.h>     // include rand
+#include <iostream>
 using namespace std; //removes the need to type std::
 
 /**
- @brief this function has the goal of taking an amount of pawns (even or odd) and returning a random board with those pawns
+@brief this function has the goal of taking an amount of pawns (even or odd) and returning a random board with those pawns
  
-@param pawns which is the number of pawns you want on your board
- 
+@param pawns which is the number of pawns you want on your board for now it should be even
  
 @return Chessboard with those pawns in the board
  */
@@ -32,7 +25,7 @@ Chessboard single_generator(int pawns){ //To be fixed
     int fullcolumns_black[]={0,0,0,0,0,0,0,0};
     while(white_counter<=pawns/2){
          int random_pos=rand()%64;
-         if (position_array.board[random_pos].is_empty() and fullcolumns_white[random_pos%8]<2){
+         if ((position_array.board[random_pos].is_empty()) and (fullcolumns_white[random_pos%8]<2) and (random_pos>8) and random_pos<48){
              position_array.board[random_pos].piece=6;
              position_array.board[random_pos].piece_color=0;
              white_counter+=1;
@@ -40,15 +33,16 @@ Chessboard single_generator(int pawns){ //To be fixed
          }
      }
     int black_counter=0;
-    while(black_counter<=pawns/2){
-         int random_pos=rand()%64;
-         if (position_array.board[random_pos].is_empty() and fullcolumns_black[random_pos%8]<2){
-             position_array.board[random_pos].piece=6;
-             position_array.board[random_pos].piece_color=1;
-             black_counter+=1;
-             fullcolumns_black[random_pos%8]+=1;           //make sure there are no more than two black pawns per column
-         }
-     }
+    for (int i=0; i<64;i++){
+        if (position_array.board[i].piece==6){
+            if (fullcolumns_white[i%64]==1){
+                position_array.board[i+8].piece=6;
+                position_array.board[i+8].piece_color=1;
+                black_counter+=1;
+                fullcolumns_black[i%8]+=1;
+            }
+        }
+    }
     return position_array;
 }
 
@@ -132,7 +126,8 @@ bool ArrayElement::is_empty(){
 
 Chessboard::Chessboard(){
     for (int i =0;i<64; i++){
-        board[i]=element;
+        board[i].piece=0;
+        board[i].piece_color=0;
         
     }
 }
@@ -153,7 +148,7 @@ int Chessboard::get_total_pawns(Chessboard input){
 int Chessboard::get_white_pawns(Chessboard input){
     int count=0;
     for (int i=0; i<64; i++){
-        if (input.board[i].get_piece()==6 and input.board[i].get_piece_color()==0){
+        if (input.board[i].piece==6 and input.board[i].piece_color==0){
             count+=1;
         }
     }
@@ -162,9 +157,22 @@ int Chessboard::get_white_pawns(Chessboard input){
 int Chessboard::get_black_pawns(Chessboard input){
     int count=0;
     for (int i=0; i<64; i++){
-        if (input.board[i].get_piece()==6 and input.board[i].get_piece_color()==1){
+        if (input.board[i].piece==6 and input.board[i].piece_color==1){
             count+=1;
         }
     }
     return count;
+}
+
+void Chessboard::visualize(){
+    int count=0;
+    for (int i =0; i<64; i++){
+        cout<<"["<<board[i].piece<<","<<board[i].piece_color<<"] ";
+        count++;
+        if (count%8==0){
+            cout<<endl;
+        
+        }
+        
+    }
 }
