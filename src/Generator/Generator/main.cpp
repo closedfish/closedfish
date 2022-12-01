@@ -15,5 +15,6 @@ int main(int argc, const char * argv[]) {
     chessboard.replace_element(34, 2, 1);
     chessboard.visualize();
     
+
     return 0;
 }

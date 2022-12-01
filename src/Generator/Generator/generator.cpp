@@ -59,33 +59,135 @@ void database_edit(){ //To be finished
     
 }
 
-/**
-@brief generates a random chessboard with randomly chosen numbers of king, queen, bishop, knight, and rook.
 
-@param  input
+/**
+@brief this function has the goal of adding  randomly chosen numbers of king, queen, bishop, knight, and rook to an initial chessboard of pawns.
+
 
  */
 
 
-Chessboard completion(Chessboard input){
+void Chessboard::completion(){
+    
 
-//    int* insertX(int n, int array[], int pos);
-//    int n=0;
-//        n++;
-//        for (int i=n; i>=pos; i--) {
-//            if(array[i].is_empty()){
-//
-//                int rand1 = rand()%3;
-//                arr[pos - 1] = rand1;
-//                int rand2 = rand()%3;
-//                int rand3 = rand()%3;
-//                int rand4 = rand()%2;
-//                int rand5 = rand()%2;
-//                array[i] = array[i - 1];
-//
-    Chessboard position_array;
-    return position_array;
-}
+    int rand_knight = rand()%3; // choose a random number between 0 and 2 of white knights.
+    int knightcounter_white=0;
+    while(knightcounter_white<=rand_knight){ // find empty places to attend.
+        int random_pos=rand()%64;
+        if(board[random_pos].is_empty()){
+            board[random_pos].piece=4;
+            board[random_pos].piece_color=0;
+            knightcounter_white+=1;
+        }
+    }
+    
+
+    int rand_bishop = rand()%3;
+    int bishopcounter_white=0;
+    while(bishopcounter_white<=rand_bishop){
+        int random_pos=rand()%64;
+        if(board[random_pos].is_empty()){
+           board[random_pos].piece=3;
+           board[random_pos].piece_color=0;
+            bishopcounter_white+=1;
+        }
+    }
+    
+    int rand_rook = rand()%3;
+    int rookcounter_white=0;
+    while(rookcounter_white<=rand_rook){
+        int random_pos=rand()%64;
+        if(board[random_pos].is_empty()){
+           board[random_pos].piece=5;
+           board[random_pos].piece_color=0;
+            rookcounter_white+=1;
+        }
+    }
+                    
+                    
+    int kingcounter_white=0;
+    while(kingcounter_white<=1){
+        int random_pos=rand()%64;
+        if(board[random_pos].is_empty()){
+           board[random_pos].piece=1;
+           board[random_pos].piece_color=0;
+            kingcounter_white+=1;
+        }
+    }
+    
+                                
+    int rand_queen = rand()%2;
+    int queencounter_white=0;
+    while(queencounter_white<=rand_queen){
+        int random_pos=rand()%64;
+        if(board[random_pos].is_empty()){
+           board[random_pos].piece=2;
+           board[random_pos].piece_color=0;
+            queencounter_white+=1;
+        }
+    }
+        
+    rand_knight = rand()%3; // choose a random number between 0 and 2 of black knights.
+    int knightcounter_black=0;
+        while(knightcounter_black<=rand_knight){ // find empty places to attend.
+            int random_pos=rand()%64;
+            if(board[random_pos].is_empty()){
+               board[random_pos].piece=4;
+               board[random_pos].piece_color=1;
+                knightcounter_black+=1;
+            }
+        }
+        
+    rand_bishop = rand()%3;
+    int bishopcounter_black=0;
+        while(bishopcounter_black<=rand_bishop){
+            int random_pos=rand()%64;
+            if(board[random_pos].is_empty()){
+               board[random_pos].piece=3;
+               board[random_pos].piece_color=1;
+                bishopcounter_black+=1;
+            }
+        }
+    
+    rand_rook = rand()%3;
+    int rookcounter_black=0;
+        while(rookcounter_black<=rand_rook){
+            int random_pos=rand()%64;
+            if(board[random_pos].is_empty()){
+               board[random_pos].piece=5;
+               board[random_pos].piece_color=1;
+                rookcounter_black+=1;
+            }
+        }
+                        
+                        
+    int kingcounter_black=0;
+    while(kingcounter_black<=1){
+        int random_pos=rand()%64;
+        if(board[random_pos].is_empty()){
+           board[random_pos].piece=1;
+           board[random_pos].piece_color=1;
+            kingcounter_black+=1;
+        }
+    }
+        
+                            
+        rand_queen = rand()%2;
+    int queencounter_black =0;
+        while(queencounter_black<=rand_queen){
+            int random_pos=rand()%64;
+            if(board[random_pos].is_empty()){
+               board[random_pos].piece=2;
+               board[random_pos].piece_color=1;
+                queencounter_black+=1;
+            }
+        }
+                        
+                    
+                    }
+                   
+                
+            
 
 /**
 @brief this function has the goal of taking a chess position in the form of our chessboard array and returning the coefficient of closeness
