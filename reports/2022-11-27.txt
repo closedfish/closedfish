@@ -72,3 +72,11 @@ This week:
 Next week:
 - Take relative piece values into account when updating the heat map
 - Improve on the case where there are not a lot of free squares for pieces to maneuver easily.
+
+Cassidy
+This week:
+-studied various reinforcement learning models to get more understanding on how the AI to find how closed a position is should be implemented. Also studied lots of chess to get a better understanding of what a closed, slightly closed... positions look like (not necessary but I'm trying to get more intuition on what I'm doing). -had the chance to implement a simple model that takes values such that there cloud is at least some one linear so it can simply predict outcomes.
+-did research on Alpha-beta pruning and methods to make chess ai (Quite complicated to get full grasp of everything for now)
+Next week:
+-Get much better understanding of alpha-beta pruning implementation.
+-try implementing AIs that are still based on reinforcement learning and that are more complex to aproach the complexity of the chess board.
