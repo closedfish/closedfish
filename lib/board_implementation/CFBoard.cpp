@@ -49,14 +49,8 @@ void CFBoard::fromFEN(std::string FEN) {
             if (isdigit(ch)) {
                 col_index += ch - '0';
             } else {
-                if (isupper(ch)) { // white pieces
-                    int pieceId = pieceCharColorToId(ch, 0);
-                    this->addPiece(pieceId, row_index * 8 + col_index);
-                } else { // black pieces
-                    int pieceId = pieceCharColorToId(
-                        ch + 'A' - 'a', 1); // convert to upper case
-                    this->addPiece(pieceId, row_index * 8 + col_index);
-                }
+                int pieceId = pieceCharToId(ch);
+                this->addPiece(pieceId, row_index * 8 + col_index);
                 col_index++;
             }
         }
@@ -461,49 +455,64 @@ CFBoard::CFBoard() { // This is just the starter board.
 }
 
 char CFBoard::pieceIdToChar(int pieceId) {
+    char pieceChar = '.';
+    bool color = pieceId & 1;
     pieceId = pieceId >> 1;
     switch (pieceId) {
     case 0:
-        return 'P';
+        pieceChar = 'P';
+        break;
     case 1:
-        return 'N';
+        pieceChar = 'N';
+        break;
     case 2:
-        return 'B';
+        pieceChar = 'B';
+        break;
     case 3:
-        return 'R';
+        pieceChar = 'R';
+        break;
     case 4:
-        return 'Q';
+        pieceChar = 'Q';
+        break;
     case 5:
-        return 'K';
+        pieceChar = 'K';
+        break;
     default:
-        return '.';
+        break;
     }
+    if (color) {
+        pieceChar = tolower(pieceChar);
+    }
+    return pieceChar
 }
-bool CFBoard::pieceIdToColor(int pieceId) { return pieceId & 1; }
-int CFBoard::pieceCharColorToId(char pieceChar, bool pieceColor) {
+
+int CFBoard::pieceCharToId(char pieceChar) {
     int pieceId = NULL;
     switch (pieceChar) {
     case 'P':
-        pieceId = 0;
-        break;
+        return 0;
+    case 'p':
+        return 1;
     case 'N':
-        pieceId = 2;
-        break;
+        return 2;
+    case 'n':
+        return 3;
     case 'B':
-        pieceId = 4;
-        break;
+        return 4;
+    case 'b':
+        return 5;
     case 'R':
-        pieceId = 6;
-        break;
+        return 6;
+    case 'r':
+        return 7;
     case 'Q':
-        pieceId = 8;
-        break;
+        return 8;
+    case 'q':
+        return 9;
     case 'K':
-        pieceId = 10;
-        break;
-    }
-    if (pieceColor) {
-        pieceId += 1;
+        return 10;
+    case 'k':
+        return 11;
     }
     return pieceId;
 }
@@ -581,9 +590,11 @@ std::string CFBoard::getRepr() {
 
         int pieceId = getPieceFromCoords(tile);
         char pieceChar = pieceIdToChar(pieceId);
+        /*
         if (pieceId & 1) {
             pieceChar = tolower(pieceChar);
         }
+        */
         repr += pieceChar;
 
         repr += " |";
