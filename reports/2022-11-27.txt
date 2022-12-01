@@ -22,6 +22,15 @@ Next week:
 - Piece recognition and storing their position in a class.
 - Merging with code that saves the current board screenshot.
 
+Razvan:
+This week:
+- Created the main app
+- Created a class that takes a screenshot form the primary monitor of the device and saves it as a bitmap (.bmp file)
+- Addeed functions to send clicks for moving the pieces to that class
+Next week:
+- Detect chess pieces' movements
+- Save the screenshot in differernt formats
+
 Ariel
 This Week: 
 - Created the Chessboard Class with different functions which edit chessboards in different ways, retrieve information from chessboards as well as create chessboards
