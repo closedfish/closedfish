@@ -70,6 +70,7 @@ public:
 	void move();
 
 	*/
+	bool naiveCheckCheck();
 
 private:
 
