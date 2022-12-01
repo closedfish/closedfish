@@ -57,6 +57,7 @@ public:
 	void move();
 
 	*/
+	bool naiveCheckCheck();
 
 private:
 	uint64_t pawnBoard;
