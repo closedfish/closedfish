@@ -32,6 +32,25 @@ uint64_t reverseBit(uint64_t v) {
     return r;
 }
 
+std::vector<int> tilesSetFromBoard(uint64_t board) {
+    std::vector<int> tiles;
+    while (board != 0) {
+        int rightmost_tile = __builtin_ctz(board);
+        tiles.push_back(rightmost_tile);
+        board >>= rightmost_tile+1;
+    }
+    return tiles;
+}
+
+// std::vector<std::vector<int>> posSetFromBoard(const uint64_t &board) {
+//     std::vector<std::vector<int>> pos;
+//     std::vector<int> tiles = tilesSetFromBoard(board);
+//     for (auto x: tiles) {
+//         pos.push_back(posToTile(tiles));
+//     }
+//     return pos;
+// }
+
 void displayPawnBoard(const uint64_t& pawnBoard) { // for testing only
     uint64_t one = 1;
     for (int i = 0; i < 8; i++) {
@@ -47,16 +66,12 @@ bool hasPawnOn(const uint64_t& pawn_board, const std::vector<int> &pos) {
 }
 
 void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawns) {
-    uint64_t one = 1;
-
-    uint64_t mask_row[8], mask_col[8];
-    mask_row[0] = (one<<8)-1;
-    mask_col[0] = one + (one<<8) + (one<<16) + (one<<24) + (one<<32) + (one<<40) + (one<<48) + (one<<56);
+    uint64_t mask_row[8], mask_col[8]; // 1 for one column or one row, 0 otherwise
+    mask_row[0] = (1LL<<8)-1;
+    mask_col[0] = 1LL + (1LL<<8) + (1LL<<16) + (1LL<<24) + (1LL<<32) + (1LL<<40) + (1LL<<48) + (1LL<<56);
     for (int i = 1; i < 8; i++) {
         mask_row[i] = mask_row[i-1]<<8;
-    }
-    for (int j = 0; j < 8; j++) {
-        mask_col[j] = mask_col[j-1]<<1;
+        mask_col[i] = mask_col[i-1]<<1;
     }
 
     bool current_turn = 1; // 0: white, 1: black
@@ -77,8 +92,7 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
 
     int pawn_height[8] = {8, 8, 8, 8, 8, 8, 8, 8};
     // displayPawnBoard(pawn_board);
-
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 8; i++) { 
         uint64_t pawn_row = (pawn_board & mask_row[i]) >> (8*i);
         if (!pawn_row) continue;
         for (int j = 0; j < 8; j++) {
@@ -87,18 +101,15 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
             }
         }
     }
-
     std::vector<int> open_file;
     for (int j = 0; j < 8; j++) {
         if (pawn_height[j] == 8) {
             open_file.push_back(j);
         }
     }
-
     // for (int j = 0; j < 8; j++)
     //     std::cout << pawn_height[j] << ' ';
     // std::cout << '\n';
-
     int closed_rows = (*std::min_element(pawn_height, pawn_height+8)) - 1; // number of rows below the lowest pawn
     // std::cout << closed_rows << '\n';
 
@@ -110,9 +121,9 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
         int no_rooks = __builtin_popcount(rook_board),
             no_queens = __builtin_popcount(queen_board),
             no_bishops = __builtin_popcount(bishop_board),
-            no_knights = __builtin_popcount(knight_board),
+            no_knights = __builtin_popcount(knight_board);
         for (int file: open_file) {
-            int max_pawn_height = std::min(file > 0 ? pawn_height[file-1] : 8, file < 7 ? pawn_height[file+1] : 8)
+            int max_pawn_height = std::min(file > 0 ? pawn_height[file-1] : 8, file < 7 ? pawn_height[file+1] : 8);
             // Rooks and Queens move to open file
             for (int i = 0; i < max_pawn_height; i++) {
                 if ((file == 0 || !hasPawnOn(opponent_pawn_board, {i+1, file-1}))
@@ -120,8 +131,8 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
                     heat_map[i][file] += no_rooks + no_queens;
             }
             // Knights move to square near open file, defending the nearby pawns and pieces
-            int di = {-1, -2, -2, -1, 1, 2, 2, 1};
-            int dj = {2, 1, -1, -2, -2, -1, 1, 2};
+            int di[8] = {-1, -2, -2, -1, 1, 2, 2, 1};
+            int dj[8] = {2, 1, -1, -2, -2, -1, 1, 2};
             for (int i = 0; i < max_pawn_height; i++) {
                 for (int k = 0; k < 8; k++) {
                     if (validSquare(i+di[k], file+dj[k])) {
@@ -143,17 +154,41 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
                     }
                 }
             }
-            // Bishops
-            // Bishops same color with our pawn structure
-            for (int i = 0; i < max_pawn_height; i++) {
-
+            // Calculate how many bishop of the same color with pawn structure
+            int pawn_color_cnt[2] = {0, 0};
+            for (int j = 0; j < 8; j++) {
+                if (pawn_height[j] != 8) {
+                    pawn_color_cnt[(j+pawn_height[j])%2]++;
+                }
             }
-            // Bishops diff color with our pawn structure 
+            bool pawn_structure_color_main;
+            if (pawn_color_cnt[0] > pawn_color_cnt[1])
+                pawn_structure_color_main = 0;
+            else
+                pawn_structure_color_main = 1;
+
+            int no_bishops_color[2] = {0, 0};
+            std::vector<int> bishop_tiles = tilesSetFromBoard(bishop_board);
+            for (int tile: bishop_tiles) {
+                no_bishops_color[tile%2 == 0]++;
+            }
+            // Bishops same color with our pawn structure
+            if (tile > 1) { // Protect left pawn
+                for (int i = 1; validSquare(pawn_height[tile-1]-i, tile-i); i++) {
+                    heat_map[pawn_height[tile-1]-i][tile-i] += 1;
+                }
+                for (int i = 1; validSquare(pawn_height[tile+1]))
+            }
+            for (int i = 0; i < max_pawn_height; i++) {
+                for (int j = pawn_structure_color_main; )
+                heat_map += no_bishops_color[pawn_structure_color_main]
+            }
+            // Bishops diff color with our pawn structure
+            for (int i = 0; i < max_pawn_height; i++) {
+                heat_map += no_bishops_color[!pawn_structure_color_main];
+            }
         }
-        
-        for (int file: open_file) 
-        // Bishops
-    } else {
+    } else { // No open files
         if (closed_rows >= 2) { // 2 free rows, knights, rooks and queens are essentially able to go anywhere
             // Rooks and Queens
             std::vector<int> weak_pawns_file = {}; // placeholder waiting for weak pawns implementation
