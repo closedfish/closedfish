@@ -10,7 +10,10 @@
 #include <iostream>
 int main(int argc, const char * argv[]) {
     Chessboard chessboard;
-    chessboard.single_generator(16);
     chessboard.visualize();
+    chessboard.single_generator(16);
+    chessboard.replace_element(34, 2, 1);
+    chessboard.visualize();
+    
     return 0;
 }

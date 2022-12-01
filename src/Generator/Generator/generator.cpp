@@ -241,9 +241,9 @@ Chessboard::Chessboard(){
         
     }
 }
-Chessboard Chessboard::replace_element(int position, ArrayElement element, Chessboard input){
-    board[position]=element;
-    return input;
+void Chessboard::replace_element(int position, int _piece, int _color){
+    board[position].piece=_piece;
+    board[position].piece_color=_color;
 }
 int Chessboard::get_total_pawns(Chessboard input){
     int count=0;
@@ -285,4 +285,5 @@ void Chessboard::visualize(){
         }
         
     }
+    cout<<endl;
 }
