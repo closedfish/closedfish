@@ -1,24 +1,23 @@
 ﻿// Chess_AI.cpp : définit le point d'entrée de l'application.
 //
 
-#include "Chess_AI.h"
-#include "lib/board_implementation/CFBoard.cpp"
-#include "lib/board_implementation/CFBoard.h"
-
+#include "../../lib/board_implementation/CFBoard.cpp"
+#include "../../lib/board_implementation/CFBoard.h"
 
 using namespace std;
 
 
 int get_bit_from_pos(int i, int j) {
-'''Returns the corresponding bit position from the coordinates of a tile.
+/*Returns the corresponding bit position from the coordinates of a tile.
 i : row
-j : colomn '''
+j : colomn 
+*/
 
 	return i*8 + j;
 }
 
-bool is_valid(int &i, int &j) {
-''' Returns true if the tile is on the board, false otherwise'''
+bool is_valid(int i, int j) {
+//Returns true if the tile is on the board, false otherwise
 
 	if (i >= 0 && i <= 7 && j >= 0 && j <= 7) {
 		return true;
@@ -27,7 +26,7 @@ bool is_valid(int &i, int &j) {
 }
 
 int nb_protecting_pawns(CFBoard &board, bool &color, int &pawn_i, int &pawn_j) {
-'''Returns the number of pawns protecting the target pawn'''
+//Returns the number of pawns protecting the target pawn
 
 	int count = 0;
 	if(color == 0){ //if white, we check if the two bottom corners positions
@@ -67,9 +66,11 @@ int nb_protecting_pawns(CFBoard &board, bool &color, int &pawn_i, int &pawn_j) {
 }
 
 int nb_protecting_horses(CFBoard &board, bool &color, int &pawn_i, int &pawn_j){
-'''Returns the number of horses protecting the target pawn'''
+//Returns the number of horses protecting the target pawn
 
 	int count = 0;
+
+	int nId;
 
 	if(color){ //for blacks
 		int nId = 3;
@@ -78,7 +79,7 @@ int nb_protecting_horses(CFBoard &board, bool &color, int &pawn_i, int &pawn_j){
 	}
 
 	for (int i = -2; i <= 2; i++) {
-		for (int j = -2, j <= 3; j++) {
+		for (int j = -2; j <= 3; j++) {
 			if (i != j && i != 0 && j != 0 && abs(j) != abs(i)){ //check if the position is valid for a horse
 				if (is_valid(pawn_i + i, pawn_j + j)){ //if the tile is in the board
 					int tile = get_bit_from_pos(pawn_i + i, pawn_j + j);
@@ -93,9 +94,10 @@ int nb_protecting_horses(CFBoard &board, bool &color, int &pawn_i, int &pawn_j){
 }
 
 bool is_row_free(CFBoard &board, int &pawn_i, int& start, int& end){
-'''Checks if a row is empty between the starting colomn position and the end colomn.
+/*Checks if a row is empty between the starting colomn position and the end colomn.
 Useful of checking whether a queen or rook is protecting.
-'''
+*/
+
 	for (int j = start + 1; j <= end-1; j++) { //for each position between start and end
 			int tile = get_bit_from_pos(pawn_i, j);
 			if (board.getPieceFromCoords(tile) != -1){ //if there is any piece, it means the row isn't free
@@ -107,9 +109,9 @@ Useful of checking whether a queen or rook is protecting.
 }
 
 bool is_colomn_free(CFBoard &board, int &pawn_j, int& start, int& end){
-'''Checks if a colomn is empty between the starting row position and the end row.
+/*Checks if a colomn is empty between the starting row position and the end row.
 Useful of checking whether a queen or rook is protecting.
-'''
+*/
 
 	for (int i = start + 1; i <= end-1; i++) { //for each position between start and end
 			int tile = get_bit_from_pos(i, pawn_j);
@@ -122,9 +124,11 @@ Useful of checking whether a queen or rook is protecting.
 }
 
 int nb_protecting_rooks(CFBoard &board, bool &color, int& pawn_i, int& pawn_j){
-'''Returns the number of protecting rooks'''
+//Returns the number of protecting rooks
 
 	int count = 0;
+
+	int rId;
 
 	if(color){ //if black
 		int rId = 7;
@@ -135,9 +139,9 @@ int nb_protecting_rooks(CFBoard &board, bool &color, int& pawn_i, int& pawn_j){
 	for (int j = 0; j<= 7; j++){ //we check if there is a rook on the same row
 		int tile = get_bit_from_pos(pawn_i, j);
 		if (board.getBit(rId, tile)){ //if we found a rook on the same row
-			int start = min(pawn_j, j);
-			int stop = max(pawn_j, j);
-			if (is_row_free(board, pawn_i, start, end)){ //if the row is free between the pawn and the rook
+			int start = std::min(pawn_j, j);
+			int stop = std::max(pawn_j, j);
+			if (is_row_free(board, pawn_i, start, stop)){ //if the row is free between the pawn and the rook
 				count++;
 			}
 		}
@@ -146,8 +150,8 @@ int nb_protecting_rooks(CFBoard &board, bool &color, int& pawn_i, int& pawn_j){
 	for (int i = 0; i<= 7; i++){ //we check if there is a rook on the same colomn
 		int tile = get_bit_from_pos(i, pawn_j);
 		if (board.getBit(rId, tile)){ //if we found a rook on the same colomn
-			int start = min(pawn_i, i);
-			int stop = max(pawn_i, i);
+			int start = std::min(pawn_i, i);
+			int end = std::max(pawn_i, i);
 			if (is_colomn_free(board, pawn_j, start, end)){ //if the colomn is free between the pawn and the rook
 				count++;
 			}
@@ -157,8 +161,10 @@ int nb_protecting_rooks(CFBoard &board, bool &color, int& pawn_i, int& pawn_j){
 }
 
 int nb_protecting_kings(CFBoard &board, bool &color, int &pawn_i, int &pawn_j) {
-'''Returns the number of protecting kings (0 or 1)'''
+//Returns the number of protecting kings (0 or 1)
 	
+	int kId;
+
 	if(color){ //if black
 		int kId = 11;
 	}else{//if white
@@ -180,8 +186,12 @@ int nb_protecting_kings(CFBoard &board, bool &color, int &pawn_i, int &pawn_j) {
 }
 
 bool is_diag_free(CFBoard& board, int &pawn_i, int &piece_i, int &pawn_j, int &piece_j){
-'''Checks if the diagolonal between the target pawn and the bishop or queen is free.
-Useful of protecting bishops and queens'''
+/*Checks if the diagolonal between the target pawn and the bishop or queen is free.
+Useful of protecting bishops and queens
+*/
+
+	int ud;
+	int lr;
 
 	//we start checking from the position of the pawn
 
@@ -191,9 +201,9 @@ Useful of protecting bishops and queens'''
 		int ud = -1; //else we go up
 	}
 	if(pawn_j < piece_j){
-		int lr = 1 //if the piece is to the left of the pawn, we go left
+		int lr = 1; //if the piece is to the left of the pawn, we go left
 	}else{
-		int lr = -1 //else we go right
+		int lr = -1; //else we go right
 	}
 
 	int i = pawn_i + ud;
@@ -212,9 +222,10 @@ Useful of protecting bishops and queens'''
 }
 
 int nb_protecting_bishops(CFBoard &board, bool &color, int &pawn_i, int &pawn_j) {
-'''Returns the number of protecting bishops'''
+//Returns the number of protecting bishops
 
-	count++;
+	int count = 0;
+	int bId;
 
 	if(color){
 		int bId = 5;
@@ -245,7 +256,10 @@ int nb_protecting_bishops(CFBoard &board, bool &color, int &pawn_i, int &pawn_j)
 }
 
 int nb_protecting_queens(CFBoard &board, bool &color, int &pawn_i, int &pawn_j){
-'''Returns the number of protecting queens (0 or 1)'''
+//Returns the number of protecting queens (0 or 1)'''
+
+	int qId;
+
 	if(color){
 		int qId = 9;
 	}else{
@@ -267,18 +281,18 @@ int nb_protecting_queens(CFBoard &board, bool &color, int &pawn_i, int &pawn_j){
 
 			//we check if it is on the same row
 			if (queen_i == pawn_i){
-				int start = min(pawn_j, queen_j);
-				int end = max(pawn_j, queen_j);
-				if(is_row_free(board, pawn_i, star, end)){
+				int start = std::min(pawn_j, queen_j);
+				int end = std::max(pawn_j, queen_j);
+				if(is_row_free(board, pawn_i, start, end)){
 					return 1;
 				}
 			}
 
 			//we check if it is on the same colomn
 			if (queen_j == pawn_j){
-				int start = min(pawn_i, queen_i);
-				int end = max(pawn_i, queen_i);
-				if(is_row_free(board, pawn_j, star, end)){
+				int start = std::min(pawn_i, queen_i);
+				int end = std::max(pawn_i, queen_i);
+				if(is_row_free(board, pawn_j, start, end)){
 					return 1;
 				}
 			}
@@ -291,9 +305,10 @@ int nb_protecting_queens(CFBoard &board, bool &color, int &pawn_i, int &pawn_j){
 
 }
 
-int nb_protecting_pieces(CFBoard &board, bool &colot, int &pawn_i, int &pawn_j){
-'''Returns the number of protectong pieces'''
-	count = 0;
+int nb_protecting_pieces(CFBoard &board, bool &color, int &pawn_i, int &pawn_j){
+
+//Returns the number of protectong pieces'''
+	int count = 0;
 
 	count += nb_protecting_pawns(board, color, pawn_i, pawn_j);
 	count += nb_protecting_horses(board, color, pawn_i, pawn_j);
@@ -306,4 +321,8 @@ int nb_protecting_pieces(CFBoard &board, bool &colot, int &pawn_i, int &pawn_j){
 	
 }
 
+int main(){
+	std::cout<<"Hello world";
+	return 0;
+}
 
