@@ -26,3 +26,13 @@ Cassidy:
         best one in the testing phase.
         -Implement an algorithm to extract the positions of the pons and their color from the 8 64 bit representation.
         -Make a list of basis of functions that intuitively would make for a better AI.
+
+Aarrya:
+    This week: 
+    -reorganised GIT
+    -redistrubuted/rearranged work
+    -heavily optimised previous idea of the DFS (to a now BFS)
+    -made a simple tree data structure to allow for the said BFS
+    Next week:
+    - complete the BFS
+    - plan the merger of all individual parts (part 1 of the algorithm is expetced to be over)
