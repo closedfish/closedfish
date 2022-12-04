@@ -1,0 +1,11 @@
+Sirawit:
+    This Week:
+        - Implemented the `naiveCheckCheck` algorithm for `CFBoard`
+        - Done stupid unit tests for basic `CFBoard` functionalities
+        - Study the output of Stockfish (which is stream based)
+    Next Week:
+        - [Urgent] Clone stockfish and use customized streams (i.e. `std::stringstream` or custom class supporting operations)
+        - [Urgent] Stockfish functionalities must be done this week
+        - Do more unit tests for CFBoard
+        - [Optional] Add automated GitHub actions for continuous deployment (to check for each PR whether it compiles/breaks)
+        - [Optional] Host Doxygen on a server
