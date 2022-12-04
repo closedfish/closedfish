@@ -50,3 +50,10 @@ Next week:
 	    chessboard class such as reading positions from a file and returning those with only	 
             pawns
 	  - Work on finish the generator project and doing bug fixes and testing
+
+Shirelle: 
+This week: -I have worked on the algorithm that return a chessboard initially with pawns added by some other pions, (changed my strategy from last week with all the conditions the pions have eg the bishop needs to be on the diagonal..) 
+Next week : -I will check if my function works thanks to the chessboard visualisation made by Ariel
+-I will also create a new algorithm to test if the king is in check. 
+
+	
