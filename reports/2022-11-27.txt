@@ -55,3 +55,14 @@ This week:
 - adapted my code to Yoshi's board representation
 Next week:
 - check how many pieces can potentially protect the target pawn and in how many moves  
+
+Yoshimi-Theophile
+Week 1: Started implementation of the ClosedFish board. Laid the groundwork for data representation.
+  Implemented necessary functions to access this data in meaningful ways, as well as a way to visualize the current board.
+Week 2: Highly optimized the Board class from the previous week by changing the way chess pieces' information is stored.
+  Implemented the greater part of chess pieces' moves within the class (some work still to be done). 
+  With the help of Sirawit, made the CFBoard class callable to make moves, and generally usable for others.
+  Made docstrings for all methods.
+Week three plan: Keep adding functionalities that are missing (currently castle and pawn promotion come to mind).
+  Adapt the class to fit user needs and feedback from other group members.
+  Start optimizing the existing code.
