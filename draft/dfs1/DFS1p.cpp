@@ -1,156 +1,30 @@
-#include "Header.h"
+
 #include <vector>
 #include <array>
 #include <iostream>
+#include "../../lib/board_implementation/CFBoard.h"
+#include "DFS1p.h"
+#include <string>
 
 using namespace std;
 
-/*
-* a pawn has 5 possible moves 
-* n = 1 is a normal push
-* n = 2 is a push by 2 squares
-* n = 3 is a capture on the left diagonal
-* n = 4 is a capture on the right diagonal
-* n = 5 is en passant
-* 
-* a knight has 8 possibel moves 
-* n = 1 is the move 2 that takes the knight 2 squares behind and 1 square to the left
-* after that we rotate clockwise by 1 for every other n
-* 
-* * a king has 10 possible moves
-* n = 1 is the move to the bottom left corner after that move clockwise once. so n = 8 is just below
-* n = 9 is for castling short
-* n = 10 is for castling long
-* 
-* a bishop has 28 possible moves
-* n = 1 to 7 represent moving n squares in the bottom left direction
-* n = 8 to 14 represent moving n-7 squares in the top left direction and so on upto n = 28
-* 
-* a rook also has 28 possible moves
-* n = 1 to 7 are moving n squares in the left
-* n = 8 to 14 are moving n-7 squares up and so on clockwise until n = 28 is 7 squares down
-* 
-* a queen can make upto 56 possible moves
-* n = 1 to 7 represent moving n squares in the bottom left diagonal direction
-* n = 8 to 14 represent moving n-7 squares to the left direction and so on clockwise up to n = 56 is moving 7 squares down
-* 
-*/
 
-
-
-
-
-/*
-* takes a coordinate from 0,0 upto 8,8 and returns -1 if the square is empty
-* even numbers will be a white peice and the following number will be the black version of the piece
-* 0 pawn (1 is black pawn)
-* 2 knight
-* 4 bishop
-* 6 rook
-* 8 queen
-* 10 king 
-*/
-int get_piece(int i, int j)
-{
-	return 0;
-}
-
-// the least space taking board 
-CFBoard noneBoard;
-
-/*
-* 1) We need to make sure that we do not go over any peices for any moves (except knights)
-* 2) we do not capture any of our own peices
-* 3) we do not exit the board
-* 4) our king does not come in check
-* 5) our king does not stay in check
-*/
-
-bool is_move_legal(CFBoard b, int i, int j, int n)
-{
-	return false;
-}
-
- 
-//checks whether the playing side has a legal move or not
-bool is_stalemated()
-{
-	return false;
-}
-
-//checks whether the current player is currently in check
-bool is_check()
-{
-	return false;
-}
-
-//checks whether the current player is checkmated
-bool is_checkmate()
-{
-	return false;
-}
-
-//returns material count for current player
-int material_count()
-{
-	return 0;
-}
-
-// returns number of moves the piece at position i,j can make
-int piece_moves(int i, int j)
-{
-	return 0;
-}
-
-// returns the coordinates of every peice of type n in an array/deque/vector/list and -1,-1 if its not
-std::array<int, 16> get_coords(int n)
-{
-	std::array<int,16> arr;
-	for (int i = 0; i < 10; i++)
-	{
-		arr[i] = 0;
-	}
-	return arr;
-}
-/*
-* makes the mth move for a piece on the square i,j 
-* check if move is legal
-* checks if the opponent is in check stalemated or checkmated
-*/
-CFBoard make_move(int m, int i, int j, CFBoard b)
-{
-	CFBoard board;
-	return board;
-}
-
-CFBoard undo_move(int m, int i, int j, CFBoard b)
-{
-	CFBoard board;
-	return board;
-}
-
-//evaluates the position might be different from stockfish. NOT FOR YOSHI.
+//evaluates the position might be different from stockfish. to be implemented later on
 int eval()
 {
+	//gives the evaluation
 	return 0;
-}
-
-// returns new boards after each move has been made
-std::array<CFBoard,56> new_branch(int l,CFBoard b,int j,int i)
-{
-	std::array<CFBoard,56> moo;
-	for (int k = 0; k < l; k++)
-			moo[k] = make_move(k, j, i, b);
-	return moo;
 }
 
 //returns number of possible moves by every piece
-int num_moves(int n)
+int numMoves(int n)
 {
+	//input piece id
+	// output total possible moves
 	if (n % 2 == 1)
 		n--;
 	if (n == 0)
-		return 5;
+		return 6;
 	if (n == 2)
 		return 8;
 	if (n == 4)
@@ -162,49 +36,256 @@ int num_moves(int n)
 	return 10;
 }
 
-/*
-* the main idea is to do the DFS like a normal chess engine except letting only one side make moves
-* the output will be an array/list/deque/vector
-* the first element will be time it takes measured in moves
-* the second element  will be the evaluation
-* the next elements will be the line with the highest evaluation it went through
-* the next task is to maintain a best solution array/list/deque/vector and keep on updating it
-* and finding a way to break it currently it breaks at time 10 for just a proof of concept
-* This significantly eases the minimax algorithm 
-* Also note that because of the negamax algorithm and that the total evaluation should be 0
-* we have that the algrithm for black would just be the negative for white
-*/
-void dfs_helper(CFBoard board, int count)
+int newTile(int piece, int move)
 {
-	if (count == 10)
+	//input the piece id and the move id
+	//output the change in square
+
+	if (numMoves(piece) < move)
+		return 0;
+	else
 	{
-		return;
-	}
-	for(int i=0;i<32;i++)
-	{
-		if (board.active[i] == -1)
-			break;
-		else
+		switch (piece)
 		{
-			std::array<int, 16> arr = get_coords(board.active[i]);
-			for (int j = 0; j < 16; j+=2)
-			{
-				std::array<CFBoard, 56> moo;
-				int piece = get_piece(arr[j],arr[j+1]);
-				if (piece == -1)
-					break;
+			if (piece % 2 == 1)
+				return (-1 * newTile(piece - 1, move));
+			int k = 0;
+			case 0:
+				if (move == 1)
+					k= - 8;
+				else if (move == 2)
+					k= - 16;
+				else if (move == 3 || move == 5)
+					k= - 7;
+				else if (move == 4|| move ==6)
+					k= - 9;
+
+			case 2:
+				if (move == 1)
+					k = 17;
+				else if (move == 2)
+					k = 10;
+				else if (move == 3)
+					k = -6;
+				else if (move == 4)
+					k = -15;
 				else
-					moo = new_branch(num_moves(piece), board, arr[j], arr[j + 1]);
-				for (int k = 0; k < 56; k++)
-				{
-					dfs_helper(moo[k], count + 1);
-				}
-			}
+					k = -1 * k;
+
+			case 4:
+				if ( move < 7)
+					k = 7 * k;
+				else if (move < 14)
+					k = -7 * k;
+				else if (move < 21)
+					k = -9 * k;
+				else
+					k = 9 * k;
+
+			case 6:
+				if (move < 7)
+					k = -1 * k;
+				else if (move < 14)
+					k = -8 * k;
+				else if (move < 21)
+					k = 1 * k;
+				else
+					k = 8 * k;
+
+			case 8:
+				int d = (int)move / 7;
+				if (d % 2 == 0)
+					return(newTile(4, move - 7 * d / 2));
+				else
+					move -= 7;
+				return (newTile(6, move - 7 * d / 2));
+
+			case 10:
+				if (move == 1)
+					k = 7;
+				else if (move == 2)
+					k = -1;
+				else if (move == 3)
+					k = -7;
+				else if (move == 4)
+					k = -8;
+				else if (move == 5)
+					k = -9;
+				else if (move == 6)
+					k = 1;
+				else if (move == 7)
+					k = 9;
+				else if (move == 8)
+					k = 8;
+				else
+					k = 2;
+			return  k;
+
 		}
 	}
 }
 
-void dfs_main(CFBoard& board)
+bool isSquareInBoard(int sq)
+{
+	//input a square. 
+	//outputs true if its in the board
+	if (sq >= 0 && sq <= 63)
+		return true;
+	else
+		return false;
+}
+
+//checks if a move is stupid or not
+// a move is stupid 
+bool is_stupid(CFBoard& board)
 {
 
+}
+
+/*
+* the main idea has been optimized a lot more than last week and to that end,
+* the DFS has been changed quite a lot
+* 
+* the main thing to do is to take a position, and keep on making moves for only one side.
+* After every 5 moves we can use a naive evaluation criteria and discard all but the top line
+* 
+* essentially we can represent every legal move as a node and every node will give rise to a new set of nodes and hence our tree
+* 
+*/
+
+int DFSHelp(CFBoard board, Node n, int depth, string fen, int top, string fenTop)
+{
+	if (depth==5 && eval()>top)
+	{
+			top = eval();
+			fenTop = fen;
+	}
+	else if (depth < 5)
+	{
+
+	}
+}
+
+void Dfs_main(CFBoard& board)
+{
+	//Input: a board. 
+	//Output: the top line from the 1 person BFS
+	//for now its only white moving
+
+	//makes a vector of all possible moves
+	vector<Node> moves;
+	for (int i = 0; i < 64; i++)
+	{
+		int piece = board.getBit(i);
+		if (piece >= 0)
+		{
+			int tot = numMoves(piece);
+			for (int j = 0; j < tot; j++)
+			{
+				if (board.isLegal(j))
+				{
+					Node n = Node(j, i, 0, NULL, { Node()});
+					moves.push_back(n);
+				}
+			}
+		}
+
+	}
+	
+	// the actual DFS will start
+	for (Node n : moves)
+	{
+
+	}
+	
+}
+
+// Tree structure for the DFS
+
+Node::Node()
+{
+	move = 0;
+	square = 0;
+	eval = 0;
+	parent = NULL;
+	children = {Node()};
+}
+
+Node::Node(int mov, int squar, int e, Node* paren, vector<Node> childre)
+{
+	move = mov;
+	squar = square;
+	eval = e;
+	parent = parent;
+	children = childre;
+}
+
+int Node::getMove()
+{
+	return move;
+}
+
+void Node::setMove(int mo)
+{
+	move = mo;
+}
+
+int Node::getSquare()
+{
+	return square;
+}
+
+void Node::setSquare(int s)
+{
+	square = s;
+}
+
+int Node::getEval()
+{
+	return eval;
+}
+
+void Node::setEval(int e)
+{
+	eval = e;
+}
+
+Node* Node::getParent()
+{
+	return parent;
+}
+
+void Node::setParent(Node* paren)
+{
+	parent = paren;
+}
+
+vector<Node> Node::getChildren()
+{
+	return children;
+}
+
+void Node::setChildren(vector<Node> child)
+{
+	children = child;
+}
+
+Tree::Tree()
+{
+	root = NULL;
+}
+
+Tree::Tree(Node* roo)
+{
+	root = roo;
+}
+
+Node* Tree::getRoot()
+{
+	return root;
+}
+
+void Tree::setRoot(Node* n)
+{
+	root = n;
 }

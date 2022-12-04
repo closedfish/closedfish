@@ -18,9 +18,15 @@
     <ClCompile Include="DFS1p.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\lib\board_implementation\CFBoard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header.h">
+    <ClInclude Include="..\..\lib\board_implementation\CFBoard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DFS1p.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
