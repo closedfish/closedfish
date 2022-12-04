@@ -36,3 +36,17 @@ Aarrya:
     Next week:
     - complete the BFS
     - plan the merger of all individual parts (part 1 of the algorithm is expetced to be over)
+
+Ariel:
+This week: 
+          - Implemented the generator algorithm for one closed position
+	  - Created a visualisation of the chessboard in order to test functions for the generator
+	    team 
+	  - Fixed the class implementation of chessboard in order to be more efficient (changed 
+	    return types to void)
+Next week:
+	  - Finish implementing the closed position generator
+   	  - Implement the file generator for closed positions as well as other functions in the
+	    chessboard class such as reading positions from a file and returning those with only	 
+            pawns
+	  - Work on finish the generator project and doing bug fixes and testing
