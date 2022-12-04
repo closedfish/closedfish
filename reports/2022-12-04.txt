@@ -9,3 +9,20 @@ Sirawit:
         - Do more unit tests for CFBoard
         - [Optional] Add automated GitHub actions for continuous deployment (to check for each PR whether it compiles/breaks)
         - [Optional] Host Doxygen on a server
+        
+Cassidy:
+    This Week:
+        -after many chess games, I have come to understand that the variables the (in a general sense) matte the most are the pons and adding more variables will 
+        make things too complicated
+        - Have full plan for the implementation of the AI using a generalized multivariable regression on a basis of functions that will depend on:
+            -the distance between consecutive pons of the same color
+            -the distance between oposing pons of the same color
+            -the mean of the coordinates of the pons
+            -the number of pons (one AI per number of pons and when one of the sides has strictly less than 6 pons we will simply consider the board as open returning              value 1.
+       - I have practiced using the Eigen/Dens library for matrix manipulation which should be very useful for the implementation (I spent about 6 hours trying to get 
+       the library: I tried to import on visual studios and clion and I couldn't get any of them to work using cmake so I am simply doing it on vs code).
+    Next Week:
+        -implement the main generalized multi variable regression so I can obtain many different AIs (each with a respective basis of function) and then choose the 
+        best one in the testing phase.
+        -Implement an algorithm to extract the positions of the pons and their color from the 8 64 bit representation.
+        -Make a list of basis of functions that intuitively would make for a better AI.
