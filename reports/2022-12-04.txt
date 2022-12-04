@@ -68,3 +68,15 @@ Next week:
 	- fix bugs
 	- implement the function that returns for each piece if it can potentially protect the target pawn and in how many moves
 
+
+Etienne:
+This week:
+	- Continued work on the Chessboard class, notably the closeness and openness functions. This required more research and practice into what actually quantitatively defines a closed or open position (considering only pawns) as to return a value between 0-1. 
+	- Helped team with their respective functions the Data and Testing.
+	- Migrated to VScode and fixed bugs.
+	- Conducted more research into .cbv files to manipulate a chess database to test closed position which resulted in a dead end as these appear to be near impossible to modify in our timeframe.
+
+Next Week:
+	- Finish the Generator project, fix bugs, test code.
+	
+
