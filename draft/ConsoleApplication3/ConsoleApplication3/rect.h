@@ -12,8 +12,16 @@ public:
 	square();
 	square(COLOR color, cv::Rect rec, int x, int y);
 };
+class PLAYER {
+public:
+	bool color;//if true, white, if false, black
+	PLAYER();
+	PLAYER(bool);
+};
 class board {
 public:
+	int width;
+	int height;
 	int left;
 	int right;
 	int top;

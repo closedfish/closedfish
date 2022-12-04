@@ -21,3 +21,9 @@ board::board(int left, int right, int top, int bottom) {
 	this->top = top;
 	this->bottom = bottom;
 }
+PLAYER::PLAYER() {
+	this->color = true;
+}
+PLAYER::PLAYER(bool color) {
+	this->color = color;
+}
