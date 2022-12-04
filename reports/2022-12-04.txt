@@ -50,3 +50,11 @@ Next week:
 	    chessboard class such as reading positions from a file and returning those with only	 
             pawns
 	  - Work on finish the generator project and doing bug fixes and testing
+	  
+Antonia:
+This week:
+	- finished the implementation of the function that returns the total number of pieces currently and immediatly protecting the target pawn
+	- migrated to vscode
+Next week:
+	- fix bugs
+	- implement the function that returns for each piece if it can potentially protect the target pawn and in how many moves
