@@ -51,9 +51,20 @@ Next week:
             pawns
 	  - Work on finish the generator project and doing bug fixes and testing
 
+
 Shirelle: 
 This week: -I have worked on the algorithm that return a chessboard initially with pawns added by some other pions, (changed my strategy from last week with all the conditions the pions have eg the bishop needs to be on the diagonal..) 
 Next week : -I will check if my function works thanks to the chessboard visualisation made by Ariel
 -I will also create a new algorithm to test if the king is in check. 
 
 	
+
+	  
+Antonia:
+This week:
+	- finished the implementation of the function that returns the total number of pieces currently and immediatly protecting the target pawn
+	- migrated to vscode
+Next week:
+	- fix bugs
+	- implement the function that returns for each piece if it can potentially protect the target pawn and in how many moves
+
