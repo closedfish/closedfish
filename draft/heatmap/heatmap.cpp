@@ -34,9 +34,11 @@ uint64_t reverseBit(uint64_t v) {
 
 std::vector<int> tilesSetFromBoard(uint64_t board) {
 	std::vector<int> tiles;
+	int cur = 0;
 	while (board != 0) {
 		int rightmost_tile = __builtin_ctz(board);
-		tiles.push_back(rightmost_tile);
+		cur += rightmost_tile+1;
+		tiles.push_back(cur-1);
 		board >>= rightmost_tile+1;
 	}
 	return tiles;
@@ -57,8 +59,8 @@ bool hasPawnOn(const uint64_t& pawn_board, const std::vector<int> &pos) {
 
 bool squareNotAttackedByPawn(const uint64_t& opponent_pawn_board, 
 							const int& row, const int &col) {
-	return ((col == 0 || !hasPawnOn(opponent_pawn_board, {row+1, col-1}))
-				&& (col == 7 || !hasPawnOn(opponent_pawn_board, {row+1, col+1})))
+	return row == 7 || ((col == 0 || !hasPawnOn(opponent_pawn_board, {row+1, col-1}))
+				&& (col == 7 || !hasPawnOn(opponent_pawn_board, {row+1, col+1})));
 }
 
 void displayPawnBoard(const uint64_t& pawnBoard) { // for testing only
@@ -129,83 +131,66 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
 			opponent_pawn_board = reverseBit(opponent_pawn_board);
 		}
 		int 
-			no_bishops = __builtin_popcount(bishop_board),
 			no_knights = __builtin_popcount(knight_board),
 			no_rooks = __builtin_popcount(rook_board),
 			no_queens = __builtin_popcount(queen_board);
 		// std::cout << no_rooks << ' ' << no_queens << ' ' << no_bishops << ' ' << no_knights << '\n';
-		for (int file: open_file) {
-			int max_pawn_height = std::min(file > 0 ? pawn_height[file-1] : 8, file < 7 ? pawn_height[file+1] : 8);
+		for (int j: open_file) {
+			int max_pawn_height = std::min(j > 0 ? pawn_height[j-1] : 8, j < 7 ? pawn_height[j+1] : 8);
 			std::cout << max_pawn_height << '\n';
 			// Rooks and Queens move to open file
 			for (int i = 0; i < max_pawn_height; i++) {
-				if ((file == 0 || !hasPawnOn(opponent_pawn_board, {i+1, file-1}))
-				&& (file == 7 || !hasPawnOn(opponent_pawn_board, {i+1, file+1}))) // no opposing pawns
-					heat_map[i][file] += no_rooks + no_queens;
+				if (squareNotAttackedByPawn(opponent_pawn_board, i, j)) // no opposing pawns
+					heat_map[i][j] += no_rooks + no_queens;
 			}
 			// Knights move to square near open file, defending the nearby pawns and pieces
 			int di[8] = {-1, -2, -2, -1, 1, 2, 2, 1};
 			int dj[8] = {2, 1, -1, -2, -2, -1, 1, 2};
 			for (int i = 0; i < max_pawn_height; i++) {
 				for (int k = 0; k < 8; k++) {
-					if (validSquare(i+di[k], file+dj[k])) {
-						heat_map[i+di[k]][file+dj[k]] += no_knights;
+					int next_i = i+di[k], next_j = j+dj[k];
+					if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j)) {
+						heat_map[next_i][next_j] += no_knights;
 					}
 				}
 			}
-			if (file >= 1 && pawn_height[file-1] < 8) {
-				for (int k = 0; k < 8; k++) {
-					if (validSquare(pawn_height[file-1]+di[k], file-1+dj[k])) {
-						heat_map[pawn_height[file-1]+di[k]][file-1+dj[k]] += no_knights;
-					}
-				}
-			}
-			if (file <= 6 && pawn_height[file+1] < 8) {
-				for (int k = 0; k < 8; k++) {
-					if (validSquare(pawn_height[file+1]+di[k], file+1+dj[k])) {
-						heat_map[pawn_height[file+1]+di[k]][file+1+dj[k]] += no_knights;
-					}
-				}
-			}
-			// Calculate how many bishop of the same color with pawn structure
-			int pawn_color_cnt[2] = {0, 0};
+			
+			// Calculate how many light and dark squared bishop
+			int pawn_color_cnt[2] = {0, 0}; // [light square, black square]
 			for (int j = 0; j < 8; j++) {
 				if (pawn_height[j] != 8) {
 					pawn_color_cnt[(j+pawn_height[j])%2]++;
 				}
 			}
-			bool pawn_structure_color_main;
-			if (pawn_color_cnt[0] > pawn_color_cnt[1])
-				pawn_structure_color_main = 0;
-			else
-				pawn_structure_color_main = 1;
 
 			int no_bishops_color[2] = {0, 0};
 			std::vector<int> bishop_tiles = tilesSetFromBoard(bishop_board);
 			for (int tile: bishop_tiles) {
-				no_bishops_color[tile%2 == 0]++;
+				int row = tile/8, col = tile%8;
+				std::cout << tile << ' ' << row << ' ' << col << '\n';
+				no_bishops_color[(row+col)%2]++;
 			}
-			// Bishops same color with our pawn structure
-			// if (tile > 1) { // Protect left pawn
-			//	 for (int i = 1; validSquare(pawn_height[tile-1]-i, tile-i); i++) {
-			//		 heat_map[pawn_height[tile-1]-i][tile-i] += 1;
-			//	 }
-			//	 for (int i = 1; validSquare(pawn_height[tile+1]))
-			// }
-			// for (int i = 0; i < max_pawn_height; i++) {
-			//	 for (int j = pawn_structure_color_main; )
-			//	 heat_map += no_bishops_color[pawn_structure_color_main];
-			// }
-			// // Bishops diff color with our pawn structure
-			// for (int i = 0; i < max_pawn_height; i++) {
-			//	 heat_map += no_bishops_color[!pawn_structure_color_main];
-			// }
+			std::cout << no_bishops_color[0] << ' ' << no_bishops_color[1] << '\n';
+			for (int i = 0; i < max_pawn_height; i++) {
+				bool bishop_color = (i+j)%2;
+				for (int k = -7; k <= 7; k++) {
+					if (k == 0) continue;
+					int next_i = i+k, next_j = j+k; // first diagonal
+					if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j) && next_i < pawn_height[next_j]) {
+						heat_map[next_i][next_j] += no_bishops_color[bishop_color];
+					}
+					next_i = i+k, next_j = j-k; // second diagonal
+					if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j) && next_i < pawn_height[next_j]) {
+						heat_map[next_i][next_j] += no_bishops_color[bishop_color];
+					}
+				}
+			}
 		}
 	} else { // No open files
 		if (closed_rows >= 2) { // 2 free rows, knights, rooks and queens are essentially able to go anywhere
 			// Rooks and Queens
 			std::vector<int> weak_pawns_file = {}; // placeholder waiting for weak pawns implementation
-			for (int file: weak_pawns_file) {
+			for (int j: weak_pawns_file) {
 			}
 
 		} else {
