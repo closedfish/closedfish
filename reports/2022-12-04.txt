@@ -18,7 +18,7 @@ Cassidy:
             -the distance between consecutive pons of the same color
             -the distance between oposing pons of the same color
             -the mean of the coordinates of the pons
-            -the number of pons (one AI per number of pons and when one of the sides has strictly less than 6 pons we will simply consider the board as open and 		return the value 1.
+            -the number of pons (one AI per number of pons and when one of the sides has strictly less than 6 pons we will simply consider the board as open and return the value 1.
        - I have practiced using the Eigen/Dense library for matrix manipulation which should be very useful for the implementation (I also lost about 6 hours trying to get the library: I tried to import on visual studios and clion and I couldn't get any of them to work using cmake so I am simply doing it on vs code In the end).
     Next Week:
         -implement the main generalized multi variable regression so I can obtain many different AIs (each with a respective basis of functions) and then choose the 
