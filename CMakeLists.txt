@@ -67,7 +67,13 @@ include(LTO)
 include(Ccache)
 
 #Include Doxygen module
-include(Docs)
+find_program(DOXYGEN_FOUND "doxygen")
+if(DOXYGEN_FOUND)
+	message("Using Doxygen")
+	include(Docs)
+else(DOXYGEN_FOUND)
+	message("Doxygen not found")
+endif(DOXYGEN_FOUND)
 
 #Include Conan Libraries
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
