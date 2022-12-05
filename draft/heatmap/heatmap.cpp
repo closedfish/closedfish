@@ -75,6 +75,7 @@ void displayPawnBoard(const uint64_t& pawnBoard) { // for testing only
 
 void addHeatMapPieceProtect(int &i, int &j, int (&heat_map)[8][8], const char &piece,
 							int &no_pieces, uint64_t &opponent_pawn_board, int (&pawn_height)[8]) {
+	std::vector<std::vector<int>> next_squares;
 	if (piece == 'P') {
 		if (validSquare(i-1, j-1)) heat_map[i-1][j-1]++;
 		if (validSquare(i-1, j+1)) heat_map[i-1][j+1]++;
@@ -82,39 +83,36 @@ void addHeatMapPieceProtect(int &i, int &j, int (&heat_map)[8][8], const char &p
 		int di[8] = {-1, -2, -2, -1, 1, 2, 2, 1};
 		int dj[8] = {2, 1, -1, -2, -2, -1, 1, 2};
 		for (int k = 0; k < 8; k++) {
-			int next_i = i+di[k], next_j = j+dj[k];
-			if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j) && next_i < pawn_height[next_j]) {
-				heat_map[next_i][next_j] += no_pieces;
-			}
+			next_squares.push_back({i+di[k], j+dj[k]});
 		}
 	} else if (piece == 'B') {
 		for (int k = -7; k <= 7; k++) {
 			if (k == 0) continue;
-			int next_i = i+k, next_j = j+k; // same first diagonal
-			if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j) && next_i < pawn_height[next_j]) {
-				heat_map[next_i][next_j] += no_pieces;
-			}
-			next_i = i+k, next_j = j-k; // same second diagonal
-			if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j) && next_i < pawn_height[next_j]) {
-				heat_map[next_i][next_j] += no_pieces;
-			}
+			next_squares.push_back({i+k, j+k}); // same first diagonal
+			next_squares.push_back({i+k, j-k}); // same second diagonal
 		}
 	} else if (piece == 'R') {
 		for (int k = -7; k <= 7; k++) {
 			if (k == 0) continue;
-			int next_i = i, next_j = j+k; // same rank
-			if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j) && next_i < pawn_height[next_j]) {
-				heat_map[next_i][next_j] += no_pieces;
-			}
-			next_i = i+k, next_j = j; // same file
-			if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j) && next_i < pawn_height[next_j]) {
-				heat_map[next_i][next_j] += no_pieces;
-			}
+			next_squares.push_back({i, j+k}); // same rank
+			next_squares.push_back({i+k, j}); // same file
 		}
 	} else if (piece == 'Q') {
-
+		for (int k = -7; k <= 7; k++) {
+			if (k == 0) continue;
+			next_squares.push_back({i+k, j+k}); // same first diagonal
+			next_squares.push_back({i+k, j-k}); // same second diagonal
+			next_squares.push_back({i, j+k}); // same rank
+			next_squares.push_back({i+k, j}); // same file
+		}
 	} else if (piece == 'K') {
 
+	}
+	for (auto p: next_squares) {
+		int next_i = p[0], next_j = p[1];
+		if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j) && next_i < pawn_height[next_j]) {
+			heat_map[next_i][next_j] += no_pieces;
+		}
 	}
 }
 
@@ -175,9 +173,9 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
 		if (!current_turn) {
 			opponent_pawn_board = reverseBit(opponent_pawn_board);
 		}
-		int no_knights = __builtin_popcount(knight_board),
-			no_rooks = __builtin_popcount(rook_board),
-			no_queens = __builtin_popcount(queen_board);
+		int no_knights = __builtin_popcountll(knight_board),
+			no_rooks = __builtin_popcountll(rook_board),
+			no_queens = __builtin_popcountll(queen_board);
 		// Calculate how many light and dark squared bishop
 		int no_bishops_color[2] = {0, 0};
 		std::vector<int> bishop_tiles = tilesSetFromBoard(bishop_board);
@@ -214,7 +212,6 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
 
 			// Bishops also move to square near open file, defending the nearby pawns and pieces
 
-			// std::cout << no_bishops_color[0] << ' ' << no_bishops_color[1] << '\n';
 			//defend open file
 			for (int i = 0; i < max_pawn_height; i++) {
 				bool bishop_color = (i+j)%2;
