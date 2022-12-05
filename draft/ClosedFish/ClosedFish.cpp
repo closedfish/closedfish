@@ -29,6 +29,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: Place code here.
+    AllocConsole();
 
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -138,11 +139,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
-LRESULT CALLBACK StartBtnMsg(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-    return TRUE;
-}
-
 //
 //  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
 //
@@ -170,8 +166,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 DestroyWindow(hWnd);
                 break;
             case BN_CLICKED://the one button was clicked
-            {bmpClass bc = bmpClass(false);
-            bc._saveScreenToFile(L"Buton.jpg"); }//just testing to be changed to main loop
+            {
+                bmpClass bc = bmpClass(false);
+                //WCHAR* wc = 
+                    bc.saveScreenToFileWithType(L"Buton.jpg", 2); 
+                    bc.printSq();
+                //if (wc != NULL)
+                    //std::wcout << *wc;
+
+                //else
+                    //std::cout << "Naspa";
+            }//just testing to be changed to main loop
                 break;
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
