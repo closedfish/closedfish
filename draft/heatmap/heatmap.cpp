@@ -73,6 +73,51 @@ void displayPawnBoard(const uint64_t& pawnBoard) { // for testing only
 	}
 }
 
+void addHeatMapPieceProtect(int &i, int &j, int (&heat_map)[8][8], const char &piece,
+							int &no_pieces, uint64_t &opponent_pawn_board, int (&pawn_height)[8]) {
+	if (piece == 'P') {
+		if (validSquare(i-1, j-1)) heat_map[i-1][j-1]++;
+		if (validSquare(i-1, j+1)) heat_map[i-1][j+1]++;
+	} else if (piece == 'N') {
+		int di[8] = {-1, -2, -2, -1, 1, 2, 2, 1};
+		int dj[8] = {2, 1, -1, -2, -2, -1, 1, 2};
+		for (int k = 0; k < 8; k++) {
+			int next_i = i+di[k], next_j = j+dj[k];
+			if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j) && next_i < pawn_height[next_j]) {
+				heat_map[next_i][next_j] += no_pieces;
+			}
+		}
+	} else if (piece == 'B') {
+		for (int k = -7; k <= 7; k++) {
+			if (k == 0) continue;
+			int next_i = i+k, next_j = j+k; // same first diagonal
+			if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j) && next_i < pawn_height[next_j]) {
+				heat_map[next_i][next_j] += no_pieces;
+			}
+			next_i = i+k, next_j = j-k; // same second diagonal
+			if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j) && next_i < pawn_height[next_j]) {
+				heat_map[next_i][next_j] += no_pieces;
+			}
+		}
+	} else if (piece == 'R') {
+		for (int k = -7; k <= 7; k++) {
+			if (k == 0) continue;
+			int next_i = i, next_j = j+k; // same rank
+			if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j) && next_i < pawn_height[next_j]) {
+				heat_map[next_i][next_j] += no_pieces;
+			}
+			next_i = i+k, next_j = j; // same file
+			if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j) && next_i < pawn_height[next_j]) {
+				heat_map[next_i][next_j] += no_pieces;
+			}
+		}
+	} else if (piece == 'Q') {
+
+	} else if (piece == 'K') {
+
+	}
+}
+
 void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawns) {
 	uint64_t mask_row[8], mask_col[8]; // 1 for one column or one row, 0 otherwise
 	mask_row[0] = (1LL<<8)-1;
@@ -130,60 +175,60 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
 		if (!current_turn) {
 			opponent_pawn_board = reverseBit(opponent_pawn_board);
 		}
-		int 
-			no_knights = __builtin_popcount(knight_board),
+		int no_knights = __builtin_popcount(knight_board),
 			no_rooks = __builtin_popcount(rook_board),
 			no_queens = __builtin_popcount(queen_board);
+		// Calculate how many light and dark squared bishop
+		int no_bishops_color[2] = {0, 0};
+		std::vector<int> bishop_tiles = tilesSetFromBoard(bishop_board);
+		for (int tile: bishop_tiles) {
+			int row = tile/8, col = tile%8;
+			std::cout << tile << ' ' << row << ' ' << col << '\n';
+			no_bishops_color[(row+col)%2]++;
+		}
 		// std::cout << no_rooks << ' ' << no_queens << ' ' << no_bishops << ' ' << no_knights << '\n';
 		for (int j: open_file) {
 			int max_pawn_height = std::min(j > 0 ? pawn_height[j-1] : 8, j < 7 ? pawn_height[j+1] : 8);
-			std::cout << max_pawn_height << '\n';
+			// std::cout << max_pawn_height << '\n';
+
 			// Rooks and Queens move to open file
 			for (int i = 0; i < max_pawn_height; i++) {
 				if (squareNotAttackedByPawn(opponent_pawn_board, i, j)) // no opposing pawns
-					heat_map[i][j] += no_rooks + no_queens;
-			}
-			// Knights move to square near open file, defending the nearby pawns and pieces
-			int di[8] = {-1, -2, -2, -1, 1, 2, 2, 1};
-			int dj[8] = {2, 1, -1, -2, -2, -1, 1, 2};
-			for (int i = 0; i < max_pawn_height; i++) {
-				for (int k = 0; k < 8; k++) {
-					int next_i = i+di[k], next_j = j+dj[k];
-					if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j)) {
-						heat_map[next_i][next_j] += no_knights;
-					}
-				}
-			}
-			
-			// Calculate how many light and dark squared bishop
-			int pawn_color_cnt[2] = {0, 0}; // [light square, black square]
-			for (int j = 0; j < 8; j++) {
-				if (pawn_height[j] != 8) {
-					pawn_color_cnt[(j+pawn_height[j])%2]++;
-				}
+					heat_map[i][j] += 2 * (no_rooks + no_queens); // weighted since they are more important
 			}
 
-			int no_bishops_color[2] = {0, 0};
-			std::vector<int> bishop_tiles = tilesSetFromBoard(bishop_board);
-			for (int tile: bishop_tiles) {
-				int row = tile/8, col = tile%8;
-				std::cout << tile << ' ' << row << ' ' << col << '\n';
-				no_bishops_color[(row+col)%2]++;
+			// Knights move to square near open file, defending the nearby pawns and pieces
+
+			// defend open file
+			for (int i = 0; i < max_pawn_height; i++) {
+				addHeatMapPieceProtect(i, j, heat_map, 'N', no_knights, opponent_pawn_board, pawn_height);
 			}
-			std::cout << no_bishops_color[0] << ' ' << no_bishops_color[1] << '\n';
+			// protect left pawn
+			if (j >= 1 && validSquare(pawn_height[j-1], j)) {
+				addHeatMapPieceProtect(pawn_height[j-1], j, heat_map, 'N', no_knights, opponent_pawn_board, pawn_height);
+			}
+			// protect right pawn
+			if (j <= 6 && validSquare(pawn_height[j+1], j)) {
+				addHeatMapPieceProtect(pawn_height[j+1], j, heat_map, 'N', no_knights, opponent_pawn_board, pawn_height);
+			}
+
+			// Bishops also move to square near open file, defending the nearby pawns and pieces
+
+			// std::cout << no_bishops_color[0] << ' ' << no_bishops_color[1] << '\n';
+			//defend open file
 			for (int i = 0; i < max_pawn_height; i++) {
 				bool bishop_color = (i+j)%2;
-				for (int k = -7; k <= 7; k++) {
-					if (k == 0) continue;
-					int next_i = i+k, next_j = j+k; // first diagonal
-					if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j) && next_i < pawn_height[next_j]) {
-						heat_map[next_i][next_j] += no_bishops_color[bishop_color];
-					}
-					next_i = i+k, next_j = j-k; // second diagonal
-					if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j) && next_i < pawn_height[next_j]) {
-						heat_map[next_i][next_j] += no_bishops_color[bishop_color];
-					}
-				}
+				addHeatMapPieceProtect(i, j, heat_map, 'B', no_bishops_color[bishop_color], opponent_pawn_board, pawn_height);
+			}
+			// protect left pawn
+			if (j >= 1 && validSquare(pawn_height[j-1], j)) {
+				addHeatMapPieceProtect(pawn_height[j-1], j, heat_map, 'B', no_bishops_color[(pawn_height[j-1]+j)%2],
+										opponent_pawn_board, pawn_height);
+			}
+			// protect right pawn
+			if (j <= 6 && validSquare(pawn_height[j+1], j)) {
+				addHeatMapPieceProtect(pawn_height[j+1], j, heat_map, 'B', no_bishops_color[(pawn_height[j-1]+j)%2],
+										opponent_pawn_board, pawn_height);
 			}
 		}
 	} else { // No open files
