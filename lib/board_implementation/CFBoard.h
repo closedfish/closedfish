@@ -215,43 +215,19 @@ class CFBoard {
      */
     bool getCurrentPlayer();
 
-    /*
-    void movePiece(int starttile, int endtile){
-        int piece = getPieceFromCoords(starttile)
-        if ~((1ll << endtile) & getLegalMoves(pieceIdToChar, starttile)){
-            exit(-1);
-        }
-        if ((piece & 1) ^ turn){
-            exit(-1);
-        }
-
-        removePiece(starttile);
-        addPiece(piece, endtile);
-
-        if (~turn){ // white
-            if ((piece>>1) == 3){
-                if (starttile == 63){
-                    castleCheck -= 1;
-                } else if
-            }
-        }
-
-
-
-
-
-        turn = ~turn;
-    }
-    */
-
-    /*
-    void naiveMovePiece(int starttile, int endtile);
-
-    void move();
-
-    */
+    /**
+     * @brief Makes a legal chess move.
+     *
+     * @param starttile : start tile for move.
+     * @param endtile : end tile for move.
+     * 
+     * @return void.
+     */
+    void movePiece(int starttile, int endtile);
 
     bool naiveCheckCheck(bool color, int coordA = -1, int coordB = -1);
+
+    void forceUndo(int startTileLastTurn, int endTileLastTurn, int capturedPiece);
 
     friend bool operator==(const CFBoard &board1, const CFBoard &board2) {
         return board1.pawnBoard == board2.pawnBoard &&
