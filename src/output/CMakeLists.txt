@@ -1,5 +1,5 @@
 set(OUPUT_SOURCES 
-    "output.cc")
+    "output.cpp")
 set(OUPUT_HEADERS
     "output.hpp")
 
