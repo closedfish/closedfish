@@ -634,3 +634,5 @@ FodyWeavers.xsd
 *.xcuserstate
 *.xcuserstate
 src/Generator/Generator/generator
+
+build/

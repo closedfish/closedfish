@@ -157,22 +157,22 @@ std::string CFBoard::toFEN() {
 }
 
 void CFBoard::movePiece(int startTile, int endTile){
-		int piece = getPieceFromCoords(starttile);
-		if ~((1ll << endtile) & getLegalMoves(pieceIdToChar, starttile)){
+		int piece = getPieceFromCoords(startTile);
+		if (~((1ll << endTile) & getLegalMoves(pieceIdToChar(startTile), startTile))){
 			exit(-1);
 		}
 		if ((piece & 1) ^ turn){
 			exit(-1);
 		}
 
-		removePiece(starttile);
-		addPiece(piece, endtile);
+		removePiece(startTile);
+		addPiece(piece, endTile);
 
 		if (~turn){ // white
 			if ((piece>>1) == 3){ // rook
-				if (starttile == 63){
+				if (startTile == 63){
 					castleCheck & ~1;
-				} else if (starttile == 56){
+				} else if (startTile == 56){
                     castleCheck & ~2;
                 }
 			}
@@ -181,15 +181,15 @@ void CFBoard::movePiece(int startTile, int endTile){
             }
 
             if ((piece>>1) == 0){ // pawn
-                if ((starttile - endtile) == 16){
-                    enPassantTarget = starttile - 8;
+                if ((startTile - endTile) == 16){
+                    enPassantTarget = startTile - 8;
                 }
             }
 		} else {
             if ((piece>>1) == 3){ // rook
-				if (starttile == 0){
+				if (startTile == 0){
 					castleCheck & ~8;
-				} else if (starttile == 7){
+				} else if (startTile == 7){
                     castleCheck & ~4;
                 }
 			}
@@ -198,8 +198,8 @@ void CFBoard::movePiece(int startTile, int endTile){
             }
 
             if ((piece>>1) == 0){ // pawn
-                if ((endtile - starttile) == 16){
-                    enPassantTarget = starttile + 8;
+                if ((endTile - startTile) == 16){
+                    enPassantTarget = startTile + 8;
                 }
             }
         }
@@ -627,7 +627,7 @@ char CFBoard::pieceIdToChar(int pieceId) {
 }
 
 int CFBoard::pieceCharToId(char pieceChar) {
-    int pieceId = NULL;
+    int pieceId = -1;
     switch (pieceChar) {
     case 'P':
         return 0;
