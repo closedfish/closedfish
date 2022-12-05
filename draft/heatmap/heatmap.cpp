@@ -141,6 +141,18 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
 		king_board = reverseBit(king_board);
 	}
 
+	// Counting pieces
+	int no_knights = __builtin_popcountll(knight_board),
+		no_rooks = __builtin_popcountll(rook_board),
+		no_queens = __builtin_popcountll(queen_board);
+	// Count how many light and dark squared bishop
+	int no_bishops_color[2] = {0, 0};
+	std::vector<int> bishop_tiles = tilesSetFromBoard(bishop_board);
+	for (int tile: bishop_tiles) {
+		int row = tile/8, col = tile%8;
+		no_bishops_color[(row+col)%2]++;
+	}
+
 	int pawn_height[8] = {8, 8, 8, 8, 8, 8, 8, 8};
 	// displayPawnBoard(pawn_board);
 	for (int i = 0; i < 8; i++) { 
@@ -152,42 +164,27 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
 			}
 		}
 	}
+
+	// Calculating pawn heights of each column
 	std::vector<int> open_file;
 	for (int j = 0; j < 8; j++) {
 		if (pawn_height[j] == 8) {
 			open_file.push_back(j);
 		}
 	}
-	// for (int j = 0; j < 8; j++)
-	//	 std::cout << pawn_height[j] << ' ';
-	// std::cout << '\n';
-	// for (auto x: open_file) {
-	//	 std::cout << x << ' ';
-	// };
-	// std::cout << '\n';
-	int closed_rows = (*std::min_element(pawn_height, pawn_height+8)) - 1; // number of rows below the lowest pawn
-	// std::cout << closed_rows << '\n';
 
+	// Number of free rows below the lowest pawn
+	int free_rows = (*std::min_element(pawn_height, pawn_height+8)) - 1; // number of rows below the lowest pawn
+	// std::cout << free_rows << '\n';
+	
+	uint64_t opponent_pawn_board = board.getPieceColorBitBoard(0|(!current_turn));
+	if (!current_turn) {
+		opponent_pawn_board = reverseBit(opponent_pawn_board);
+	}
 	if (open_file.size() > 0) { // there exists open files
-		uint64_t opponent_pawn_board = board.getPieceColorBitBoard(0|(!current_turn));
-		if (!current_turn) {
-			opponent_pawn_board = reverseBit(opponent_pawn_board);
-		}
-		int no_knights = __builtin_popcountll(knight_board),
-			no_rooks = __builtin_popcountll(rook_board),
-			no_queens = __builtin_popcountll(queen_board);
-		// Calculate how many light and dark squared bishop
-		int no_bishops_color[2] = {0, 0};
-		std::vector<int> bishop_tiles = tilesSetFromBoard(bishop_board);
-		for (int tile: bishop_tiles) {
-			int row = tile/8, col = tile%8;
-			std::cout << tile << ' ' << row << ' ' << col << '\n';
-			no_bishops_color[(row+col)%2]++;
-		}
-		// std::cout << no_rooks << ' ' << no_queens << ' ' << no_bishops << ' ' << no_knights << '\n';
+
 		for (int j: open_file) {
 			int max_pawn_height = std::min(j > 0 ? pawn_height[j-1] : 8, j < 7 ? pawn_height[j+1] : 8);
-			// std::cout << max_pawn_height << '\n';
 
 			// Rooks and Queens move to open file
 			for (int i = 0; i < max_pawn_height; i++) {
@@ -229,7 +226,7 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
 			}
 		}
 	} else { // No open files
-		if (closed_rows >= 2) { // 2 free rows, knights, rooks and queens are essentially able to go anywhere
+		if (free_rows >= 2) { // 2 free rows, knights, rooks and queens are essentially able to go anywhere
 			// Rooks and Queens
 			std::vector<int> weak_pawns_file = {}; // placeholder waiting for weak pawns implementation
 			for (int j: weak_pawns_file) {
