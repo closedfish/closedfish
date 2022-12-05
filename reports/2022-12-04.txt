@@ -79,4 +79,15 @@ This week:
 Next Week:
 	- Finish the Generator project, fix bugs, test code.
 	
+Dimitrije:
+This week:
+-Debugged the board and squares detection after many issues.
+-Redefined some functions to reduce runtime of the code and make it more compact.
+-Program successfully finds the board on the screen and stores it in a Board class.
+-Defined a function that converts on-screen coordinates to chess coordinates.
+Next week:
+-Debugging the bottom right corner detection.
+-Recognition whether player is playing as black or white.
+-Rectognition of pieces.
+-(Storing pieces and their coordinates in the board class).
 
