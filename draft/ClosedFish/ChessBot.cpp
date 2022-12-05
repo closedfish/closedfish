@@ -2,9 +2,11 @@
 //
 
 #include <iostream>
+#include <fstream>
 #include <chrono>
 #include <Windows.h>
 #include <wingdi.h>
+#include <atlimage.h>
 #include "ChessBotUI.h"
 
 const int size_square = 100, top_left_x = 304, top_left_y = 137;
@@ -114,11 +116,7 @@ int getSizeChr(char* chr)
 	return cnt;
 }
 
-/// <summary>
-/// Creates a bitmap and returns the path to the file
-/// </summary>
-/// <param name="filename">name of the file</param>
-/// <returns>string representing the filepath</returns>
+
 char* bmpClass::_saveScreenToFile(LPCWSTR filename)
 {
 	HDC hdcScreen;
@@ -189,7 +187,7 @@ char* bmpClass::_saveScreenToFile(LPCWSTR filename)
 		(BITMAPINFO*)&bmpInfHdr, DIB_RGB_COLORS);
 
 	hf = CreateFile(filename, GENERIC_READ | GENERIC_WRITE, (DWORD)0, NULL,
-		CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, (HANDLE)NULL);
+		CREATE_NEW, FILE_ATTRIBUTE_NORMAL, (HANDLE)NULL);
 
 	if (hf == INVALID_HANDLE_VALUE);//this is really BAD
 
@@ -314,7 +312,7 @@ void bmpClass::saveScreenToFile(LPCWSTR filename)
 		(BITMAPINFO*)&bmpInfHdr, DIB_RGB_COLORS);
 
 	hf = CreateFile(filename, GENERIC_READ | GENERIC_WRITE, (DWORD)0, NULL,
-		CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, (HANDLE)NULL);
+		CREATE_NEW, FILE_ATTRIBUTE_NORMAL, (HANDLE)NULL);
 
 	if (hf == INVALID_HANDLE_VALUE);//this is really BAD
 
@@ -350,73 +348,261 @@ void bmpClass::saveScreenToFile(LPCWSTR filename)
 	ReleaseDC(hwndDesktop, hdcScreen);
 }
 
+void bmpClass::init_squares()
+{
+	for (int i = 0; i < 64; ++i)
+	{
+		squares[i].bmType = 0;
+		squares[i].bmWidth = sideL;
+		squares[i].bmHeight = sideL;
+		squares[i].bmWidthBytes = squares[i].bmWidth * 4;
+		squares[i].bmPlanes = 1;
+		squares[i].bmBitsPixel = 32;
+		char* bits = (char*)malloc(squares[i].bmWidth * squares[i].bmHeight * 4);
+		squares[i].bmBits = bits;
+	}
+}
 
 void bmpClass::split_the_board()
 {
-	/*
+	HDC hdcScreen;
+	HDC hdcMemDC = NULL;
+	HBITMAP hBmpScreen = NULL;
+	BITMAP bmpScreen;
+
+	hdcScreen = GetDC(NULL);
+
+	hdcMemDC = CreateCompatibleDC(hdcScreen);
+
+	RECT rc;
+	HWND hwndDesktop;
+	HBITMAP hBmpOld = NULL;
+
+	hwndDesktop = GetDesktopWindow();
+	GetClientRect(hwndDesktop, &rc);
+
+	hBmpScreen = CreateCompatibleBitmap(hdcScreen, rc.right - rc.left, rc.bottom - rc.top);
+
+	SelectObject(hdcMemDC, hBmpScreen);
+
+	BitBlt(hdcMemDC, 0, 0, rc.right - rc.left,
+		rc.bottom - rc.top, hdcScreen, 0, 0, SRCCOPY);
+
+	GetObject(hBmpScreen, sizeof(BITMAP), &bmpScreen);
+
+	unsigned char* bits = (unsigned char*)malloc(bmpScreen.bmWidth * bmpScreen.bmHeight * bmpScreen.bmBitsPixel / 8 + 1);//+1 for safety
+
+	BITMAPINFOHEADER bi;
+
+	bi.biSize = sizeof(BITMAPINFOHEADER);
+	bi.biWidth = bmpScreen.bmHeight;
+	bi.biHeight = bmpScreen.bmWidth;
+	bi.biPlanes = 1;
+	bi.biBitCount = 32;
+	bi.biCompression = BI_RGB;
+	bi.biSizeImage = 0;
+	bi.biXPelsPerMeter = 0;
+	bi.biYPelsPerMeter = 0;
+	bi.biClrUsed = 0;
+	bi.biClrImportant = 0;
+
+	GetDIBits(hdcScreen, hBmpScreen, 0, bmpScreen.bmHeight, &bits, (BITMAPINFO*)&bi, DIB_RGB_COLORS);
+
+	//Clean up
+	DeleteObject(hBmpScreen);
+	DeleteObject(hdcMemDC);
+	ReleaseDC(NULL, hdcScreen);
+	ReleaseDC(hwndDesktop, hdcScreen);
+
+	int BPP = (this->prevBmp.bmBitsPixel / 8);
+	unsigned char* buffer = (unsigned char*)malloc(sideL * sideL * BPP);
+
 	for (int i = 0; i < 8; ++i)
 	{
 		for (int j = 0; j < 8; ++j)
 		{
-			int pos = i * 8 + j;
-			char* lpBmp = new char[sideL * sideL];
 			for (int scan = 0; scan < sideL; ++scan)
 			{
-				int curScanLine = boardT - 1 + i * sideL + scan;
-				int start = curScanLine * prevBmp.bmWidth + boardL + sideL * j;
-				int offset = scan * sideL;
-				memcpy(lpBmp + offset, &prevBmp.bmBits + start, sideL);
+				int start = this->prevBmp.bmWidth * (this->boardT + i * sideL + scan) * BPP + //vertical offset of board
+					(this->boardL + sideL * j) * BPP; //horziontal offset of the board
+				memcpy(buffer + scan * sideL * BPP, (bits + start), sideL * BPP);
+				hSquares[i * 8 + j] = CreateBitmap(sideL, sideL, (UINT)1, (UINT)prevBmp.bmBitsPixel, buffer);
 			}
-			//pieces[pos] = *CreateBitmap(sideL, sideL, 1, 32, lpBmp);
 		}
 	}
-	*/
 
-	//This may cause a memory leak
-	HDC screenDC;
-	HDC memDC = NULL;
-	HDC pieceDC = NULL;
+	*(bits + bmpScreen.bmWidth * bmpScreen.bmHeight * bmpScreen.bmBitsPixel / 8) = '\0';
+
+	std::ofstream fout("test.txt");
+
+	for (int i = 0; i < sideL; ++i)
+	{
+		for (int j = 0; j < sideL; ++j)
+		{
+			fout << (int)*(buffer + i * sideL + j)<<" ";
+		}
+		fout << '\n';
+	}
+
+	//deleting the bits
+	free(bits);
+	free(buffer);
+	/*
 
 	for (int i = 0; i < 8; ++i)
 	{
 		for (int j = 0; j < 8; ++j)
 		{
-			int pos = i * 8 + j;
-
+			hSquares[i] = CreateCompatibleBitmap(hdcScreen, sideL, sideL);
+			hBmpOld = (HBITMAP)SelectObject(hdcMemDC, hSquares[i]);
+			BitBlt(hdcMemDC, boardL + j * sideL, boardT + i * sideL,
+				sideL, sideL, hdcScreen, 0, 0, SRCCOPY);
+			hSquares[i] = (HBITMAP)SelectObject(hdcMemDC, hBmpOld);
+			GetObject(hSquares[i], sizeof(BITMAP), &squares[i]);
 		}
 	}
+
+	//Clean up
+	DeleteObject(hBmpOld);
+	DeleteObject(hBmpScreen);
+	DeleteObject(hdcMemDC);
+	ReleaseDC(NULL, hdcScreen);
+	ReleaseDC(hwndDesktop, hdcScreen);
+	*/
 }
 
-/*
-int main()
+
+void bmpClass::printSq()
 {
-	if (GetSystemMetrics(SM_CMONITORS) > 1)
-	{
-		std::cout << "Multiple monitors detected, using the primary one\n";
-	}
-	screen_width = GetSystemMetrics(SM_CXSCREEN);
-	screen_height = GetSystemMetrics(SM_CYSCREEN);
-	char input[5];
-	//int sz;
-	//BYTE* screenBmp = getPrimaryScreen(sz);
-	LPCWSTR name = L"test2.bmp";
-	bmpClass test = bmpClass(false);
-	auto start = std::chrono::high_resolution_clock::now();
-	char* chr = test.saveScreenToFile(name);//takes ~33ms
-	while (*chr != '\0' && chr!=nullptr && (*chr) > 0)
-	{
-		std::cout << *chr;
-		chr++;
-	}
-	auto _end = std::chrono::high_resolution_clock::now();
-	auto dur = std::chrono::duration_cast<std::chrono::milliseconds>(_end - start).count();
-	std::cout << dur << "\n";
-	while (!true)
-	{
-		std::cin >> input;
-		//the input should be of the form clcl
-		//for example a1a2 moves a piece form a1 to a2
-		//send_input(input);
-	}
+	CImage ci = CImage();
+	ci.Attach(hSquares[4], CImage::DIBOR_DEFAULT);
+	ci.Save(L"lucaESarac.bmp", Gdiplus::ImageFormatBMP);
+	ci.Detach();
 }
-*/
+
+void bmpClass::saveScreenToFileWithType(LPCWSTR filename, int type)
+{
+	HDC hdcScreen;
+	HDC hdcMemDC = NULL;
+	HBITMAP hBmpScreen = NULL;
+	BITMAP bmpScreen;
+
+	hdcScreen = GetDC(NULL);
+
+	hdcMemDC = CreateCompatibleDC(hdcScreen);
+
+	RECT rc;
+	HWND hwndDesktop;
+
+	hwndDesktop = GetDesktopWindow();
+	GetClientRect(hwndDesktop, &rc);
+
+	hBmpScreen = CreateCompatibleBitmap(hdcScreen, rc.right - rc.left, rc.bottom - rc.top);
+
+	SelectObject(hdcMemDC, hBmpScreen);
+
+	BitBlt(hdcMemDC, 0, 0, rc.right - rc.left,
+		rc.bottom - rc.top, hdcScreen, 0, 0, SRCCOPY);
+
+	GetObject(hBmpScreen, sizeof(BITMAP), &bmpScreen);
+
+	CImage ci = CImage();
+	ci.Attach(hBmpScreen, CImage::DIBOR_DEFAULT);
+	switch (type)
+	{
+	case 0:
+		ci.Save(filename, Gdiplus::ImageFormatBMP);
+		break;
+	case 1:
+		ci.Save(filename, Gdiplus::ImageFormatPNG);
+		break;
+	case 2:
+		ci.Save(filename, Gdiplus::ImageFormatJPEG);
+		break;
+	default:
+		ci.Save(filename, Gdiplus::ImageFormatBMP);
+		break;
+
+	}
+
+	//Clean up
+	ci.Destroy();
+	if (hBmpScreen != nullptr) {
+		DeleteObject(hBmpScreen);
+	}
+	DeleteObject(hdcMemDC);
+	ReleaseDC(NULL, hdcScreen);
+	ReleaseDC(hwndDesktop, hdcScreen);
+}
+
+
+WCHAR* bmpClass::_saveScreenToFileWithType(LPCWSTR filename, int type)
+{
+	HDC hdcScreen;
+	HDC hdcMemDC = NULL;
+	HBITMAP hBmpScreen = NULL;
+	BITMAP bmpScreen;
+
+	hdcScreen = GetDC(NULL);
+
+	hdcMemDC = CreateCompatibleDC(hdcScreen);
+
+	RECT rc;
+	HWND hwndDesktop;
+
+	hwndDesktop = GetDesktopWindow();
+	GetClientRect(hwndDesktop, &rc);
+
+	hBmpScreen = CreateCompatibleBitmap(hdcScreen, rc.right - rc.left, rc.bottom - rc.top);
+
+	SelectObject(hdcMemDC, hBmpScreen);
+
+	BitBlt(hdcMemDC, 0, 0, rc.right - rc.left,
+		rc.bottom - rc.top, hdcScreen, 0, 0, SRCCOPY);
+
+	GetObject(hBmpScreen, sizeof(BITMAP), &bmpScreen);
+
+	CImage ci = CImage();
+	ci.Attach(hBmpScreen, CImage::DIBOR_DEFAULT);
+	switch (type)
+	{
+	case 0:
+		ci.Save(filename, Gdiplus::ImageFormatBMP);
+		break;
+	case 1:
+		ci.Save(filename, Gdiplus::ImageFormatPNG);
+		break;
+	case 2:
+		ci.Save(filename, Gdiplus::ImageFormatJPEG);
+		break;
+	default:
+		ci.Save(filename, Gdiplus::ImageFormatBMP);
+		break;
+	}
+
+	WIN32_FIND_DATAW fileData;
+
+	HANDLE hFind = FindFirstFile(filename, &fileData);
+
+	if (hFind = INVALID_HANDLE_VALUE)
+	{
+		return NULL;
+	}
+
+	//Clean up
+	DeleteObject(hBmpScreen);
+	DeleteObject(hdcMemDC);
+	ReleaseDC(NULL, hdcScreen);
+	ReleaseDC(hwndDesktop, hdcScreen);
+	FindClose(hFind);
+
+	return fileData.cFileName;
+}
+
+void bmpClass::writeToFile(LPCWSTR filename, char* data)
+{
+	HANDLE hf = CreateFile(filename, GENERIC_READ | GENERIC_WRITE,
+		(DWORD)0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, (HANDLE)NULL);
+
+	WriteFile(hf, (LPCVOID)data, 100, 0, NULL);
+}
