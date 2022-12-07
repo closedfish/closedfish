@@ -1,20 +1,19 @@
 
-#Include unit testing sources
-if (ENABLE_TESTING)
-    set(TEST_MAIN 
-        "unit_tests")
-    set(TEST_SOURCES
-        "test_main.cpp")
-    set(TEST_HEADERS 
-        "test_main.hpp")
+set(TEST_MAIN 
+    "unit_tests")
+set(TEST_SOURCES
+    "TestMain.cpp")
+set(TEST_HEADERS 
+    "TestMain.hpp")
 
-    add_executable(${TEST_MAIN} ${TEST_SOURCES})
-    target_link_libraries(${TEST_MAIN} PUBLIC
-        ${SC}
-        ${GC}
-        ${PLAY}
-        ${INPUT}    
-        ${OUTPUT}
-        ${OPENING})   
-endif()
+add_executable(${TEST_MAIN} ${TEST_SOURCES})
+target_link_libraries(${TEST_MAIN} PUBLIC
+    ${SC}
+    ${GC}
+    ${PLAY}
+    ${INPUT}    
+    ${OUTPUT}
+    ${OPENING}
+    Catch2::Catch2)   
 
+enable_testing()
