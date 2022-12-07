@@ -5,8 +5,6 @@ project(ChessSwitchAI VERSION 1.0.0 LANGUAGES CXX)
 
 include(GNUInstallDirs)
 
-#Enable unit testing
-option(ENABLE_TESTING "Whether to enable the unit testing build" OFF)
 
 #Enable warnings
 option(ENABLE_WARNINGS      "Enable to add warnings to a target."   ON)
@@ -92,7 +90,7 @@ else()
 endif()
 
 #Check if there is need to compile the executable
-option(COMPILE_EXECUTABLE "Whether to compile the executable" OFF)
+option(COMPILE_EXECUTABLE "Whether to compile the executable" ON)
 if(COMPILE_EXECUTABLE)
     add_subdirectory(app)
 else()

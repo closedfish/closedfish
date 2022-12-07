@@ -15,9 +15,9 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 
 set(EXE_SOURCES
-    "switch_main.cpp")
+    "SwitchMain.cpp")
 set(EXE_HEADERS 
-    "switch_main.hpp")
+    "SwitchMain.hpp")
     
 add_executable(${EXECUTABLE} 
     ${EXE_SOURCES}
