@@ -75,9 +75,6 @@ else(DOXYGEN_FOUND)
 	message("Doxygen not found")
 endif(DOXYGEN_FOUND)
 
-#Include Conan Libraries
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-
 #Includes subdirectories
 add_subdirectory(src)
 add_subdirectory(config)

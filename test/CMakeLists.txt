@@ -15,7 +15,6 @@ if (ENABLE_TESTING)
         ${PLAY}
         ${INPUT}    
         ${OUTPUT}
-        ${OPENING}
-        ${CONAN_CATCH2})   
+        ${OPENING})   
 endif()
 

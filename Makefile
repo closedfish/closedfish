@@ -3,4 +3,4 @@ dependency:
 prepare:
 	rm -rf build
 	mkdir build
-	cd build && conan install .. & cd ..
+	cd build && cd ..
