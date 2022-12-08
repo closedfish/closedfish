@@ -6,7 +6,24 @@
 #include <string>
 #include <vector>
 
+#include "naiveCheckCheck.cpp"
+
 // implemented
+
+/*
+int main(){
+    //CFBoard testBoard = CFBoard();
+    CFBoard testBoard = CFBoard("8/8/8/8/8/8/8/8 w - -");
+
+    std::cout << "5" << std::endl;
+
+    for (int i=0; i<12; i++){
+        std::cout << testBoard.getReprLegalMove(i, 36) << std::endl;
+    }
+    
+    return 0;
+}
+*/
 
 // ----- Constructors, Formatting, Representation -----
 
@@ -190,6 +207,27 @@ std::string CFBoard::getRepr() {
 
         repr += " |";
         if ((tile + 1) % 8 == 0) {
+            repr += "\n|";
+        }
+    }
+    return repr;
+}
+
+std::string CFBoard::getReprLegalMove(int pieceId, int tile){
+    uint64_t legalMoves = getLegalMoves(pieceId, tile);
+    std::string repr = "|";
+    bool isLegalMove;
+    for (int tileI = 0; tileI < 64; tileI++) {
+        isLegalMove = (legalMoves>>tileI)&1;
+        repr += isLegalMove?"[":(tileI == tile)?">":" ";
+
+        int pieceIdI = getPieceFromCoords(tileI);
+        char pieceCharI = pieceIdToChar(pieceIdI);
+        repr += pieceCharI;
+
+        repr += isLegalMove?"]":(tileI == tile)?"<":" ";
+        repr += "|";
+        if ((tileI + 1) % 8 == 0) {
             repr += "\n|";
         }
     }
@@ -778,28 +816,28 @@ uint64_t CFBoard::getKingPattern(int tile, bool color) {
     uint64_t allyBoard = getColorBitBoard(color);
 
     if (column > 0) {
-        kingPattern += (1 << (tile - 1));
+        kingPattern += (1ll << (tile - 1));
     }
     if (row > 0) {
-        kingPattern += (1 << (tile - 8));
+        kingPattern += (1ll << (tile - 8));
     }
     if (column < 7) {
-        kingPattern += (1 << (tile + 1));
+        kingPattern += (1ll << (tile + 1));
     }
     if (row < 7) {
-        kingPattern += (1 << (tile + 8));
+        kingPattern += (1ll << (tile + 8));
     }
     if (column > 0 && row > 0) {
-        kingPattern += (1 << (tile - 9));
+        kingPattern += (1ll << (tile - 9));
     }
     if (column > 0 && row < 7) {
-        kingPattern += (1 << (tile + 7));
+        kingPattern += (1ll << (tile + 7));
     }
     if (column < 7 && row > 0) {
-        kingPattern += (1 << (tile - 7));
+        kingPattern += (1ll << (tile - 7));
     }
     if (column < 7 && row < 7) {
-        kingPattern += (1 << (tile + 9));
+        kingPattern += (1ll << (tile + 9));
     }
     return kingPattern;
 }
@@ -891,20 +929,34 @@ uint64_t CFBoard::getPawnPattern(int tile, bool color) {
 uint64_t CFBoard::getLegalMoves(int pieceId, int tile) {
     bool color = pieceId & 1;
     uint64_t retBoard;
+    std::cout << (pieceId>>1) << std::endl;
     switch (pieceId >> 1) {
     case 0: // pawn
+        std::cout << "pawn" << std::endl;
         retBoard = getPawnPattern(tile, color);
+        break;
     case 1: // knight
+        std::cout << "knight" << std::endl;
         retBoard = getKnightPattern(tile, color);
+        break;
     case 2: // bishop
+        std::cout << "bishop" << std::endl;
         retBoard = getDiagonals(tile, color);
+        break;
     case 3: // rook
+        std::cout << "rook" << std::endl;
         retBoard = getCardinals(tile, color);
+        break;
     case 4: // queen
+        std::cout << "queen" << std::endl;
         retBoard = getDiagonals(tile, color) | getCardinals(tile, color);
+        break;
     case 5: // king
+        std::cout << "king" << std::endl;
         retBoard = getKingPattern(tile, color);
+        break;
     }
+
     uint64_t tmpBoard = retBoard;
     while (tmpBoard) {
         uint64_t lsb = tmpBoard & -tmpBoard;

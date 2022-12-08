@@ -24,6 +24,7 @@ class CFBoard {
     void fromFEN(std::string FEN); // TO DO
     std::string toFEN();
     std::string getRepr();
+    std::string getReprLegalMove(int pieceId, int tile);
   
     char pieceIdToChar(int pieceId);
     int pieceCharToId(char pieceChar);
