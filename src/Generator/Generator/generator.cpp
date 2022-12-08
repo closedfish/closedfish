@@ -24,25 +24,24 @@ void Chessboard::single_generator(int pawns){ //To be fixed
         std::cout<<"Please input a correct amount of pawns for completely closed positions i.e even number and less than 16 and more than 0. The board will not be generated."<<std::endl;
     }
     else{
-        while(white_counter<=pawns/2){
-            int random_pos=rand()%64;
-            if ((board[random_pos].is_empty()) and (fullcolumns_white[random_pos%8]<2) and (random_pos>8) and random_pos<48){
+        while(white_counter<pawns/2){
+            int random_pos=rand()%48;
+            if ((board[random_pos].is_empty()) and (fullcolumns_white[(random_pos%8)]!=1) and (random_pos>8)){
                 board[random_pos].piece=6;
                 board[random_pos].piece_color=0;
                 white_counter+=1;
-                fullcolumns_white[random_pos%8]+=1;           //make sure there are no more than two white pawns per column
+                fullcolumns_white[(random_pos%8)]+=1;           //make sure there are no more than two white pawns per column
             }
         }
         for (int i=0; i<64;i++){
             if (board[i].piece==6 and board[i].piece_color==0){
                 board[i+8].piece=6;
                 board[i+8].piece_color=1;
-
         }
     }
     }
-
 }
+
 
 void file_generator(int pawns){ //To be finished
     std::fstream file;
