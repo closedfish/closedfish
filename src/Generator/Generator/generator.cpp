@@ -193,7 +193,7 @@ void Chessboard::completion(){
 @param input array
 @return coefficient of closeness
  */
-double Chessboard::closeness(Chessboard input){ //Etienne, NOT FINISHED, flaw in logic
+double Chessboard::closeness(Chessboard input){ 
     int tot_pawn = get_total_pawns(input);
     int tot_white = get_white_pawns(input);
     int tot_black = get_black_pawns(input);
@@ -241,6 +241,7 @@ double Chessboard::closeness(Chessboard input){ //Etienne, NOT FINISHED, flaw in
             }
         }
     }
+    //cout<<closed_pawns/tot_pawn; // for testing
     return closed_pawns/tot_pawn;
 }
 
@@ -250,7 +251,7 @@ double Chessboard::closeness(Chessboard input){ //Etienne, NOT FINISHED, flaw in
 @return coefficient of openness
  */
 
-double Chessboard::openness(Chessboard input){ //Etienne, NOT FINISHED, flaw in logic 
+double Chessboard::openness(Chessboard input){
     int tot_pawn = get_total_pawns(input);
     int tot_white = get_white_pawns(input);
     int tot_black = get_black_pawns(input);
@@ -306,6 +307,7 @@ double Chessboard::openness(Chessboard input){ //Etienne, NOT FINISHED, flaw in 
             }
         }
     }
+    //cout<<open_pawns/tot_pawn; //for testing
     return open_pawns/tot_pawn;
 }
 

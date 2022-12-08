@@ -74,8 +74,12 @@ public:
     int get_total_pawns(Chessboard);// inputs a chessboard and returns how many pawns are in the chess board
     int get_white_pawns(Chessboard); //inputs a chessboard and returns how many white pawns there are
     int get_black_pawns(Chessboard); //inputs a chessboard and returns how many black pawns there are
-    void visualize();
+    void visualize(); // inputs a chessboard and returns a visual representation
     void single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
+    
+    //Attributes
     ArrayElement element;
+    //double closeness;
+    //double openness;
 };
 
