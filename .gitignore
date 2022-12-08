@@ -631,3 +631,8 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+*.xcuserstate
+*.xcuserstate
+src/Generator/Generator/generator
+
+build/
