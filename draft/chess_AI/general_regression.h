@@ -1,6 +1,58 @@
 #pragma once
 #include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
 
+
+//This class enables us to have a list that contains function. It will be very useful for the different basis of function we will test
+
+class Funk{
+
+    public:
+    Funk(){}
+
+    int square_distance(int x, int y)
+    {
+        return  (x - y) * (x - y);
+    }
+
+    int absolute_distance(int x, int y)
+    {
+        if (x > y){
+            return x - y;
+        }
+
+        else{
+            return y - x;
+        }
+    }
+
+    int average_pos(int* l_white_pons, int* l_black_pons)
+    {
+        int average = 0;
+        double pon_count = 0;
+
+        for (int i = 0; i < 8; i ++){
+            int pos = l_white_pons[i];
+            if (pos >= 0){
+                average += pos;
+                pon_count += 1;
+                std::cout << pon_count << " " << average << std::endl;
+            }
+        }
+
+        for (int i = 0; i < 8; i ++){
+            int pos = l_black_pons[i];
+            if (pos >= 0){
+                average += pos;
+                pon_count += 1;
+                std::cout << pon_count << " " << average << std::endl;
+            }
+        }
+        return (float)average / pon_count;
+    }
+
+};
+
+
 namespace Regression1 {
     
     //This function creates the matrix for the regression from the function basis Basis (a pointer) and dimension size of the basis.
@@ -46,3 +98,18 @@ namespace Regression1 {
 
 
 }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+
+namespace Basis1{
+
+
+}
+
+namespace Basis2{
+
+}
+
+namespace Basis3{
+
+}
+
