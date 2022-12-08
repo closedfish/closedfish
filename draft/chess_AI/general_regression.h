@@ -3,12 +3,25 @@
 
 
 //This class enables us to have a list that contains function. It will be very useful for the different basis of function we will test
-
 class Funk{
+public:
+    Funk(){ 
+    }
 
-    public:
-    Funk(){}
+    void choose_function(bool b)
+    {
+        i = b;
+    }
 
+    int eval(int* l_white_pons, int* l_black_pons, pos)
+    {
+        if (i){
+            if l_white_pons[pos] > 0 && l_black_pons[pos] >0
+                return square_distance(l_white_pons[pos], l_black_pons[pos]);
+        }
+
+        return absolute_distance(x, y);
+    }
     int square_distance(int x, int y)
     {
         return  (x - y) * (x - y);
@@ -24,6 +37,7 @@ class Funk{
             return y - x;
         }
     }
+
 
     int average_pos(int* l_white_pons, int* l_black_pons)
     {
@@ -47,26 +61,27 @@ class Funk{
                 std::cout << pon_count << " " << average << std::endl;
             }
         }
-        return (float)average / pon_count;
+        return 1.0 * average / pon_count;
     }
-
+private:
+    bool i;
 };
 
 
-namespace Regression1 {
+namespace TheRegression {
     
     //This function creates the matrix for the regression from the function basis Basis (a pointer) and dimension size of the basis.
     //we have that the datapoint coordinates are stored in the pointer X of a list of length num_data_points 
-    Eigen::MatrixXd setUpQ(double* Basis, double** X, int dimension, int num_data_points)
+    Eigen::MatrixXd setUpQ(Funk* Basis, double** X, int dimension, int num_data_points)
     {
         Eigen::MatrixXd Q(num_data_points, dimension);
 
-        //for (int i = 0; i < dimension; i++){
-        //    for (int j = 0; j < num_data_points; j++){
+        for (int i = 0; i < dimension; i++){
+            for (int j = 0; j < num_data_points; j++){
 
-        //        Q(dimension, num_data_point) = Basis[i](X[j]); 
-          //  }
-        //}
+                Q(dimension, num_data_points) = Basis[i].square_distance(1, 2); 
+            }
+        }
 
         return Q;
     }
@@ -83,7 +98,7 @@ namespace Regression1 {
     //this is the best linear combination of the basis functions to get the best fit in the form of 
     //a vector of length dimension
     //m here is the size of the vectors contained in X (14 <= m <= 16)
-    Eigen::VectorXd bestFitF(double* Basis, double** X, double* data_outputs, int dimension, int num_data_points, int m){
+    Eigen::VectorXd bestFitF(Funk* Basis, double** X, double* data_outputs, int dimension, int num_data_points, int m){
 
         Eigen::MatrixXd Q = setUpQ(Basis, X, dimension, num_data_points);
         Eigen::VectorXd Y = setUpYVect(data_outputs, num_data_points);
@@ -101,7 +116,7 @@ namespace Regression1 {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 
 namespace Basis1{
-
+    Funk* square_dist_basis(int* l_pons_white, int* l_pons_black)
 
 }
 

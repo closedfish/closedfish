@@ -16,16 +16,11 @@ int main()
     l[0] = f;
     l[1] = f_1;
     l[2] = f_2;
-     
-    int l_black_pons[8];
-    int l_white_pons[8];
-    for (int i = 0; i < 8; i ++){
-        l_black_pons[i] = i - 1;
-        l_white_pons[i] = i;
-    }
-    
+    f.choose_function(false);
 
-    std::cout<< f.average_pos(l_black_pons, l_white_pons) << std::endl;
+     
+
+    std::cout<< f.eval(2, 4) << std::endl;
     
     //std::cout << m << f.getval(4) << std::endl;
 }
