@@ -3,69 +3,120 @@
 
 
 //This class enables us to have a list that contains function. It will be very useful for the different basis of function we will test
-class Funk{
-public:
-    Funk(){ 
-    }
+class Funk
+{
+    public:
 
-    void choose_function(bool b)
-    {
-        i = b;
-    }
-
-    int eval(int* l_white_pons, int* l_black_pons, pos)
-    {
-        if (i){
-            if l_white_pons[pos] > 0 && l_black_pons[pos] >0
-                return square_distance(l_white_pons[pos], l_black_pons[pos]);
+        Funk(int func, int position_to_consider)
+        { 
+            func_num = func; 
+            placement = position_to_consider;
         }
 
-        return absolute_distance(x, y);
-    }
-    int square_distance(int x, int y)
-    {
-        return  (x - y) * (x - y);
-    }
 
-    int absolute_distance(int x, int y)
-    {
-        if (x > y){
-            return x - y;
+        int eval(int* l_white_pons, int* l_black_pons)
+        {
+            int x = l_white_pons[placement];
+            int y = l_black_pons[placement];
+
+            if ((x < 0) || (y < 0))
+            {
+                return 0;
+            }
+
+            if (func_num = 0)
+            {
+                return average_pos(l_white_pons, l_black_pons);
+            }
+
+            if (func_num = 1)
+            {
+                return square_distance(x, y);
+            }
+             if (func_num = 2)
+            {
+                return square_distance(x, y);
+            }
+
+           
         }
 
-        else{
-            return y - x;
+        int eval(int* L)
+        {
+            int x = L[placement];
+            int y = L[placement];
+            
+            if ((x < 0) || (y < 0))
+            {
+                return 0;
+            }
+
+            if (func_num = 1)
+            {
+                return square_distance(x, y);
+            }
+             if (func_num = 2)
+            {
+                return square_distance(x, y);
+            }
+
         }
-    }
 
 
-    int average_pos(int* l_white_pons, int* l_black_pons)
-    {
-        int average = 0;
-        double pon_count = 0;
+        int square_distance(int x, int y)
+        {
+            return  (x - y) * (x - y);
+        }
 
-        for (int i = 0; i < 8; i ++){
-            int pos = l_white_pons[i];
-            if (pos >= 0){
-                average += pos;
-                pon_count += 1;
-                std::cout << pon_count << " " << average << std::endl;
+        int absolute_distance(int x, int y)
+        {
+            if (x > y)
+            {
+                return x - y;
+            }
+
+            else
+            {
+                return y - x;
             }
         }
 
-        for (int i = 0; i < 8; i ++){
-            int pos = l_black_pons[i];
-            if (pos >= 0){
-                average += pos;
-                pon_count += 1;
-                std::cout << pon_count << " " << average << std::endl;
+
+        float average_pos(int* l_white_pons, int* l_black_pons)
+        {
+            int average = 0;
+            double pon_count = 0;
+
+            for (int i = 0; i < 8; i ++){
+
+                int pos_1 = l_white_pons[i];
+                int pos_2 = l_black_pons[i];
+                if (pos_1 >= 0)
+                {
+                    average += pos_1;
+                    pon_count += 1;
+                    std::cout << pon_count << " " << average << std::endl;
+                }
+            
+                if (pos_2 >= 0)
+                {
+                    average += pos_2;
+                    pon_count += 1;
+                    std::cout << pon_count << " " << average << std::endl;
+                }
             }
+
+            
+            return (float)average / pon_count;
         }
-        return 1.0 * average / pon_count;
-    }
-private:
-    bool i;
-};
+
+    private:
+        int func_num;
+        int placement;
+        
+        
+};      
+
 
 
 namespace TheRegression {
@@ -116,8 +167,7 @@ namespace TheRegression {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 
 namespace Basis1{
-    Funk* square_dist_basis(int* l_pons_white, int* l_pons_black)
-
+   
 }
 
 namespace Basis2{

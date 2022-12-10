@@ -9,18 +9,21 @@ int main()
     m(0, 1) = 2;
     m(1, 0) = 3;
     m(1, 1) = 4;
-    Funk f;
-    Funk f_1;
-    Funk f_2;
-    Funk l[3];
-    l[0] = f;
-    l[1] = f_1;
-    l[2] = f_2;
-    f.choose_function(false);
+    Funk f(2, 5);
+
+    int l_1[8];
+    int l_2[8];
+
+    for (int i = 0; i < 8; i ++)
+    {
+        l_1[i] = i;
+        l_2[i] = i - 1;
+    }
+
 
      
 
-    std::cout<< f.eval(2, 4) << std::endl;
+    std::cout<< f.average_pos(l_2, l_1) << std::endl;
     
     //std::cout << m << f.getval(4) << std::endl;
 }
