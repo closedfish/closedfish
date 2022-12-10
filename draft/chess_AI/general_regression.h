@@ -6,7 +6,7 @@
 //
 //DETAILS:
 //
-//func_num: tells us which of the different functions of the class (0, 1, 2) the function will be
+//func_num: tells us which of the different functions of the class (0, 1 or 2) the function will be
 //
 //position_to_consider: will tell us the x-coordinate of the pons we are considering 
 //
@@ -18,7 +18,7 @@ class Funk
 {
     public:
 
-        Funk(int func_num, int position_to_consider, int difference_type, int height) //height isn't needed if the difference_type is 2
+        Funk(int func_num, int position_to_consider, int difference_type, int height) 
         { 
             this->func_num = func_num; 
             placement = position_to_consider;
@@ -49,6 +49,7 @@ class Funk
                 return Eval_help(l_top_pons, l_bottom_pons);
             }
         }
+
         int Eval_help(int* l_top_pons, int* l_bottom_pons)
         {
             int t = l_top_pons[placement];
@@ -71,7 +72,7 @@ class Funk
            
         }
 
-        // here we overload eval to compute the distance bewteen two consecutive pons of same color
+        // here we overload Eval_help to compute the distance bewteen two consecutive pons of same color
         int Eval_help(int* l)
         {
             int pon1 = l[placement];
@@ -89,6 +90,8 @@ class Funk
 
         }
 
+        // Here are the actual functions that a basis could be composed of:
+        //
 
         int SquareDistance(int x, int y)
         {
@@ -127,7 +130,6 @@ class Funk
                 {
                     average += pos_2;
                     pon_count += 1;
-                    std::cout << pon_count << " " << average << std::endl;
                 }
             }
 
@@ -198,20 +200,26 @@ class Funk
 
 // namespace Basis1
 // {
-//     Funk* GenerateBasis(int* l_white_pons, int* l_black_pons)
+//     Funk* GenerateBasis()
 //     {
 //         Funk Basis[23]; 
 
-//         for (int i == 0; i < 7; i ++)
+//         for (int i = 0; i < 7; i ++)
 //         {
-//             Basis[i] = Funk(1, i, 0);
-//             Basis[i + 7] = Funk(1, i, 1)
+//             Basis[i] = Funk(1, i, 1, 2);//top pons consecutive difference
+//             Basis[i + 7] = Funk(1, i, 1, 1);//bottom pons consecutive difference
 //         }
+//         for (int j = 0; j < 8; j ++)
+//         {
+//             Basis[j + 14] = Funk(1, j, 2, -1);
+//         }
+//         Basis[22] = Funk(0, -1, 2, -1);
 
+//         return &Basis[0];
 
 //     }
    
-// }
+}
 
 namespace Basis2{
 
