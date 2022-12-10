@@ -13,7 +13,8 @@ int main(int argc, const char * argv[]) {
     chessboard.visualize();
     chessboard.single_generator(16);
     chessboard.visualize();
-    
+    int i =chessboard.find_pawn_in_column(chessboard, 6, 1);
+    cout<<i;
 
     return 0;
 }

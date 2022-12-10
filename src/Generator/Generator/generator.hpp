@@ -5,7 +5,10 @@
 //  Created by Ariel Flahaut on 27/11/2022.
 //
 
-
+#include <iostream>
+using namespace std; //removes the need to type std::
+std::vector<std::vector<int>> listpawns();
+    
 
 void file_generator(int pawns); //Input number of pawns and return a file with every possible closed position with only pawns
 
@@ -76,6 +79,7 @@ public:
     int get_black_pawns(Chessboard); //inputs a chessboard and returns how many black pawns there are
     void visualize();
     void single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
+    int find_pawn_in_column(Chessboard, int, int);
     ArrayElement element;
 };
 

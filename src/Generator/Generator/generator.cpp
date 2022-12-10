@@ -9,7 +9,37 @@
 #include <fstream>      //For files
 #include <stdlib.h>     // include rand
 #include <iostream>
+#include <vector>
 using namespace std; //removes the need to type std::
+
+/**
+@brief This function takes no input, generates a chessboard closed position and converts it into an output for cassidy.
+
+@return This function returns a two dimensional vector where each vector element of the initial element is of the form {xcoord, ycoord, piece_color} for each column, if a specific column has no pawn then both the black and white pawn in that column will have values {9,9,9}.
+
+ */
+
+std::vector<std::vector<int>> listpawns(){
+    std::vector<std::vector<int>> listpawns;
+    Chessboard chessboard;
+    int pawns_num=rand()%6;
+    pawns_num+=10;
+    if (pawns_num%2!=0){pawns_num+=1;}
+    chessboard.single_generator(pawns_num);
+    listpawns.resize(2);
+    int color=-1;
+    int bigLength = listpawns.size();
+    for (int i = 0; i < bigLength; i++){
+        listpawns[i].resize(8);
+        color+=1;
+        int innerLength = listpawns[i].size();
+        for(int j = 0; j < innerLength; j++){
+            listpawns[i][j]=chessboard.find_pawn_in_column(chessboard, j, color);
+        }
+    }
+    return listpawns;
+}
+
 
 /**
 @brief this function has the goal of taking an amount of pawns (even or odd) and returning a random board with those pawns
@@ -387,4 +417,21 @@ void Chessboard::visualize(){
         
     }
     cout<<endl;
+}
+
+int Chessboard::find_pawn_in_column(Chessboard input, int column, int color){
+    int position =8;
+    if (color==1){
+        position=-1;
+    }
+    int col=0;
+    for (int i=column; i<63;i+=8){
+        if (input.board[i].piece==6){
+            if (input.board[i].piece_color==color){
+                position = col;
+            }
+        }
+        col+=1;
+    }
+    return position;
 }
