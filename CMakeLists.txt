@@ -28,6 +28,7 @@ set(PLAY PlayingRoutine)
 set(INPUT ReceiveInputFromUI)
 set(OUTPUT SendOutputToUI)
 set(OPENING DeceideOverOpening)
+set(BI BoardImplementation)
 
 set(EXECUTABLE Executable)
 
@@ -78,13 +79,19 @@ FetchContent_Declare(
     GIT_SHALLOW TRUE)
 FetchContent_MakeAvailable(nlohmann_json)
 
-FetchContent_Declare(
-    eigen_lib
-    GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
-    GIT_TAG 3.4.0
-    GIT_SHALLOW TRUE)
-FetchContent_MakeAvailable(eigen_lib)
+#FetchContent_Declare(
+#    eigenlib
+#    GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
+#   GIT_TAG 3.4.0
+#    GIT_SHALLOW TRUE)
+#FetchContent_MakeAvailable(eigenlib)
 
+option(USE_VCPKG "Whether to use VCPCKG" ON)
+if(USE_VCPKG)
+    message("Using VCPKG")
+    include(${CMAKE_SOURCE_DIR}/external/vcpkg/scripts/buildsystems/vcpkg.cmake)
+    find_package(eigen3)
+endif()
 #inlude warnings
 include(Warnings)
 

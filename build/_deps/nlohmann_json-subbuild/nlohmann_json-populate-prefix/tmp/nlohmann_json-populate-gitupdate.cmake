@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.5)
 
 function(get_hash_for_ref ref out_var err_var)
   execute_process(
-    COMMAND "C:/Program Files/Git/cmd/git.exe" rev-parse "${ref}^0"
+    COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git rev-parse "${ref}^0"
     WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
     RESULT_VARIABLE error_code
     OUTPUT_VARIABLE ref_hash
@@ -27,7 +27,7 @@ endif()
 
 
 execute_process(
-  COMMAND "C:/Program Files/Git/cmd/git.exe" show-ref "v3.11.2"
+  COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git show-ref "v3.11.2"
   WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
   OUTPUT_VARIABLE show_ref_output
 )
@@ -95,7 +95,7 @@ endif()
 if(fetch_required)
   message(VERBOSE "Fetching latest from the remote origin")
   execute_process(
-    COMMAND "C:/Program Files/Git/cmd/git.exe" fetch --tags --force "origin"
+    COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git fetch --tags --force "origin"
     WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
     COMMAND_ERROR_IS_FATAL ANY
   )
@@ -112,7 +112,7 @@ if(git_update_strategy MATCHES "^REBASE(_CHECKOUT)?$")
   # We can't if we aren't already on a branch and we shouldn't if that local
   # branch isn't tracking the one we want to checkout.
   execute_process(
-    COMMAND "C:/Program Files/Git/cmd/git.exe" symbolic-ref -q HEAD
+    COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git symbolic-ref -q HEAD
     WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
     OUTPUT_VARIABLE current_branch
     OUTPUT_STRIP_TRAILING_WHITESPACE
@@ -128,7 +128,7 @@ if(git_update_strategy MATCHES "^REBASE(_CHECKOUT)?$")
 
   else()
     execute_process(
-      COMMAND "C:/Program Files/Git/cmd/git.exe" for-each-ref "--format=%(upstream:short)" "${current_branch}"
+      COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git for-each-ref "--format=%(upstream:short)" "${current_branch}"
       WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
       OUTPUT_VARIABLE upstream_branch
       OUTPUT_STRIP_TRAILING_WHITESPACE
@@ -151,7 +151,7 @@ endif()
 
 # Check if stash is needed
 execute_process(
-  COMMAND "C:/Program Files/Git/cmd/git.exe" status --porcelain
+  COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git status --porcelain
   WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
   RESULT_VARIABLE error_code
   OUTPUT_VARIABLE repo_status
@@ -165,7 +165,7 @@ string(LENGTH "${repo_status}" need_stash)
 # rebase or checkout without losing those changes permanently
 if(need_stash)
   execute_process(
-    COMMAND "C:/Program Files/Git/cmd/git.exe" stash save --quiet;--include-untracked
+    COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git stash save --quiet;--include-untracked
     WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
     COMMAND_ERROR_IS_FATAL ANY
   )
@@ -173,13 +173,13 @@ endif()
 
 if(git_update_strategy STREQUAL "CHECKOUT")
   execute_process(
-    COMMAND "C:/Program Files/Git/cmd/git.exe" checkout "${checkout_name}"
+    COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git checkout "${checkout_name}"
     WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
     COMMAND_ERROR_IS_FATAL ANY
   )
 else()
   execute_process(
-    COMMAND "C:/Program Files/Git/cmd/git.exe" rebase "${checkout_name}"
+    COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git rebase "${checkout_name}"
     WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
     RESULT_VARIABLE error_code
     OUTPUT_VARIABLE rebase_output
@@ -188,7 +188,7 @@ else()
   if(error_code)
     # Rebase failed, undo the rebase attempt before continuing
     execute_process(
-      COMMAND "C:/Program Files/Git/cmd/git.exe" rebase --abort
+      COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git rebase --abort
       WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
     )
 
@@ -196,7 +196,7 @@ else()
       # Not allowed to do a checkout as a fallback, so cannot proceed
       if(need_stash)
         execute_process(
-          COMMAND "C:/Program Files/Git/cmd/git.exe" stash pop --index --quiet
+          COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git stash pop --index --quiet
           WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
           )
       endif()
@@ -218,7 +218,7 @@ else()
     message(WARNING "Rebase failed, output has been saved to ${error_log_file}"
                     "\nFalling back to checkout, previous commit tagged as ${tag_name}")
     execute_process(
-      COMMAND "C:/Program Files/Git/cmd/git.exe" tag -a
+      COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git tag -a
               -m "ExternalProject attempting to move from here to ${checkout_name}"
               ${tag_name}
       WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
@@ -226,7 +226,7 @@ else()
     )
 
     execute_process(
-      COMMAND "C:/Program Files/Git/cmd/git.exe" checkout "${checkout_name}"
+      COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git checkout "${checkout_name}"
       WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
       COMMAND_ERROR_IS_FATAL ANY
     )
@@ -236,29 +236,29 @@ endif()
 if(need_stash)
   # Put back the stashed changes
   execute_process(
-    COMMAND "C:/Program Files/Git/cmd/git.exe" stash pop --index --quiet
+    COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git stash pop --index --quiet
     WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
     RESULT_VARIABLE error_code
     )
   if(error_code)
     # Stash pop --index failed: Try again dropping the index
     execute_process(
-      COMMAND "C:/Program Files/Git/cmd/git.exe" reset --hard --quiet
+      COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git reset --hard --quiet
       WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
     )
     execute_process(
-      COMMAND "C:/Program Files/Git/cmd/git.exe" stash pop --quiet
+      COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git stash pop --quiet
       WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
       RESULT_VARIABLE error_code
     )
     if(error_code)
       # Stash pop failed: Restore previous state.
       execute_process(
-        COMMAND "C:/Program Files/Git/cmd/git.exe" reset --hard --quiet ${head_sha}
+        COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git reset --hard --quiet ${head_sha}
         WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
       )
       execute_process(
-        COMMAND "C:/Program Files/Git/cmd/git.exe" stash pop --index --quiet
+        COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git stash pop --index --quiet
         WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
       )
       message(FATAL_ERROR "\nFailed to unstash changes in: 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src'."
@@ -270,7 +270,7 @@ endif()
 set(init_submodules "TRUE")
 if(init_submodules)
   execute_process(
-    COMMAND "C:/Program Files/Git/cmd/git.exe" submodule update --recursive --init 
+    COMMAND "C:/Program Files/Git/cmd/git.exe" --git-dir=.git submodule update --recursive --init 
     WORKING_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-src"
     COMMAND_ERROR_IS_FATAL ANY
   )
