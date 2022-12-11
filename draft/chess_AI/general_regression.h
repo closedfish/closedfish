@@ -14,11 +14,16 @@
 //
 //height: int the case where we have difference type 1 height will tell us if we consider the piece at the top of the board (2) or at the bottom (1)
 
-class Funk
+class Func
 {
     public:
 
-        Funk(int func_num, int position_to_consider, int difference_type, int height) 
+        Func()
+        {
+
+        }
+
+        void InitFunc(int func_num, int position_to_consider, int difference_type, int height) 
         { 
             this->func_num = func_num; 
             placement = position_to_consider;
@@ -155,14 +160,14 @@ class Funk
 //     //This function creates the matrix for the regression from the function basis Basis (a pointer) and dimension size of the basis.
 //     //we have that the datapoint coordinates are stored in the pointer X of a list of length num_data_points 
     
-//     Eigen::MatrixXd setUpQ(Funk* Basis, int** X, int dimension, int num_data_points)
+//     Eigen::MatrixXd setUpQ(Funk* basis, int** X, int dimension, int num_data_points)
 //     {
 //         Eigen::MatrixXd Q(num_data_points, dimension);
 
 //         for (int i = 0; i < dimension; i++){
 //             for (int j = 0; j < num_data_points; j++){
 
-//                 Q(dimension, num_data_points) = Basis[i].SquareDistance(1, 2); 
+//                 Q(dimension, num_data_points) = basis[i].SquareDistance(1, 2); 
 //             }
 //         }
 
@@ -181,9 +186,9 @@ class Funk
 //     //this is the best linear combination of the basis functions to get the best fit in the form of 
 //     //a vector of length dimension
 //     //m here is the size of the vectors contained in X (14 <= m <= 16)
-//     Eigen::VectorXd bestFitF(Funk* Basis, double** X, double* data_outputs, int dimension, int num_data_points, int m){
+//     Eigen::VectorXd bestFitF(Funk* basis, double** X, double* data_outputs, int dimension, int num_data_points, int m){
 
-//         Eigen::MatrixXd Q = setUpQ(Basis, X, dimension, num_data_points);
+//         Eigen::MatrixXd Q = setUpQ(basis, X, dimension, num_data_points);
 //         Eigen::VectorXd Y = setUpYVect(data_outputs, num_data_points);
 
 //         Eigen::MatrixXd trans_Q = Q.transpose();
@@ -198,27 +203,27 @@ class Funk
 // }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 
-// namespace Basis1
-// {
-//     Funk* GenerateBasis()
-//     {
-//         Funk Basis[23]; 
+namespace Basis1
+{
+    Func* GenerateBasis()
+    {
+        Func basis[23]; 
 
-//         for (int i = 0; i < 7; i ++)
-//         {
-//             Basis[i] = Funk(1, i, 1, 2);//top pons consecutive difference
-//             Basis[i + 7] = Funk(1, i, 1, 1);//bottom pons consecutive difference
-//         }
-//         for (int j = 0; j < 8; j ++)
-//         {
-//             Basis[j + 14] = Funk(1, j, 2, -1);
-//         }
-//         Basis[22] = Funk(0, -1, 2, -1);
+        for (int i = 0; i < 7; i ++)
+        {
+            basis[i].InitFunc(1, i, 1, 2);//top pons consecutive difference
+            basis[i + 7].InitFunc(1, i, 1, 1);//bottom pons consecutive difference
+        }
+        for (int j = 0; j < 8; j ++)
+        {
+            basis[j + 14].InitFunc(1, j, 2, -1);
+        }
+        basis[22].InitFunc(0, -1, 2, -1);
 
-//         return &Basis[0];
+        return basis;
 
-//     }
-   
+    }
+
 }
 
 namespace Basis2{
