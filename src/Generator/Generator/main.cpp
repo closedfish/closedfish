@@ -8,6 +8,7 @@
 
 #include "generator.hpp"
 #include <iostream>
+
 int main(int argc, const char * argv[]) {
     Chessboard chessboard;
     chessboard.visualize();
@@ -15,6 +16,5 @@ int main(int argc, const char * argv[]) {
     chessboard.completion();
     chessboard.visualize();
     
-
     return 0;
 }

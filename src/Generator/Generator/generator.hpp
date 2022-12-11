@@ -9,8 +9,7 @@
 
 void file_generator(int pawns); //Input number of pawns and return a file with every possible closed position with only pawns
 
-void database_edit(); //Etienne, open the database file, remove all of the unneeded pieces (not pawns) and create a new file with all of the new positions that have only pawns.
-
+void database_edit(); // cannot be implemented
 
 
 class ArrayElement { // Array element class
@@ -74,13 +73,24 @@ public:
     We iterate over the board, counting the number of open pawns (pawns that don't have another pawn in front of them or that have at least one pawn to their diagonal). We return a ratio of the number of closed pawns to the total number of pawns.
      */
     void completion();// Shirelle, input a board with only pawns and fill the board with other pieces randomly
+    
     int get_total_pawns(Chessboard);// inputs a chessboard and returns how many pawns are in the chess board
+    
     int get_white_pawns(Chessboard); //inputs a chessboard and returns how many white pawns there are
+    
     int get_black_pawns(Chessboard); //inputs a chessboard and returns how many black pawns there are
-    void visualize();
+    
+    void visualize(); // inputs a chessboard and returns a visual representation
+    
     void single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
     
+
     bool check(); // check if the king is in check or not
+
+    //Attributes
+
     ArrayElement element;
+    //double closeness; // to be used? - needs to be decided 
+    //double openness;
 };
 
