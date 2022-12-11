@@ -1,13 +1,7 @@
 #pragma once
-<<<<<<< Updated upstream
-#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
-//#include <Eigen/Dense>
-
-=======
 //#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
 //#include <Eigen\Dense>
 #include <Eigen\Dense>
->>>>>>> Stashed changes
 //This is  the funtion class that will enables us to have an array of functions.
 //
 //DETAILS:
