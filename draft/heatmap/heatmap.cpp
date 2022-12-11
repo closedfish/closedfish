@@ -73,8 +73,8 @@ void displayPawnBoard(const uint64_t& pawnBoard) { // for testing only
 	}
 }
 
-void addHeatMapPieceProtect(int &i, int &j, int (&heat_map)[8][8], const char &piece,
-							int &no_pieces, uint64_t &opponent_pawn_board, int (&pawn_height)[8]) {
+void addHeatMapPieceProtect(const int &i, const int &j, int (&heat_map)[8][8], const char &piece,
+							const int &no_pieces, const uint64_t &opponent_pawn_board, int (&pawn_height)[8]) {
 	if (no_pieces == 0) return;
 	std::vector<std::vector<int>> next_squares;
 	if (piece == 'P') {
@@ -150,6 +150,7 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
 	int no_knights = __builtin_popcountll(knight_board),
 		no_rooks = __builtin_popcountll(rook_board),
 		no_queens = __builtin_popcountll(queen_board);
+
 	// Count how many light and dark squared bishop
 	int no_bishops_color[2] = {0, 0};
 	std::vector<int> bishop_tiles = tilesSetFromBoard(bishop_board);
@@ -232,7 +233,7 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
 	} else { // No open files
 		std::cout << free_rows << '\n';
 		if (free_rows >= 2) { // 2 free rows, knights, rooks and queens are essentially able to go anywhere
-			// To be added
+			// To be adjusted
 			std::vector<int> weak_pawns_file;
 			for (int i = 0; i < 8; i++) {
 				if (weak_pawns & (1ll<<i)) { // ith bit is set
@@ -270,8 +271,33 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
 											opponent_pawn_board, pawn_height);
 				}
 
+				// King moves to near weak pawns, protect nearby pawns if opponent does not have many materials left on the board.
+				//														otherwise, stay as far as possible
+				int threshold = 15; // to be adjusted
+				int opponent_material = board.getMaterialCount(!current_turn);
+				if (opponent_material < threshold) {
+					// protect left pawn
+					if (j >= 1 && validSquare(pawn_height[j-1], j)) {
+						addHeatMapPieceProtect(pawn_height[j-1], j, heat_map, 'K', 1, opponent_pawn_board, pawn_height);
+					}
+					// protect right pawn
+					if (j <= 6 && validSquare(pawn_height[j+1], j)) {
+						addHeatMapPieceProtect(pawn_height[j+1], j, heat_map, 'K', 1, opponent_pawn_board, pawn_height);
+					}
+				} else {
+					// stay in the left if weak pawn in the right
+					if (j >= 4) {
+						addHeatMapPieceProtect(0, 0, heat_map, 'K', 1, opponent_pawn_board, pawn_height);
+					}
+					// stay in the right otherwise
+					else {
+						addHeatMapPieceProtect(0, 7, heat_map, 'K', 1, opponent_pawn_board, pawn_height);
+					}
+				}
 			} 
 		} else {
+			// Pieces are more limited to their own "area", hence smaller coefficients added to
+			// squares outside of their "area" since it takes more turns to move them there.
 
 			// To be added
 		}
