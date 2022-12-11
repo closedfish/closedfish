@@ -19,3 +19,10 @@ Sirawit:
 	Next week:
 		- [Urgent] Finish stockfish
 
+Aarrya:
+	This week: 
+		- Finished the 1 person DFS algorithm 
+		- made plans and dsitributed work for next weeks
+	Next week:
+		- merge all algorithms till now into one.
+		- finalise work for everyone
