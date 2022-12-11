@@ -322,12 +322,12 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
 											opponent_pawn_board, pawn_height, distArea[j][pos[1]]);
 					// protect left pawn
 					if (j >= 1 && validSquare(pawn_height[j-1], j) && (pawn_height[j-1]+j)%2 == bishopColor) {
-						addHeatMapPieceProtect(pawn_height[j-1], j, heat_map, 'B', no_bishops_color[(pawn_height[j-1]+j)%2],
+						addHeatMapPieceProtect(pawn_height[j-1], j, heat_map, 'B', 1,
 												opponent_pawn_board, pawn_height, distArea[j][pos[1]]);
 					}
 					// protect right pawn
 					if (j <= 6 && validSquare(pawn_height[j+1], j) && (pawn_height[j-1]+j)%2 == bishopColor) {
-						addHeatMapPieceProtect(pawn_height[j+1], j, heat_map, 'B', no_bishops_color[(pawn_height[j-1]+j)%2],
+						addHeatMapPieceProtect(pawn_height[j+1], j, heat_map, 'B', 1,
 												opponent_pawn_board, pawn_height, distArea[j][pos[1]]);
 					}
 				}
