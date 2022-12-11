@@ -1,5 +1,6 @@
 #pragma once
-#include <Eigen/Dense>
+#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
+
 
 //This is  the funtion class that will enables us to have an array of functions.
 //
@@ -124,7 +125,7 @@ class Func
 
                 int pos_1 = l_top_pons[i];
                 int pos_2 = l_bottom_pons[i];
-                if (pos_1 >= 0)
+                if (pos_1 <= 7)
                 {
                     average += pos_1;
                     pon_count += 1;
@@ -206,7 +207,7 @@ namespace Basis1
 {
     Func* GenerateBasis()
     {
-        Func basis[23]; 
+        Func* basis = new Func[23]; 
 
         for (int i = 0; i < 7; i ++)
         {
@@ -217,6 +218,7 @@ namespace Basis1
         {
             basis[j + 14].InitFunc(1, j, 2, -1);
         }
+        
         basis[22].InitFunc(0, -1, 2, -1);
 
         return basis;
@@ -232,4 +234,3 @@ namespace Basis2{
 namespace Basis3{
 
 }
-
