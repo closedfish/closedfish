@@ -3,11 +3,14 @@
 #include <array>
 #include <iostream>
 #include "../../lib/board_implementation/CFBoard.h"
-#include "DFS1p.h"
 #include <string>
 
 using namespace std;
 
+bool is_protected(int u)
+{
+	return false;
+}
 
 //evaluates the position might be different from stockfish. to be implemented later on
 int eval()
@@ -137,14 +140,14 @@ bool isSquareInBoard(int sq)
 
 //checks if a move is stupid or not
 // a move is stupid 
-bool is_stupid(CFBoard& board)
+bool isGood(CFBoard& board, int sq, int move)
 {
 
 }
 
 /*
 * the main idea has been optimized a lot more than last week and to that end,
-* the DFS has been changed quite a lot
+* the DFS has been changed to a BFS and the ideas have been quite a lot
 * 
 * the main thing to do is to take a position, and keep on making moves for only one side.
 * After every 5 moves we can use a naive evaluation criteria and discard all but the top line
@@ -153,139 +156,157 @@ bool is_stupid(CFBoard& board)
 * 
 */
 
-int DFSHelp(CFBoard board, Node n, int depth, string fen, int top, string fenTop)
+void dfsMain(CFBoard board)
 {
-	if (depth==5 && eval()>top)
-	{
-			top = eval();
-			fenTop = fen;
-	}
-	else if (depth < 5)
-	{
+	/*
+	* input: the board
+	* output: the 3 best evaluations and the move lines
+	*/
+	
+}
 
+void dfsMain2(CFBoard board)
+{
+	int eval[3] = { 0,0,0 };
+	string play[3] = { "","","" };
+	dfsHelp(board, "", 1, eval, play);
+	std::cout << eval << endl;
+	std::cout << play << endl;
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			eval[j] = 0;
+			play[j] = "";
+		}
+		CFBoard board1 = board;
+		CFBoard board2 = board;
+		CFBoard board3 = board;
+		board1.makeMovess(play[0]);
+		board2.makeMovess(play[1]);
+		board3.makeMovess(play[2]);
+		dfsHelp(board1, play[0], 1, eval, play);
+		int evalc[3] = { 0,0,0 };
+		string playc[3] = { "","","" };
+		for (int j = 0; j < 3; j++)
+		{
+			evalc[j] = eval[j];
+			eval[j] = 0;
+			playc[j] = play[j];
+			play[j] = "";
+		}
+		dfsHelp(board2, play[1], 1, eval, play);
+		for (int j = 0; j < 3; j++)
+		{
+			update(evalc, playc, eval[j], play[j]);
+			eval[j] = 0;
+			play[j] = "";
+		}
+		dfsHelp(board3, play[2], 1, eval, play);
+		for (int j = 0; j < 3; j++)
+		{
+			update(evalc, playc, eval[j], play[j]);
+			eval[j] = 0;
+			play[j] = "";
+		}
 	}
 }
 
-void Dfs_main(CFBoard& board)
+void update(int* eva, string* play, int e, string moo)
 {
-	//Input: a board. 
-	//Output: the top line from the 1 person BFS
-	//for now its only white moving
-
-	//makes a vector of all possible moves
-	vector<Node> moves;
-	for (int i = 0; i < 64; i++)
+	if (e > eva[2])
 	{
-		int piece = board.getBit(i);
-		if (piece >= 0)
+		// we check if the naive eval is good and update it accordingly
+		if (e > eva[0])
 		{
-			int tot = numMoves(piece);
-			for (int j = 0; j < tot; j++)
+			eva[2] = eva[1];
+			eva[1] = eva[0];
+			eva[0] = e;
+			play[2] = play[1];
+			play[1] = play[0];
+			play[0] = moo;
+		}
+		else if (e > eva[1])
+		{
+			eva[2] = eva[1];
+			eva[1] = e;
+			play[2] = play[1];
+			play[1] = moo;
+		}
+		else
+		{
+			eva[2] = e;
+			play[2] = moo;
+		}
+	}
+}
+
+vector<int> allGoodMoves(CFBoard& board, int sq)
+{
+	/*
+	* input the board and the square of the piece which is going to make moves
+	* output all possible legal moves we want to play
+	*/
+	vector<int> moves;
+	int piece = board.getBit(sq);
+	int tot = numMoves(piece);
+	for (int j = 0; j < tot; j++)
+		if (isGood(board,sq,j))
+			moves.push_back(j);
+	return moves;
+}
+
+void dfsHelp(CFBoard &board, string moo, int depth, int* eva, string* play)
+{
+	/*
+	* input the board and the string of moves, the depth, the top 3 evaluations and their lines
+	* output at depth 5 the best ones
+	*/
+	// the actual DFS will start
+	if (depth == 5)
+	{
+		// at depth 5
+		update(eva, play, eval(), moo);
+	}
+	else
+	{
+		// depth less than 5
+		for (int i = 0; i < 64; i++)
+		{
+			// checking every square for our pieces
+			int k = board.getPieceFromCoords(i);
+			if (k >= 0 &&  k%2==0)
 			{
-				if (board.isLegal(j))
+				// vector with all the moves from this position
+				vector<int> moves = allGoodMoves(board, i);
+				for (int move : moves)
 				{
-					Node n = Node(j, i, 0, NULL, { Node()});
-					moves.push_back(n);
+					// new tile of the move
+					int u = i + newTile(k, move);
+					//sees if a piece is captured
+					int capt = board.getPieceFromCoords(u);
+					//updates string storing moves
+					moo = moo + board.moveString(i, u);
+					//makes the move
+					board.makeMove(i,u);
+					if (capt >= 0 && is_protected(u))
+					{
+						// a piece is captured and it was protected so the opponent can and cannot capture then we 
+						// run dfs on board where it is and it is not
+						CFBoard board2 = board;
+						board2.removePiece(u);	
+						string moo2 = moo + "X";
+						dfsHelp(board2, moo2, depth, eva, play);
+					}
+					//runs the same thing at greater depth and for every move
+					dfsHelp(board, moo, depth+1, eva, play);
+					// undos the move
+					board.undoMove(u, i, capt);
 				}
 			}
 		}
-
 	}
-	
-	// the actual DFS will start
-	for (Node n : moves)
-	{
 
-	}
 	
 }
 
-// Tree structure for the DFS
-
-Node::Node()
-{
-	move = 0;
-	square = 0;
-	eval = 0;
-	parent = NULL;
-	children = {Node()};
-}
-
-Node::Node(int mov, int squar, int e, Node* paren, vector<Node> childre)
-{
-	move = mov;
-	squar = square;
-	eval = e;
-	parent = parent;
-	children = childre;
-}
-
-int Node::getMove()
-{
-	return move;
-}
-
-void Node::setMove(int mo)
-{
-	move = mo;
-}
-
-int Node::getSquare()
-{
-	return square;
-}
-
-void Node::setSquare(int s)
-{
-	square = s;
-}
-
-int Node::getEval()
-{
-	return eval;
-}
-
-void Node::setEval(int e)
-{
-	eval = e;
-}
-
-Node* Node::getParent()
-{
-	return parent;
-}
-
-void Node::setParent(Node* paren)
-{
-	parent = paren;
-}
-
-vector<Node> Node::getChildren()
-{
-	return children;
-}
-
-void Node::setChildren(vector<Node> child)
-{
-	children = child;
-}
-
-Tree::Tree()
-{
-	root = NULL;
-}
-
-Tree::Tree(Node* roo)
-{
-	root = roo;
-}
-
-Node* Tree::getRoot()
-{
-	return root;
-}
-
-void Tree::setRoot(Node* n)
-{
-	root = n;
-}

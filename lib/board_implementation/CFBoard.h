@@ -56,10 +56,12 @@ public:
      *
      * @return P/N/B/R/Q/K depending on the piece, lowercase if black piece.
      */
-
+    void makeMovess(string s);
     bool isLegal(int j);
     char pieceIdToChar(int pieceId);
-
+    void makeMove(int sq, int newsq);
+    void undoMove(int sq, int newsq, int capt);
+    string moveString(int sq, int newsq);
     /**
      * @brief This function takes a pieceId and returns the associated
      * character.
