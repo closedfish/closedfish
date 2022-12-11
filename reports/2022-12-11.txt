@@ -1,0 +1,11 @@
+Ariel:
+This week: 
+          - Finished the implementation of the generator algorithm for one closed position and
+            created to match the output required for the switch team using a vector of vectors
+	  - Created new functions to make the usage of the Class Chessboard easier.
+	  - Started on the file generator for many closed positions
+Next week:
+	  - Finish making the file generator for many closed positions (using as input the amount of 
+            needed closed positions
+	  - Finish testing the generator and work with the switch team for final edits.
+ 	  - See during the lecture what the next tasks will be
