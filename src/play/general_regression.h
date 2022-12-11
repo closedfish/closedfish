@@ -1,6 +1,6 @@
 #pragma once
-//#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
-#include <Eigen/Dense>
+#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
+//#include <Eigen/Dense>
 
 //This is  the funtion class that will enables us to have an array of functions.
 //
@@ -38,7 +38,7 @@ class Func
         //
         //NOTE: if func_num is 0 it will return the average positions of the pons
         //
-        int Eval(int* l_top_pons, int* l_bottom_pons)
+        float Eval(int* l_top_pons, int* l_bottom_pons)
         {
             if (difference_type == 1){
                 if (height == 2){
@@ -55,7 +55,7 @@ class Func
             }
         }
 
-        int Eval_help(int* l_top_pons, int* l_bottom_pons)
+        float Eval_help(int* l_top_pons, int* l_bottom_pons)
         {
             int t = l_top_pons[placement];
             int b = l_bottom_pons[placement];
@@ -78,7 +78,7 @@ class Func
         }
 
         // here we overload Eval_help to compute the distance bewteen two consecutive pons of same color
-        int Eval_help(int* l)
+        float Eval_help(int* l)
         {
             int pon1 = l[placement];
             int pon2 = l[placement + 1];
@@ -118,7 +118,7 @@ class Func
 
         float AveragePos(int* l_top_pons, int* l_bottom_pons)
         {
-            int average = 0;
+            int tot_sum = 0;
             double pon_count = 0;
 
             for (int i = 0; i < 8; i ++){
@@ -127,19 +127,19 @@ class Func
                 int pos_2 = l_bottom_pons[i];
                 if (pos_1 <= 7)
                 {
-                    average += pos_1;
+                    tot_sum += pos_1;
                     pon_count += 1;
                 }
             
                 if (pos_2 >= 0)
                 {
-                    average += pos_2;
+                    tot_sum += pos_2;
                     pon_count += 1;
                 }
             }
 
-            
-            return (float)average / pon_count;
+            std::cout << tot_sum << " " << pon_count << std::endl;
+            return (float)tot_sum / (float) pon_count;
         }
 
 
@@ -155,55 +155,58 @@ class Func
 
 
 
-// namespace TheRegression {
+namespace TheRegression {
     
-//     //This function creates the matrix for the regression from the function basis Basis (a pointer) and dimension size of the basis.
-//     //we have that the datapoint coordinates are stored in the pointer X of a list of length num_data_points 
+    //This function creates the matrix for the regression from the function basis Basis (a pointer) and dimension size of the basis.
+    //we have that the datapoint coordinates are stored in the pointer X of a list of length num_data_points 
     
-//     Eigen::MatrixXd setUpQ(Funk* basis, int** X, int dimension, int num_data_points)
-//     {
-//         Eigen::MatrixXd Q(num_data_points, dimension);
-
-//         for (int i = 0; i < dimension; i++){
-//             for (int j = 0; j < num_data_points; j++){
-
-//                 Q(dimension, num_data_points) = basis[i].SquareDistance(1, 2); 
-//             }
-//         }
-
-//         return Q;
-//     }
-
-//     //create the vector Y (the output obained for the data points)
-//     Eigen::VectorXd setUpYVect(double* data_outputs, int num_data_points){
-//         Eigen::VectorXd Y(num_data_points);
-//         for (int i = 0; i < num_data_points; i++){
-//             Y(i) = data_outputs[i];
-//         }
-
-//         return Y;
-//     }
-//     //this is the best linear combination of the basis functions to get the best fit in the form of 
-//     //a vector of length dimension
-//     //m here is the size of the vectors contained in X (14 <= m <= 16)
-//     Eigen::VectorXd bestFitF(Funk* basis, double** X, double* data_outputs, int dimension, int num_data_points, int m){
-
-//         Eigen::MatrixXd Q = setUpQ(basis, X, dimension, num_data_points);
-//         Eigen::VectorXd Y = setUpYVect(data_outputs, num_data_points);
-
-//         Eigen::MatrixXd trans_Q = Q.transpose();
-//         Eigen::MatrixXd helper_M = (trans_Q * Q).inverse();
-
-//         return helper_M * trans_Q * Y;
-
-//     }
+    Eigen::MatrixXd setUpQ(Func* basis, int** X, int dimension, int num_data_points)
+    {
+        Eigen::MatrixXd Q(num_data_points, dimension);
 
 
 
-// }
+        for (int j = 0; j < dimension; j++){
+            for (int i = 0; i < num_data_points; i++){
+
+                Q(i, j) = basis[i].Eval(X[2 * j], X[2 * j + 1]);
+            }
+        }
+
+        return Q;
+    }
+
+    //create the vector Y (the output obained for the data points)
+    Eigen::VectorXd setUpYVect(double* data_outputs, int num_data_points){
+        Eigen::VectorXd Y(num_data_points);
+        for (int i = 0; i < num_data_points; i++){
+            Y(i) = data_outputs[i];
+        }
+
+        return Y;
+    }
+
+    //this is the best linear combination of the basis functions to get the best fit in the form of 
+    //a vector of length dimension
+
+    Eigen::VectorXd bestFitF(Func* basis, int** X, double* data_outputs, int dimension, int num_data_points){
+
+        Eigen::MatrixXd Q = setUpQ(basis, X, dimension, num_data_points);
+        Eigen::VectorXd Y = setUpYVect(data_outputs, num_data_points);
+
+        Eigen::MatrixXd trans_Q = Q.transpose();
+        Eigen::MatrixXd helper_M = (trans_Q * Q).inverse();
+
+        return helper_M * trans_Q * Y;
+
+    }
+
+
+
+}
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 
-namespace Basis1
+namespace SqrtDifBasis
 {
     Func* GenerateBasis()
     {
@@ -227,10 +230,74 @@ namespace Basis1
 
 }
 
-namespace Basis2{
+
+namespace AbsDifBasis
+{
+      Func* GenerateBasis()
+    {
+        Func* basis = new Func[23]; 
+
+        for (int i = 0; i < 7; i ++)
+        {
+            basis[i].InitFunc(2, i, 1, 2);//top pons consecutive difference
+            basis[i + 7].InitFunc(2, i, 1, 1);//bottom pons consecutive difference
+        }
+        for (int j = 0; j < 8; j ++)
+        {
+            basis[j + 14].InitFunc(2, j, 2, -1);
+        }
+        
+        basis[22].InitFunc(0, -1, 2, -1);
+
+        return basis;
+    }
 
 }
 
-namespace Basis3{
 
+namespace AbsSqrtDifBasis{
+     Func* GenerateBasis()
+    {
+        Func* basis = new Func[23]; 
+
+        for (int i = 0; i < 7; i ++)
+        {
+            basis[i].InitFunc(2, i, 1, 2);//top pons consecutive difference
+            basis[i + 7].InitFunc(2, i, 1, 1);//bottom pons consecutive difference
+        }
+        for (int j = 0; j < 8; j ++)
+        {
+            basis[j + 14].InitFunc(1, j, 2, -1);
+        }
+        
+        basis[22].InitFunc(0, -1, 2, -1);
+
+        return basis;
+
+    }
+
+}
+
+
+namespace SqrtAbsDifBasis
+{
+     Func* GenerateBasis()
+    {
+        Func* basis = new Func[23]; 
+
+        for (int i = 0; i < 7; i ++)
+        {
+            basis[i].InitFunc(1, i, 1, 2);//top pons consecutive difference
+            basis[i + 7].InitFunc(1, i, 1, 1);//bottom pons consecutive difference
+        }
+        for (int j = 0; j < 8; j ++)
+        {
+            basis[j + 14].InitFunc(2, j, 2, -1);
+        }
+        
+        basis[22].InitFunc(0, -1, 2, -1);
+
+        return basis;
+
+    }
 }
