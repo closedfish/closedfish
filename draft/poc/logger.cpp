@@ -1,24 +1,17 @@
+#include "logger.h"
 #include "../../external/stockfish/src/misc.h"
-#include <iostream>
-#include <sstream>
 using namespace std;
 
 namespace Closedfish {
-class Logger {
-  private:
-    streambuf *originalCoutRdbuf;
-
-  public:
-    stringstream stream;
-    Logger() {
-        originalCoutRdbuf = cout.rdbuf();
-        cout.rdbuf(stream.rdbuf());
-    }
-    ~Logger() { cout.rdbuf(originalCoutRdbuf); }
-};
+Logger::Logger() {
+    originalCoutRdbuf = cout.rdbuf();
+    cout.rdbuf(stream.rdbuf());
+}
+Logger::~Logger() { cout.rdbuf(originalCoutRdbuf); }
 } // namespace Closedfish
 
-int main() {
+// Example for usage in main
+int main_example() {
     Closedfish::Logger *logger = new Closedfish::Logger(); // now cout is hacked
     int n;
     cout << 60 << endl;
