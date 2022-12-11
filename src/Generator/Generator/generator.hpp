@@ -88,7 +88,7 @@ public:
     bool check(); // check if the king is in check or not
 
     //Attributes
-
+    int find_pawn_in_column(Chessboard, int, int);
     ArrayElement element;
     //double closeness; // to be used? - needs to be decided 
     //double openness;
