@@ -474,6 +474,8 @@ std::string CFBoard::getNextMoveRepr(int startTile, int endTile){
     ret += pieceIdToChar(piece);
     if (getPieceFromCoords(endTile) != -1){
         ret += "x";
+    } else if ((piece>>1 == 0) && (endTile == enPassantTarget)){
+        ret += "x";
     }
 
     ret += tileToCoords(startTile);
