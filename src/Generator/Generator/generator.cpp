@@ -84,14 +84,28 @@ void Chessboard::completion(){
 
     int rand_bishop = rand()%3;
     int bishopcounter_white=0;
-    while(bishopcounter_white<=rand_bishop){
+    while(bishopcounter_white<rand_bishop){
         int random_pos=rand()%64;
-        if(board[random_pos].is_empty()){
-           board[random_pos].piece=3;
-           board[random_pos].piece_color=0;
+        if(board[random_pos].is_empty()&& rand_bishop!=2){
+            board[random_pos].piece=3;
+            board[random_pos].piece_color=0;
             bishopcounter_white+=1;
         }
+        if(board[random_pos].is_empty()&& rand_bishop==2){
+            if(bishopcounter_white<2){
+                board[random_pos].piece=3;
+                board[random_pos].piece_color=0;
+                board[random_pos].square_color=0;
+                bishopcounter_white+=1;
+            }
+            else{board[random_pos].piece=3;
+                board[random_pos].piece_color=0;
+                board[random_pos].square_color=1;
+                bishopcounter_white+=1;}
+        }
     }
+        
+    
     
     int rand_rook = rand()%3;
     int rookcounter_white=0;
@@ -106,7 +120,7 @@ void Chessboard::completion(){
                     
                     
     int kingcounter_white=0;
-    while(kingcounter_white<=1){
+    while(kingcounter_white<1){
         int random_pos=rand()%64;
         if(board[random_pos].is_empty()){
            board[random_pos].piece=1;
@@ -127,9 +141,9 @@ void Chessboard::completion(){
         }
     }
         
-    rand_knight = rand()%3; // choose a random number between 0 and 2 of black knights.
+    int rand_knight2 = rand()%3; // choose a random number between 0 and 2 of black knights.
     int knightcounter_black=0;
-        while(knightcounter_black<=rand_knight){ // find empty places to attend.
+        while(knightcounter_black<=rand_knight2){ // find empty places to attend.
             int random_pos=rand()%64;
             if(board[random_pos].is_empty()){
                board[random_pos].piece=4;
@@ -137,21 +151,38 @@ void Chessboard::completion(){
                 knightcounter_black+=1;
             }
         }
+    
         
-    rand_bishop = rand()%3;
+    int rand_bishop2 = rand()%3;
     int bishopcounter_black=0;
-        while(bishopcounter_black<=rand_bishop){
-            int random_pos=rand()%64;
-            if(board[random_pos].is_empty()){
-               board[random_pos].piece=3;
-               board[random_pos].piece_color=1;
+    while(bishopcounter_black<=rand_bishop2){
+        int random_pos=rand()%64;
+        if(board[random_pos].is_empty()&& rand_bishop2!=2){
+            board[random_pos].piece=3;
+            board[random_pos].piece_color=1;
+            bishopcounter_black+=1;
+        }
+        random_pos=rand()%64;
+        if(board[random_pos].is_empty()&& rand_bishop2==2){
+            for(;bishopcounter_black<1;){
+                board[random_pos].piece=3;
+                board[random_pos].piece_color=1;
+                board[random_pos].square_color=0;
+                bishopcounter_black+=1;
+            }
+            random_pos=rand()%64;
+            for(;bishopcounter_black=1;){
+                board[random_pos].piece=3;
+                board[random_pos].piece_color=1;
+                board[random_pos].square_color=1;
                 bishopcounter_black+=1;
             }
         }
+    }
     
-    rand_rook = rand()%3;
+    int rand_rook2 = rand()%3;
     int rookcounter_black=0;
-        while(rookcounter_black<=rand_rook){
+        while(rookcounter_black<=rand_rook2){
             int random_pos=rand()%64;
             if(board[random_pos].is_empty()){
                board[random_pos].piece=5;
@@ -162,7 +193,7 @@ void Chessboard::completion(){
                         
                         
     int kingcounter_black=0;
-    while(kingcounter_black<=1){
+    while(kingcounter_black<1){
         int random_pos=rand()%64;
         if(board[random_pos].is_empty()){
            board[random_pos].piece=1;
@@ -172,9 +203,9 @@ void Chessboard::completion(){
     }
         
                             
-        rand_queen = rand()%2;
-    int queencounter_black =0;
-        while(queencounter_black<=rand_queen){
+        int rand_queen2 = rand()%2;
+        int queencounter_black =0;
+        while(queencounter_black<=rand_queen2){
             int random_pos=rand()%64;
             if(board[random_pos].is_empty()){
                board[random_pos].piece=2;
@@ -185,7 +216,11 @@ void Chessboard::completion(){
                         
                     
                     }
-                   
+
+bool Chessboard::check(){
+    
+    return true;
+}
                 
             
 
@@ -310,12 +345,13 @@ double Chessboard::openness(Chessboard input){ //Etienne, NOT FINISHED, flaw in 
     return open_pawns/tot_pawn;
 }
 
-ArrayElement::ArrayElement() :ArrayElement(0,0){
+ArrayElement::ArrayElement() :ArrayElement(0,0,0){
 }
 
-ArrayElement::ArrayElement(int piece, int piece_color){
+ArrayElement::ArrayElement(int piece, int piece_color, int square_color){
     piece=0;
     piece_color=0;
+    square_color=0;
 }
 int ArrayElement::get_piece(){
     return piece;
@@ -323,6 +359,10 @@ int ArrayElement::get_piece(){
 
 int ArrayElement::get_piece_color(){
     return piece_color;
+}
+
+int ArrayElement::get_square_color(){
+    return square_color;
 }
 
 
@@ -340,9 +380,29 @@ Chessboard::Chessboard(){
     for (int i =0;i<64; i++){
         board[i].piece=0;
         board[i].piece_color=0;
+        board[i].square_color=0;
         
     }
+    
+    int rows=1;
+    for(int i=0; i<64; i+=2){
+        if(i%8==0){
+            rows+=1;
+        }
+        if (rows%2==1){
+            board[i].square_color=0;
+            board[i+1].square_color=1;
+        }
+        if (rows%2==0){
+            board[i].square_color=1;
+            board[i+1].square_color=0;
+            
+        }
+    }
+    
+    
 }
+
 void Chessboard::replace_element(int position, int _piece, int _color){
     board[position].piece=_piece;
     board[position].piece_color=_color;
@@ -379,7 +439,7 @@ int Chessboard::get_black_pawns(Chessboard input){
 void Chessboard::visualize(){
     int count=0;
     for (int i =0; i<64; i++){
-        cout<<"["<<board[i].piece<<","<<board[i].piece_color<<"] ";
+        cout<<"["<<board[i].piece<<","<<board[i].piece_color<<","<<board[i].square_color<<"] ";
         count++;
         if (count%8==0){
             cout<<endl;

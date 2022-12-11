@@ -15,7 +15,7 @@ void database_edit(); //Etienne, open the database file, remove all of the unnee
 
 class ArrayElement { // Array element class
 public:
-    ArrayElement(int piece, int piece_color);
+    ArrayElement(int piece, int piece_color, int square_color);
     ArrayElement();
 
 
@@ -25,8 +25,11 @@ public:
 
     int get_piece_color();
     
+    int get_square_color();
+    
     int piece;
     int piece_color;
+    int square_color; 
 };
 
 /*Notation: Chess board representation
@@ -76,6 +79,8 @@ public:
     int get_black_pawns(Chessboard); //inputs a chessboard and returns how many black pawns there are
     void visualize();
     void single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
+    
+    bool check(); // check if the king is in check or not
     ArrayElement element;
 };
 
