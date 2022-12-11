@@ -43,3 +43,13 @@ Antonia:
 		-implement a function that tells if the pawn is passed
 		-implement a function that tells for each piece if it can or not protect tge target pawn
 
+Etienne: 
+This week:
+ ⁃ I finished debugging and testing the generator project.
+ ⁃ Helped team finish their respective functions.
+ ⁃ Started my switch to the algorithm team which requires a lot of research and catching up to the current team knowledge and code.
+
+Next Week:
+ ⁃ Continue my research into the algorithm and understand the process / methodology used by the team.
+ ⁃ Start implementing unit tests for the existing functions in the algorithm.
+
