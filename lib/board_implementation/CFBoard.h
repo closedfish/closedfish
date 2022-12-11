@@ -40,6 +40,9 @@ class CFBoard {
     bool getBit(int pieceId, int tile);
     int getMaterialCount(bool color);
 
+    std::string tileToCoords(int tile);
+    std::string getNextMoveRepr(int startTile, int endTile);
+
     // ----- Manipulation -----
 
     void addPiece(int pieceId, int tile);
@@ -84,8 +87,8 @@ class CFBoard {
 
     // TODO reduce both of these to the smallest int types
     int enPassantTarget; // a single coordinate from 0-63
-    int castleCheck; // 4 bits of information (long black - short black- long
-                     // white - short white)
+    int castleCheck; // 4 bits of information
+                     //(long black - short black- long white - short white)
 
     uint64_t blackBoard;
     uint64_t whiteBoard;

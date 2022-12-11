@@ -427,6 +427,61 @@ int CFBoard::getMaterialCount(bool color) {
            __builtin_popcountll(queenBoard) * 9;
 }
 
+/**
+* @brief Gives a text representation of a coordinate.
+*
+* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
+* h7, ......, a1, ..., h1).
+* 
+* @return string representation of the corresponding board tile coordinate
+*/
+std::string CFBoard::tileToCoords(int tile){
+    std::string ret = "";
+    
+    int column = tile & 7;
+    int row = tile >> 3;
+
+    ret += 97 + row;
+    ret += column + 1;
+
+    return ret;
+}
+
+/**
+* @brief Gives a text representation of a hypothetical move.
+*
+* @param startTile : start tile for move.
+* @param endTile : end tile for move.
+* 
+* @return string representation of the move from startTile to endTile
+*/
+std::string CFBoard::getNextMoveRepr(int startTile, int endTile){
+
+    int piece = getPieceFromCoords(startTile);
+
+    if ((piece>>1 == 5) && (abs(startTile - endTile)==2)){
+        int castle;
+        if (abs(startTile - endTile)==2){
+            return "O-O-O";
+        } else {
+            return "O-O";
+        }
+
+    }
+
+    std::string ret = "";
+
+    ret += pieceIdToChar(piece);
+    if (getPieceFromCoords(endTile) != -1){
+        ret += "x";
+    }
+
+    ret += tileToCoords(startTile);
+    ret += tileToCoords(endTile);
+
+    return ret;
+}
+
 // ----- Manipulation -----
 /**
 * @brief This function places a piece on a given tile. It will replace any
@@ -497,13 +552,13 @@ void CFBoard::movePiece(int startTile, int endTile){
 		if (~turn){ // white
 			if ((piece>>1) == 3){ // rook
 				if (startTile == 63){
-					castleCheck & ~1;
+					castleCheck = castleCheck & ~1;
 				} else if (startTile == 56){
-                    castleCheck & ~2;
+                    castleCheck = castleCheck & ~2;
                 }
 			}
             if ((piece>>1) == 5){ // king
-                castleCheck & ~3;
+                castleCheck = castleCheck & ~3;
             }
 
             if ((piece>>1) == 0){ // pawn
@@ -514,13 +569,13 @@ void CFBoard::movePiece(int startTile, int endTile){
 		} else {
             if ((piece>>1) == 3){ // rook
 				if (startTile == 0){
-					castleCheck & ~8;
+					castleCheck = castleCheck & ~8;
 				} else if (startTile == 7){
-                    castleCheck & ~4;
+                    castleCheck = castleCheck & ~4;
                 }
 			}
             if ((piece>>1) == 5){ // king
-                castleCheck & ~12;
+                castleCheck = castleCheck & ~12;
             }
 
             if ((piece>>1) == 0){ // pawn
@@ -528,6 +583,24 @@ void CFBoard::movePiece(int startTile, int endTile){
                     enPassantTarget = startTile + 8;
                 }
             }
+        }
+
+        if ((piece>>1 == 5) && (abs(startTile - endTile)==2)){
+            int castle;
+            if (piece&1){
+                castle = castleCheck >> 2;
+            } else {
+                castle = castleCheck & 3;
+            }
+            castleCheck = castleCheck & ~castle;
+            if (abs(startTile - endTile)==2){
+                removePiece(startTile - 4);
+                addPiece(6 + (piece & 1), startTile - 1);
+            } else {
+                removePiece(startTile + 3);
+                addPiece(6 + (piece & 1), startTile + 1);
+            }
+
         }
 
 		turn = ~turn;
@@ -839,6 +912,27 @@ uint64_t CFBoard::getKingPattern(int tile, bool color) {
     if (column < 7 && row < 7) {
         kingPattern += (1ll << (tile + 9));
     }
+
+    //castle
+    int castle;
+    if (color){
+        castle = castleCheck >> 2;
+    } else {
+        castle = castleCheck & 3;
+    }
+
+    // WARNING: this assumes the king is in the right position to castle.
+    // If you customized the whole board into an illegal position, this part may crash the code.
+    uint64_t board = whiteBoard | blackBoard;
+    if (castle>>1){ //long
+        bool longsideoccupied = ((board << (tile - 1)) & 1) | ((board << (tile - 2)) & 1) | ((board << (tile - 3)) & 1);
+        if (!longsideoccupied){kingPattern += (1ll << (tile-2));}
+    }
+    if (castle&1){ //short
+        bool shortsideoccupied = ((board << (tile + 1)) & 1) | ((board << (tile + 2)) & 1);
+        if (!shortsideoccupied){kingPattern += (1ll << (tile+2));}
+    }
+
     return kingPattern;
 }
 
