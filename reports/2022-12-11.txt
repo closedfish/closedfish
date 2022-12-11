@@ -1,0 +1,7 @@
+Sirawit:
+	This week:
+		- Use logger to inject stockfish
+		- Configured doxygen hosting
+		- Configured CD to check compilation on PR
+	Next week:
+		- [Urgent] Finish stockfish
