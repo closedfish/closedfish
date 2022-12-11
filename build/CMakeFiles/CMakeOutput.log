@@ -7,7 +7,7 @@ Id flags:
 The output was:
 0
 MSBuild version 17.3.0+f67e3d35e for .NET Framework
-Build started 12/11/2022 11:18:04 AM.
+Build started 12/11/2022 12:14:19 PM.
 Project "C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.24.2\CompilerIdCXX\CompilerIdCXX.vcxproj" on node 1 (default targets).
 PrepareForBuild:
   Creating directory "Debug\".
@@ -33,7 +33,7 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:02.23
+Time Elapsed 00:00:01.43
 
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -45,12 +45,12 @@ The CXX compiler identification is MSVC, found in "C:/Users/andre/OneDrive/Deskt
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_96f16.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.3.0+f67e3d35e for .NET Framework
+Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_d84a2.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.3.0+f67e3d35e for .NET Framework
   Microsoft (R) C/C++ Optimizing Compiler Version 19.33.31629 for x64
   CMakeCXXCompilerABI.cpp
   Copyright (C) Microsoft Corporation.  All rights reserved.
-  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_96f16.dir\Debug\\" /Fd"cmTC_96f16.dir\Debug\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\Program Files\CMake\share\cmake-3.24\Modules\CMakeCXXCompilerABI.cpp"
-  cmTC_96f16.vcxproj -> C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\Debug\cmTC_96f16.exe
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_d84a2.dir\Debug\\" /Fd"cmTC_d84a2.dir\Debug\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\Program Files\CMake\share\cmake-3.24\Modules\CMakeCXXCompilerABI.cpp"
+  cmTC_d84a2.vcxproj -> C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\Debug\cmTC_d84a2.exe
 
 
 
@@ -62,7 +62,7 @@ Id flags:
 The output was:
 0
 MSBuild version 17.3.0+f67e3d35e for .NET Framework
-Build started 12/11/2022 11:18:11 AM.
+Build started 12/11/2022 12:14:24 PM.
 Project "C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.24.2\CompilerIdC\CompilerIdC.vcxproj" on node 1 (default targets).
 PrepareForBuild:
   Creating directory "Debug\".
@@ -88,7 +88,7 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:01.46
+Time Elapsed 00:00:01.32
 
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -100,24 +100,24 @@ The C compiler identification is MSVC, found in "C:/Users/andre/OneDrive/Desktop
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_14bb2.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.3.0+f67e3d35e for .NET Framework
+Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_ad29d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.3.0+f67e3d35e for .NET Framework
   Microsoft (R) C/C++ Optimizing Compiler Version 19.33.31629 for x64
   CMakeCCompilerABI.c
   Copyright (C) Microsoft Corporation.  All rights reserved.
-  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_14bb2.dir\Debug\\" /Fd"cmTC_14bb2.dir\Debug\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.24\Modules\CMakeCCompilerABI.c"
-  cmTC_14bb2.vcxproj -> C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\Debug\cmTC_14bb2.exe
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_ad29d.dir\Debug\\" /Fd"cmTC_ad29d.dir\Debug\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.24\Modules\CMakeCCompilerABI.c"
+  cmTC_ad29d.vcxproj -> C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\Debug\cmTC_ad29d.exe
 
 
 
 Performing C++ SOURCE FILE Test standard_math_library_linked_to_automatically succeeded with the following output:
 Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_c348c.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.3.0+f67e3d35e for .NET Framework
+Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_1c0de.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.3.0+f67e3d35e for .NET Framework
   Microsoft (R) C/C++ Optimizing Compiler Version 19.33.31629 for x64
   src.cxx
   Copyright (C) Microsoft Corporation.  All rights reserved.
-  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D standard_math_library_linked_to_automatically /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++14 /Fo"cmTC_c348c.dir\Debug\\" /Fd"cmTC_c348c.dir\Debug\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\src.cxx
-  cmTC_c348c.vcxproj -> C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\Debug\cmTC_c348c.exe
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D standard_math_library_linked_to_automatically /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++14 /Fo"cmTC_1c0de.dir\Debug\\" /Fd"cmTC_1c0de.dir\Debug\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\src.cxx
+  cmTC_1c0de.vcxproj -> C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\Debug\cmTC_1c0de.exe
 
 
 Source file was:
@@ -129,12 +129,12 @@ int main(int argc, char **){
 Performing C++ SOURCE FILE Test COMPILER_SUPPORT_OPENMP succeeded with the following output:
 Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_092b0.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.3.0+f67e3d35e for .NET Framework
+Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_4c9cf.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.3.0+f67e3d35e for .NET Framework
   Microsoft (R) C/C++ Optimizing Compiler Version 19.33.31629 for x64
   src.cxx
   Copyright (C) Microsoft Corporation.  All rights reserved.
-  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D COMPILER_SUPPORT_OPENMP /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /GR /openmp /std:c++14 /Fo"cmTC_092b0.dir\Debug\\" /Fd"cmTC_092b0.dir\Debug\vc143.pdb" /external:W1 /Gd /TP /wd4127 /wd4505 /wd4714 /errorReport:queue C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\src.cxx
-  cmTC_092b0.vcxproj -> C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\Debug\cmTC_092b0.exe
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D COMPILER_SUPPORT_OPENMP /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /GR /openmp /std:c++14 /Fo"cmTC_4c9cf.dir\Debug\\" /Fd"cmTC_4c9cf.dir\Debug\vc143.pdb" /external:W1 /Gd /TP /wd4127 /wd4505 /wd4714 /errorReport:queue C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\src.cxx
+  cmTC_4c9cf.vcxproj -> C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\Debug\cmTC_4c9cf.exe
 
 
 Source file was:

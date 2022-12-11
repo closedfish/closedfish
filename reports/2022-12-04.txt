@@ -97,3 +97,9 @@ Next week:
 -Recognition whether player is playing as black or white.
 -Rectognition of pieces.
 -(Storing pieces and their coordinates in the board class).
+
+Andrei
+This week:
+-fix project structure
+-help with branch merging
+-help with debugging
