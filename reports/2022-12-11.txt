@@ -34,4 +34,12 @@ Aarrya:
 	Next week:
 		- merge all algorithms till now into one.
 		- finalise work for everyone
+		
+		
+Antonia:
+	This week:
+		-debugged all the functions involved in giving the number of pieces protecting the target pawn
+	Next week:
+		-implement a function that tells if the pawn is passed
+		-implement a function that tells for each piece if it can or not protect tge target pawn
 
