@@ -5,6 +5,7 @@
 #include <string>
 #include <string.h>
 #include "../../lib/board_implementation/CFBoard.cpp"
+#include "BitOperations.h"
 
 bool validSquare(int i, int j) {
 	return i >= 0 && i < 8 && j >= 0 && j < 8;
@@ -17,57 +18,25 @@ int posToTile(std::vector<int> pos) {
 	return pos[0] * 8 + pos[1];
 }
 
-uint64_t reverseBit(uint64_t v) {
-	//credit to https://graphics.stanford.edu/~seander/bithacks.html#BitReverseObvious
-	uint64_t r = v; // r will be reversed bits of v; first get LSB of v
-	int s = sizeof(v) * CHAR_BIT - 1; // extra shift needed at end
-
-	for (v >>= 1; v; v >>= 1)
-	{   
-		r <<= 1;
-		r |= v & 1;
-		s--;
-	}
-	r <<= s; // shift when v's highest bits are zero
-	return r;
-}
-
-std::vector<int> tilesSetFromBoard(uint64_t board) {
-	std::vector<int> tiles;
-	int cur = 0;
-	while (board != 0) {
-		int rightmost_tile = __builtin_ctz(board);
-		cur += rightmost_tile+1;
-		tiles.push_back(cur-1);
-		board >>= rightmost_tile+1;
-	}
-	return tiles;
-}
-
 std::vector<std::vector<int>> posSetFromBoard(const uint64_t &board) {
 	std::vector<std::vector<int>> pos;
-	std::vector<int> tiles = tilesSetFromBoard(board);
+	std::vector<int> tiles = bitSetPositions(board);
 	for (auto x: tiles) {
 		pos.push_back(tileToPos(x));
 	}
 	return pos;
 }
 
-bool hasPawnOn(const uint64_t& pawn_board, const std::vector<int> &pos) {
-	return (pawn_board>>posToTile(pos))&1;
-}
-
 bool squareNotAttackedByPawn(const uint64_t& opponent_pawn_board, 
 							const int& row, const int &col) {
-	return row == 7 || ((col == 0 || !hasPawnOn(opponent_pawn_board, {row+1, col-1}))
-				&& (col == 7 || !hasPawnOn(opponent_pawn_board, {row+1, col+1})));
+	return row == 7 || ((col == 0 || !isBitSet(opponent_pawn_board, posToTile({row+1, col-1})))
+				&& (col == 7 || !isBitSet(opponent_pawn_board, posToTile({row+1, col+1}))));
 }
 
 void displayPawnBoard(const uint64_t& pawnBoard) { // for testing only
-	uint64_t one = 1;
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
-			std::cout << ((pawnBoard>>(i*8+j))&one);
+			std::cout << ((pawnBoard>>(i*8+j))&1ll);
 		}
 		std::cout << '\n';
 	}
@@ -153,7 +122,7 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
 
 	// Count how many light and dark squared bishop
 	int no_bishops_color[2] = {0, 0};
-	std::vector<int> bishop_tiles = tilesSetFromBoard(bishop_board);
+	std::vector<int> bishop_tiles = bitSetPositions(bishop_board);
 	for (int tile: bishop_tiles) {
 		int row = tile/8, col = tile%8;
 		no_bishops_color[(row+col)%2]++;
@@ -399,9 +368,9 @@ int main() {
 
 	CFBoard board;
 	// board.fromFEN("rnbqkbnr/8/5p1p/1p2pPpP/pP1pP1P1/P2P4/8/RNBQKBNR w KQkq - 0 1"); // open file
-	// board.fromFEN("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1N1/2B1QB1R/3K3R w - - 0 1"); // no open files, >= 2 free rows
+	board.fromFEN("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1N1/2B1QB1R/3K3R w - - 0 1"); // no open files, >= 2 free rows
 	// board.fromFEN("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R w - - 0 1"); // no open files, 1 free rows, no chance of winning
-	board.fromFEN("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1"); // no open files, 1 free rows, some chance of winning
+	// board.fromFEN("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1"); // no open files, 1 free rows, some chance of winning
 	uint64_t weak_pawns = 1ll; // placeholder for finished weak pawns implementation
 	// std::cout << board.getRepr();
 	addHeatMap(board, heat_map, weak_pawns);
