@@ -1,3 +1,6 @@
 [submodule "external/stockfish"]
 	path = external/stockfish
 	url = https://github.com/official-stockfish/Stockfish
+[submodule "external/eigen_lib"]
+	path = external/eigen_lib
+	url = https://gitlab.com/libeigen/eigen.git

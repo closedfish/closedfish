@@ -1,0 +1,2 @@
+C:/msys64/mingw64/bin/ar.exe qc libDeceideOverOpening.a CMakeFiles/DeceideOverOpening.dir/OpeningMain.cpp.obj
+C:/msys64/mingw64/bin/ranlib.exe libDeceideOverOpening.a

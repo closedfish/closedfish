@@ -1,0 +1,567 @@
+[
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/tests.dir/includes_CXX.rsp -g -std=c++17 -o CMakeFiles/tests.dir/test/TestMain.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/test/TestMain.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/test/TestMain.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/benchmark/catch_chronometer.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/benchmark/catch_chronometer.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/benchmark/catch_chronometer.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_benchmark_function.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/benchmark/detail/catch_benchmark_function.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/benchmark/detail/catch_benchmark_function.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_run_for_at_least.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/benchmark/detail/catch_run_for_at_least.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/benchmark/detail/catch_run_for_at_least.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_stats.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/benchmark/detail/catch_stats.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/benchmark/detail/catch_stats.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/generators/catch_generator_exception.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/generators/catch_generator_exception.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/generators/catch_generator_exception.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/generators/catch_generators.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/generators/catch_generators.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/generators/catch_generators.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/generators/catch_generators_random.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/generators/catch_generators_random.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/generators/catch_generators_random.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_automake.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_automake.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_automake.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_common_base.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_common_base.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_common_base.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_compact.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_compact.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_compact.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_console.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_console.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_console.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_cumulative_base.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_cumulative_base.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_cumulative_base.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_event_listener.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_event_listener.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_event_listener.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_helpers.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_helpers.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_helpers.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_junit.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_junit.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_junit.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_multi.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_multi.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_multi.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_registrars.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_registrars.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_registrars.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_sonarqube.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_sonarqube.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_sonarqube.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_streaming_base.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_streaming_base.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_streaming_base.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_tap.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_tap.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_tap.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_teamcity.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_teamcity.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_teamcity.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_xml.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_xml.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/reporters/catch_reporter_xml.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_capture.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_capture.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_capture.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_config.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_config.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_config.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_exception.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_exception.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_exception.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_generatortracker.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_generatortracker.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_generatortracker.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_registry_hub.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_registry_hub.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_registry_hub.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_reporter.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_reporter.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_reporter.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_reporter_factory.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_reporter_factory.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_reporter_factory.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_reporter_registry.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_reporter_registry.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_reporter_registry.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_testcase.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_testcase.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/interfaces/catch_interfaces_testcase.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/catch_approx.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_approx.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_approx.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/catch_assertion_result.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_assertion_result.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_assertion_result.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/catch_config.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_config.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_config.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/catch_get_random_seed.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_get_random_seed.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_get_random_seed.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/catch_message.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_message.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_message.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/catch_registry_hub.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_registry_hub.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_registry_hub.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/catch_session.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_session.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_session.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/catch_tag_alias_autoregistrar.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_tag_alias_autoregistrar.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_tag_alias_autoregistrar.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/catch_test_case_info.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_test_case_info.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_test_case_info.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/catch_test_spec.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_test_spec.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_test_spec.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/catch_timer.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_timer.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_timer.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/catch_tostring.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_tostring.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_tostring.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/catch_totals.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_totals.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_totals.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/catch_version.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_version.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/catch_version.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_assertion_handler.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_assertion_handler.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_assertion_handler.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_case_insensitive_comparisons.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_case_insensitive_comparisons.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_case_insensitive_comparisons.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_clara.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_clara.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_clara.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_commandline.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_commandline.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_commandline.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_console_colour.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_console_colour.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_console_colour.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_context.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_context.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_context.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_debug_console.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_debug_console.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_debug_console.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_debugger.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_debugger.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_debugger.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_decomposer.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_decomposer.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_decomposer.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_enforce.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_enforce.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_enforce.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_enum_values_registry.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_enum_values_registry.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_enum_values_registry.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_errno_guard.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_errno_guard.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_errno_guard.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_exception_translator_registry.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_exception_translator_registry.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_exception_translator_registry.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_fatal_condition_handler.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_fatal_condition_handler.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_fatal_condition_handler.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_floating_point_helpers.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_floating_point_helpers.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_floating_point_helpers.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_getenv.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_getenv.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_getenv.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_istream.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_istream.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_istream.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_lazy_expr.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_lazy_expr.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_lazy_expr.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_leak_detector.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_leak_detector.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_leak_detector.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_list.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_list.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_list.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_message_info.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_message_info.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_message_info.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_output_redirect.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_output_redirect.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_output_redirect.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_parse_numbers.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_parse_numbers.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_parse_numbers.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_polyfills.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_polyfills.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_polyfills.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_random_number_generator.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_random_number_generator.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_random_number_generator.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_random_seed_generation.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_random_seed_generation.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_random_seed_generation.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_reporter_registry.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_reporter_registry.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_reporter_registry.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_reporter_spec_parser.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_reporter_spec_parser.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_reporter_spec_parser.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_result_type.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_result_type.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_result_type.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_reusable_string_stream.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_reusable_string_stream.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_reusable_string_stream.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_run_context.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_run_context.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_run_context.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_section.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_section.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_section.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_singletons.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_singletons.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_singletons.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_source_line_info.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_source_line_info.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_source_line_info.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_startup_exception_registry.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_startup_exception_registry.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_startup_exception_registry.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_stdstreams.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_stdstreams.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_stdstreams.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_string_manip.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_string_manip.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_string_manip.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_stringref.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_stringref.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_stringref.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_tag_alias_registry.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_tag_alias_registry.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_tag_alias_registry.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_case_info_hasher.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_test_case_info_hasher.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_test_case_info_hasher.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_case_registry_impl.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_test_case_registry_impl.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_test_case_registry_impl.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_case_tracker.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_test_case_tracker.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_test_case_tracker.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_failure_exception.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_test_failure_exception.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_test_failure_exception.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_registry.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_test_registry.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_test_registry.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_test_spec_parser.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_test_spec_parser.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_test_spec_parser.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_textflow.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_textflow.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_textflow.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_uncaught_exceptions.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_uncaught_exceptions.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_uncaught_exceptions.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_wildcard_pattern.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_wildcard_pattern.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_wildcard_pattern.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/internal/catch_xmlwriter.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_xmlwriter.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_xmlwriter.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/catch_matchers.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/catch_matchers.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_container_properties.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_container_properties.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_container_properties.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_exception.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_exception.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_exception.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_floating_point.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_floating_point.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_floating_point.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_predicate.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_predicate.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_predicate.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_quantifiers.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_quantifiers.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_quantifiers.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_string.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_string.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_string.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_templated.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_templated.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/catch_matchers_templated.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2.dir/catch2/matchers/internal/catch_matchers_impl.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/internal/catch_matchers_impl.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/matchers/internal/catch_matchers_impl.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-build/src",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Catch2WithMain.dir/includes_CXX.rsp -g -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/Catch2WithMain.dir/catch2/internal/catch_main.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_main.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/src/catch2/internal/catch_main.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/src/opening",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/DeceideOverOpening.dir/includes_CXX.rsp -g -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wuseless-cast -std=c++17 -o CMakeFiles/DeceideOverOpening.dir/OpeningMain.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/src/opening/OpeningMain.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/src/opening/OpeningMain.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/src/input",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/ReceiveInputFromUI.dir/includes_CXX.rsp -g -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wuseless-cast -std=c++17 -o CMakeFiles/ReceiveInputFromUI.dir/input.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/src/input/input.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/src/input/input.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/src/play",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/PlayingRoutine.dir/includes_CXX.rsp -g -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wuseless-cast -std=c++17 -o CMakeFiles/PlayingRoutine.dir/PlayMain.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/src/play/PlayMain.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/src/play/PlayMain.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/src/output",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/SendOutputToUI.dir/includes_CXX.rsp -g -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wuseless-cast -std=c++17 -o CMakeFiles/SendOutputToUI.dir/output.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/src/output/output.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/src/output/output.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/src/connectors/ClosedfishConnect",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/GeneralConnectors.dir/includes_CXX.rsp -g -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wuseless-cast -std=c++17 -o CMakeFiles/GeneralConnectors.dir/ClosedfishConnect.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/src/connectors/ClosedfishConnect/ClosedfishConnect.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/src/connectors/ClosedfishConnect/ClosedfishConnect.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/src/connectors/StockfishConnect",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/StockfishConectors.dir/includes_CXX.rsp -g -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wuseless-cast -std=c++17 -o CMakeFiles/StockfishConectors.dir/StockfishConnect.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/src/connectors/StockfishConnect/StockfishConnect.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/src/connectors/StockfishConnect/StockfishConnect.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/test",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/unit_tests.dir/includes_CXX.rsp -g -std=c++17 -o CMakeFiles/unit_tests.dir/TestMain.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/test/TestMain.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/test/TestMain.cpp"
+},
+{
+  "directory": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/app",
+  "command": "C:/msys64/mingw64/bin/g++.exe  @CMakeFiles/Executable.dir/includes_CXX.rsp -g -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wuseless-cast -std=c++17 -o CMakeFiles/Executable.dir/SwitchMain.cpp.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/app/SwitchMain.cpp",
+  "file": "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/app/SwitchMain.cpp"
+}
+]

@@ -64,8 +64,16 @@ FetchContent_Declare(
   GIT_TAG        v3.2.0 # or a later release
   GIT_SHALLOW TRUE
 )
-
+#add Nlohmann
 FetchContent_MakeAvailable(Catch2)
+
+FetchContent_Declare(
+    nlohmann_json
+    GIT_REPOSITORY https://github.com/nlohmann/json
+    GIT_TAG v3.11.2
+    GIT_SHALLOW TRUE)
+FetchContent_MakeAvailable(nlohmann_json)
+
 #inlude warnings
 include(Warnings)
 
@@ -84,6 +92,7 @@ else(DOXYGEN_FOUND)
 endif(DOXYGEN_FOUND)
 
 #Includes subdirectories
+
 add_subdirectory(src)
 add_subdirectory(config)
 add_subdirectory(lib)

@@ -11,6 +11,9 @@ target_include_directories(${PLAY} PUBLIC
     "./"
     "${CMAKE_BINARY_DIR}/configured_files/include")
 
+target_link_libraries(${PLAY} PUBLIC  
+    nlohmann_json)
+
 if (${ENABLE_WARNINGS})
     target_set_warnings(TARGET ${PLAY} ENABLE ON AS_ERROR OFF)
 endif()

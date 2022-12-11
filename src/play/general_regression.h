@@ -1,6 +1,5 @@
 #pragma once
-#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
-
+#include <libeigen3-dev>
 
 //This class enables us to have a list that contains function. It will be very useful for the different basis of function we will test
 class Funk

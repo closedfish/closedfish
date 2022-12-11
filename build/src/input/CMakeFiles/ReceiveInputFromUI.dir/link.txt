@@ -1,0 +1,2 @@
+C:/msys64/mingw64/bin/ar.exe qc libReceiveInputFromUI.a CMakeFiles/ReceiveInputFromUI.dir/input.cpp.obj
+C:/msys64/mingw64/bin/ranlib.exe libReceiveInputFromUI.a

@@ -1,0 +1,1 @@
+ "_deps/catch2-build/src/libCatch2Maind.a" "_deps/catch2-build/src/libCatch2d.a" -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
