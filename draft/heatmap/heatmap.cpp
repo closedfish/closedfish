@@ -44,14 +44,14 @@ std::vector<int> tilesSetFromBoard(uint64_t board) {
 	return tiles;
 }
 
-// std::vector<std::vector<int>> posSetFromBoard(const uint64_t &board) {
-//	 std::vector<std::vector<int>> pos;
-//	 std::vector<int> tiles = tilesSetFromBoard(board);
-//	 for (auto x: tiles) {
-//		 pos.push_back(posToTile(tiles));
-//	 }
-//	 return pos;
-// }
+std::vector<std::vector<int>> posSetFromBoard(const uint64_t &board) {
+	std::vector<std::vector<int>> pos;
+	std::vector<int> tiles = tilesSetFromBoard(board);
+	for (auto x: tiles) {
+		pos.push_back(tileToPos(x));
+	}
+	return pos;
+}
 
 bool hasPawnOn(const uint64_t& pawn_board, const std::vector<int> &pos) {
 	return (pawn_board>>posToTile(pos))&1;
@@ -74,7 +74,7 @@ void displayPawnBoard(const uint64_t& pawnBoard) { // for testing only
 }
 
 void addHeatMapPieceProtect(const int &i, const int &j, int (&heat_map)[8][8], const char &piece,
-							const int &no_pieces, const uint64_t &opponent_pawn_board, int (&pawn_height)[8]) {
+							const int &no_pieces, const uint64_t &opponent_pawn_board, int (&pawn_height)[8], const int &coefficient = 1) {
 	if (no_pieces == 0) return;
 	std::vector<std::vector<int>> next_squares;
 	if (piece == 'P') {
@@ -116,7 +116,7 @@ void addHeatMapPieceProtect(const int &i, const int &j, int (&heat_map)[8][8], c
 	for (auto p: next_squares) {
 		int next_i = p[0], next_j = p[1];
 		if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponent_pawn_board, next_i, next_j) && next_i < pawn_height[next_j]) {
-			heat_map[next_i][next_j] += no_pieces;
+			heat_map[next_i][next_j] += no_pieces * coefficient;
 		}
 	}
 }
@@ -232,15 +232,14 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
 		}
 	} else { // No open files
 		std::cout << free_rows << '\n';
+		std::vector<int> weak_pawns_file;
+		for (int i = 0; i < 8; i++) {
+			if (weak_pawns & (1ll<<i)) { // ith bit is set
+				weak_pawns_file.push_back(i);
+			}
+		}
 		if (free_rows >= 2) { // 2 free rows, knights, rooks and queens are essentially able to go anywhere
 			// To be adjusted
-			std::vector<int> weak_pawns_file;
-			for (int i = 0; i < 8; i++) {
-				if (weak_pawns & (1ll<<i)) { // ith bit is set
-					weak_pawns_file.push_back(i);
-				}
-			}
-
 			for (int j: weak_pawns_file) {
 				int max_pawn_height = std::min(j > 0 ? pawn_height[j-1] : 8, j < 7 ? pawn_height[j+1] : 8);
 
@@ -296,10 +295,92 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
 				}
 			} 
 		} else {
+			// Define "area" the spaces that pieces are free to move, each area is separated by a pawn of height 1
+
 			// Pieces are more limited to their own "area", hence smaller coefficients added to
 			// squares outside of their "area" since it takes more turns to move them there.
+			
+			int numArea[8];
+			int cur = 0;
+			for (int i = 0; i < 8; i++) {
+				if (pawn_height[i] == 1 && i != 0) {
+					numArea[i] = 2*cur+1;
+					cur++;
+				} else {
+					numArea[i] = 2*cur;
+				}
+			}
+			
+			std::vector<std::vector<int>> knightPos = posSetFromBoard(knight_board),
+							bishopPos = posSetFromBoard(bishop_board), 
+							rookPos = posSetFromBoard(rook_board), 
+							queenPos = posSetFromBoard(queen_board), 
+							kingPos = posSetFromBoard(king_board);
+			// To be adjusted
+			for (int j: weak_pawns_file) {
+				int max_pawn_height = std::min(j > 0 ? pawn_height[j-1] : 8, j < 7 ? pawn_height[j+1] : 8);
 
-			// To be added
+				// Rooks move to behind the weak pawn, priotizing staying on the lowest rank
+				for (int i = 0; i < max_pawn_height; i++) {
+					if (squareNotAttackedByPawn(opponent_pawn_board, i, j)) { // no opposing pawns 
+						for (std::vector<int> pos: rookPos)
+							heat_map[i][j] += std::max(pawn_height[j]+1 - i + (8 - abs(numArea[j]-numArea[pos[1]])), 0);
+					}
+				}
+
+				int opponent_pawn_height = pawn_height[j]+1;
+				// Queens attack weak pawns from the diagonals
+				for (std::vector<int> pos: queenPos)
+					addHeatMapPieceProtect(opponent_pawn_height, j, heat_map, 'B', 1, opponent_pawn_board, pawn_height, 8 - abs(numArea[j]-numArea[pos[1]]));
+
+				// Knights move to square near weak pawn, attacking it
+				for (std::vector<int> pos: knightPos)
+					addHeatMapPieceProtect(opponent_pawn_height, j, heat_map, 'N', 1, opponent_pawn_board, pawn_height, 8 - abs(numArea[j]-numArea[pos[1]]));
+
+				// Bishops attack weak pawns or defend current pawns, depends on the color of the bishop
+				// attacking
+				for (std::vector<int> pos: bishopPos) {
+					bool bishopColor = (pos[0]+pos[1])%2;
+					if ((j+opponent_pawn_height)%2 == bishopColor)
+						addHeatMapPieceProtect(opponent_pawn_height, j, heat_map, 'B', 1,
+											opponent_pawn_board, pawn_height, 8 - abs(numArea[j]-numArea[pos[1]]));
+					// protect left pawn
+					if (j >= 1 && validSquare(pawn_height[j-1], j) && (pawn_height[j-1]+j)%2 == bishopColor) {
+						addHeatMapPieceProtect(pawn_height[j-1], j, heat_map, 'B', no_bishops_color[(pawn_height[j-1]+j)%2],
+												opponent_pawn_board, pawn_height, 8 - abs(numArea[j]-numArea[pos[1]]));
+					}
+					// protect right pawn
+					if (j <= 6 && validSquare(pawn_height[j+1], j) && (pawn_height[j-1]+j)%2 == bishopColor) {
+						addHeatMapPieceProtect(pawn_height[j+1], j, heat_map, 'B', no_bishops_color[(pawn_height[j-1]+j)%2],
+												opponent_pawn_board, pawn_height, 8 - abs(numArea[j]-numArea[pos[1]]));
+					}
+				}
+
+				// King moves to near weak pawns, protect nearby pawns if opponent does not have many materials left on the board.
+				//														otherwise, stay as far as possible
+				int threshold = 15; // to be adjusted
+				int opponent_material = board.getMaterialCount(!current_turn);
+				int kingArea = numArea[kingPos[0][1]];
+				if (opponent_material < threshold) {
+					// protect left pawn
+					if (j >= 1 && validSquare(pawn_height[j-1], j)) {
+						addHeatMapPieceProtect(pawn_height[j-1], j, heat_map, 'K', 1, opponent_pawn_board, pawn_height, 8 - abs(numArea[j]-kingArea));
+					}
+					// protect right pawn
+					if (j <= 6 && validSquare(pawn_height[j+1], j)) {
+						addHeatMapPieceProtect(pawn_height[j+1], j, heat_map, 'K', 1, opponent_pawn_board, pawn_height, 8 - abs(numArea[j]-kingArea));
+					}
+				} else {
+					// stay in the left if weak pawn in the right
+					if (j >= 4) {
+						addHeatMapPieceProtect(0, 0, heat_map, 'K', 1, opponent_pawn_board, pawn_height, 8 - abs(numArea[j]-kingArea));
+					}
+					// stay in the right otherwise
+					else {
+						addHeatMapPieceProtect(0, 7, heat_map, 'K', 1, opponent_pawn_board, pawn_height, 8 - abs(numArea[j]-kingArea));
+					}
+				}
+			} 
 		}
 	}
 	// Switch back to white's orientation if white's turn
@@ -318,7 +399,9 @@ int main() {
 
 	CFBoard board;
 	// board.fromFEN("rnbqkbnr/8/5p1p/1p2pPpP/pP1pP1P1/P2P4/8/RNBQKBNR w KQkq - 0 1"); // open file
-	board.fromFEN("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1N1/2B1QB1R/3K3R w - - 0 1"); // no open files, >= 2 free rows
+	// board.fromFEN("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1N1/2B1QB1R/3K3R w - - 0 1"); // no open files, >= 2 free rows
+	// board.fromFEN("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R w - - 0 1"); // no open files, 1 free rows, no chance of winning
+	board.fromFEN("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1"); // no open files, 1 free rows, some chance of winning
 	uint64_t weak_pawns = 1ll; // placeholder for finished weak pawns implementation
 	// std::cout << board.getRepr();
 	addHeatMap(board, heat_map, weak_pawns);
