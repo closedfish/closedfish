@@ -1,3 +1,4 @@
+
 Ariel:
 This week: 
           - Finished the implementation of the generator algorithm for one closed position and
@@ -9,3 +10,12 @@ Next week:
             needed closed positions
 	  - Finish testing the generator and work with the switch team for final edits.
  	  - See during the lecture what the next tasks will be
+
+Sirawit:
+	This week:
+		- Use logger to inject stockfish
+		- Configured doxygen hosting
+		- Configured CD to check compilation on PR
+	Next week:
+		- [Urgent] Finish stockfish
+
