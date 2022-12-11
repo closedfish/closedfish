@@ -302,6 +302,14 @@ void addHeatMap(CFBoard& board, int (&heat_map)[8][8], const uint64_t &weak_pawn
 			// To be added
 		}
 	}
+	// Switch back to white's orientation if white's turn
+	if (!current_turn) {
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 8; j++) {
+				std::swap(heat_map[i][j], heat_map[7-i][7-j]);
+			}
+		}
+	}
 }
 
 int main() {
