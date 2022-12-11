@@ -182,8 +182,8 @@ CMAKEPACKAGE_INSTALL_DIR:PATH=share/eigen3/cmake
 //Path to a program.
 CMAKE_AR:FILEPATH=C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.33.31629/bin/Hostx86/x64/lib.exe
 
-//No help, variable specified on the command line.
-CMAKE_BUILD_TYPE:STRING=Debug
+//Choose the type of build, options are: None Debug Release.
+CMAKE_BUILD_TYPE:STRING=Release
 
 //Semicolon separated list of supported configuration types, only
 // supports Debug, Release, MinSizeRel, and RelWithDebInfo, anything
@@ -568,7 +568,7 @@ ENABLE_WARNINGS:BOOL=ON
 Eigen3_BINARY_DIR:STATIC=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/external/Eigen
 
 //The directory containing a CMake configuration file for Eigen3.
-Eigen3_DIR:PATH=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/external/eigen_lib
+Eigen3_DIR:PATH=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/external/Eigen
 
 //Value Computed by CMake
 Eigen3_IS_TOP_LEVEL:STATIC=OFF
