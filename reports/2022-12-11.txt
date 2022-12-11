@@ -5,3 +5,11 @@ Sirawit:
 		- Configured CD to check compilation on PR
 	Next week:
 		- [Urgent] Finish stockfish
+
+Shirelle: 
+	This week: 
+	        - created a function for square color of the pions
+		- worked on my function 
+	Next week: 
+		- find a solution for bishops to be on diagonals in the function completion
+		-create function to verify if the king is in check
