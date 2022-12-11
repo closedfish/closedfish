@@ -13,7 +13,7 @@ file(MAKE_DIRECTORY
   "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp"
 )
 
-set(configSubDirs Debug)
+set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
     file(MAKE_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/${subDir}")
 endforeach()

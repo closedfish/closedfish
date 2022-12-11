@@ -1,123 +1,587 @@
 The system is: Windows - 10.0.22621 - AMD64
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
-Compiler:  
+Compiler: C:/msys64/mingw64/bin/g++.exe 
 Build flags: 
 Id flags:  
 
 The output was:
 0
-MSBuild version 17.3.0+f67e3d35e for .NET Framework
-Build started 12/11/2022 12:14:19 PM.
-Project "C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.24.2\CompilerIdCXX\CompilerIdCXX.vcxproj" on node 1 (default targets).
-PrepareForBuild:
-  Creating directory "Debug\".
-  Creating directory "Debug\CompilerIdCXX.tlog\".
-InitializeBuildStatus:
-  Creating "Debug\CompilerIdCXX.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
-ClCompile:
-  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\bin\HostX86\x64\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
-  CMakeCXXCompilerId.cpp
-Link:
-  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\bin\HostX86\x64\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdCXX.lib" /MACHINE:X64 Debug\CMakeCXXCompilerId.obj
-  CompilerIdCXX.vcxproj -> C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.24.2\CompilerIdCXX\CompilerIdCXX.exe
-PostBuildEvent:
-  for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
-  :VCEnd
-  CMAKE_CXX_COMPILER=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\bin\Hostx86\x64\cl.exe
-FinalizeBuildStatus:
-  Deleting file "Debug\CompilerIdCXX.tlog\unsuccessfulbuild".
-  Touching "Debug\CompilerIdCXX.tlog\CompilerIdCXX.lastbuildstate".
-Done Building Project "C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.24.2\CompilerIdCXX\CompilerIdCXX.vcxproj" (default targets).
-
-Build succeeded.
-    0 Warning(s)
-    0 Error(s)
-
-Time Elapsed 00:00:01.43
 
 
-Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.exe"
 
-Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
-
-The CXX compiler identification is MSVC, found in "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/3.24.2/CompilerIdCXX/CompilerIdCXX.exe"
+The CXX compiler identification is GNU, found in "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/3.24.2/CompilerIdCXX/a.exe"
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_d84a2.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.3.0+f67e3d35e for .NET Framework
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.33.31629 for x64
-  CMakeCXXCompilerABI.cpp
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_d84a2.dir\Debug\\" /Fd"cmTC_d84a2.dir\Debug\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\Program Files\CMake\share\cmake-3.24\Modules\CMakeCXXCompilerABI.cpp"
-  cmTC_d84a2.vcxproj -> C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\Debug\cmTC_d84a2.exe
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_7e68a/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_7e68a.dir/build.make CMakeFiles/cmTC_7e68a.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_7e68a.dir/CMakeCXXCompilerABI.cpp.obj
+C:/msys64/mingw64/bin/g++.exe   -v -o CMakeFiles/cmTC_7e68a.dir/CMakeCXXCompilerABI.cpp.obj -c "C:/Program Files/CMake/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp"
+Using built-in specs.
+COLLECT_GCC=C:/msys64/mingw64/bin/g++.exe
+Target: x86_64-w64-mingw32
+Configured with: ../gcc-12.1.0/configure --prefix=/mingw64 --with-local-prefix=/mingw64/local --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --with-native-system-header-dir=/mingw64/include --libexecdir=/mingw64/lib --enable-bootstrap --enable-checking=release --with-arch=x86-64 --with-tune=generic --enable-languages=c,lto,c++,fortran,ada,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-lto --enable-libgomp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/mingw64 --with-mpfr=/mingw64 --with-mpc=/mingw64 --with-isl=/mingw64 --with-pkgversion='Rev2, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --disable-libstdcxx-debug --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 12.1.0 (Rev2, Built by MSYS2 project) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7e68a.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_7e68a.dir/'
+ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/cc1plus.exe -quiet -v -iprefix C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/ -D_REENTRANT C:/Program Files/CMake/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_7e68a.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o C:\Users\andre\AppData\Local\Temp\ccIgd945.s
+GNU C++17 (Rev2, Built by MSYS2 project) version 12.1.0 (x86_64-w64-mingw32)
+	compiled by GNU C version 12.1.0, GMP version 6.2.1, MPFR version 4.1.0-p13, MPC version 1.2.1, isl version isl-0.24-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/include"
+ignoring duplicate directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0"
+ignoring duplicate directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0/x86_64-w64-mingw32"
+ignoring duplicate directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0/backward"
+ignoring duplicate directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/include"
+ignoring nonexistent directory "D:/a/msys64/mingw64/include"
+ignoring nonexistent directory "/mingw64/include"
+ignoring duplicate directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/include-fixed"
+ignoring nonexistent directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/include"
+ignoring nonexistent directory "D:/a/msys64/mingw64/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0
+ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0/x86_64-w64-mingw32
+ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0/backward
+ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include
+ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include
+ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include-fixed
+End of search list.
+GNU C++17 (Rev2, Built by MSYS2 project) version 12.1.0 (x86_64-w64-mingw32)
+	compiled by GNU C version 12.1.0, GMP version 6.2.1, MPFR version 4.1.0-p13, MPC version 1.2.1, isl version isl-0.24-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: a11494dd7faf8c9fd9d9562fe7dfbb73
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7e68a.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_7e68a.dir/'
+ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles/cmTC_7e68a.dir/CMakeCXXCompilerABI.cpp.obj C:\Users\andre\AppData\Local\Temp\ccIgd945.s
+GNU assembler version 2.38 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.38
+COMPILER_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/bin/
+LIBRARY_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7e68a.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_7e68a.dir/CMakeCXXCompilerABI.cpp.'
+Linking CXX executable cmTC_7e68a.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_7e68a.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_7e68a.dir/objects.a @CMakeFiles/cmTC_7e68a.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -v -Wl,--whole-archive CMakeFiles/cmTC_7e68a.dir/objects.a -Wl,--no-whole-archive -o cmTC_7e68a.exe -Wl,--out-implib,libcmTC_7e68a.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
+Using built-in specs.
+COLLECT_GCC=C:/msys64/mingw64/bin/g++.exe
+COLLECT_LTO_WRAPPER=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/lto-wrapper.exe
+Target: x86_64-w64-mingw32
+Configured with: ../gcc-12.1.0/configure --prefix=/mingw64 --with-local-prefix=/mingw64/local --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --with-native-system-header-dir=/mingw64/include --libexecdir=/mingw64/lib --enable-bootstrap --enable-checking=release --with-arch=x86-64 --with-tune=generic --enable-languages=c,lto,c++,fortran,ada,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-lto --enable-libgomp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/mingw64 --with-mpfr=/mingw64 --with-mpc=/mingw64 --with-isl=/mingw64 --with-pkgversion='Rev2, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --disable-libstdcxx-debug --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 12.1.0 (Rev2, Built by MSYS2 project) 
+COMPILER_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/bin/
+LIBRARY_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_7e68a.exe' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_7e68a.'
+ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/collect2.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\andre\AppData\Local\Temp\cc1fvybm.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_7e68a.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../.. --whole-archive CMakeFiles/cmTC_7e68a.dir/objects.a --no-whole-archive --out-implib libcmTC_7e68a.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtend.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_7e68a.exe' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_7e68a.'
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
 
 
 
+Parsed CXX implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0]
+    add: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0/x86_64-w64-mingw32]
+    add: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0/backward]
+    add: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include]
+    add: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include]
+    add: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include-fixed]
+  end of search list found
+  collapse include dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0] ==> [C:/msys64/mingw64/include/c++/12.1.0]
+  collapse include dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0/x86_64-w64-mingw32] ==> [C:/msys64/mingw64/include/c++/12.1.0/x86_64-w64-mingw32]
+  collapse include dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0/backward] ==> [C:/msys64/mingw64/include/c++/12.1.0/backward]
+  collapse include dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include] ==> [C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0/include]
+  collapse include dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include] ==> [C:/msys64/mingw64/include]
+  collapse include dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include-fixed] ==> [C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0/include-fixed]
+  implicit include dirs: [C:/msys64/mingw64/include/c++/12.1.0;C:/msys64/mingw64/include/c++/12.1.0/x86_64-w64-mingw32;C:/msys64/mingw64/include/c++/12.1.0/backward;C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0/include;C:/msys64/mingw64/include;C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0/include-fixed]
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld\.exe|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_7e68a/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_7e68a.dir/build.make CMakeFiles/cmTC_7e68a.dir/build]
+  ignore line: [make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_7e68a.dir/CMakeCXXCompilerABI.cpp.obj]
+  ignore line: [C:/msys64/mingw64/bin/g++.exe   -v -o CMakeFiles/cmTC_7e68a.dir/CMakeCXXCompilerABI.cpp.obj -c "C:/Program Files/CMake/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp"]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=C:/msys64/mingw64/bin/g++.exe]
+  ignore line: [Target: x86_64-w64-mingw32]
+  ignore line: [Configured with: ../gcc-12.1.0/configure --prefix=/mingw64 --with-local-prefix=/mingw64/local --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --with-native-system-header-dir=/mingw64/include --libexecdir=/mingw64/lib --enable-bootstrap --enable-checking=release --with-arch=x86-64 --with-tune=generic --enable-languages=c,lto,c++,fortran,ada,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-lto --enable-libgomp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/mingw64 --with-mpfr=/mingw64 --with-mpc=/mingw64 --with-isl=/mingw64 --with-pkgversion='Rev2, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --disable-libstdcxx-debug --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 12.1.0 (Rev2  Built by MSYS2 project) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7e68a.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_7e68a.dir/']
+  ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/cc1plus.exe -quiet -v -iprefix C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/ -D_REENTRANT C:/Program Files/CMake/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_7e68a.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o C:\Users\andre\AppData\Local\Temp\ccIgd945.s]
+  ignore line: [GNU C++17 (Rev2  Built by MSYS2 project) version 12.1.0 (x86_64-w64-mingw32)]
+  ignore line: [	compiled by GNU C version 12.1.0  GMP version 6.2.1  MPFR version 4.1.0-p13  MPC version 1.2.1  isl version isl-0.24-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/include"]
+  ignore line: [ignoring duplicate directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0"]
+  ignore line: [ignoring duplicate directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0/x86_64-w64-mingw32"]
+  ignore line: [ignoring duplicate directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0/backward"]
+  ignore line: [ignoring duplicate directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/include"]
+  ignore line: [ignoring nonexistent directory "D:/a/msys64/mingw64/include"]
+  ignore line: [ignoring nonexistent directory "/mingw64/include"]
+  ignore line: [ignoring duplicate directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/include-fixed"]
+  ignore line: [ignoring nonexistent directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/include"]
+  ignore line: [ignoring nonexistent directory "D:/a/msys64/mingw64/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0]
+  ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0/x86_64-w64-mingw32]
+  ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include/c++/12.1.0/backward]
+  ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include]
+  ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include]
+  ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include-fixed]
+  ignore line: [End of search list.]
+  ignore line: [GNU C++17 (Rev2  Built by MSYS2 project) version 12.1.0 (x86_64-w64-mingw32)]
+  ignore line: [	compiled by GNU C version 12.1.0  GMP version 6.2.1  MPFR version 4.1.0-p13  MPC version 1.2.1  isl version isl-0.24-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: a11494dd7faf8c9fd9d9562fe7dfbb73]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7e68a.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_7e68a.dir/']
+  ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles/cmTC_7e68a.dir/CMakeCXXCompilerABI.cpp.obj C:\Users\andre\AppData\Local\Temp\ccIgd945.s]
+  ignore line: [GNU assembler version 2.38 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.38]
+  ignore line: [COMPILER_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/bin/]
+  ignore line: [LIBRARY_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7e68a.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_7e68a.dir/CMakeCXXCompilerABI.cpp.']
+  ignore line: [Linking CXX executable cmTC_7e68a.exe]
+  ignore line: ["C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_7e68a.dir/objects.a]
+  ignore line: [C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_7e68a.dir/objects.a @CMakeFiles/cmTC_7e68a.dir/objects1.rsp]
+  ignore line: [C:/msys64/mingw64/bin/g++.exe  -v -Wl --whole-archive CMakeFiles/cmTC_7e68a.dir/objects.a -Wl --no-whole-archive -o cmTC_7e68a.exe -Wl --out-implib libcmTC_7e68a.dll.a -Wl --major-image-version 0 --minor-image-version 0 ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=C:/msys64/mingw64/bin/g++.exe]
+  ignore line: [COLLECT_LTO_WRAPPER=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/lto-wrapper.exe]
+  ignore line: [Target: x86_64-w64-mingw32]
+  ignore line: [Configured with: ../gcc-12.1.0/configure --prefix=/mingw64 --with-local-prefix=/mingw64/local --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --with-native-system-header-dir=/mingw64/include --libexecdir=/mingw64/lib --enable-bootstrap --enable-checking=release --with-arch=x86-64 --with-tune=generic --enable-languages=c,lto,c++,fortran,ada,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-lto --enable-libgomp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/mingw64 --with-mpfr=/mingw64 --with-mpc=/mingw64 --with-isl=/mingw64 --with-pkgversion='Rev2, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --disable-libstdcxx-debug --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 12.1.0 (Rev2  Built by MSYS2 project) ]
+  ignore line: [COMPILER_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/bin/]
+  ignore line: [LIBRARY_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_7e68a.exe' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_7e68a.']
+  link line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/collect2.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\andre\AppData\Local\Temp\cc1fvybm.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_7e68a.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../.. --whole-archive CMakeFiles/cmTC_7e68a.dir/objects.a --no-whole-archive --out-implib libcmTC_7e68a.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtend.o]
+    arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/collect2.exe] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/liblto_plugin.dll] ==> ignore
+    arg [-plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/lto-wrapper.exe] ==> ignore
+    arg [-plugin-opt=-fresolution=C:\Users\andre\AppData\Local\Temp\cc1fvybm.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lmoldname] ==> ignore
+    arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+    arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+    arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpthread] ==> ignore
+    arg [-plugin-opt=-pass-through=-ladvapi32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lshell32] ==> ignore
+    arg [-plugin-opt=-pass-through=-luser32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lmoldname] ==> ignore
+    arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+    arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+    arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+    arg [-m] ==> ignore
+    arg [i386pep] ==> ignore
+    arg [-Bdynamic] ==> search dynamic
+    arg [-o] ==> ignore
+    arg [cmTC_7e68a.exe] ==> ignore
+    arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/crt2.o] ==> obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/crt2.o]
+    arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtbegin.o] ==> obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtbegin.o]
+    arg [-LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0] ==> dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0]
+    arg [-LC:/msys64/mingw64/bin/../lib/gcc] ==> dir [C:/msys64/mingw64/bin/../lib/gcc]
+    arg [-LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib] ==> dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib]
+    arg [-LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib] ==> dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib]
+    arg [-LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib] ==> dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib]
+    arg [-LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../..] ==> dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../..]
+    arg [--whole-archive] ==> ignore
+    arg [CMakeFiles/cmTC_7e68a.dir/objects.a] ==> ignore
+    arg [--no-whole-archive] ==> ignore
+    arg [--out-implib] ==> ignore
+    arg [libcmTC_7e68a.dll.a] ==> ignore
+    arg [--major-image-version] ==> ignore
+    arg [0] ==> ignore
+    arg [--minor-image-version] ==> ignore
+    arg [0] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lmingw32] ==> lib [mingw32]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lmoldname] ==> lib [moldname]
+    arg [-lmingwex] ==> lib [mingwex]
+    arg [-lmsvcrt] ==> lib [msvcrt]
+    arg [-lkernel32] ==> lib [kernel32]
+    arg [-lpthread] ==> lib [pthread]
+    arg [-ladvapi32] ==> lib [advapi32]
+    arg [-lshell32] ==> lib [shell32]
+    arg [-luser32] ==> lib [user32]
+    arg [-lkernel32] ==> lib [kernel32]
+    arg [-lmingw32] ==> lib [mingw32]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lmoldname] ==> lib [moldname]
+    arg [-lmingwex] ==> lib [mingwex]
+    arg [-lmsvcrt] ==> lib [msvcrt]
+    arg [-lkernel32] ==> lib [kernel32]
+    arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/default-manifest.o] ==> obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/default-manifest.o]
+    arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtend.o] ==> obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtend.o]
+  remove lib [msvcrt]
+  remove lib [msvcrt]
+  collapse obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/crt2.o] ==> [C:/msys64/mingw64/lib/crt2.o]
+  collapse obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtbegin.o] ==> [C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0/crtbegin.o]
+  collapse obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/default-manifest.o] ==> [C:/msys64/mingw64/lib/default-manifest.o]
+  collapse obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtend.o] ==> [C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0/crtend.o]
+  collapse library dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0] ==> [C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0]
+  collapse library dir [C:/msys64/mingw64/bin/../lib/gcc] ==> [C:/msys64/mingw64/lib/gcc]
+  collapse library dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib] ==> [C:/msys64/mingw64/x86_64-w64-mingw32/lib]
+  collapse library dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib] ==> [C:/msys64/mingw64/lib]
+  collapse library dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib] ==> [C:/msys64/mingw64/x86_64-w64-mingw32/lib]
+  collapse library dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../..] ==> [C:/msys64/mingw64/lib]
+  implicit libs: [stdc++;mingw32;gcc_s;gcc;moldname;mingwex;kernel32;pthread;advapi32;shell32;user32;kernel32;mingw32;gcc_s;gcc;moldname;mingwex;kernel32]
+  implicit objs: [C:/msys64/mingw64/lib/crt2.o;C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0/crtbegin.o;C:/msys64/mingw64/lib/default-manifest.o;C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0/crtend.o]
+  implicit dirs: [C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0;C:/msys64/mingw64/lib/gcc;C:/msys64/mingw64/x86_64-w64-mingw32/lib;C:/msys64/mingw64/lib]
+  implicit fwks: []
+
+
+Performing C++ SOURCE FILE Test HAVE_FLAG__ffile_prefix_map_C__Users_andre_OneDrive_Desktop_Closedfish_closedfish_build__deps_catch2_src__ succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_ae751/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_ae751.dir/build.make CMakeFiles/cmTC_ae751.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_ae751.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DHAVE_FLAG__ffile_prefix_map_C__Users_andre_OneDrive_Desktop_Closedfish_closedfish_build__deps_catch2_src__  -ffile-prefix-map=C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/= -std=c++17 -o CMakeFiles/cmTC_ae751.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_ae751.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_ae751.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_ae751.dir/objects.a @CMakeFiles/cmTC_ae751.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe -Wl,--whole-archive CMakeFiles/cmTC_ae751.dir/objects.a -Wl,--no-whole-archive -o cmTC_ae751.exe -Wl,--out-implib,libcmTC_ae751.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_ae751.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
-Compiler:  
+Compiler: C:/msys64/mingw64/bin/gcc.exe 
 Build flags: 
 Id flags:  
 
 The output was:
 0
-MSBuild version 17.3.0+f67e3d35e for .NET Framework
-Build started 12/11/2022 12:14:24 PM.
-Project "C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.24.2\CompilerIdC\CompilerIdC.vcxproj" on node 1 (default targets).
-PrepareForBuild:
-  Creating directory "Debug\".
-  Creating directory "Debug\CompilerIdC.tlog\".
-InitializeBuildStatus:
-  Creating "Debug\CompilerIdC.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
-ClCompile:
-  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\bin\HostX86\x64\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc143.pdb" /external:W0 /Gd /TC /FC /errorReport:queue CMakeCCompilerId.c
-  CMakeCCompilerId.c
-Link:
-  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\bin\HostX86\x64\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdC.lib" /MACHINE:X64 Debug\CMakeCCompilerId.obj
-  CompilerIdC.vcxproj -> C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.24.2\CompilerIdC\CompilerIdC.exe
-PostBuildEvent:
-  for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
-  :VCEnd
-  CMAKE_C_COMPILER=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\bin\Hostx86\x64\cl.exe
-FinalizeBuildStatus:
-  Deleting file "Debug\CompilerIdC.tlog\unsuccessfulbuild".
-  Touching "Debug\CompilerIdC.tlog\CompilerIdC.lastbuildstate".
-Done Building Project "C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.24.2\CompilerIdC\CompilerIdC.vcxproj" (default targets).
-
-Build succeeded.
-    0 Warning(s)
-    0 Error(s)
-
-Time Elapsed 00:00:01.32
 
 
-Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.exe"
 
-Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
-
-The C compiler identification is MSVC, found in "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/3.24.2/CompilerIdC/CompilerIdC.exe"
+The C compiler identification is GNU, found in "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/3.24.2/CompilerIdC/a.exe"
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_ad29d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.3.0+f67e3d35e for .NET Framework
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.33.31629 for x64
-  CMakeCCompilerABI.c
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_ad29d.dir\Debug\\" /Fd"cmTC_ad29d.dir\Debug\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.24\Modules\CMakeCCompilerABI.c"
-  cmTC_ad29d.vcxproj -> C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\Debug\cmTC_ad29d.exe
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_f6f25/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_f6f25.dir/build.make CMakeFiles/cmTC_f6f25.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f6f25.dir/CMakeCCompilerABI.c.obj
+C:/msys64/mingw64/bin/gcc.exe   -v -o CMakeFiles/cmTC_f6f25.dir/CMakeCCompilerABI.c.obj -c "C:/Program Files/CMake/share/cmake-3.24/Modules/CMakeCCompilerABI.c"
+Using built-in specs.
+COLLECT_GCC=C:/msys64/mingw64/bin/gcc.exe
+Target: x86_64-w64-mingw32
+Configured with: ../gcc-12.1.0/configure --prefix=/mingw64 --with-local-prefix=/mingw64/local --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --with-native-system-header-dir=/mingw64/include --libexecdir=/mingw64/lib --enable-bootstrap --enable-checking=release --with-arch=x86-64 --with-tune=generic --enable-languages=c,lto,c++,fortran,ada,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-lto --enable-libgomp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/mingw64 --with-mpfr=/mingw64 --with-mpc=/mingw64 --with-isl=/mingw64 --with-pkgversion='Rev2, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --disable-libstdcxx-debug --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 12.1.0 (Rev2, Built by MSYS2 project) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f6f25.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_f6f25.dir/'
+ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/cc1.exe -quiet -v -iprefix C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/ -D_REENTRANT C:/Program Files/CMake/share/cmake-3.24/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_f6f25.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o C:\Users\andre\AppData\Local\Temp\ccPy5QGq.s
+GNU C17 (Rev2, Built by MSYS2 project) version 12.1.0 (x86_64-w64-mingw32)
+	compiled by GNU C version 12.1.0, GMP version 6.2.1, MPFR version 4.1.0-p13, MPC version 1.2.1, isl version isl-0.24-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/include"
+ignoring duplicate directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/include"
+ignoring nonexistent directory "D:/a/msys64/mingw64/include"
+ignoring nonexistent directory "/mingw64/include"
+ignoring duplicate directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/include-fixed"
+ignoring nonexistent directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/include"
+ignoring nonexistent directory "D:/a/msys64/mingw64/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include
+ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include
+ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include-fixed
+End of search list.
+GNU C17 (Rev2, Built by MSYS2 project) version 12.1.0 (x86_64-w64-mingw32)
+	compiled by GNU C version 12.1.0, GMP version 6.2.1, MPFR version 4.1.0-p13, MPC version 1.2.1, isl version isl-0.24-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 2606e4081f3c55efc3b1821476758512
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f6f25.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_f6f25.dir/'
+ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles/cmTC_f6f25.dir/CMakeCCompilerABI.c.obj C:\Users\andre\AppData\Local\Temp\ccPy5QGq.s
+GNU assembler version 2.38 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.38
+COMPILER_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/bin/
+LIBRARY_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f6f25.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_f6f25.dir/CMakeCCompilerABI.c.'
+Linking C executable cmTC_f6f25.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_f6f25.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_f6f25.dir/objects.a @CMakeFiles/cmTC_f6f25.dir/objects1.rsp
+C:/msys64/mingw64/bin/gcc.exe  -v -Wl,--whole-archive CMakeFiles/cmTC_f6f25.dir/objects.a -Wl,--no-whole-archive -o cmTC_f6f25.exe -Wl,--out-implib,libcmTC_f6f25.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
+Using built-in specs.
+COLLECT_GCC=C:/msys64/mingw64/bin/gcc.exe
+COLLECT_LTO_WRAPPER=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/lto-wrapper.exe
+Target: x86_64-w64-mingw32
+Configured with: ../gcc-12.1.0/configure --prefix=/mingw64 --with-local-prefix=/mingw64/local --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --with-native-system-header-dir=/mingw64/include --libexecdir=/mingw64/lib --enable-bootstrap --enable-checking=release --with-arch=x86-64 --with-tune=generic --enable-languages=c,lto,c++,fortran,ada,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-lto --enable-libgomp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/mingw64 --with-mpfr=/mingw64 --with-mpc=/mingw64 --with-isl=/mingw64 --with-pkgversion='Rev2, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --disable-libstdcxx-debug --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 12.1.0 (Rev2, Built by MSYS2 project) 
+COMPILER_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/bin/
+LIBRARY_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/;C:/msys64/mingw64/bin/../lib/gcc/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/;C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_f6f25.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_f6f25.'
+ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/collect2.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\andre\AppData\Local\Temp\ccZt7XEU.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_f6f25.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../.. --whole-archive CMakeFiles/cmTC_f6f25.dir/objects.a --no-whole-archive --out-implib libcmTC_f6f25.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtend.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_f6f25.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_f6f25.'
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
 
 
 
+Parsed C implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include]
+    add: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include]
+    add: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include-fixed]
+  end of search list found
+  collapse include dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include] ==> [C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0/include]
+  collapse include dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include] ==> [C:/msys64/mingw64/include]
+  collapse include dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include-fixed] ==> [C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0/include-fixed]
+  implicit include dirs: [C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0/include;C:/msys64/mingw64/include;C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0/include-fixed]
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld\.exe|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_f6f25/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_f6f25.dir/build.make CMakeFiles/cmTC_f6f25.dir/build]
+  ignore line: [make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_f6f25.dir/CMakeCCompilerABI.c.obj]
+  ignore line: [C:/msys64/mingw64/bin/gcc.exe   -v -o CMakeFiles/cmTC_f6f25.dir/CMakeCCompilerABI.c.obj -c "C:/Program Files/CMake/share/cmake-3.24/Modules/CMakeCCompilerABI.c"]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=C:/msys64/mingw64/bin/gcc.exe]
+  ignore line: [Target: x86_64-w64-mingw32]
+  ignore line: [Configured with: ../gcc-12.1.0/configure --prefix=/mingw64 --with-local-prefix=/mingw64/local --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --with-native-system-header-dir=/mingw64/include --libexecdir=/mingw64/lib --enable-bootstrap --enable-checking=release --with-arch=x86-64 --with-tune=generic --enable-languages=c,lto,c++,fortran,ada,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-lto --enable-libgomp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/mingw64 --with-mpfr=/mingw64 --with-mpc=/mingw64 --with-isl=/mingw64 --with-pkgversion='Rev2, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --disable-libstdcxx-debug --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 12.1.0 (Rev2  Built by MSYS2 project) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f6f25.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_f6f25.dir/']
+  ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/cc1.exe -quiet -v -iprefix C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/ -D_REENTRANT C:/Program Files/CMake/share/cmake-3.24/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_f6f25.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o C:\Users\andre\AppData\Local\Temp\ccPy5QGq.s]
+  ignore line: [GNU C17 (Rev2  Built by MSYS2 project) version 12.1.0 (x86_64-w64-mingw32)]
+  ignore line: [	compiled by GNU C version 12.1.0  GMP version 6.2.1  MPFR version 4.1.0-p13  MPC version 1.2.1  isl version isl-0.24-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/include"]
+  ignore line: [ignoring duplicate directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/include"]
+  ignore line: [ignoring nonexistent directory "D:/a/msys64/mingw64/include"]
+  ignore line: [ignoring nonexistent directory "/mingw64/include"]
+  ignore line: [ignoring duplicate directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/include-fixed"]
+  ignore line: [ignoring nonexistent directory "C:/msys64/mingw64/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/include"]
+  ignore line: [ignoring nonexistent directory "D:/a/msys64/mingw64/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include]
+  ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../include]
+  ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/include-fixed]
+  ignore line: [End of search list.]
+  ignore line: [GNU C17 (Rev2  Built by MSYS2 project) version 12.1.0 (x86_64-w64-mingw32)]
+  ignore line: [	compiled by GNU C version 12.1.0  GMP version 6.2.1  MPFR version 4.1.0-p13  MPC version 1.2.1  isl version isl-0.24-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: 2606e4081f3c55efc3b1821476758512]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f6f25.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_f6f25.dir/']
+  ignore line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles/cmTC_f6f25.dir/CMakeCCompilerABI.c.obj C:\Users\andre\AppData\Local\Temp\ccPy5QGq.s]
+  ignore line: [GNU assembler version 2.38 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.38]
+  ignore line: [COMPILER_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/bin/]
+  ignore line: [LIBRARY_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f6f25.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_f6f25.dir/CMakeCCompilerABI.c.']
+  ignore line: [Linking C executable cmTC_f6f25.exe]
+  ignore line: ["C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_f6f25.dir/objects.a]
+  ignore line: [C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_f6f25.dir/objects.a @CMakeFiles/cmTC_f6f25.dir/objects1.rsp]
+  ignore line: [C:/msys64/mingw64/bin/gcc.exe  -v -Wl --whole-archive CMakeFiles/cmTC_f6f25.dir/objects.a -Wl --no-whole-archive -o cmTC_f6f25.exe -Wl --out-implib libcmTC_f6f25.dll.a -Wl --major-image-version 0 --minor-image-version 0 ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=C:/msys64/mingw64/bin/gcc.exe]
+  ignore line: [COLLECT_LTO_WRAPPER=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/lto-wrapper.exe]
+  ignore line: [Target: x86_64-w64-mingw32]
+  ignore line: [Configured with: ../gcc-12.1.0/configure --prefix=/mingw64 --with-local-prefix=/mingw64/local --build=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --with-native-system-header-dir=/mingw64/include --libexecdir=/mingw64/lib --enable-bootstrap --enable-checking=release --with-arch=x86-64 --with-tune=generic --enable-languages=c,lto,c++,fortran,ada,objc,obj-c++,jit --enable-shared --enable-static --enable-libatomic --enable-threads=posix --enable-graphite --enable-fully-dynamic-string --enable-libstdcxx-filesystem-ts --enable-libstdcxx-time --disable-libstdcxx-pch --enable-lto --enable-libgomp --disable-multilib --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-libiconv --with-system-zlib --with-gmp=/mingw64 --with-mpfr=/mingw64 --with-mpc=/mingw64 --with-isl=/mingw64 --with-pkgversion='Rev2, Built by MSYS2 project' --with-bugurl=https://github.com/msys2/MINGW-packages/issues --with-gnu-as --with-gnu-ld --disable-libstdcxx-debug --with-boot-ldflags=-static-libstdc++ --with-stage1-ldflags=-static-libstdc++]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 12.1.0 (Rev2  Built by MSYS2 project) ]
+  ignore line: [COMPILER_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/bin/]
+  ignore line: [LIBRARY_PATH=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/]
+  ignore line: [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_f6f25.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_f6f25.']
+  link line: [ C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/collect2.exe -plugin C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/liblto_plugin.dll -plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\andre\AppData\Local\Temp\ccZt7XEU.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_f6f25.exe C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/crt2.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtbegin.o -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0 -LC:/msys64/mingw64/bin/../lib/gcc -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../.. --whole-archive CMakeFiles/cmTC_f6f25.dir/objects.a --no-whole-archive --out-implib libcmTC_f6f25.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/default-manifest.o C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtend.o]
+    arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/collect2.exe] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/liblto_plugin.dll] ==> ignore
+    arg [-plugin-opt=C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/lto-wrapper.exe] ==> ignore
+    arg [-plugin-opt=-fresolution=C:\Users\andre\AppData\Local\Temp\ccZt7XEU.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_eh] ==> ignore
+    arg [-plugin-opt=-pass-through=-lmoldname] ==> ignore
+    arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+    arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+    arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpthread] ==> ignore
+    arg [-plugin-opt=-pass-through=-ladvapi32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lshell32] ==> ignore
+    arg [-plugin-opt=-pass-through=-luser32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_eh] ==> ignore
+    arg [-plugin-opt=-pass-through=-lmoldname] ==> ignore
+    arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+    arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+    arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+    arg [-m] ==> ignore
+    arg [i386pep] ==> ignore
+    arg [-Bdynamic] ==> search dynamic
+    arg [-o] ==> ignore
+    arg [cmTC_f6f25.exe] ==> ignore
+    arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/crt2.o] ==> obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/crt2.o]
+    arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtbegin.o] ==> obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtbegin.o]
+    arg [-LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0] ==> dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0]
+    arg [-LC:/msys64/mingw64/bin/../lib/gcc] ==> dir [C:/msys64/mingw64/bin/../lib/gcc]
+    arg [-LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib] ==> dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib]
+    arg [-LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib] ==> dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib]
+    arg [-LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib] ==> dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib]
+    arg [-LC:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../..] ==> dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../..]
+    arg [--whole-archive] ==> ignore
+    arg [CMakeFiles/cmTC_f6f25.dir/objects.a] ==> ignore
+    arg [--no-whole-archive] ==> ignore
+    arg [--out-implib] ==> ignore
+    arg [libcmTC_f6f25.dll.a] ==> ignore
+    arg [--major-image-version] ==> ignore
+    arg [0] ==> ignore
+    arg [--minor-image-version] ==> ignore
+    arg [0] ==> ignore
+    arg [-lmingw32] ==> lib [mingw32]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lgcc_eh] ==> lib [gcc_eh]
+    arg [-lmoldname] ==> lib [moldname]
+    arg [-lmingwex] ==> lib [mingwex]
+    arg [-lmsvcrt] ==> lib [msvcrt]
+    arg [-lkernel32] ==> lib [kernel32]
+    arg [-lpthread] ==> lib [pthread]
+    arg [-ladvapi32] ==> lib [advapi32]
+    arg [-lshell32] ==> lib [shell32]
+    arg [-luser32] ==> lib [user32]
+    arg [-lkernel32] ==> lib [kernel32]
+    arg [-lmingw32] ==> lib [mingw32]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lgcc_eh] ==> lib [gcc_eh]
+    arg [-lmoldname] ==> lib [moldname]
+    arg [-lmingwex] ==> lib [mingwex]
+    arg [-lmsvcrt] ==> lib [msvcrt]
+    arg [-lkernel32] ==> lib [kernel32]
+    arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/default-manifest.o] ==> obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/default-manifest.o]
+    arg [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtend.o] ==> obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtend.o]
+  remove lib [gcc_eh]
+  remove lib [msvcrt]
+  remove lib [gcc_eh]
+  remove lib [msvcrt]
+  collapse obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/crt2.o] ==> [C:/msys64/mingw64/lib/crt2.o]
+  collapse obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtbegin.o] ==> [C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0/crtbegin.o]
+  collapse obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib/default-manifest.o] ==> [C:/msys64/mingw64/lib/default-manifest.o]
+  collapse obj [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/crtend.o] ==> [C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0/crtend.o]
+  collapse library dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0] ==> [C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0]
+  collapse library dir [C:/msys64/mingw64/bin/../lib/gcc] ==> [C:/msys64/mingw64/lib/gcc]
+  collapse library dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib/../lib] ==> [C:/msys64/mingw64/x86_64-w64-mingw32/lib]
+  collapse library dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../lib] ==> [C:/msys64/mingw64/lib]
+  collapse library dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../../../x86_64-w64-mingw32/lib] ==> [C:/msys64/mingw64/x86_64-w64-mingw32/lib]
+  collapse library dir [C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.1.0/../../..] ==> [C:/msys64/mingw64/lib]
+  implicit libs: [mingw32;gcc;moldname;mingwex;kernel32;pthread;advapi32;shell32;user32;kernel32;mingw32;gcc;moldname;mingwex;kernel32]
+  implicit objs: [C:/msys64/mingw64/lib/crt2.o;C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0/crtbegin.o;C:/msys64/mingw64/lib/default-manifest.o;C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0/crtend.o]
+  implicit dirs: [C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.1.0;C:/msys64/mingw64/lib/gcc;C:/msys64/mingw64/x86_64-w64-mingw32/lib;C:/msys64/mingw64/lib]
+  implicit fwks: []
+
+
+Performing C++ SOURCE FILE Test EIGEN_COMPILER_SUPPORT_CPP11 succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_06b3c/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_06b3c.dir/build.make CMakeFiles/cmTC_06b3c.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_06b3c.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DEIGEN_COMPILER_SUPPORT_CPP11  -std=c++11 -std=c++17 -o CMakeFiles/cmTC_06b3c.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_06b3c.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_06b3c.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_06b3c.dir/objects.a @CMakeFiles/cmTC_06b3c.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe -Wl,--whole-archive CMakeFiles/cmTC_06b3c.dir/objects.a -Wl,--no-whole-archive -o cmTC_06b3c.exe -Wl,--out-implib,libcmTC_06b3c.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_06b3c.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_std=cpp03 succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_75a31/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_75a31.dir/build.make CMakeFiles/cmTC_75a31.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_75a31.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_std=cpp03  -std=c++03 -std=c++17 -o CMakeFiles/cmTC_75a31.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_75a31.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_75a31.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_75a31.dir/objects.a @CMakeFiles/cmTC_75a31.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe -Wl,--whole-archive CMakeFiles/cmTC_75a31.dir/objects.a -Wl,--no-whole-archive -o cmTC_75a31.exe -Wl,--out-implib,libcmTC_75a31.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_75a31.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
 Performing C++ SOURCE FILE Test standard_math_library_linked_to_automatically succeeded with the following output:
 Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_1c0de.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.3.0+f67e3d35e for .NET Framework
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.33.31629 for x64
-  src.cxx
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D standard_math_library_linked_to_automatically /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++14 /Fo"cmTC_1c0de.dir\Debug\\" /Fd"cmTC_1c0de.dir\Debug\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\src.cxx
-  cmTC_1c0de.vcxproj -> C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\Debug\cmTC_1c0de.exe
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_15f02/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_15f02.dir/build.make CMakeFiles/cmTC_15f02.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_15f02.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -Dstandard_math_library_linked_to_automatically  -std=c++03  -std=c++17 -o CMakeFiles/cmTC_15f02.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_15f02.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_15f02.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_15f02.dir/objects.a @CMakeFiles/cmTC_15f02.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03  -Wl,--whole-archive CMakeFiles/cmTC_15f02.dir/objects.a -Wl,--no-whole-archive -o cmTC_15f02.exe -Wl,--out-implib,libcmTC_15f02.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_15f02.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
 
 
 Source file was:
@@ -126,15 +590,469 @@ Source file was:
 int main(int argc, char **){
   return int(std::sin(double(argc)) + std::log(double(argc)));
 }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_WERROR succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_e1c0b/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_e1c0b.dir/build.make CMakeFiles/cmTC_e1c0b.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_e1c0b.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_WERROR  -std=c++03    -Werror -std=c++17 -o CMakeFiles/cmTC_e1c0b.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_e1c0b.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_e1c0b.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_e1c0b.dir/objects.a @CMakeFiles/cmTC_e1c0b.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03  -Wl,--whole-archive CMakeFiles/cmTC_e1c0b.dir/objects.a -Wl,--no-whole-archive -o cmTC_e1c0b.exe -Wl,--out-implib,libcmTC_e1c0b.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_e1c0b.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_pedantic succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_7955e/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_7955e.dir/build.make CMakeFiles/cmTC_7955e.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_7955e.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_pedantic  -std=c++03 -Werror   -pedantic -std=c++17 -o CMakeFiles/cmTC_7955e.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_7955e.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_7955e.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_7955e.dir/objects.a @CMakeFiles/cmTC_7955e.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -Werror -Wl,--whole-archive CMakeFiles/cmTC_7955e.dir/objects.a -Wl,--no-whole-archive -o cmTC_7955e.exe -Wl,--out-implib,libcmTC_7955e.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_7955e.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wall succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_d13e8/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_d13e8.dir/build.make CMakeFiles/cmTC_d13e8.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_d13e8.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wall  -std=c++03 -pedantic -Werror   -Wall -std=c++17 -o CMakeFiles/cmTC_d13e8.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_d13e8.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_d13e8.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_d13e8.dir/objects.a @CMakeFiles/cmTC_d13e8.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Werror -Wl,--whole-archive CMakeFiles/cmTC_d13e8.dir/objects.a -Wl,--no-whole-archive -o cmTC_d13e8.exe -Wl,--out-implib,libcmTC_d13e8.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_d13e8.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wextra succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_6a3cd/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_6a3cd.dir/build.make CMakeFiles/cmTC_6a3cd.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_6a3cd.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wextra  -std=c++03 -pedantic -Wall -Werror   -Wextra -std=c++17 -o CMakeFiles/cmTC_6a3cd.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_6a3cd.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_6a3cd.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_6a3cd.dir/objects.a @CMakeFiles/cmTC_6a3cd.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Werror -Wl,--whole-archive CMakeFiles/cmTC_6a3cd.dir/objects.a -Wl,--no-whole-archive -o cmTC_6a3cd.exe -Wl,--out-implib,libcmTC_6a3cd.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_6a3cd.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wundef succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_618d7/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_618d7.dir/build.make CMakeFiles/cmTC_618d7.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_618d7.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wundef  -std=c++03 -pedantic -Wall -Wextra -Werror   -Wundef -std=c++17 -o CMakeFiles/cmTC_618d7.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_618d7.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_618d7.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_618d7.dir/objects.a @CMakeFiles/cmTC_618d7.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Werror -Wl,--whole-archive CMakeFiles/cmTC_618d7.dir/objects.a -Wl,--no-whole-archive -o cmTC_618d7.exe -Wl,--out-implib,libcmTC_618d7.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_618d7.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wcastalign succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_152e1/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_152e1.dir/build.make CMakeFiles/cmTC_152e1.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_152e1.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wcastalign  -std=c++03 -pedantic -Wall -Wextra -Wundef -Werror   -Wcast-align -std=c++17 -o CMakeFiles/cmTC_152e1.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_152e1.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_152e1.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_152e1.dir/objects.a @CMakeFiles/cmTC_152e1.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Werror -Wl,--whole-archive CMakeFiles/cmTC_152e1.dir/objects.a -Wl,--no-whole-archive -o cmTC_152e1.exe -Wl,--out-implib,libcmTC_152e1.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_152e1.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wcharsubscripts succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_163a1/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_163a1.dir/build.make CMakeFiles/cmTC_163a1.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_163a1.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wcharsubscripts  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Werror   -Wchar-subscripts -std=c++17 -o CMakeFiles/cmTC_163a1.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_163a1.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_163a1.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_163a1.dir/objects.a @CMakeFiles/cmTC_163a1.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Werror -Wl,--whole-archive CMakeFiles/cmTC_163a1.dir/objects.a -Wl,--no-whole-archive -o cmTC_163a1.exe -Wl,--out-implib,libcmTC_163a1.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_163a1.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wnonvirtualdtor succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_51f24/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_51f24.dir/build.make CMakeFiles/cmTC_51f24.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_51f24.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wnonvirtualdtor  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Werror   -Wnon-virtual-dtor -std=c++17 -o CMakeFiles/cmTC_51f24.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_51f24.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_51f24.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_51f24.dir/objects.a @CMakeFiles/cmTC_51f24.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Werror -Wl,--whole-archive CMakeFiles/cmTC_51f24.dir/objects.a -Wl,--no-whole-archive -o cmTC_51f24.exe -Wl,--out-implib,libcmTC_51f24.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_51f24.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wunusedlocaltypedefs succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_75ff7/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_75ff7.dir/build.make CMakeFiles/cmTC_75ff7.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_75ff7.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wunusedlocaltypedefs  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Werror   -Wunused-local-typedefs -std=c++17 -o CMakeFiles/cmTC_75ff7.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_75ff7.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_75ff7.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_75ff7.dir/objects.a @CMakeFiles/cmTC_75ff7.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Werror -Wl,--whole-archive CMakeFiles/cmTC_75ff7.dir/objects.a -Wl,--no-whole-archive -o cmTC_75ff7.exe -Wl,--out-implib,libcmTC_75ff7.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_75ff7.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wpointerarith succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_dcea9/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_dcea9.dir/build.make CMakeFiles/cmTC_dcea9.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_dcea9.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wpointerarith  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Werror   -Wpointer-arith -std=c++17 -o CMakeFiles/cmTC_dcea9.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_dcea9.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_dcea9.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_dcea9.dir/objects.a @CMakeFiles/cmTC_dcea9.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Werror -Wl,--whole-archive CMakeFiles/cmTC_dcea9.dir/objects.a -Wl,--no-whole-archive -o cmTC_dcea9.exe -Wl,--out-implib,libcmTC_dcea9.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_dcea9.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wwritestrings succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_c5ba1/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_c5ba1.dir/build.make CMakeFiles/cmTC_c5ba1.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_c5ba1.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wwritestrings  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Werror   -Wwrite-strings -std=c++17 -o CMakeFiles/cmTC_c5ba1.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_c5ba1.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_c5ba1.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_c5ba1.dir/objects.a @CMakeFiles/cmTC_c5ba1.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Werror -Wl,--whole-archive CMakeFiles/cmTC_c5ba1.dir/objects.a -Wl,--no-whole-archive -o cmTC_c5ba1.exe -Wl,--out-implib,libcmTC_c5ba1.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_c5ba1.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wformatsecurity succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_0e2dc/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_0e2dc.dir/build.make CMakeFiles/cmTC_0e2dc.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_0e2dc.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wformatsecurity  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Werror   -Wformat-security -std=c++17 -o CMakeFiles/cmTC_0e2dc.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_0e2dc.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_0e2dc.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_0e2dc.dir/objects.a @CMakeFiles/cmTC_0e2dc.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Werror -Wl,--whole-archive CMakeFiles/cmTC_0e2dc.dir/objects.a -Wl,--no-whole-archive -o cmTC_0e2dc.exe -Wl,--out-implib,libcmTC_0e2dc.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_0e2dc.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wlogicalop succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_bafd6/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_bafd6.dir/build.make CMakeFiles/cmTC_bafd6.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_bafd6.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wlogicalop  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Werror   -Wlogical-op -std=c++17 -o CMakeFiles/cmTC_bafd6.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_bafd6.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_bafd6.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_bafd6.dir/objects.a @CMakeFiles/cmTC_bafd6.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Werror -Wl,--whole-archive CMakeFiles/cmTC_bafd6.dir/objects.a -Wl,--no-whole-archive -o cmTC_bafd6.exe -Wl,--out-implib,libcmTC_bafd6.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_bafd6.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wenumconversion succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_afbe9/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_afbe9.dir/build.make CMakeFiles/cmTC_afbe9.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_afbe9.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wenumconversion  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Werror   -Wenum-conversion -std=c++17 -o CMakeFiles/cmTC_afbe9.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_afbe9.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_afbe9.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_afbe9.dir/objects.a @CMakeFiles/cmTC_afbe9.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Werror -Wl,--whole-archive CMakeFiles/cmTC_afbe9.dir/objects.a -Wl,--no-whole-archive -o cmTC_afbe9.exe -Wl,--out-implib,libcmTC_afbe9.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_afbe9.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wcpp11extensions succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_f383c/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_f383c.dir/build.make CMakeFiles/cmTC_f383c.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_f383c.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wcpp11extensions  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Werror   -Wc++11-extensions -std=c++17 -o CMakeFiles/cmTC_f383c.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_f383c.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_f383c.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_f383c.dir/objects.a @CMakeFiles/cmTC_f383c.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Werror -Wl,--whole-archive CMakeFiles/cmTC_f383c.dir/objects.a -Wl,--no-whole-archive -o cmTC_f383c.exe -Wl,--out-implib,libcmTC_f383c.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_f383c.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wdoublepromotion succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_c1840/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_c1840.dir/build.make CMakeFiles/cmTC_c1840.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_c1840.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wdoublepromotion  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Werror   -Wdouble-promotion -std=c++17 -o CMakeFiles/cmTC_c1840.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_c1840.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_c1840.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_c1840.dir/objects.a @CMakeFiles/cmTC_c1840.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Werror -Wl,--whole-archive CMakeFiles/cmTC_c1840.dir/objects.a -Wl,--no-whole-archive -o cmTC_c1840.exe -Wl,--out-implib,libcmTC_c1840.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_c1840.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wshadow succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_435ac/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_435ac.dir/build.make CMakeFiles/cmTC_435ac.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_435ac.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wshadow  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Werror   -Wshadow -std=c++17 -o CMakeFiles/cmTC_435ac.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_435ac.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_435ac.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_435ac.dir/objects.a @CMakeFiles/cmTC_435ac.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Werror -Wl,--whole-archive CMakeFiles/cmTC_435ac.dir/objects.a -Wl,--no-whole-archive -o cmTC_435ac.exe -Wl,--out-implib,libcmTC_435ac.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_435ac.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wnopsabi succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_74f14/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_74f14.dir/build.make CMakeFiles/cmTC_74f14.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_74f14.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wnopsabi  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Werror   -Wno-psabi -std=c++17 -o CMakeFiles/cmTC_74f14.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_74f14.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_74f14.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_74f14.dir/objects.a @CMakeFiles/cmTC_74f14.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Werror -Wl,--whole-archive CMakeFiles/cmTC_74f14.dir/objects.a -Wl,--no-whole-archive -o cmTC_74f14.exe -Wl,--out-implib,libcmTC_74f14.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_74f14.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wnovariadicmacros succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_50096/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_50096.dir/build.make CMakeFiles/cmTC_50096.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_50096.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wnovariadicmacros  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Wno-psabi -Werror   -Wno-variadic-macros -std=c++17 -o CMakeFiles/cmTC_50096.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_50096.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_50096.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_50096.dir/objects.a @CMakeFiles/cmTC_50096.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Wno-psabi -Werror -Wl,--whole-archive CMakeFiles/cmTC_50096.dir/objects.a -Wl,--no-whole-archive -o cmTC_50096.exe -Wl,--out-implib,libcmTC_50096.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_50096.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wnolonglong succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_f5399/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_f5399.dir/build.make CMakeFiles/cmTC_f5399.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_f5399.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_Wnolonglong  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Wno-psabi -Wno-variadic-macros -Werror   -Wno-long-long -std=c++17 -o CMakeFiles/cmTC_f5399.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_f5399.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_f5399.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_f5399.dir/objects.a @CMakeFiles/cmTC_f5399.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Wno-psabi -Wno-variadic-macros -Werror -Wl,--whole-archive CMakeFiles/cmTC_f5399.dir/objects.a -Wl,--no-whole-archive -o cmTC_f5399.exe -Wl,--out-implib,libcmTC_f5399.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_f5399.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_fnochecknew succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_a0e79/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_a0e79.dir/build.make CMakeFiles/cmTC_a0e79.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_a0e79.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_fnochecknew  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Wno-psabi -Wno-variadic-macros -Wno-long-long -Werror   -fno-check-new -std=c++17 -o CMakeFiles/cmTC_a0e79.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_a0e79.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_a0e79.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_a0e79.dir/objects.a @CMakeFiles/cmTC_a0e79.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Wno-psabi -Wno-variadic-macros -Wno-long-long -Werror -Wl,--whole-archive CMakeFiles/cmTC_a0e79.dir/objects.a -Wl,--no-whole-archive -o cmTC_a0e79.exe -Wl,--out-implib,libcmTC_a0e79.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_a0e79.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_fnocommon succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_616f9/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_616f9.dir/build.make CMakeFiles/cmTC_616f9.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_616f9.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_fnocommon  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Wno-psabi -Wno-variadic-macros -Wno-long-long -fno-check-new -Werror   -fno-common -std=c++17 -o CMakeFiles/cmTC_616f9.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_616f9.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_616f9.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_616f9.dir/objects.a @CMakeFiles/cmTC_616f9.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Wno-psabi -Wno-variadic-macros -Wno-long-long -fno-check-new -Werror -Wl,--whole-archive CMakeFiles/cmTC_616f9.dir/objects.a -Wl,--no-whole-archive -o cmTC_616f9.exe -Wl,--out-implib,libcmTC_616f9.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_616f9.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_fstrictaliasing succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_e55a7/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_e55a7.dir/build.make CMakeFiles/cmTC_e55a7.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_e55a7.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_fstrictaliasing  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Wno-psabi -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -Werror   -fstrict-aliasing -std=c++17 -o CMakeFiles/cmTC_e55a7.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_e55a7.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_e55a7.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_e55a7.dir/objects.a @CMakeFiles/cmTC_e55a7.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Wno-psabi -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -Werror -Wl,--whole-archive CMakeFiles/cmTC_e55a7.dir/objects.a -Wl,--no-whole-archive -o cmTC_e55a7.exe -Wl,--out-implib,libcmTC_e55a7.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_e55a7.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_ansi succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_b06d2/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_b06d2.dir/build.make CMakeFiles/cmTC_b06d2.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_b06d2.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_ansi  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Wno-psabi -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -Werror   -ansi -std=c++17 -o CMakeFiles/cmTC_b06d2.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_b06d2.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_b06d2.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_b06d2.dir/objects.a @CMakeFiles/cmTC_b06d2.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Wno-psabi -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -Werror -Wl,--whole-archive CMakeFiles/cmTC_b06d2.dir/objects.a -Wl,--no-whole-archive -o cmTC_b06d2.exe -Wl,--out-implib,libcmTC_b06d2.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_b06d2.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
 Performing C++ SOURCE FILE Test COMPILER_SUPPORT_OPENMP succeeded with the following output:
 Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_4c9cf.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.3.0+f67e3d35e for .NET Framework
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.33.31629 for x64
-  src.cxx
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D COMPILER_SUPPORT_OPENMP /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /GR /openmp /std:c++14 /Fo"cmTC_4c9cf.dir\Debug\\" /Fd"cmTC_4c9cf.dir\Debug\vc143.pdb" /external:W1 /Gd /TP /wd4127 /wd4505 /wd4714 /errorReport:queue C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\src.cxx
-  cmTC_4c9cf.vcxproj -> C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\CMakeTmp\Debug\cmTC_4c9cf.exe
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_c6259/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_c6259.dir/build.make CMakeFiles/cmTC_c6259.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_c6259.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_OPENMP  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Wno-psabi -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -ansi    -fopenmp -std=c++17 -o CMakeFiles/cmTC_c6259.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_c6259.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_c6259.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_c6259.dir/objects.a @CMakeFiles/cmTC_c6259.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Wno-psabi -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -ansi  -Wl,--whole-archive CMakeFiles/cmTC_c6259.dir/objects.a -Wl,--no-whole-archive -o cmTC_c6259.exe -Wl,--out-implib,libcmTC_c6259.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_c6259.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_7246e/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_7246e.dir/build.make CMakeFiles/cmTC_7246e.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7246e.dir/src.c.obj
+C:/msys64/mingw64/bin/gcc.exe -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_7246e.dir/src.c.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_7246e.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_7246e.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_7246e.dir/objects.a @CMakeFiles/cmTC_7246e.dir/objects1.rsp
+C:/msys64/mingw64/bin/gcc.exe -Wl,--whole-archive CMakeFiles/cmTC_7246e.dir/objects.a -Wl,--no-whole-archive -o cmTC_7246e.exe -Wl,--out-implib,libcmTC_7246e.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_7246e.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+#include <pthread.h>
+
+static void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_FASTMATH succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_c1fcf/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_c1fcf.dir/build.make CMakeFiles/cmTC_c1fcf.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_c1fcf.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_FASTMATH  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Wno-psabi -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -ansi    -ffast-math -std=c++17 -o CMakeFiles/cmTC_c1fcf.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_c1fcf.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_c1fcf.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_c1fcf.dir/objects.a @CMakeFiles/cmTC_c1fcf.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wenum-conversion -Wc++11-extensions -Wdouble-promotion -Wshadow -Wno-psabi -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -ansi  -Wl,--whole-archive CMakeFiles/cmTC_c1fcf.dir/objects.a -Wl,--no-whole-archive -o cmTC_c1fcf.exe -Wl,--out-implib,libcmTC_c1fcf.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_c1fcf.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_std=cpp03 succeeded with the following output:
+Change Dir: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/ProgramData/chocolatey/bin/make.exe -f Makefile cmTC_07333/fast && C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe  -f CMakeFiles/cmTC_07333.dir/build.make CMakeFiles/cmTC_07333.dir/build
+make[1]: Entering directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_07333.dir/src.cxx.obj
+C:/msys64/mingw64/bin/g++.exe -DCOMPILER_SUPPORT_std=cpp03  -std=c++03 -std=c++17 -o CMakeFiles/cmTC_07333.dir/src.cxx.obj -c C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_07333.exe
+"C:/Program Files/CMake/bin/cmake.exe" -E rm -f CMakeFiles/cmTC_07333.dir/objects.a
+C:/msys64/mingw64/bin/ar.exe qc CMakeFiles/cmTC_07333.dir/objects.a @CMakeFiles/cmTC_07333.dir/objects1.rsp
+C:/msys64/mingw64/bin/g++.exe -Wl,--whole-archive CMakeFiles/cmTC_07333.dir/objects.a -Wl,--no-whole-archive -o cmTC_07333.exe -Wl,--out-implib,libcmTC_07333.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_07333.dir/linklibs.rsp
+make[1]: Leaving directory 'C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/CMakeTmp'
 
 
 Source file was:

@@ -23,6 +23,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(SC StockfishConectors)
 set(GC GeneralConnectors)
+set(CUI ConnectorsFromUItoSwicthAI)
 set(PLAY PlayingRoutine)
 set(INPUT ReceiveInputFromUI)
 set(OUTPUT SendOutputToUI)
@@ -55,8 +56,8 @@ endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 #Help to include Cmake-based libraries
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 include(AddGitSubmodule)
-
-add_git_submodule(external/Eigen)
+#import Eigen
+#add_git_submodule(external/Eigen)
 
 #add Catch2 with FetchContent
 Include(FetchContent)
@@ -76,6 +77,13 @@ FetchContent_Declare(
     GIT_TAG v3.11.2
     GIT_SHALLOW TRUE)
 FetchContent_MakeAvailable(nlohmann_json)
+
+FetchContent_Declare(
+    eigen_lib
+    GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
+    GIT_TAG 3.4.0
+    GIT_SHALLOW TRUE)
+FetchContent_MakeAvailable(eigen_lib)
 
 #inlude warnings
 include(Warnings)

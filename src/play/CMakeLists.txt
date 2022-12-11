@@ -12,10 +12,9 @@ add_library(${PLAY} STATIC
 target_include_directories(${PLAY} PUBLIC
     "./"
     "${CMAKE_BINARY_DIR}/configured_files/include")
-find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 target_link_libraries(${PLAY} PUBLIC  
     nlohmann_json
-    Eigen3::Eigen)
+    eigen_lib)
 
 if (${ENABLE_WARNINGS})
     target_set_warnings(TARGET ${PLAY} ENABLE ON AS_ERROR OFF)

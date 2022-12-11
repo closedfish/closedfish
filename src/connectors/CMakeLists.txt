@@ -1,2 +1,3 @@
 add_subdirectory(ClosedfishConnect)
 add_subdirectory(StockfishConnect)
+add_subdirectory(ConnectorsUI)
