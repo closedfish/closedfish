@@ -20,7 +20,7 @@ using namespace std; //removes the need to type std::
 void Chessboard::single_generator(int pawns){ //To be fixed
     int white_counter=0;
     int fullcolumns_white[]={0,0,0,0,0,0,0,0};
-    if (pawns%2!=0 or pawns>16 or pawns<0){
+    if (pawns%2!=0 or pawns>16 or pawns<0){ // check for correct number of pawns (needs to be even, and within 1-16)
         std::cout<<"Please input a correct amount of pawns for completely closed positions i.e even number and less than 16 and more than 0. The board will not be generated."<<std::endl;
     }
     else{
@@ -48,32 +48,30 @@ void file_generator(int pawns){ //To be finished
     std::ofstream outfile ("generated_position.txt");
 }
 
+
+
 /**
 @brief this function has the goal of taking a .cbv chess database and creating a copy of said database with only pawns
- 
+@param .cbv file  which holds millions of chess positions
  */
-void database_edit(){ //To be finished
+
+void database_edit(){ //Will not be implemented
     std::fstream file;
     std::ofstream outfile ("new_database.txt");
-    
 }
-
 
 /**
 @brief this function has the goal of adding  randomly chosen numbers of king, queen, bishop, knight, and rook to an initial chessboard of pawns.
-
-
  */
-
 
 void Chessboard::completion(){
     
 
-    int rand_knight = rand()%3; // choose a random number between 0 and 2 of white knights.
+    int rand_knight = rand()%3; // choose a random number between 0 and 2 of white knights
     int knightcounter_white=0;
-    while(knightcounter_white<=rand_knight){ // find empty places to attend.
+    while(knightcounter_white<=rand_knight){ // iterate rand_knight times
         int random_pos=rand()%64;
-        if(board[random_pos].is_empty()){
+        if(board[random_pos].is_empty()){ // if position empty, assign white knight
             board[random_pos].piece=4;
             board[random_pos].piece_color=0;
             knightcounter_white+=1;
@@ -81,22 +79,22 @@ void Chessboard::completion(){
     }
     
 
-    int rand_bishop = rand()%3;
+    int rand_bishop = rand()%3;  // choose a random number between 0 and 2 of white bishops
     int bishopcounter_white=0;
-    while(bishopcounter_white<=rand_bishop){
+    while(bishopcounter_white<=rand_bishop){ // iterate rand_bishop times
         int random_pos=rand()%64;
-        if(board[random_pos].is_empty()){
+        if(board[random_pos].is_empty()){ // if position empty, assign white bishop
            board[random_pos].piece=3;
            board[random_pos].piece_color=0;
             bishopcounter_white+=1;
         }
     }
     
-    int rand_rook = rand()%3;
+    int rand_rook = rand()%3; // choose a random number between 0 and 2 of white rooks
     int rookcounter_white=0;
-    while(rookcounter_white<=rand_rook){
+    while(rookcounter_white<=rand_rook){ // iterate rand_rook times
         int random_pos=rand()%64;
-        if(board[random_pos].is_empty()){
+        if(board[random_pos].is_empty()){ // if position empty, assign white rook
            board[random_pos].piece=5;
            board[random_pos].piece_color=0;
             rookcounter_white+=1;
@@ -105,9 +103,9 @@ void Chessboard::completion(){
                     
                     
     int kingcounter_white=0;
-    while(kingcounter_white<=1){
+    while(kingcounter_white<=1){ // Place one white king (since without one the game is over)
         int random_pos=rand()%64;
-        if(board[random_pos].is_empty()){
+        if(board[random_pos].is_empty()){ // if position empty, assign white king
            board[random_pos].piece=1;
            board[random_pos].piece_color=0;
             kingcounter_white+=1;
@@ -115,44 +113,44 @@ void Chessboard::completion(){
     }
     
                                 
-    int rand_queen = rand()%2;
+    int rand_queen = rand()%2; // choose a random number between 0 and 2 of white queens
     int queencounter_white=0;
-    while(queencounter_white<=rand_queen){
+    while(queencounter_white<=rand_queen){ // iterate rand_queen times
         int random_pos=rand()%64;
-        if(board[random_pos].is_empty()){
+        if(board[random_pos].is_empty()){ // if position empty, assign white queen
            board[random_pos].piece=2;
            board[random_pos].piece_color=0;
             queencounter_white+=1;
         }
     }
         
-    rand_knight = rand()%3; // choose a random number between 0 and 2 of black knights.
+    int rand_knight_black = rand()%3; // choose a random number between 0 and 2 of black knights
     int knightcounter_black=0;
-        while(knightcounter_black<=rand_knight){ // find empty places to attend.
+        while(knightcounter_black<=rand_knight_black){ // iterate rand_knight_black times
             int random_pos=rand()%64;
-            if(board[random_pos].is_empty()){
+            if(board[random_pos].is_empty()){ // if position empty, assign black knight
                board[random_pos].piece=4;
                board[random_pos].piece_color=1;
                 knightcounter_black+=1;
             }
         }
         
-    rand_bishop = rand()%3;
+    int rand_bishop_black = rand()%3; // choose a random number between 0 and 2 of black bishops
     int bishopcounter_black=0;
-        while(bishopcounter_black<=rand_bishop){
+        while(bishopcounter_black <= rand_bishop_black){ // iterate rand_bishop_black times
             int random_pos=rand()%64;
-            if(board[random_pos].is_empty()){
+            if(board[random_pos].is_empty()){ // if position empty, assign black knight
                board[random_pos].piece=3;
                board[random_pos].piece_color=1;
                 bishopcounter_black+=1;
             }
         }
     
-    rand_rook = rand()%3;
+    int rand_rook_black = rand()%3; // choose a random number between 0 and 2 of black rooks
     int rookcounter_black=0;
-        while(rookcounter_black<=rand_rook){
+        while(rookcounter_black <= rand_rook_black){ // iterate rand_rook_black times
             int random_pos=rand()%64;
-            if(board[random_pos].is_empty()){
+            if(board[random_pos].is_empty()){ // if position empty, assign black rook
                board[random_pos].piece=5;
                board[random_pos].piece_color=1;
                 rookcounter_black+=1;
@@ -161,9 +159,9 @@ void Chessboard::completion(){
                         
                         
     int kingcounter_black=0;
-    while(kingcounter_black<=1){
+    while(kingcounter_black<=1){ // Place one black king (since without one the game is over)
         int random_pos=rand()%64;
-        if(board[random_pos].is_empty()){
+        if(board[random_pos].is_empty()){ // if position empty, assign black king
            board[random_pos].piece=1;
            board[random_pos].piece_color=1;
             kingcounter_black+=1;
@@ -171,35 +169,31 @@ void Chessboard::completion(){
     }
         
                             
-        rand_queen = rand()%2;
+    int rand_queen_black = rand()%2; // choose a random number between 0 and 2 of black queens
     int queencounter_black =0;
-        while(queencounter_black<=rand_queen){
+        while(queencounter_black<=rand_queen_black){ // iterate rand_queen_black times
             int random_pos=rand()%64;
-            if(board[random_pos].is_empty()){
+            if(board[random_pos].is_empty()){ // if position empty, assign black queen
                board[random_pos].piece=2;
                board[random_pos].piece_color=1;
                 queencounter_black+=1;
             }
         }
-                        
-                    
-                    }
+}
                    
-                
-            
 
 /**
 @brief this function has the goal of taking a chess position in the form of our chessboard array and returning the coefficient of closeness
-@param input array
+@param input chessboard array
 @return coefficient of closeness
  */
 double Chessboard::closeness(Chessboard input){ 
     int tot_pawn = get_total_pawns(input);
-    int tot_white = get_white_pawns(input);
-    int tot_black = get_black_pawns(input);
+    //int tot_white = get_white_pawns(input); // not being used
+    //int tot_black = get_black_pawns(input);
     
     int closed_pawns = 0;
-    int open_pawns = 0;
+    //int open_pawns = 0;
     
     for (int i = 0; i < 64; i++){
         if (input.board[i].get_piece() == 6){ // if a pawn
@@ -211,14 +205,16 @@ double Chessboard::closeness(Chessboard input){
                         closed_pawns += 1;
                     }
                     
-                    else if (i%8 == 0 && input.board[i+7].get_piece() != 6){ // if pawn along "h" column without a pawn to lower left
-                        closed_pawns += 1;
-                    }
-                    
                     else if (input.board[i+9].get_piece() != 6 && // if pawn not along edges, without a pawn to lower left or right
                              input.board[i+7].get_piece() != 6){
                         closed_pawns += 1;
                     }
+                    
+                    else if (i%8 == 0 && input.board[i+7].get_piece() != 6){ // if pawn along "h" column without a pawn to lower left
+                        closed_pawns += 1;
+                    }
+                    
+                   
                 }
             }
             
@@ -229,14 +225,16 @@ double Chessboard::closeness(Chessboard input){
                         closed_pawns += 1;
                     }
                     
-                    else if (i%8 == 0 && input.board[i-9].get_piece() != 6){ // if pawn along "h" column without a pawn to upper left
-                        closed_pawns += 1;
-                    }
-                    
                     else if (input.board[i-9].get_piece() != 6 && // if pawn not along edges, without a pawn to lower left or right
                              input.board[i-7].get_piece() != 6){
                         closed_pawns += 1;
                     }
+                    
+                    else if (i%8 == 0 && input.board[i-9].get_piece() != 6){ // if pawn along "h" column without a pawn to upper left
+                        closed_pawns += 1;
+                    }
+                    
+                   
                 }
             }
         }
@@ -247,16 +245,16 @@ double Chessboard::closeness(Chessboard input){
 
 /**
 @brief this function has the goal of taking a chess position in the form of our chessboard array and returning the coefficient of openness
-@param input array
+@param input chessboard array
 @return coefficient of openness
  */
 
 double Chessboard::openness(Chessboard input){
     int tot_pawn = get_total_pawns(input);
-    int tot_white = get_white_pawns(input);
-    int tot_black = get_black_pawns(input);
+    //int tot_white = get_white_pawns(input); // not needed
+    //int tot_black = get_black_pawns(input);
     
-    int closed_pawns = 0;
+    //int closed_pawns = 0;
     int open_pawns = 0;
     
     for (int i = 0; i < 64; i++){
@@ -273,14 +271,16 @@ double Chessboard::openness(Chessboard input){
                         open_pawns += 1;
                     }
                     
-                    else if (i%8 == 0 && input.board[i+7].get_piece() == 6){ // if pawn along "h" column with a pawn to lower left
-                        open_pawns += 1;
-                    }
-                    
                     else if (input.board[i+9].get_piece() == 6 ||
                              input.board[i+7].get_piece() == 6){ // if pawn not along edges, with a pawn to either its lower left or right (or both)
                         open_pawns += 1;
                     }
+                    
+                    else if (i%8 == 0 && input.board[i+7].get_piece() == 6){ // if pawn along "h" column with a pawn to lower left
+                        open_pawns += 1;
+                    }
+                    
+                    
                 }
             }
             
@@ -295,14 +295,16 @@ double Chessboard::openness(Chessboard input){
                         open_pawns += 1;
                     }
                     
-                    else if (i%8 == 0 && input.board[i-9].get_piece() == 6){ // if pawn along "h" column with a pawn to upper left
-                        open_pawns += 1;
-                    }
-                    
                     else if (input.board[i-9].get_piece() == 6 ||
                              input.board[i-7].get_piece() == 6){ // if pawn not along edges, with a pawn to either its upper left or right (or both)
                         open_pawns += 1;
                     }
+                    
+                    else if (i%8 == 0 && input.board[i-9].get_piece() == 6){ // if pawn along "h" column with a pawn to upper left
+                        open_pawns += 1;
+                    }
+                    
+                   
                 }
             }
         }
@@ -311,13 +313,14 @@ double Chessboard::openness(Chessboard input){
     return open_pawns/tot_pawn;
 }
 
-ArrayElement::ArrayElement() :ArrayElement(0,0){
+ArrayElement::ArrayElement():ArrayElement(0,0){
 }
 
 ArrayElement::ArrayElement(int piece, int piece_color){
     piece=0;
     piece_color=0;
 }
+
 int ArrayElement::get_piece(){
     return piece;
 }
@@ -325,7 +328,6 @@ int ArrayElement::get_piece(){
 int ArrayElement::get_piece_color(){
     return piece_color;
 }
-
 
 bool ArrayElement::is_empty(){
     if (piece == 0){
@@ -336,7 +338,6 @@ bool ArrayElement::is_empty(){
         }
 }
 
-
 Chessboard::Chessboard(){
     for (int i =0;i<64; i++){
         board[i].piece=0;
@@ -344,10 +345,12 @@ Chessboard::Chessboard(){
         
     }
 }
+
 void Chessboard::replace_element(int position, int _piece, int _color){
     board[position].piece=_piece;
     board[position].piece_color=_color;
 }
+
 int Chessboard::get_total_pawns(Chessboard input){
     int count=0;
     for (int i =0; i<64; i++){
