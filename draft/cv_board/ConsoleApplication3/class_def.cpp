@@ -27,3 +27,11 @@ Player::Player() {
 Player::Player(bool color) {
 	this->color = color;
 }
+Tile::Tile() {
+	this->let = 'a';
+	this->cord = 1;
+}
+Tile::Tile(char character, int cord) {
+	this->let = character;
+	this->cord = cord;
+}
