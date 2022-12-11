@@ -1,2 +1,0 @@
-C:/msys64/mingw64/bin/ar.exe qc libSendOutputToUI.a CMakeFiles/SendOutputToUI.dir/output.cpp.obj
-C:/msys64/mingw64/bin/ranlib.exe libSendOutputToUI.a

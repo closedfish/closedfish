@@ -1,5 +1,5 @@
 #pragma once
-#include <libeigen3-dev>
+#include <Eigen/Dense>
 
 //This is  the funtion class that will enables us to have an array of functions.
 //

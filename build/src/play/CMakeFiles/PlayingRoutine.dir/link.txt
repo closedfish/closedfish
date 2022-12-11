@@ -1,2 +1,0 @@
-C:/msys64/mingw64/bin/ar.exe qc libPlayingRoutine.a CMakeFiles/PlayingRoutine.dir/PlayMain.cpp.obj
-C:/msys64/mingw64/bin/ranlib.exe libPlayingRoutine.a

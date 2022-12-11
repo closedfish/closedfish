@@ -5,7 +5,7 @@
 
 
 void print_hello_world() { std::cout << "Hello World!\n"; }
-int main()
+int main1()
 {
     Eigen::MatrixXd m(2, 2);
     m(0, 0) = 1;
@@ -29,4 +29,5 @@ int main()
     std::cout<< f.average_pos(l_2, l_1) << std::endl;
     
     //std::cout << m << f.getval(4) << std::endl;
+    return 0;
 }

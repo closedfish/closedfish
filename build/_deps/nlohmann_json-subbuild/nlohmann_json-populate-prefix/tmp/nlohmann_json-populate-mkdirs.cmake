@@ -13,7 +13,7 @@ file(MAKE_DIRECTORY
   "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/nlohmann_json-populate-stamp"
 )
 
-set(configSubDirs )
+set(configSubDirs Debug)
 foreach(subDir IN LISTS configSubDirs)
     file(MAKE_DIRECTORY "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/nlohmann_json-populate-stamp/${subDir}")
 endforeach()

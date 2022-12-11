@@ -1,2 +1,0 @@
-C:/msys64/mingw64/bin/ar.exe qc libStockfishConectors.a CMakeFiles/StockfishConectors.dir/StockfishConnect.cpp.obj
-C:/msys64/mingw64/bin/ranlib.exe libStockfishConectors.a

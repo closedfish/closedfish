@@ -55,6 +55,9 @@ endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 #Help to include Cmake-based libraries
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 include(AddGitSubmodule)
+
+add_git_submodule(external/Eigen)
+
 #add Catch2 with FetchContent
 Include(FetchContent)
 
@@ -96,10 +99,10 @@ endif(DOXYGEN_FOUND)
 add_subdirectory(src)
 add_subdirectory(config)
 add_subdirectory(lib)
- 
+add_subdirectory(external)
 
 #Enable unit testing
-option(ENABLE_TESTING "Whether to enable the unit testing build" ON)
+option(ENABLE_TESTING "Whether to enable the unit testing build" OFF)
 
 #Check if there is need to compile unit test
 if(ENABLE_TESTING)
