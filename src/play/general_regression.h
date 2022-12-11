@@ -38,7 +38,7 @@ class Func
         //
         //NOTE: if func_num is 0 it will return the average positions of the pons
         //
-        int Eval(int* l_top_pons, int* l_bottom_pons)
+        float Eval(int* l_top_pons, int* l_bottom_pons)
         {
             if (difference_type == 1){
                 if (height == 2){
@@ -55,7 +55,7 @@ class Func
             }
         }
 
-        int Eval_help(int* l_top_pons, int* l_bottom_pons)
+        float Eval_help(int* l_top_pons, int* l_bottom_pons)
         {
             int t = l_top_pons[placement];
             int b = l_bottom_pons[placement];
@@ -78,7 +78,7 @@ class Func
         }
 
         // here we overload Eval_help to compute the distance bewteen two consecutive pons of same color
-        int Eval_help(int* l)
+        float Eval_help(int* l)
         {
             int pon1 = l[placement];
             int pon2 = l[placement + 1];
@@ -118,7 +118,7 @@ class Func
 
         float AveragePos(int* l_top_pons, int* l_bottom_pons)
         {
-            int average = 0;
+            int tot_sum = 0;
             double pon_count = 0;
 
             for (int i = 0; i < 8; i ++){
@@ -127,19 +127,19 @@ class Func
                 int pos_2 = l_bottom_pons[i];
                 if (pos_1 <= 7)
                 {
-                    average += pos_1;
+                    tot_sum += pos_1;
                     pon_count += 1;
                 }
             
                 if (pos_2 >= 0)
                 {
-                    average += pos_2;
+                    tot_sum += pos_2;
                     pon_count += 1;
                 }
             }
 
-            
-            return (float)average / pon_count;
+            std::cout << tot_sum << " " << pon_count << std::endl;
+            return (float)tot_sum / (float) pon_count;
         }
 
 
@@ -203,7 +203,7 @@ class Func
 // }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 
-namespace Basis1
+namespace SqrtDifBasis
 {
     Func* GenerateBasis()
     {
@@ -227,10 +227,74 @@ namespace Basis1
 
 }
 
-namespace Basis2{
+
+namespace AbsDifBasis
+{
+      Func* GenerateBasis()
+    {
+        Func* basis = new Func[23]; 
+
+        for (int i = 0; i < 7; i ++)
+        {
+            basis[i].InitFunc(2, i, 1, 2);//top pons consecutive difference
+            basis[i + 7].InitFunc(2, i, 1, 1);//bottom pons consecutive difference
+        }
+        for (int j = 0; j < 8; j ++)
+        {
+            basis[j + 14].InitFunc(2, j, 2, -1);
+        }
+        
+        basis[22].InitFunc(0, -1, 2, -1);
+
+        return basis;
+    }
 
 }
 
-namespace Basis3{
 
+namespace AbsSqrtDifBasis{
+     Func* GenerateBasis()
+    {
+        Func* basis = new Func[23]; 
+
+        for (int i = 0; i < 7; i ++)
+        {
+            basis[i].InitFunc(2, i, 1, 2);//top pons consecutive difference
+            basis[i + 7].InitFunc(2, i, 1, 1);//bottom pons consecutive difference
+        }
+        for (int j = 0; j < 8; j ++)
+        {
+            basis[j + 14].InitFunc(1, j, 2, -1);
+        }
+        
+        basis[22].InitFunc(0, -1, 2, -1);
+
+        return basis;
+
+    }
+
+}
+
+
+namespace SqrtAbsDifBasis
+{
+     Func* GenerateBasis()
+    {
+        Func* basis = new Func[23]; 
+
+        for (int i = 0; i < 7; i ++)
+        {
+            basis[i].InitFunc(1, i, 1, 2);//top pons consecutive difference
+            basis[i + 7].InitFunc(1, i, 1, 1);//bottom pons consecutive difference
+        }
+        for (int j = 0; j < 8; j ++)
+        {
+            basis[j + 14].InitFunc(2, j, 2, -1);
+        }
+        
+        basis[22].InitFunc(0, -1, 2, -1);
+
+        return basis;
+
+    }
 }
