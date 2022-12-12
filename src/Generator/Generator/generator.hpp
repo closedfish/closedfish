@@ -8,7 +8,8 @@
 
 
 void file_generator_general(int); //Input number of pawns and return a file with every possible closed position with only pawns
-void file_generator_100_closed(int position_amount);
+void file_generator_100_closed(int);
+void file_generator_6_white_6_black(int);
 void database_edit(); // cannot be implemented
 
 
