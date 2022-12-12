@@ -72,10 +72,28 @@ void Chessboard::single_generator(int pawns){ //To be fixed
     }
 }
 
-
-void file_generator(int pawns){ //To be finished
-    std::fstream file;
-    std::ofstream outfile ("generated_position.txt");
+/**
+@brief Creates a file of closed position in the vector in vector output format for the switch algo.
+@param position_amount The parameter here is the amount of positions you want to have generated in the file.
+ */
+void file_generator(int position_amount){ //To be finished
+    ofstream file("closed_positions.txt");
+    for (int i=0; i<position_amount;i++){
+        string output="";
+        std::vector<std::vector<int>> theboard = listpawns();
+        int bigLength = theboard.size();
+        for (int i = 0; i < bigLength; i++){
+            theboard[i].resize(8);
+            output+="[";
+            int innerLength = theboard[i].size();
+            for(int j = 0; j < innerLength; j++){
+                output+=theboard[i][j];
+                output+=", ";
+            }
+            output+="]";
+        }
+        file<<output<<endl;
+    }
 }
 
 
