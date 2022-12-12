@@ -53,3 +53,12 @@ Next Week:
  ⁃ Continue my research into the algorithm and understand the process / methodology used by the team.
  ⁃ Start implementing unit tests for the existing functions in the algorithm.
 
+
+Ba Cong:
+	This week: 
+		- Finished the heat map implementation 
+		- Tested the implementation on hand-generated test cases
+	Next week:
+		- Work with Razvan on finding the least amount of turns to go from one position to another position
+		- Try tweaking coefficients in the current heat map implementation to see find a better result 
+	
