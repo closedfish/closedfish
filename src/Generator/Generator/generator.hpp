@@ -5,8 +5,14 @@
 //  Created by Ariel Flahaut on 27/11/2022.
 //
 
-
-
+#include <fstream>      //For files
+#include <stdlib.h>     // include rand
+#include <iostream>
+#include <vector>
+using namespace std;
+std::vector<std::vector<int>> listpawns();
+std::vector<std::vector<int>> listpawnsclosed();
+std::vector<std::vector<int>> listpawns_6_white_6_black();
 void file_generator_general(int); //Input number of pawns and return a file with every possible closed position with only pawns
 void file_generator_100_closed(int);
 void file_generator_6_white_6_black(int);
