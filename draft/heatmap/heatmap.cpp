@@ -42,55 +42,55 @@ void displayPawnBoard(const uint64_t& pawnBoard) { // for testing only
 	}
 }
 
-void addHeatMapPieceProtect(const int &i, const int &j, int (&heatMap)[8][8], const char &piece,
+void addHeatMapPieceProtect(const int &i, const int &j, int (&heatMap)[6][8][8], const char &piece,
 							const int &noPieces, const uint64_t &opponentPawnBoard, int (&pawnHeight)[8], const int &coefficient = 1) {
 	if (noPieces == 0) return;
 	std::vector<std::vector<int>> nextSquares;
 	if (piece == 'P') {
-		if (validSquare(i-1, j-1)) heatMap[i-1][j-1]++;
-		if (validSquare(i-1, j+1)) heatMap[i-1][j+1]++;
+		if (validSquare(i-1, j-1)) heatMap[0][i-1][j-1]++;
+		if (validSquare(i-1, j+1)) heatMap[0][i-1][j+1]++;
 	} else if (piece == 'N') {
 		int di[8] = {-1, -2, -2, -1, 1, 2, 2, 1};
 		int dj[8] = {2, 1, -1, -2, -2, -1, 1, 2};
 		for (int k = 0; k < 8; k++) {
-			nextSquares.push_back({i+di[k], j+dj[k]});
+			nextSquares.push_back({1, i+di[k], j+dj[k]});
 		}
 	} else if (piece == 'B') {
 		for (int k = -7; k <= 7; k++) {
 			if (k == 0) continue;
-			nextSquares.push_back({i+k, j+k}); // same first diagonal
-			nextSquares.push_back({i+k, j-k}); // same second diagonal
+			nextSquares.push_back({2, i+k, j+k}); // same first diagonal
+			nextSquares.push_back({2, i+k, j-k}); // same second diagonal
 		}
 	} else if (piece == 'R') {
 		for (int k = -7; k <= 7; k++) {
 			if (k == 0) continue;
-			nextSquares.push_back({i, j+k}); // same rank
-			nextSquares.push_back({i+k, j}); // same file
+			nextSquares.push_back({3, i, j+k}); // same rank
+			nextSquares.push_back({3, i+k, j}); // same file
 		}
 	} else if (piece == 'Q') {
 		for (int k = -7; k <= 7; k++) {
 			if (k == 0) continue;
-			nextSquares.push_back({i+k, j+k}); // same first diagonal
-			nextSquares.push_back({i+k, j-k}); // same second diagonal
-			nextSquares.push_back({i, j+k}); // same rank
-			nextSquares.push_back({i+k, j}); // same file
+			nextSquares.push_back({4, i+k, j+k}); // same first diagonal
+			nextSquares.push_back({4, i+k, j-k}); // same second diagonal
+			nextSquares.push_back({4, i, j+k}); // same rank
+			nextSquares.push_back({4, i+k, j}); // same file
 		}
 	} else if (piece == 'K') {
 		int di[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
 		int dj[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
 		for (int k = 0; k < 8; k++) {
-			nextSquares.push_back({i+di[k], j+dj[k]});
+			nextSquares.push_back({5, i+di[k], j+dj[k]});
 		}
 	}
 	for (auto p: nextSquares) {
-		int next_i = p[0], next_j = p[1];
+		int halfPieceId = p[0], next_i = p[1], next_j = p[2];
 		if (validSquare(next_i, next_j) && squareNotAttackedByPawn(opponentPawnBoard, next_i, next_j) && next_i < pawnHeight[next_j]) {
-			heatMap[next_i][next_j] += noPieces * coefficient;
+			heatMap[halfPieceId][next_i][next_j] += noPieces * coefficient;
 		}
 	}
 }
 
-void addHeatMap(CFBoard& board, int (&heatMap)[8][8], const uint64_t &weakPawns) {
+void addHeatMap(CFBoard& board, int (&heatMap)[6][8][8], const uint64_t &weakPawns) {
 	uint64_t maskRow[8], maskCol[8]; // 1 for one column or one row, 0 otherwise
 	maskRow[0] = (1LL<<8)-1;
 	maskCol[0] = 1LL + (1LL<<8) + (1LL<<16) + (1LL<<24) + (1LL<<32) + (1LL<<40) + (1LL<<48) + (1LL<<56);
@@ -163,7 +163,8 @@ void addHeatMap(CFBoard& board, int (&heatMap)[8][8], const uint64_t &weakPawns)
 			// Rooks and Queens move to open file, priotizing staying on the lowest rank
 			for (int i = 0; i < maxPawnHeight; i++) {
 				if (squareNotAttackedByPawn(opponentPawnBoard, i, j)) // no opposing pawns
-					heatMap[i][j] += std::max(pawnHeight[j]+1 - i + noRooks + noQueens, 0); // weighted since they are more important
+					heatMap[3][i][j] += std::max(pawnHeight[j]+1 - i + noRooks, 0); // weighted since they are more important
+					heatMap[4][i][j] += std::max(pawnHeight[j]+1 - i + noQueens, 0); // weighted since they are more important
 			}
 
 			// Knights move to square near open file, defending the nearby pawns and pieces
@@ -215,12 +216,12 @@ void addHeatMap(CFBoard& board, int (&heatMap)[8][8], const uint64_t &weakPawns)
 				// Rooks move to behind the weak pawn, priotizing staying on the lowest rank
 				for (int i = 0; i < maxPawnHeight; i++) {
 					if (squareNotAttackedByPawn(opponentPawnBoard, i, j)) // no opposing pawns
-						heatMap[i][j] += std::max(pawnHeight[j]+1 - i + noRooks, 0);
+						heatMap[3][i][j] += std::max(pawnHeight[j]+1 - i + noRooks, 0);
 				}
 
 				int opponentPawnHeight = pawnHeight[j]+1;
-				// Queens attack weak pawns from the diagonals
-				addHeatMapPieceProtect(opponentPawnHeight, j, heatMap, 'B', noQueens, opponentPawnBoard, pawnHeight);
+				// Queens attack weak pawns from the diagonals and the column
+				addHeatMapPieceProtect(opponentPawnHeight, j, heatMap, 'Q', noQueens, opponentPawnBoard, pawnHeight);
 
 				// Knights move to square near weak pawn, attacking it
 				addHeatMapPieceProtect(opponentPawnHeight, j, heatMap, 'N', noKnights, opponentPawnBoard, pawnHeight);
@@ -235,7 +236,7 @@ void addHeatMap(CFBoard& board, int (&heatMap)[8][8], const uint64_t &weakPawns)
 				}
 				// protect right pawn
 				if (j <= 6 && validSquare(pawnHeight[j+1], j)) {
-					addHeatMapPieceProtect(pawnHeight[j+1], j, heatMap, 'B', noBishopsColor[(pawnHeight[j-1]+j)%2],
+					addHeatMapPieceProtect(pawnHeight[j+1], j, heatMap, 'B', noBishopsColor[(pawnHeight[j+1]+j)%2],
 											opponentPawnBoard, pawnHeight);
 				}
 
@@ -300,14 +301,14 @@ void addHeatMap(CFBoard& board, int (&heatMap)[8][8], const uint64_t &weakPawns)
 				for (int i = 0; i < maxPawnHeight; i++) {
 					if (squareNotAttackedByPawn(opponentPawnBoard, i, j)) { // no opposing pawns 
 						for (std::vector<int> pos: rookPos)
-							heatMap[i][j] += std::max(pawnHeight[j]+1 - i + distArea[j][pos[1]], 0);
+							heatMap[3][i][j] += std::max(pawnHeight[j]+1 - i + distArea[j][pos[1]], 0);
 					}
 				}
 
 				int opponentPawnHeight = pawnHeight[j]+1;
-				// Queens attack weak pawns from the diagonals
+				// Queens attack weak pawns from the diagonals and the column
 				for (std::vector<int> pos: queenPos)
-					addHeatMapPieceProtect(opponentPawnHeight, j, heatMap, 'B', 1, opponentPawnBoard, pawnHeight, distArea[j][pos[1]]);
+					addHeatMapPieceProtect(opponentPawnHeight, j, heatMap, 'Q', 1, opponentPawnBoard, pawnHeight, distArea[j][pos[1]]);
 
 				// Knights move to square near weak pawn, attacking it
 				for (std::vector<int> pos: knightPos)
@@ -326,7 +327,7 @@ void addHeatMap(CFBoard& board, int (&heatMap)[8][8], const uint64_t &weakPawns)
 												opponentPawnBoard, pawnHeight, distArea[j][pos[1]]);
 					}
 					// protect right pawn
-					if (j <= 6 && validSquare(pawnHeight[j+1], j) && (pawnHeight[j-1]+j)%2 == bishopColor) {
+					if (j <= 6 && validSquare(pawnHeight[j+1], j) && (pawnHeight[j+1]+j)%2 == bishopColor) {
 						addHeatMapPieceProtect(pawnHeight[j+1], j, heatMap, 'B', 1,
 												opponentPawnBoard, pawnHeight, distArea[j][pos[1]]);
 					}
@@ -361,16 +362,18 @@ void addHeatMap(CFBoard& board, int (&heatMap)[8][8], const uint64_t &weakPawns)
 	}
 	// Switch back to white's orientation if white's turn
 	if (!currentTurn) {
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 8; j++) {
-				std::swap(heatMap[i][j], heatMap[7-i][7-j]);
+		for (int halfPieceId = 0; halfPieceId < 6; halfPieceId++) {
+			for (int i = 0; i < 4; i++) {
+				for (int j = 0; j < 8; j++) {
+					std::swap(heatMap[halfPieceId][i][j], heatMap[halfPieceId][7-i][7-j]);
+				}
 			}
 		}
 	}
 }
 
 int main() {
-	int heatMap[8][8];
+	int heatMap[6][8][8]; // heat map for each pieces 0: pawn, 1: knight, 2: bishop, 3: rook, 4: queen, 5: king
 	memset(heatMap, 0, sizeof heatMap);
 
 	CFBoard board;
@@ -378,14 +381,19 @@ int main() {
 	// board.fromFEN("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1N1/2B1QB1R/3K3R w - - 0 1"); // no open files, >= 2 free rows
 	// board.fromFEN("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R w - - 0 1"); // no open files, 1 free rows, no chance of winning
 	// board.fromFEN("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1"); // no open files, 1 free rows, some chance of winning
-	board.fromFEN("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/1NBQRB1R w - - 0 1"); // same as above, rooks are in the same area
+	// board.fromFEN("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/1NBQRB1R w - - 0 1"); // same as above, rooks are in the same area
+	// board.fromFEN("rkq1bnnr/2b4p/p5pP/Pp3pP1/1Pp1pP2/2PpP2N/3P4/1NBQRBKR w - - 0 1");
 	uint64_t weakPawns = 1ll; // placeholder for finished weak pawns implementation
 	// std::cout << board.getRepr();
 	addHeatMap(board, heatMap, weakPawns);
-	for (int i = 0; i < 8; i++) {
-		for (int j = 0; j < 8; j++) {
-			std::cout << heatMap[i][j] << ' ';
+	for (int halfPieceId = 0; halfPieceId < 6; halfPieceId++) {
+		std::cout << "\nHeat map for" << ' ' << board.pieceIdToChar(halfPieceId*2) << ":\n";
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				std::cout << heatMap[halfPieceId][i][j] << ' ';
+			}
+			std::cout << '\n';
 		}
-		std::cout << '\n';
 	}
+	
 }
