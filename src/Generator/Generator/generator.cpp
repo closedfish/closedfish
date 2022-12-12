@@ -20,24 +20,22 @@ using namespace std; //removes the need to type std::
  */
 
 std::vector<std::vector<int>> listpawns(){
-    std::vector<std::vector<int>> listpawns;
+    std::vector<std::vector<int>> listpawn
+    {{-1,-1,-1,-1,-1,-1,-1,-1}, {8,8,8,8,8,8,8,8}};
     Chessboard chessboard;
     int pawns_num=rand()%6;
     pawns_num+=10;
     if (pawns_num%2!=0){pawns_num+=1;}
     chessboard.single_generator(pawns_num);
-    listpawns.resize(2);
     int color=-1;
-    int bigLength = listpawns.size();
-    for (int i = 0; i < bigLength; i++){
-        listpawns[i].resize(8);
+    for (int i = 0; i < listpawn.size(); i++){
         color+=1;
-        int innerLength = listpawns[i].size();
-        for(int j = 0; j < innerLength; j++){
-            listpawns[i][j]=chessboard.find_pawn_in_column(chessboard, j, color);
+        for(int j = 0; j < listpawn[i].size(); j++){
+            int a=chessboard.find_pawn_in_column(chessboard, j, color);
+            listpawn[i][j]=a;
         }
     }
-    return listpawns;
+    return listpawn;
 }
 
 
@@ -76,24 +74,29 @@ void Chessboard::single_generator(int pawns){ //To be fixed
 @brief Creates a file of closed position in the vector in vector output format for the switch algo.
 @param position_amount The parameter here is the amount of positions you want to have generated in the file.
  */
-void file_generator(int position_amount){ //To be finished
-    ofstream file("closed_positions.txt");
+void file_generator(int position_amount){
+    ofstream file;
+    file.open ("closed_positions.txt");
     for (int i=0; i<position_amount;i++){
         string output="";
+        
         std::vector<std::vector<int>> theboard = listpawns();
-        int bigLength = theboard.size();
-        for (int i = 0; i < bigLength; i++){
-            theboard[i].resize(8);
+        for (int i = 0; i < theboard.size(); i++){
+            int count=0;
             output+="[";
-            int innerLength = theboard[i].size();
-            for(int j = 0; j < innerLength; j++){
-                output+=theboard[i][j];
-                output+=", ";
+            for(int j = 0; j < theboard[i].size(); j++){
+                output+=to_string(theboard[i][j]);
+                count+=1;
+                if (count<8){
+                    output+=", ";
+                }
             }
             output+="]";
         }
+        cout<<output<<std::endl;
         file<<output<<endl;
     }
+    file.close();
 }
 
 

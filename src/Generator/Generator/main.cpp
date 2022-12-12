@@ -11,6 +11,5 @@
 
 int main(int argc, const char * argv[]) {
     file_generator(20);
-    
     return 0;
 }
