@@ -37,7 +37,22 @@ std::vector<std::vector<int>> listpawns(){
     }
     return listpawn;
 }
-
+std::vector<std::vector<int>> listpawnsclosed(){
+    std::vector<std::vector<int>> listpawn
+    {{-1,-1,-1,-1,-1,-1,-1,-1}, {8,8,8,8,8,8,8,8}};
+    Chessboard chessboard;
+    int pawns_num=16;
+    chessboard.single_generator(pawns_num);
+    int color=-1;
+    for (int i = 0; i < listpawn.size(); i++){
+        color+=1;
+        for(int j = 0; j < listpawn[i].size(); j++){
+            int a=chessboard.find_pawn_in_column(chessboard, j, color);
+            listpawn[i][j]=a;
+        }
+    }
+    return listpawn;
+}
 
 /**
 @brief this function has the goal of taking an amount of pawns (even or odd) and returning a random board with those pawns
@@ -71,19 +86,24 @@ void Chessboard::single_generator(int pawns){ //To be fixed
 }
 
 /**
-@brief Creates a file of closed position in the vector in vector output format for the switch algo.
+@brief Creates a file of mostly closed positions in the vector in vector output format for the switch algo.
 @param position_amount The parameter here is the amount of positions you want to have generated in the file.
  */
-void file_generator(int position_amount){
+void file_generator_general(int position_amount){
     ofstream file;
     file.open ("closed_positions.txt");
+    int counter=-1;
     for (int i=0; i<position_amount;i++){
         string output="";
-        
-        std::vector<std::vector<int>> theboard = listpawns();
+        std::vector<std::vector<int>> theboard = listpawnsclosed();
         for (int i = 0; i < theboard.size(); i++){
+            counter+=1;
             int count=0;
-            output+="[";
+            output+="\n";
+            output+="X[";
+            output+=to_string(counter);
+            output+="] ";
+            output+="new int[8] = {";
             for(int j = 0; j < theboard[i].size(); j++){
                 output+=to_string(theboard[i][j]);
                 count+=1;
@@ -91,14 +111,47 @@ void file_generator(int position_amount){
                     output+=", ";
                 }
             }
-            output+="]";
+            output+="};";
         }
-        cout<<output<<std::endl;
+        cout<<output;
         file<<output<<endl;
     }
     file.close();
 }
 
+/**
+@brief Creates a file of completely closed positions in the vector in vector output format for the switch algo.
+@param position_amount The parameter here is the amount of positions you want to have generated in the file.
+ */
+void file_generator_100_closed(int position_amount){
+    ofstream file;
+    file.open ("closed_positions.txt");
+    int counter=-1;
+    for (int i=0; i<position_amount;i++){
+        string output="";
+        std::vector<std::vector<int>> theboard = listpawnsclosed();
+        for (int i = 0; i < theboard.size(); i++){
+            counter+=1;
+            int count=0;
+            output+="\n";
+            output+="X[";
+            output+=to_string(counter);
+            output+="] ";
+            output+="new int[8] = {";
+            for(int j = 0; j < theboard[i].size(); j++){
+                output+=to_string(theboard[i][j]);
+                count+=1;
+                if (count<8){
+                    output+=", ";
+                }
+            }
+            output+="};";
+        }
+        cout<<output;
+        file<<output<<endl;
+    }
+    file.close();
+}
 
 
 /**

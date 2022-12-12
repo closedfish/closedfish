@@ -7,8 +7,8 @@
 
 
 
-void file_generator(int pawns); //Input number of pawns and return a file with every possible closed position with only pawns
-
+void file_generator_general(int); //Input number of pawns and return a file with every possible closed position with only pawns
+void file_generator_100_closed(int position_amount);
 void database_edit(); // cannot be implemented
 
 
@@ -89,6 +89,7 @@ public:
 
     //Attributes
     int find_pawn_in_column(Chessboard, int, int);
+    
     ArrayElement element;
     //double closeness; // to be used? - needs to be decided 
     //double openness;
