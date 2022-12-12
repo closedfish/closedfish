@@ -98,8 +98,20 @@ Next week:
 -Rectognition of pieces.
 -(Storing pieces and their coordinates in the board class).
 
+
 Andrei
 This week:
 -fix project structure
 -help with branch merging
 -help with debugging
+
+Razvan:
+This week:
+-Changed some design features for the main GUI
+-Created method for saving the screenshot in different formats (JPEG, PNG, BMP and GIF)
+-Fixed some unstable functions
+Next week:
+-Get images of the individual pieces for the recognition
+-Get the colours of the board for the recognition algorithm
+-Merge my part with Dimitrije's
+

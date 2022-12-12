@@ -1,0 +1,55 @@
+
+Ariel:
+This week: 
+          - Finished the implementation of the generator algorithm for one closed position and
+            created to match the output required for the switch team using a vector of vectors
+	  - Created new functions to make the usage of the Class Chessboard easier.
+	  - Started on the file generator for many closed positions
+Next week:
+	  - Finish making the file generator for many closed positions (using as input the amount of 
+            needed closed positions
+	  - Finish testing the generator and work with the switch team for final edits.
+ 	  - See during the lecture what the next tasks will be
+
+Sirawit:
+	This week:
+		- Use logger to inject stockfish
+		- Configured doxygen hosting
+		- Configured CD to check compilation on PR
+	Next week:
+		- [Urgent] Finish stockfish
+
+Shirelle: 
+	This week: 
+	        - created a function for square color of the pions
+		- worked on my function 
+	Next week: 
+		- find a solution for bishops to be on diagonals in the function completion
+		-create function to verify if the king is in check
+
+Aarrya:
+	This week: 
+		- Finished the 1 person DFS algorithm 
+		- made plans and dsitributed work for next weeks
+	Next week:
+		- merge all algorithms till now into one.
+		- finalise work for everyone
+		
+		
+Antonia:
+	This week:
+		-debugged all the functions involved in giving the number of pieces protecting the target pawn
+	Next week:
+		-implement a function that tells if the pawn is passed
+		-implement a function that tells for each piece if it can or not protect tge target pawn
+
+Etienne: 
+This week:
+ ⁃ I finished debugging and testing the generator project.
+ ⁃ Helped team finish their respective functions.
+ ⁃ Started my switch to the algorithm team which requires a lot of research and catching up to the current team knowledge and code.
+
+Next Week:
+ ⁃ Continue my research into the algorithm and understand the process / methodology used by the team.
+ ⁃ Start implementing unit tests for the existing functions in the algorithm.
+
