@@ -202,7 +202,9 @@ namespace TheRegression {
         Eigen::VectorXd Y = setUpYVect(data_outputs, num_data_points);
 
         Eigen::MatrixXd trans_Q = Q.transpose();
-        Eigen::MatrixXd helper_M = (trans_Q * Q).inverse();
+        Eigen::MatrixXd mu(23, 23);
+        mu.setIdentity();
+        Eigen::MatrixXd helper_M = (trans_Q * Q + mu * 0.001).inverse();
 
         return (helper_M * trans_Q) * Y;
 
