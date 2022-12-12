@@ -61,4 +61,19 @@ Ba Cong:
 	Next week:
 		- Work with Razvan on finding the least amount of turns to go from one position to another position
 		- Try tweaking coefficients in the current heat map implementation to see find a better result 
-	
+
+Cassidy:
+	This week:
+		- instead of doing one AI per number of pons I am assuming that absent pons are at position -1 or 8 (depending on weather it's the top or bottom player) This was suggested by Andrei.
+		- Coded a function class to enable me to point to multivariable functions without any issues.
+		- Found 4 different Basis of functions that inuitively seem like they will lead to a good regression(I will create more if I have any better ideas)
+		- Fully implemented the regression.
+		-I tested everything and it all seems to work and give the right output but issue: matrix inverse seems to give weird outputs sometimes.
+		-Andrei was able (after 8 hours of work with cmake) to get the Eigen library on the git through cmake (I had been using it on my local machine up to now)
+	Next week:
+		-quickly understand the issue with matrix inversion in Eigen and find a solution
+		-once the above is done, train the ai on very small inputs (8 data points I have already created) and then test it's results to see if they are not completely crazy.
+		-Finish the general structure of the switch algo (shouldn't take long, evaluation function was the biggest issue)
+		-Train the Ai on some first sample data sets from the generating team.
+		-code the board state communicator bewteen the UI team us (switch team) and the algo team.
+
