@@ -1,7 +1,7 @@
 #pragma once
-//#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
+#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
 //#include <Eigen\Dense>
-#include <Eigen\Dense>
+//#include <Eigen\Dense>
 //This is  the funtion class that will enables us to have an array of functions.
 //
 //DETAILS:
@@ -62,7 +62,7 @@ class Func
 
             if (func_num == 0)
             {
-                return AveragePos(l_top_pons, l_bottom_pons);
+                return ceil(100 * AveragePos(l_top_pons, l_bottom_pons)) / 100;
             }
 
             if (func_num == 1)
@@ -83,7 +83,7 @@ class Func
             int pon1 = l[placement];
             int pon2 = l[placement + 1];
             
-            if (func_num = 1)
+            if (func_num == 1)
             {
                 return SquareDistance(pon1, pon2);
             }
@@ -138,8 +138,14 @@ class Func
                 }
             }
 
-            std::cout << tot_sum << " " << pon_count << std::endl;
-            return (float)tot_sum / (float) pon_count;
+            
+            float ret = (float)tot_sum / (float) pon_count;
+
+            if (ret > 3.5)
+            {
+                return ret - 3.5;
+            }
+            return 3.5 - ret;
         }
 
 
@@ -166,10 +172,11 @@ namespace TheRegression {
 
 
 
-        for (int j = 0; j < dimension; j++){
-            for (int i = 0; i < num_data_points; i++){
-
-                Q(i, j) = basis[i].Eval(X[2 * j], X[2 * j + 1]);
+        for (int j = 0; j < dimension; j++)
+        {
+            for (int i = 0; i < num_data_points; i++)
+            {
+                Q(i, j) = basis[j].Eval(X[2 * i], X[2 * i + 1]);
             }
         }
 
@@ -195,9 +202,11 @@ namespace TheRegression {
         Eigen::VectorXd Y = setUpYVect(data_outputs, num_data_points);
 
         Eigen::MatrixXd trans_Q = Q.transpose();
-        Eigen::MatrixXd helper_M = (trans_Q * Q).inverse();
+        Eigen::MatrixXd mu(23, 23);
+        mu.setIdentity();
+        Eigen::MatrixXd helper_M = (trans_Q * Q + mu * 0.001).inverse();
 
-        return helper_M * trans_Q * Y;
+        return (helper_M * trans_Q) * Y;
 
     }
 

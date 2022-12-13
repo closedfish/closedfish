@@ -1,2 +1,4 @@
-Eigen::MatrixXd Q(dimension, num_data_points);
-    // Q = TheRegression::setUpQ(basis, X, dimension, num_data_points);
+Eigen::MatrixXd O = helper_M * trans_Q * Y;
+    std::cout << Q <<std::endl;
+    std::cout << Y <<std::endl;
+    std::cout << O <<std::endl;
