@@ -79,13 +79,7 @@ FetchContent_Declare(
     GIT_SHALLOW TRUE)
 FetchContent_MakeAvailable(nlohmann_json)
 
-#FetchContent_Declare(
-#    eigenlib
-#    GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
-#   GIT_TAG 3.4.0
-#    GIT_SHALLOW TRUE)
-#FetchContent_MakeAvailable(eigenlib)
-
+#import VCPKG
 option(USE_VCPKG "Whether to use VCPCKG" ON)
 if(USE_VCPKG)
     message("Using VCPKG")

@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|win32">
+      <Configuration>Debug</Configuration>
+      <Platform>win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|win32">
+      <Configuration>Release</Configuration>
+      <Platform>win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{90DB9EC4-0969-36A9-B5C8-5914B5C0A0C8}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <VcpkgEnabled>false</VcpkgEnabled>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <Platform>win32</Platform>
+    <ProjectName>Executable</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="do_not_import_user.props" Condition="exists('do_not_import_user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\app\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">Executable.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">Executable</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|win32'">C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\app\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|win32'">Executable.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|win32'">Executable</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\app\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">Executable.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">Executable</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\app\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">Executable.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">Executable</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\StockfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ClosedfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\play\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\eigenlib-src\Eigen;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\input\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\output\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\opening\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/vcpkg_installed/x86-windows/include/eigen3" /w14242 /w14254 /w14263 /w14265 /w14287 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <ConformanceMode>true</ConformanceMode>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <TreatSpecificWarningsAsErrors>4289</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\StockfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ClosedfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\play\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\eigenlib-src\Eigen;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\input\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\output\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\opening\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\include\eigen3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\StockfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ClosedfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\play\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\eigenlib-src\Eigen;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\input\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\output\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\opening\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\include\eigen3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files\PowerShell\7\pwsh.exe" -noprofile -executionpolicy Bypass -file C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/external/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/app/Debug/Executable.exe -installedDir C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/vcpkg_installed/x86-windows/debug/bin -OutVariable out
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\src\connectors\StockfishConnect\Debug\StockfishConectors.lib;..\src\connectors\ClosedfishConnect\Debug\GeneralConnectors.lib;..\src\play\Debug\PlayingRoutine.lib;..\src\input\Debug\ReceiveInputFromUI.lib;..\src\output\Debug\SendOutputToUI.lib;..\src\opening\Debug\DeceideOverOpening.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/app/Debug/Executable.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/app/Debug/Executable.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\StockfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ClosedfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\play\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\eigenlib-src\Eigen;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\input\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\output\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\opening\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/vcpkg_installed/x86-windows/include/eigen3" /w14242 /w14254 /w14263 /w14265 /w14287 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ConformanceMode>true</ConformanceMode>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <TreatSpecificWarningsAsErrors>4289</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\StockfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ClosedfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\play\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\eigenlib-src\Eigen;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\input\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\output\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\opening\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\include\eigen3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\StockfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ClosedfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\play\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\eigenlib-src\Eigen;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\input\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\output\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\opening\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\include\eigen3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files\PowerShell\7\pwsh.exe" -noprofile -executionpolicy Bypass -file C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/external/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/app/Release/Executable.exe -installedDir C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/vcpkg_installed/x86-windows/bin -OutVariable out
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\src\connectors\StockfishConnect\Release\StockfishConectors.lib;..\src\connectors\ClosedfishConnect\Release\GeneralConnectors.lib;..\src\play\Release\PlayingRoutine.lib;..\src\input\Release\ReceiveInputFromUI.lib;..\src\output\Release\SendOutputToUI.lib;..\src\opening\Release\DeceideOverOpening.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/app/Release/Executable.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/app/Release/Executable.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\StockfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ClosedfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\play\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\eigenlib-src\Eigen;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\input\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\output\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\opening\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/vcpkg_installed/x86-windows/include/eigen3" /w14242 /w14254 /w14263 /w14265 /w14287 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ConformanceMode>true</ConformanceMode>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <TreatSpecificWarningsAsErrors>4289</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\StockfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ClosedfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\play\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\eigenlib-src\Eigen;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\input\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\output\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\opening\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\include\eigen3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\StockfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ClosedfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\play\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\eigenlib-src\Eigen;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\input\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\output\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\opening\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\include\eigen3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files\PowerShell\7\pwsh.exe" -noprofile -executionpolicy Bypass -file C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/external/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/app/MinSizeRel/Executable.exe -installedDir C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/vcpkg_installed/x86-windows/bin -OutVariable out
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\src\connectors\StockfishConnect\MinSizeRel\StockfishConectors.lib;..\src\connectors\ClosedfishConnect\MinSizeRel\GeneralConnectors.lib;..\src\play\MinSizeRel\PlayingRoutine.lib;..\src\input\MinSizeRel\ReceiveInputFromUI.lib;..\src\output\MinSizeRel\SendOutputToUI.lib;..\src\opening\MinSizeRel\DeceideOverOpening.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/app/MinSizeRel/Executable.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/app/MinSizeRel/Executable.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\StockfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ClosedfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\play\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\eigenlib-src\Eigen;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\input\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\output\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\opening\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/vcpkg_installed/x86-windows/include/eigen3" /w14242 /w14254 /w14263 /w14265 /w14287 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ConformanceMode>true</ConformanceMode>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <TreatSpecificWarningsAsErrors>4289</TreatSpecificWarningsAsErrors>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\StockfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ClosedfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\play\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\eigenlib-src\Eigen;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\input\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\output\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\opening\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\include\eigen3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\StockfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ClosedfishConnect\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\play\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\eigenlib-src\Eigen;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\input\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\output\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\opening\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\include\eigen3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files\PowerShell\7\pwsh.exe" -noprofile -executionpolicy Bypass -file C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/external/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/app/RelWithDebInfo/Executable.exe -installedDir C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/vcpkg_installed/x86-windows/bin -OutVariable out
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\src\connectors\StockfishConnect\RelWithDebInfo\StockfishConectors.lib;..\src\connectors\ClosedfishConnect\RelWithDebInfo\GeneralConnectors.lib;..\src\play\RelWithDebInfo\PlayingRoutine.lib;..\src\input\RelWithDebInfo\ReceiveInputFromUI.lib;..\src\output\RelWithDebInfo\SendOutputToUI.lib;..\src\opening\RelWithDebInfo\DeceideOverOpening.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/app/RelWithDebInfo/Executable.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/app/RelWithDebInfo/Executable.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\app\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">Building Custom Rule C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/app/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish -BC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build --check-stamp-file C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/app/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">C:\Program Files\CMake\share\cmake-3.25\Modules\GNUInstallDirs.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\app\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|win32'">Building Custom Rule C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/app/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish -BC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build --check-stamp-file C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/app/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|win32'">C:\Program Files\CMake\share\cmake-3.25\Modules\GNUInstallDirs.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|win32'">C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\app\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">Building Custom Rule C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/app/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish -BC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build --check-stamp-file C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/app/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">C:\Program Files\CMake\share\cmake-3.25\Modules\GNUInstallDirs.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\app\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">Building Custom Rule C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/app/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish -BC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build --check-stamp-file C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/app/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">C:\Program Files\CMake\share\cmake-3.25\Modules\GNUInstallDirs.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\app\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\app\SwitchMain.cpp" />
+    <ClInclude Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\app\SwitchMain.hpp" />
+    <Natvis Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\nlohmann_json.natvis">
+    </Natvis>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\ZERO_CHECK.vcxproj">
+      <Project>{68C7EA35-0930-3255-8CC7-E2178F5096D0}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\src\opening\DeceideOverOpening.vcxproj">
+      <Project>{9E9E8835-7C7C-3EEF-A107-8170A8898DD3}</Project>
+      <Name>DeceideOverOpening</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\src\connectors\ClosedfishConnect\GeneralConnectors.vcxproj">
+      <Project>{B535D546-313F-3616-8AF3-7BD9D72B9CA5}</Project>
+      <Name>GeneralConnectors</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\src\play\PlayingRoutine.vcxproj">
+      <Project>{A042C20C-BB72-30CD-9603-4DE82100E757}</Project>
+      <Name>PlayingRoutine</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\src\input\ReceiveInputFromUI.vcxproj">
+      <Project>{E5DB94EE-FC8D-373E-8689-A3FE8DFCF332}</Project>
+      <Name>ReceiveInputFromUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\src\output\SendOutputToUI.vcxproj">
+      <Project>{1E9AEEB5-B5DF-3693-A398-8B329745802D}</Project>
+      <Name>SendOutputToUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\src\connectors\StockfishConnect\StockfishConectors.vcxproj">
+      <Project>{DA293160-4640-3406-89DA-E3E01CCB6497}</Project>
+      <Name>StockfishConectors</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

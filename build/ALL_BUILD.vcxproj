@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ResolveNugetPackages>false</ResolveNugetPackages>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|win32">
+      <Configuration>Debug</Configuration>
+      <Platform>win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|win32">
+      <Configuration>Release</Configuration>
+      <Platform>win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DF24E160-A24F-33F6-958C-F403DCEE655E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <Platform>win32</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">Building Custom Rule C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish -BC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build --check-stamp-file C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\FetchContent.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\FetchContent\CMakeLists.cmake.in;C:\Program Files\CMake\share\cmake-3.25\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Platform\WindowsPaths.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.25.1\CMakeCXXCompiler.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.25.1\CMakeRCCompiler.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.25.1\CMakeSystem.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\share\eigen3\Eigen3Config.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\share\eigen3\Eigen3ConfigVersion.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\share\eigen3\Eigen3Targets.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\AddGitSubmodule.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\Ccache.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\LTO.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\StaticAnalyzers.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\Warnings.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\external\vcpkg\scripts\buildsystems\vcpkg.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\vcpkg.json;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|win32'">Building Custom Rule C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish -BC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build --check-stamp-file C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|win32'">C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\FetchContent.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\FetchContent\CMakeLists.cmake.in;C:\Program Files\CMake\share\cmake-3.25\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Platform\WindowsPaths.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.25.1\CMakeCXXCompiler.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.25.1\CMakeRCCompiler.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.25.1\CMakeSystem.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\share\eigen3\Eigen3Config.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\share\eigen3\Eigen3ConfigVersion.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\share\eigen3\Eigen3Targets.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\AddGitSubmodule.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\Ccache.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\LTO.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\StaticAnalyzers.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\Warnings.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\external\vcpkg\scripts\buildsystems\vcpkg.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\vcpkg.json;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|win32'">C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">Building Custom Rule C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish -BC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build --check-stamp-file C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\FetchContent.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\FetchContent\CMakeLists.cmake.in;C:\Program Files\CMake\share\cmake-3.25\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Platform\WindowsPaths.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.25.1\CMakeCXXCompiler.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.25.1\CMakeRCCompiler.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.25.1\CMakeSystem.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\share\eigen3\Eigen3Config.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\share\eigen3\Eigen3ConfigVersion.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\share\eigen3\Eigen3Targets.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\AddGitSubmodule.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\Ccache.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\LTO.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\StaticAnalyzers.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\Warnings.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\external\vcpkg\scripts\buildsystems\vcpkg.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\vcpkg.json;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">Building Custom Rule C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish -BC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build --check-stamp-file C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\FetchContent.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\FetchContent\CMakeLists.cmake.in;C:\Program Files\CMake\share\cmake-3.25\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.25\Modules\Platform\WindowsPaths.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.25.1\CMakeCXXCompiler.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.25.1\CMakeRCCompiler.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\3.25.1\CMakeSystem.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\share\eigen3\Eigen3Config.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\share\eigen3\Eigen3ConfigVersion.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\vcpkg_installed\x86-windows\share\eigen3\Eigen3Targets.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\AddGitSubmodule.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\Ccache.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\LTO.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\StaticAnalyzers.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\cmake\Warnings.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\external\vcpkg\scripts\buildsystems\vcpkg.cmake;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\vcpkg.json;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\ZERO_CHECK.vcxproj">
+      <Project>{68C7EA35-0930-3255-8CC7-E2178F5096D0}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\lib\board_implementation\BoardImplementation.vcxproj">
+      <Project>{9285ABEB-B382-3DBE-AAD6-D958EA0A31CE}</Project>
+      <Name>BoardImplementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\catch2-build\src\Catch2.vcxproj">
+      <Project>{8d538cbe-01bf-4a2e-a98a-6c368fdf13d7}</Project>
+      <Name>Catch2</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\catch2-build\src\Catch2WithMain.vcxproj">
+      <Project>{8bd3552a-2cfb-4a59-ab15-2031b97ada1e}</Project>
+      <Name>Catch2WithMain</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\src\connectors\ConnectorsUI\ConnectorsFromUItoSwicthAI.vcxproj">
+      <Project>{2F04BD38-44A6-3274-8C30-5C3FF0666623}</Project>
+      <Name>ConnectorsFromUItoSwicthAI</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\src\opening\DeceideOverOpening.vcxproj">
+      <Project>{9E9E8835-7C7C-3EEF-A107-8170A8898DD3}</Project>
+      <Name>DeceideOverOpening</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\app\Executable.vcxproj">
+      <Project>{90DB9EC4-0969-36A9-B5C8-5914B5C0A0C8}</Project>
+      <Name>Executable</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\src\connectors\ClosedfishConnect\GeneralConnectors.vcxproj">
+      <Project>{B535D546-313F-3616-8AF3-7BD9D72B9CA5}</Project>
+      <Name>GeneralConnectors</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\src\play\PlayingRoutine.vcxproj">
+      <Project>{A042C20C-BB72-30CD-9603-4DE82100E757}</Project>
+      <Name>PlayingRoutine</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\src\input\ReceiveInputFromUI.vcxproj">
+      <Project>{E5DB94EE-FC8D-373E-8689-A3FE8DFCF332}</Project>
+      <Name>ReceiveInputFromUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\src\output\SendOutputToUI.vcxproj">
+      <Project>{1E9AEEB5-B5DF-3693-A398-8B329745802D}</Project>
+      <Name>SendOutputToUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\src\connectors\StockfishConnect\StockfishConectors.vcxproj">
+      <Project>{DA293160-4640-3406-89DA-E3E01CCB6497}</Project>
+      <Name>StockfishConectors</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

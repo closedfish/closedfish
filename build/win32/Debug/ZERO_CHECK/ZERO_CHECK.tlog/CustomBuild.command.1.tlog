@@ -1,0 +1,10 @@
+^C:\USERS\ANDRE\ONEDRIVE\DESKTOP\CLOSEDFISH\CLOSEDFISH\BUILD\CMAKEFILES\237D0E8096F6E316FF7F58521949B3AE\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish -BC:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/ChessSwitchAI.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

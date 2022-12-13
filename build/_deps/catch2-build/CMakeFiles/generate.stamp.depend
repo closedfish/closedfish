@@ -1,0 +1,7 @@
+# CMake generation dependency list for this directory.
+C:/Program Files/CMake/share/cmake-3.25/Modules/CMakeDependentOption.cmake
+C:/Program Files/CMake/share/cmake-3.25/Modules/CMakePackageConfigHelpers.cmake
+C:/Program Files/CMake/share/cmake-3.25/Modules/GNUInstallDirs.cmake
+C:/Program Files/CMake/share/cmake-3.25/Modules/WriteBasicConfigVersionFile.cmake
+C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/CMake/CatchConfigOptions.cmake
+C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/catch2-src/CMakeLists.txt
