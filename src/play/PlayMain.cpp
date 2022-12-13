@@ -1,10 +1,13 @@
 #include <iostream>
 #include "closenessAI.h"
 #include <cmath>
+
+
 int main()
 {
-    Func* basis = SqrtDifBasis::GenerateBasis();
 
+   
+    Func* basis = AbsErfBasis::GenerateBasis();
     int* X[88];
     X[0] = new int[8]{3, 5, 3, 4, 1, 1, 1, 2};
     X[1] = new int[8]{4, 6, 4, 5, 2, 2, 2, 3};
@@ -32,17 +35,17 @@ int main()
     X[23] = new int[8]{5, -1, 2, 4, 5, 3, 6, 6};
     X[24] = new int[8]{3, 4, 8, 3, 1, 5, 2, 1};
     X[25] = new int[8]{4, 5, 4, 4, 2, -1, 3, 2};
-    X[26] = new int[8]{4, 1, 3, 2, 8, 5, 4, 3};
-    X[27] = new int[8]{5, 2, 4, 3, -1, 6, 5, 4};
-    X[28] = new int[8]{4, 8, 4, 3, 8, 5, 4, 4};
-    X[29] = new int[8]{5, 2, 5, 4, 5, 6, 5, 5};
-    X[30] = new int[8]{4, 4, 8, 2, 1, 5, 3, 1};
-    X[31] = new int[8]{5, 5, 4, 3, 2, -1, 4, 2};
-    X[32] = new int[8]{2, 5, 3, 8, 5, 2, 2, 1};
-    X[33] = new int[8]{3, 6, 4, 6, -1, 3, 3, 2};
+    X[26] = new int[8]{4, 8, 3, 2, 8, 5, 8, 3};
+    X[27] = new int[8]{5, 2, 4, -1, -1, 6, -1, 4};
+    X[28] = new int[8]{4, 8, 4, 8, 8, 5, 4, 4};
+    X[29] = new int[8]{5, 2, 5, -1,5, 6, -1, 5};
+    X[30] = new int[8]{4, 4, 8, 2, 8, 5, 8, 1};
+    X[31] = new int[8]{5, -1, 4, -1, 2, -1, 4, 2};
+    X[32] = new int[8]{2, 5, 8, 8, 5, 8, 8, 1};
+    X[33] = new int[8]{3, 6, -1, 6, -1, 3, -1, 2};
     X[34] = new int[8]{3, 4, 8, 3, 8, 5, 3, 2};
     X[35] = new int[8]{4, 5, 5, 4, 3, -1, 4, 3};
-    X[36] = new int[8]{4, 3, 5, 8, 2, 3, 4, 3};
+    X[36] = new int[8]{4, 3, 5, 8, 8, 8, 4, 3};
     X[37] = new int[8]{5, 4, 6, 2, 3, -1, 5, 4};
     X[38] = new int[8]{5, 3, 5, 3, 5, 3, 2, 2};
     X[39] = new int[8]{6, 4, -1, 4, -1, 4, 3, 3};
@@ -77,11 +80,11 @@ int main()
         l_2[i] = i - 1;
     }
 
-    l_2[7] = -1;
-    for (int i = 0; i < 23; i++) 
-    {
-        s += basis[i].Eval(l_1, l_2) * theta[i];
-    }
-    std::cout << s;
+    l_1[7] = -1;
+    l_1[6] = -1;
+    l_2[2] = 8;
+    l_2[1] = 8;
+    std::cout << EvaluationFunction::Evaluate(basis, theta, l_1, l_2, dimension)<<std::endl;
+    std::cout << EvaluationFunction::TestAi(basis, theta, X, data_outputs, dimension, num_data_points);
     return 0;
 }

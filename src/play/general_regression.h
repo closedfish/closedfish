@@ -1,7 +1,7 @@
 #pragma once
-#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
-//#include <Eigen\Dense>
-//#include <Eigen\Dense>
+//#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
+#include <Eigen\Dense>
+
 //This is  the funtion class that will enables us to have an array of functions.
 //
 //DETAILS:
@@ -71,7 +71,7 @@ class Func
             }
              else
             {
-                return AbsoluteDistance(t, b);
+                return AbsoluteErfDistance(t, b);
             }
 
            
@@ -89,7 +89,7 @@ class Func
             }
              else
             {
-                return AbsoluteDistance(pon1, pon2);
+                return AbsoluteErfDistance(pon1, pon2);
             }
             
 
@@ -103,16 +103,16 @@ class Func
             return  (x - y) * (x - y);
         }
 
-        int AbsoluteDistance(int x, int y)
+        int AbsoluteErfDistance(int x, int y)
         {
             if (x > y)
             {
-                return x - y;
+                return (erf(10 * ((x - y) - 1)) + 1) / 2;
             }
 
             else
             {
-                return y - x;
+                return (erf(10 * ((y - x) - 1)) + 1)/2;
             }
         }
 
@@ -240,7 +240,7 @@ namespace SqrtDifBasis
 }
 
 
-namespace AbsDifBasis
+namespace AbsErfBasis
 {
       Func* GenerateBasis()
     {
@@ -308,5 +308,34 @@ namespace SqrtAbsDifBasis
 
         return basis;
 
+    }
+}
+
+
+
+namespace EvaluationFunction
+{   
+    
+
+    float Evaluate(Func* basis, Eigen::VectorXd theta, int* l_top_pons, int* l_bottom_pons, int dimension)
+    {
+        float output_val = 0;
+        for (int i = 0; i < dimension; i++) 
+        {
+            output_val += basis[i].Eval(l_top_pons, l_bottom_pons) * theta[i];
+        }
+        return output_val;
+    }
+
+    float TestAi(Func* basis, Eigen::VectorXd theta, int** test_data_points, double* outputs, int dimension, int num_data_points)
+    {
+        float emp_risk = 0;
+
+        for (int i = 0; i < num_data_points; i++)
+            {
+                emp_risk += pow(outputs[i] - Evaluate(basis, theta, test_data_points[2 * i], test_data_points[2 * i + 1], dimension), 2);
+            }
+        
+        return emp_risk / (float)num_data_points;
     }
 }
