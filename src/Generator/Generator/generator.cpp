@@ -15,7 +15,7 @@ using namespace std; //removes the need to type std::
 /**
 @brief This function takes no input, generates a chessboard closed position and converts it into an output for cassidy.
 
-@return This function returns a two dimensional vector where each vector element of the initial element is of the form {xcoord, ycoord, piece_color} for each column, if a specific column has no pawn then both the black and white pawn in that column will have values {9,9,9}.
+@return This function returns a two dimensional vector where the first element is the column location of all the top pawns in the board and the second element is the position of all the bottom pawns in the board these positions are mostly closed
 
  */
 
@@ -37,6 +37,14 @@ std::vector<std::vector<int>> listpawns(){
     }
     return listpawn;
 }
+
+/**
+@brief This function takes no input, generates a chessboard closed position and converts it into an output for cassidy.
+
+@return This function returns a two dimensional vector where the first element is the column location of all the top pawns in the board and the second element is the position of all the bottom pawns in the board these positions are completely closed
+
+ */
+
 std::vector<std::vector<int>> listpawnsclosed(){
     std::vector<std::vector<int>> listpawn
     {{-1,-1,-1,-1,-1,-1,-1,-1}, {8,8,8,8,8,8,8,8}};
@@ -53,6 +61,12 @@ std::vector<std::vector<int>> listpawnsclosed(){
     }
     return listpawn;
 }
+/**
+@brief This function takes no input, generates a chessboard closed position and converts it into an output for cassidy.
+
+@return This function returns a two dimensional vector where the first element is the column location of all the top pawns in the board and the second element is the position of all the bottom pawns in the board these positions have exactly 6 black pawns and 6 white pawns
+
+ */
 std::vector<std::vector<int>> listpawns_6_white_6_black(){
     std::vector<std::vector<int>> listpawn
     {{-1,-1,-1,-1,-1,-1,-1,-1}, {8,8,8,8,8,8,8,8}};
@@ -111,15 +125,13 @@ void file_generator_general(int position_amount){
     int counter=-1;
     for (int i=0; i<position_amount;i++){
         string output="";
-        std::vector<std::vector<int>> theboard = listpawnsclosed();
+        std::vector<std::vector<int>> theboard = listpawns();
         for (int i = 0; i < theboard.size(); i++){
             counter+=1;
             int count=0;
-            output+="\n";
-            output+="X[";
+            output+="\nX[";
             output+=to_string(counter);
-            output+="] = ";
-            output+="new int[8]{";
+            output+="] = new int[8]{";
             for(int j = 0; j < theboard[i].size(); j++){
                 output+=to_string(theboard[i][j]);
                 count+=1;

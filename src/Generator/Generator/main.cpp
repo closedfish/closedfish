@@ -10,6 +10,6 @@
 #include <iostream>
 
 int main(int argc, const char * argv[]) {
-    file_generator_general(50);
+
     return 0;
 }
