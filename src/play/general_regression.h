@@ -1,18 +1,25 @@
 #pragma once
-//#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
-#include <Eigen\Dense>
+#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
+//#include <Eigen\Dense>
 
-//This is  the funtion class that will enables us to have an array of functions.
-//
-//DETAILS:
-//
-//func_num: tells us which of the different functions of the class (0, 1 or 2) the function will be
-//
-//position_to_consider: will tell us the x-coordinate of the pons we are considering 
-//
-//difference_type: 1 if we consider same color difference and 2 if we consider difference bewteen distinct colors
-//
-//height: int the case where we have difference type 1 height will tell us if we consider the piece at the top of the board (2) or at the bottom (1)
+
+/*
+*@brief This is the funtion class that will enables us to have an array of functions without to many technical difficulties.
+*
+*The class contains the following methods:
+*
+*   - InitFunc: this will dermine what function of the class will be chosen. The following are the possible functions:
+*
+*       - the square distance function of a distance
+*       - a modified erf function computed on the absolute value of a difference
+*       - a modified erf function computed on the square of a difference
+*       - a modified arctan function computed on the absolute value of a difference
+*       - a modified arctan function computed on the square of a difference
+*
+*   - Eval: Evaluates the function on a given chess board board. The 
+*   
+*
+*/
 
 class Func
 {
@@ -22,6 +29,15 @@ class Func
         {
 
         }
+
+        /*
+        *@brief This method Inititialises the function we choose
+        *
+        *@param func_num: the function it will choose (possibilities are described above)
+        *@param  position_to_consider: all the function consider to specific pons out of the 16 provided (except the average function for which this parameter isn't used)
+        *@param difference_type: are we computing a difference on pons of the same color or different color
+        *@param height: in the case it is same color this tells us if we are considering the top or bottom pons
+        */
 
         void InitFunc(int func_num, int position_to_consider, int difference_type, int height) 
         { 
@@ -34,10 +50,12 @@ class Func
         }
 
 
-        //Eval computes the ditance between two pons facing each other (of distinct color) at position "placement"
-        //
-        //NOTE: if func_num is 0 it will return the average positions of the pons
-        //
+        /*
+        *@brief Evaluate the function on a board (because we only consider the pons on the board here, l_top_pons and l_bottom_pons fully describe the board)
+        *@param l_top_pons: the pons of the player at the top of the board
+        *@param l_bottom_pons: the pons of the player at the bottom of the board
+        *@return the actual computated value of the function
+        */
         float Eval(int* l_top_pons, int* l_bottom_pons)
         {
             if (difference_type == 1){
@@ -55,6 +73,12 @@ class Func
             }
         }
 
+        /*
+        *@brief helper function for Evaluate in the case where we are considering difference between pons heights of pons of distinct color
+        *@param l_top_pons: the pons of the player at the top of the board
+        *@param l_bottom_pons: the pons of the player at the bottom of the board
+        *@return the actual computated value of the function
+        */
         float Eval_help(int* l_top_pons, int* l_bottom_pons)
         {
             int t = l_top_pons[placement];
@@ -77,7 +101,11 @@ class Func
            
         }
 
-        // here we overload Eval_help to compute the distance bewteen two consecutive pons of same color
+        /*
+        *@brief helper function for Evaluate in the case where we are considering difference between pons heights of pons of same color
+        *@param l: the pons could be pons of top or bottom player depending on initialization
+        *@return the actual computated value of the function
+        */
         float Eval_help(int* l)
         {
             int pon1 = l[placement];
@@ -95,13 +123,21 @@ class Func
 
         }
 
-        // Here are the actual functions that a basis could be composed of:
-        //
-
+        
+        /*
+        *@brief We consider here the square difference of two heights of two pons on the board
+        *@return the square difference of two heights of two pons on the board
+        */
         int SquareDistance(int x, int y)
         {
             return  (x - y) * (x - y);
         }
+
+        /*
+        *@brief Here we consider a modified erf function. We use erf because it is a function that varies slowly and then very rapidly.
+        *@brief I modified it after some calculation so that is even more quickly (that's why there is the times 10) and is very close to zero for each difference less or equal to 1.
+        *@return computation of the function
+        */
 
         int AbsoluteErfDistance(int x, int y)
         {
@@ -115,6 +151,14 @@ class Func
                 return (erf(10 * ((y - x) - 1)) + 1)/2;
             }
         }
+
+        /*
+        *@brief this is to take into account that if on average the pons are shifted towards a certain side, the board should be less closed
+        *@param l_top_pons: the pons of the player at the top of the board
+        *@param l_bottom_pons: the pons of the player at the bottom of the board
+        *@return the distance between the average position of all of the pons and the middle of the board (of height 3.5)
+        */
+        
 
         float AveragePos(int* l_top_pons, int* l_bottom_pons)
         {
@@ -324,6 +368,11 @@ namespace EvaluationFunction
         {
             output_val += basis[i].Eval(l_top_pons, l_bottom_pons) * theta[i];
         }
+        if (output_val >= 1)
+        {
+            return 1;
+        }
+        
         return output_val;
     }
 
