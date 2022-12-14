@@ -134,13 +134,13 @@ int rand_bishop = rand()%3;  // choose a random number between 0 and 2 of white 
 int bishopcounter_white=0;
     while(bishopcounter_white<=rand_bishop){
     int random_pos=rand()%64;
-        if(board[random_pos].is_empty()&& rand_bishop!=2){
+        if(board[random_pos].is_empty()&& rand_bishop!=2){// if there is none or 1 bishop, assign to an empty position
             board[random_pos].piece=3;
             board[random_pos].piece_color=0;
             bishopcounter_white+=1;
         }
         random_pos=rand()%64;
-        if(board[random_pos].is_empty()&& rand_bishop==2){
+        if(board[random_pos].is_empty()&& rand_bishop==2){//if there are 2 bishops, make sure that their square colors aredifferent
             for(int bishopcounter_white=0; bishopcounter_white<=1;){
                 board[random_pos].piece=3;
                 board[random_pos].piece_color=0;
@@ -209,13 +209,13 @@ int rand_bishop2 = rand()%3; //choose a random number of black bishop
 int bishopcounter_black=0;
     while(bishopcounter_black<=rand_bishop2){
         int random_pos=rand()%64;
-        if(board[random_pos].is_empty()&& rand_bishop2!=2){ // if there is none or 1 bishop, assign to an empty square
+        if(board[random_pos].is_empty()&& rand_bishop2!=2){ // if there is none or 1 bishop, assign to an empty position
             board[random_pos].piece=3;
             board[random_pos].piece_color=1;
             bishopcounter_black+=1;
                 }
         random_pos=rand()%64;
-        if(board[random_pos].is_empty()&& rand_bishop2==2){ // if there are 2 bishops, make sure that their square                                                                        colors are different
+        if(board[random_pos].is_empty()&& rand_bishop2==2){ // if there are 2 bishops, make sure that their square colors are differents
             for(int bishopcounter_black=0; bishopcounter_black<=1;){
                 board[random_pos].piece=3;
                 board[random_pos].piece_color=1;
