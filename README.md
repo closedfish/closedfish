@@ -9,7 +9,7 @@ The aim of this project is to create a chess engine, to improve the
 - Sirawit Pongnakintr, plumsirawit, plumsirawit, git leader
 - Rali Lahlou, Apllify, ralilahlou
 - Ba Cong Vu, souhhcong, souhhcong
-- Cassidy Kevorkian-Mielly, Cassidy-Kevorkian, Cassidy Kevorkian-Mielly
+- Cassidy Kevorkian-Mielly, Cassidy-Kevorkian, Cassidy Kevorkian-Mielly [code the evaluation function ai for the switch]
 - Flahaut Ariel, arielflt, flahautariel, [member]
 - Antonia Baies, abaiesu, abaiesu
 - Shirelle Benamou, shirellebenamou, shirellebenamou
