@@ -6,7 +6,6 @@
 int main()
 {
 
-   
     Func* basis = AbsErfBasis::GenerateBasis();
     int* X[88];
     X[0] = new int[8]{3, 5, 3, 4, 1, 1, 1, 2};
@@ -50,9 +49,6 @@ int main()
     X[38] = new int[8]{5, 3, 5, 3, 5, 3, 2, 2};
     X[39] = new int[8]{6, 4, -1, 4, -1, 4, 3, 3};
     
-
-    
-
     double data_outputs[20];
     for (int i = 0; i < 10; i ++)
     {
@@ -82,8 +78,7 @@ int main()
 
     l_1[7] = -1;
     l_1[6] = -1;
-    l_2[2] = 8;
-    l_2[1] = 8;
+   
     std::cout << EvaluationFunction::Evaluate(basis, theta, l_1, l_2, dimension)<<std::endl;
     std::cout << EvaluationFunction::TestAi(basis, theta, X, data_outputs, dimension, num_data_points);
     return 0;
