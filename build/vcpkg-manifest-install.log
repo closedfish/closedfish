@@ -1,8 +1,8 @@
 Detecting compiler hash for triplet x64-windows...
 Detecting compiler hash for triplet x86-windows...
 All requested packages are currently installed.
-Restored 0 package(s) from C:\Users\andre\AppData\Local\vcpkg\archives in 261.8 us. Use --debug to see more details.
-Total install time: 2.14 ms
+Restored 0 package(s) from C:\Users\andre\AppData\Local\vcpkg\archives in 209.3 us. Use --debug to see more details.
+Total install time: 1.571 ms
 eigen3 provides CMake targets:
 
     # this is heuristically generated, and may not be correct

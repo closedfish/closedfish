@@ -30,6 +30,7 @@ endif()
 target_link_libraries(${EXECUTABLE} PUBLIC 
     ${SC}
     ${GC}
+    ${CUI}
     ${PLAY}
     ${INPUT}    
     ${OUTPUT}

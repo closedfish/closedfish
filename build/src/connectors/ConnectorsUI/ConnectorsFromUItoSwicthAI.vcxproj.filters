@@ -6,7 +6,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\ConnectUI-SAI.hpp">
+    <ClInclude Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\ConnectUI-SAI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

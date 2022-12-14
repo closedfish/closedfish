@@ -79,7 +79,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\lib\board_implementation\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /w14242 /w14254 /w14263 /w14265 /w14287 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -100,10 +100,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\lib\board_implementation\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\lib\board_implementation\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -116,7 +116,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\lib\board_implementation\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /w14242 /w14254 /w14263 /w14265 /w14287 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ConformanceMode>true</ConformanceMode>
@@ -137,10 +137,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\lib\board_implementation\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\lib\board_implementation\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -153,7 +153,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\lib\board_implementation\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /w14242 /w14254 /w14263 /w14265 /w14287 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ConformanceMode>true</ConformanceMode>
@@ -174,10 +174,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\lib\board_implementation\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\lib\board_implementation\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -190,7 +190,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\lib\board_implementation\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /w14242 /w14254 /w14263 /w14265 /w14287 /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ConformanceMode>true</ConformanceMode>
@@ -210,10 +210,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\lib\board_implementation\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\lib\board_implementation\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\.;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\configured_files\include;C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -283,7 +283,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\ConnectUI-SAI.cc" />
-    <ClInclude Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\ConnectUI-SAI.hpp" />
+    <ClInclude Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ConnectorsUI\ConnectUI-SAI.h" />
     <Natvis Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\nlohmann_json.natvis">
     </Natvis>
   </ItemGroup>
@@ -293,10 +293,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </ProjectReference>
-    <ProjectReference Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\lib\board_implementation\BoardImplementation.vcxproj">
-      <Project>{9285ABEB-B382-3DBE-AAD6-D958EA0A31CE}</Project>
-      <Name>BoardImplementation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

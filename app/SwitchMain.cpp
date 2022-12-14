@@ -3,6 +3,7 @@
 //#include "config.hpp"
 #include "SwitchMain.hpp"
 #include "PlayMain.hpp"
+#include "ConnectUI-SAI.h"
 int main()
 {
     Eigen::MatrixXd m(2, 2);
@@ -11,9 +12,9 @@ int main()
     m(1, 0) = 3;
     m(1, 1) = 4;
     std::cout<<m<<"\n";
-    std::cout << "JSON:"
-        << NLOHMANN_JSON_VERSION_MAJOR << "."
-        << NLOHMANN_JSON_VERSION_MINOR << "."
-        << NLOHMANN_JSON_VERSION_PATCH << "\n";
+    int B[8][8];
+    for(int i=0;i<=7;i++)
+    for(int j=0;j<=7;j++)
+    B[i][j]=rand()%6;
 return 0;
 }
