@@ -5,10 +5,17 @@
 //  Created by Ariel Flahaut on 27/11/2022.
 //
 
-
-
-void file_generator(int pawns); //Input number of pawns and return a file with every possible closed position with only pawns
-
+#include <fstream>      //For files
+#include <stdlib.h>     // include rand
+#include <iostream>
+#include <vector>
+using namespace std;
+std::vector<std::vector<int>> listpawns();
+std::vector<std::vector<int>> listpawnsclosed();
+std::vector<std::vector<int>> listpawns_6_white_6_black();
+void file_generator_general(int); //Input number of pawns and return a file with every possible closed position with only pawns
+void file_generator_100_closed(int);
+void file_generator_6_white_6_black(int);
 void database_edit(); // cannot be implemented
 
 
@@ -89,6 +96,7 @@ public:
 
     //Attributes
     int find_pawn_in_column(Chessboard, int, int);
+    
     ArrayElement element;
     //double closeness; // to be used? - needs to be decided 
     //double openness;
