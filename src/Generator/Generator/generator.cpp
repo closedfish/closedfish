@@ -121,7 +121,7 @@ void Chessboard::single_generator(int pawns){ //To be fixed
  */
 void file_generator_general(int position_amount){
     ofstream file;
-    file.open ("closed_positions.txt");
+    file.open ("general_positions.txt");
     int counter=-1;
     for (int i=0; i<position_amount;i++){
         string output="";
@@ -153,7 +153,7 @@ void file_generator_general(int position_amount){
  */
 void file_generator_100_closed(int position_amount){
     ofstream file;
-    file.open ("closed_positions.txt");
+    file.open ("completely_closed_positions.txt");
     int counter=-1;
     for (int i=0; i<position_amount;i++){
         string output="";
@@ -187,7 +187,7 @@ void file_generator_100_closed(int position_amount){
  */
 void file_generator_6_white_6_black(int position_amount){
     ofstream file;
-    file.open ("closed_positions.txt");
+    file.open ("6_white_6_black_positions.txt");
     int counter=-1;
     for (int i=0; i<position_amount;i++){
         string output="";
