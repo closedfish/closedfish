@@ -283,7 +283,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ClosedfishConnect\ClosedfishConnect.cpp" />
-    <ClInclude Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ClosedfishConnect\ClosedfishConnect.hpp" />
+    <ClInclude Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\connectors\ClosedfishConnect\ClosedfishConnect.h" />
     <Natvis Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\nlohmann_json.natvis">
     </Natvis>
   </ItemGroup>

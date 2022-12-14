@@ -53,3 +53,12 @@ Next Week:
  ⁃ Continue my research into the algorithm and understand the process / methodology used by the team.
  ⁃ Start implementing unit tests for the existing functions in the algorithm.
 
+Andrei
+This Week:
+- I worked 10 hours to properly link external libraries
+-Connectors between UI and SwitchMain
+-genral cmake config
+
+Next Week:
+-finish switch
+-start working to final structure of switch

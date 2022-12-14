@@ -6,7 +6,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\opening\OpeningMain.hpp">
+    <ClInclude Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\opening\OpeningMain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

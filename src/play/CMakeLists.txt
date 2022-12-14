@@ -1,7 +1,7 @@
 set(PLAY_SOURCES 
     "PlayMain.cpp")
 set(PLAY_HEADERS
-    "PlayMain.hpp"
+    "PlayMain.h"
     "closenessAI.h"
     "general_regression.h")
 

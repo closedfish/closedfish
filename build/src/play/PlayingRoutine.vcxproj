@@ -287,7 +287,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\play\PlayMain.cpp" />
-    <ClInclude Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\play\PlayMain.hpp" />
+    <ClInclude Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\play\PlayMain.h" />
     <ClInclude Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\play\closenessAI.h" />
     <ClInclude Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\src\play\general_regression.h" />
     <Natvis Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-src\nlohmann_json.natvis">

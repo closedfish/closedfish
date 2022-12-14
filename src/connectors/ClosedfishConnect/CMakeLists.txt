@@ -1,7 +1,7 @@
 set(GC_SOURCES 
     "ClosedfishConnect.cpp")
 set(GC_HEADERS
-    "ClosedfishConnect.hpp")
+    "ClosedfishConnect.h")
 
 add_library(${GC} STATIC
     ${GC_SOURCES}
