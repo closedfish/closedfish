@@ -53,7 +53,6 @@ Next Week:
  ⁃ Continue my research into the algorithm and understand the process / methodology used by the team.
  ⁃ Start implementing unit tests for the existing functions in the algorithm.
 
-
 Ba Cong:
 	This week: 
 		- Finished the heat map implementation 
@@ -88,3 +87,9 @@ Razvan:
 		-Figure out why bmpClass can't be reinitialized and hopefully solve it for the sake of stability
 		-Move to the algorithms teams
 
+Dimitrije
+This week:
+-Debugged DV binary vision issues with jpeg/png file changes.
+-Soccessfully finished the code for building the "board" object.
+Next week:
+-Piece recognition and merging with image recorder 
