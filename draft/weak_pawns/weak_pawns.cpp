@@ -2,22 +2,34 @@
 //
 
 #include "../../lib/board_implementation/CFBoard.cpp"
+#include "../../lib/board_implementation/naiveCheckCheck.cpp"
 #include "../../lib/board_implementation/CFBoard.h"
 
+#include <iostream>
 using namespace std;
 
-
 int get_bit_from_pos(int i, int j) {
-/*Returns the corresponding bit position from the coordinates of a tile.
-i : row
-j : colomn 
-*/
+	/**
+     * @brief Converts a position in cartesians coordinates to a tile in the CFBoard
+     *
+     * @param i : <int> row of the position
+	 * @param j : <int> colomn of the position
+	 * 
+     * @return : <int> tile in the CFBoard
+     */
 
 	return i*8 + j;
 }
 
 bool is_valid(int i, int j) {
-//Returns true if the tile is on the board, false otherwise
+	/**
+     * @brief Checks if a position fits in the board 
+     *
+     * @param i : <int> row of the position
+	 * @param j : <int> colomn of the position
+	 * 
+     * @return : <bool> whether the position fits or not on the board
+     */
 
 	if (i >= 0 && i <= 7 && j >= 0 && j <= 7) {
 		return true;
@@ -26,63 +38,80 @@ bool is_valid(int i, int j) {
 }
 
 int nb_protecting_pawns(CFBoard &board, bool &color, int &pawn_i, int &pawn_j) {
-//Returns the number of pawns protecting the target pawn
+	/**
+     * @brief Returns the number of pawns currenly protecting the target pawn
+     *
+     * @param board : <CFBoard> current board
+     * @param color : <bool> color of the target pawn (white : 0, black : 1)
+     * @param pawn_i : <int> row of the target pawn
+	 * @param pawn_j : <int> colomn of the target pawn
+	 * 
+     * @return : <int> number of pawns protecting the target pawn
+     */
 
 	int count = 0;
-	if(color == 0){ //if white, we check if the two bottom corners positions
-		if (pawn_i <= 6) {
+	if(color){ //if black, we check if the two upper corners positions
+		if (pawn_i >= 1) {
 			if (pawn_j >= 1) {
-				int tile = get_bit_from_pos(pawn_i + 1, pawn_j - 1);
-				if (board.getBit(0, tile)){
-					count++;
-				}
-			}
-			if (pawn_j <= 6) {
-				int tile = get_bit_from_pos(pawn_i + 1, pawn_j + 1);
-				if (board.getBit(0, tile)){
-					count++;
-				}
-			}
-		}
-	}else{ //if black, we check the two upper corners positions
-		if(pawn_i >= 1){
-			if (pawn_j >= 1) {
-				int tile = get_bit_from_pos(pawn_i - 1, pawn_j - 1);
-				if (board.getBit(1, tile)){
+				int tile = get_bit_from_pos(pawn_i - 1 , pawn_j - 1);
+				if (board.getBit(color,tile)){
 					count++;
 				}
 			}
 			if (pawn_j <= 6) {
 				int tile = get_bit_from_pos(pawn_i - 1, pawn_j + 1);
-				if (board.getBit(1, tile)){
+				if (board.getBit(color, tile)){
+					count++;
+				}
+			}
+		}
+	}else{ //if white, we check the two bottom corners positions
+		if(pawn_i <= 6){
+			if (pawn_j >= 1) {
+				int tile = get_bit_from_pos(pawn_i + 1, pawn_j - 1);
+				if (board.getBit(color, tile)){
+					count++;
+				}
+			}
+			if (pawn_j <= 6) {
+				int tile = get_bit_from_pos(pawn_i + 1, pawn_j + 1);
+				if (board.getBit(color, tile)){
 					count++;
 				}
 			}
 		}
 	}
-	
 
 	return count;
 }
 
 int nb_protecting_horses(CFBoard &board, bool &color, int &pawn_i, int &pawn_j){
-//Returns the number of horses protecting the target pawn
+	/**
+     * @brief Returns the number of knights currenly protecting the target pawn
+     *
+     * @param board : <CFBoard> current board
+     * @param color : <bool> color of the target pawn (white : 0, black : 1)
+     * @param pawn_i : <int> row of the target pawn
+	 * @param pawn_j : <int> colomn of the target pawn
+	 * 
+     * @return : <int> number of horses protecting the target pawn
+     */
 
 	int count = 0;
-
 	int nId;
 
 	if(color){ //for blacks
-		int nId = 3;
+		nId = 3;
 	}else{ //for whites
-		int nId = 2;
+		nId = 2;
 	}
 
 	for (int i = -2; i <= 2; i++) {
-		for (int j = -2; j <= 3; j++) {
+		for (int j = -2; j <= 2; j++) {
 			if (i != j && i != 0 && j != 0 && abs(j) != abs(i)){ //check if the position is valid for a horse
-				if (is_valid(pawn_i + i, pawn_j + j)){ //if the tile is in the board
+				if (is_valid(pawn_i + i, pawn_j + j)){ //check if the tile is in the board
 					int tile = get_bit_from_pos(pawn_i + i, pawn_j + j);
+					//std::cout<<board.getBit(3, tile)<<std::endl;
 					if (board.getBit(nId, tile)){ //if there is a knight of the pawn's color 
 						count++;
 					}
@@ -94,9 +123,16 @@ int nb_protecting_horses(CFBoard &board, bool &color, int &pawn_i, int &pawn_j){
 }
 
 bool is_row_free(CFBoard &board, int &pawn_i, int& start, int& end){
-/*Checks if a row is empty between the starting colomn position and the end colomn.
-Useful of checking whether a queen or rook is protecting.
-*/
+	/**
+     * @brief Checks if the row is free between two pieces of the same row
+     *
+     * @param board : <CFBoard> current board
+	 * @param pawn_i : <int> row where the two pieces are
+	 * @param start : <int> leftmost piece index
+	 * @param end : <int> rightmost piece index
+	 * 
+     * @return : <bool> returns whether or not the row is free
+     */
 
 	for (int j = start + 1; j <= end-1; j++) { //for each position between start and end
 			int tile = get_bit_from_pos(pawn_i, j);
@@ -109,9 +145,16 @@ Useful of checking whether a queen or rook is protecting.
 }
 
 bool is_colomn_free(CFBoard &board, int &pawn_j, int& start, int& end){
-/*Checks if a colomn is empty between the starting row position and the end row.
-Useful of checking whether a queen or rook is protecting.
-*/
+	/**
+     * @brief Checks if the colomn is free between two pieces of the same colomn
+     *
+     * @param board : <CFBoard> current board
+	 * @param pawn_j : <int> colomn where the two pieces are
+	 * @param start : <int> upper piece index
+	 * @param end : <int> bottom piece index
+	 * 
+     * @return : <bool> returns whether or not the colomn is free
+     */
 
 	for (int i = start + 1; i <= end-1; i++) { //for each position between start and end
 			int tile = get_bit_from_pos(i, pawn_j);
@@ -124,31 +167,42 @@ Useful of checking whether a queen or rook is protecting.
 }
 
 int nb_protecting_rooks(CFBoard &board, bool &color, int& pawn_i, int& pawn_j){
-//Returns the number of protecting rooks
+	/**
+     * @brief Returns the number of rooks currenly protecting the target pawn
+     *
+     * @param board : <CFBoard> current board
+     * @param color : <bool> color of the target pawn (white : 0, black : 1)
+     * @param pawn_i : <int> row of the target pawn
+	 * @param pawn_j : <int> colomn of the target pawn
+	 * 
+     * @return : <int> number of rooks protecting the target pawn
+     */
 
 	int count = 0;
+	int tile;
 
 	int rId;
 
 	if(color){ //if black
-		int rId = 7;
+		rId = 7;
 	}else{//if white
-		int rId = 6;
+		rId = 6;
 	}
 
-	for (int j = 0; j<= 7; j++){ //we check if there is a rook on the same row
-		int tile = get_bit_from_pos(pawn_i, j);
+	//we check if there is a rook on the same row
+	for (int j = 0; j<= 7; j++){ //for each position
+		tile = get_bit_from_pos(pawn_i, j);
 		if (board.getBit(rId, tile)){ //if we found a rook on the same row
-			int start = std::min(pawn_j, j);
+			int start = std::min(pawn_j, j); //we set the boundaries of the segments we are gonna search on
 			int stop = std::max(pawn_j, j);
 			if (is_row_free(board, pawn_i, start, stop)){ //if the row is free between the pawn and the rook
 				count++;
 			}
 		}
-	}
 
-	for (int i = 0; i<= 7; i++){ //we check if there is a rook on the same colomn
-		int tile = get_bit_from_pos(i, pawn_j);
+		//we check if there is a rook on the same colomn
+		int i = j;
+		tile = get_bit_from_pos(i, pawn_j);
 		if (board.getBit(rId, tile)){ //if we found a rook on the same colomn
 			int start = std::min(pawn_i, i);
 			int end = std::max(pawn_i, i);
@@ -157,18 +211,29 @@ int nb_protecting_rooks(CFBoard &board, bool &color, int& pawn_i, int& pawn_j){
 			}
 		}
 	}
+
 	return count;
 }
 
 int nb_protecting_kings(CFBoard &board, bool &color, int &pawn_i, int &pawn_j) {
-//Returns the number of protecting kings (0 or 1)
+	/**
+     * @brief Returns the number of kings currenly protecting the target pawn
+     *
+     * @param board : <CFBoard> current board
+     * @param color : <bool> color of the target pawn (white : 0, black : 1)
+     * @param pawn_i : <int> row of the target pawn
+	 * @param pawn_j : <int> colomn of the target pawn
+	 * 
+     * @return : <int> number of kings protecting the target pawn (0 or 1)
+     */
+
 	
 	int kId;
 
 	if(color){ //if black
-		int kId = 11;
+		kId = 11;
 	}else{//if white
-		int kId = 10;
+		kId = 10;
 	}
 
 	for (int k = -1; k < 2; k++) {
@@ -186,9 +251,17 @@ int nb_protecting_kings(CFBoard &board, bool &color, int &pawn_i, int &pawn_j) {
 }
 
 bool is_diag_free(CFBoard& board, int &pawn_i, int &piece_i, int &pawn_j, int &piece_j){
-/*Checks if the diagolonal between the target pawn and the bishop or queen is free.
-Useful of protecting bishops and queens
-*/
+	/**
+     * @brief Checks if the diagonal between a pawn and a piece is free
+     *
+     * @param board : <CFBoard> current board
+     * @param pawn_i : <int> row of the pawn
+	 * @param piece_i : <int> row of the piece
+	 * @param pawn_j : <int> colomn of the pawn
+	 * @param piece_j : <int> colomn of the piece
+	 * 
+     * @return : <bool> whether the diagonal is free or not
+     */
 
 	int ud;
 	int lr;
@@ -196,14 +269,14 @@ Useful of protecting bishops and queens
 	//we start checking from the position of the pawn
 
 	if(pawn_i < piece_i){
-		int ud = 1; //if the piece is below the pawn, we need to go down
+		ud = 1; //if the piece is below the pawn, we need to go down
 	}else{
-		int ud = -1; //else we go up
+		ud = -1; //else we go up
 	}
 	if(pawn_j < piece_j){
-		int lr = 1; //if the piece is to the left of the pawn, we go left
+		lr = 1; //if the piece is to the left of the pawn, we go left
 	}else{
-		int lr = -1; //else we go right
+		lr = -1; //else we go right
 	}
 
 	int i = pawn_i + ud;
@@ -222,31 +295,42 @@ Useful of protecting bishops and queens
 }
 
 int nb_protecting_bishops(CFBoard &board, bool &color, int &pawn_i, int &pawn_j) {
-//Returns the number of protecting bishops
+	/**
+     * @brief Returns the number of bishops currenly protecting the target pawn
+     *
+     * @param board : <CFBoard> current board
+     * @param color : <bool> color of the target pawn (white : 0, black : 1)
+     * @param pawn_i : <int> row of the target pawn
+	 * @param pawn_j : <int> colomn of the target pawn
+	 * 
+     * @return : <int> number of bishops protecting the target pawn
+     */
 
 	int count = 0;
 	int bId;
 
 	if(color){
-		int bId = 5;
+		bId = 5;
 	}else{
-		int bId = 4;
+		bId = 4;
 	}
 
-	for(int i = 0; i < 64; i++){
-		int is_set = board.getPieceBoardFromIndex(bId);
-		if(is_set){ //if the i-th bit is set
-			int bish_i = i/7;
-			int bish_j = i%7;
-			//now we check if the bishop is on the same diagonal as the pawn
-			//we notice that two elements are on the same diagonal if and only if the absolute value of the difference
-			//between their i and j coordinates is the same
-			if(abs(bish_i - bish_j) == abs(pawn_i - pawn_j)){
-				if(is_diag_free(board, pawn_i, bish_i, pawn_j, bish_j)){
-					count ++;
+	for(int i = 0; i < 8; i++){
+		for(int k = -1; k <= 1; k++){
+			for(int j = -1; j <= 1; j++){
+				if(j != 0 && k != 0){ 
+					int bish_i = pawn_i + i*k;
+					int bish_j = pawn_j + i*j;
+					if(is_valid(bish_i, bish_j)){ //if the position is valid
+						int tile = get_bit_from_pos(bish_i, bish_j); 
+						if(board.getBit(bId, tile)){ //if there is a bishop on this position
+							if(is_diag_free(board, pawn_i, bish_i, pawn_j, bish_j)){ //if the diag is free
+								count++;
+							}
+						} 
+					}
 				}
 			}
-
 		}
 	}
 
@@ -256,58 +340,83 @@ int nb_protecting_bishops(CFBoard &board, bool &color, int &pawn_i, int &pawn_j)
 }
 
 int nb_protecting_queens(CFBoard &board, bool &color, int &pawn_i, int &pawn_j){
-//Returns the number of protecting queens (0 or 1)'''
+	/**
+     * @brief Returns the number of queens currenly protecting the target pawn
+     *
+     * @param board : <CFBoard> current board
+     * @param color : <bool> color of the target pawn (white : 0, black : 1)
+     * @param pawn_i : <int> row of the target pawn
+	 * @param pawn_j : <int> colomn of the target pawn
+	 * 
+     * @return : <int> number of queens protecting the target pawn
+     */
 
+
+	int count = 0;
 	int qId;
+	int tile;
 
 	if(color){
-		int qId = 9;
+		qId = 9;
 	}else{
-		int qId = 10;
+		qId = 10;
 	}
 
-	for(int i = 0; i < 64; i++){
-		int is_set = board.getPieceBoardFromIndex(qId);
-		if(is_set){ //if the i-th bit is set
-			int queen_i = i/7;
-			int queen_j = i%7;
-
-			//we check if it is on the same diagonal as the pawn
-			if(abs(queen_i - queen_j) == abs(pawn_i - pawn_j)){
-				if(is_diag_free(board, pawn_i, queen_i, pawn_j, queen_j)){
-					return 1;
+	for(int i = 0; i < 8; i++){
+		for(int k = -1; k <= 1; k++){ //we check if they are on the same diag
+			for(int j = -1; j <= 1; j++){
+				if(j != 0 && k != 0){ 
+					int queen_i = pawn_i + i*k;
+					int queen_j = pawn_j + i*j;
+					if(is_valid(queen_i, queen_j)){ //if the position is valid
+						tile = get_bit_from_pos(queen_i, queen_j); 
+						if(board.getBit(qId, tile)){ //if there is a bishop on this position
+							if(is_diag_free(board, pawn_i, queen_i, pawn_j, queen_j)){ //if the diag is free
+								count++;
+							}
+						} 
+					}
 				}
 			}
+		}
 
-			//we check if it is on the same row
-			if (queen_i == pawn_i){
-				int start = std::min(pawn_j, queen_j);
-				int end = std::max(pawn_j, queen_j);
-				if(is_row_free(board, pawn_i, start, end)){
-					return 1;
-				}
+		//we check if they are on the same colomn
+		tile = get_bit_from_pos(i, pawn_j);
+		if (board.getBit(qId, tile)){ //if we found a rook on the same colomn
+			int start = std::min(pawn_i, i);
+			int end = std::max(pawn_i, i);
+			if (is_colomn_free(board, pawn_j, start, end)){ //if the colomn is free between the pawn and the rook
+				count++;
 			}
+		}
 
-			//we check if it is on the same colomn
-			if (queen_j == pawn_j){
-				int start = std::min(pawn_i, queen_i);
-				int end = std::max(pawn_i, queen_i);
-				if(is_row_free(board, pawn_j, start, end)){
-					return 1;
-				}
+		//we check if there is a rook on the same row
+		tile = get_bit_from_pos(pawn_i, i);
+		if (board.getBit(qId, tile)){ //if we found a rook on the same row
+			int start = std::min(pawn_j, i); //we set the boundaries of the segments we are gonna search on
+			int stop = std::max(pawn_j, i);
+			if (is_row_free(board, pawn_i, start, stop)){ //if the row is free between the pawn and the rook
+				count++;
 			}
-
-
 		}
 	}
 
-	return 0;
+	return count;
 
 }
 
-int nb_protecting_pieces(CFBoard &board, bool &color, int &pawn_i, int &pawn_j){
+int nBProtectingPieces(CFBoard &board, bool &color, int &pawn_i, int &pawn_j){
+	/**
+     * @brief Returns the total number of pieces/pawns currenly protecting the target pawn
+     *
+     * @param board : <CFBoard> current board
+     * @param color : <bool> color of the target pawn (white : 0, black : 1)
+     * @param pawn_i : <int> row of the target pawn
+	 * @param pawn_j : <int> colomn of the target pawn
+	 * 
+     * @return : <int> total number of pieces/pawns protecting the target pawn
+     */
 
-//Returns the number of protectong pieces'''
 	int count = 0;
 
 	count += nb_protecting_pawns(board, color, pawn_i, pawn_j);
@@ -321,8 +430,26 @@ int nb_protecting_pieces(CFBoard &board, bool &color, int &pawn_i, int &pawn_j){
 	
 }
 
-int main(){
-	std::cout<<"Hello world";
-	return 0;
+bool isPassed(CFBoard &board, bool &color, int &pawn_i, int &pawn_j){
+	/**
+     * @brief Checks if a pawn is passed or not
+     *
+     * @param board : <CFBoard> current board
+     * @param color : <bool> color of the target pawn (white : 0, black : 1)
+     * @param pawn_i : <int> row of the target pawn
+	 * @param pawn_j : <int> colomn of the target pawn
+	 * 
+     * @return : <bool> whether the pawn is passed or not
+     */
+
+	if (color){//if black, the pawn is passed once we reached the row i = 7 (last row)
+		if(is_colomn_free(board, pawn_j, pawn_i, 7)){
+			return true;
+		}
+	}else{ //if white, the pawn is passed once we reached row i = 0 (first row)
+		if(is_colomn_free(board, pawn_j, 0, pawn_i)){
+			return true;
+		}
+	}
 }
 
