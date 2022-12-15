@@ -2,19 +2,23 @@
 #include <tuple> 
 #include "../board_implementation/CFBoard.h"
 
-class Algorithm {
+
+/**
+* @brief Abstract class from which all of our algorithms are gonna be derived
+*/
+class ChessEngine {
 public:
 
 	/**
 	* @brief Abstract constructor, shouldn't be run directly 
 	*/
-	Algorithm(void) {};
+	ChessEngine(void) {};
 
 
 	/**
 	* @brief Abstract destructor, shouldn't be run directly
 	*/
-	~Algorithm(void) {};
+	~ChessEngine(void) {};
 
 
 	/**
