@@ -6,10 +6,27 @@
 #include <vector>
 
 namespace CFBoardTester {
-char test_pieceIdToChar(int pieceId);
-int test_pieceCharToId(char pieceChar);
-uint64_t test_getColorBitBoard(bool color);
-uint64_t test_getPieceColorBitBoard(int pieceId);
-uint64_t test_getPieceBoardFromIndex(int boardIndex);
-...
+    void test_pieceIdToChar();
+    void test_pieceCharToId();
+    void test_getColorBitBoard();
+    void test_getPieceColorBitBoard();
+    void test_getPieceBoardFromIndex();
+    void test_getCurrentPlayer();
+    void test_getPieceFromCoords();
+    void test_getBit();
+    void test_getMaterialCount();
+    void test_addPiece();
+    void test_removePiece();
+    void test_movePiece();
+    void test_forceUndo();
+    void test_getCardinals();
+    void test_getDiagonals();
+    void test_getKnightPattern();
+    void test_getKingPattern();
+    void test_getPawnPattern();
+    void test_getLegalMoves();
+    void test_naiveCheckCheck();
+    void test_fromFEN();
+    void test_toFEN();
+
 }

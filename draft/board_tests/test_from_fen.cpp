@@ -19,3 +19,5 @@ void testFromFEN() {
     std::cout << "]" << std::endl;
 }
 } // namespace CFBoardTester
+
+//NOT NECESSARY - Merged into test_Board_Implementation 
