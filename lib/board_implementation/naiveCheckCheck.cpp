@@ -24,6 +24,8 @@ inline bool isPositionValid(const int &row, const int &col) {
  */
 bool CFBoard::naiveCheckCheck(bool color, int coordA, int coordB) {
     uint64_t thisKingBoard = kingBoard & getColorBitBoard(color);
+    if (!thisKingBoard)
+        return false;
     uint64_t kingTile = 63ll - __builtin_clzll(thisKingBoard);
     // make sure kingTile is not coordA or coordB
     uint64_t otherBoard = getColorBitBoard(!color) &
