@@ -636,3 +636,4 @@ FodyWeavers.xsd
 src/Generator/Generator/generator
 
 build/
+out/
