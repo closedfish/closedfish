@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\nlohmann_json-subbuild\CMakeFiles\1990314396ebe8d233fbbcd86e71c078\generate.stamp.rule">
+    <CustomBuild Include="C:\Users\Hp\Desktop\closedfish\closedfish\build\_deps\nlohmann_json-subbuild\CMakeFiles\97914bcfdabf3f020095ccdb5e746ae8\generate.stamp.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{3F91929D-DD31-3B7E-B5B3-C79A89243771}</UniqueIdentifier>
+      <UniqueIdentifier>{ED6BB8D6-2B1E-3AEB-A669-4E76414CC56F}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

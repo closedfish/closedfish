@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-subbuild
+# Install script for directory: C:/Users/Hp/Desktop/closedfish/closedfish/build/_deps/nlohmann_json-subbuild
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/_deps/nlohmann_json-subbuild/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Hp/Desktop/closedfish/closedfish/build/_deps/nlohmann_json-subbuild/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

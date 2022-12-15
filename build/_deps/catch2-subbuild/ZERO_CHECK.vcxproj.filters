@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="C:\Users\andre\OneDrive\Desktop\Closedfish\closedfish\build\_deps\catch2-subbuild\CMakeFiles\d4ddf2b360ac99676709ab72ce183dfe\generate.stamp.rule">
+    <CustomBuild Include="C:\Users\Hp\Desktop\closedfish\closedfish\build\_deps\catch2-subbuild\CMakeFiles\248aef7cc42d00f25361c46ec7c03c99\generate.stamp.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{E3523813-7FCE-36BF-9E99-65195D129735}</UniqueIdentifier>
+      <UniqueIdentifier>{F38B1707-508B-3EFB-8151-C5EB803B2646}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
