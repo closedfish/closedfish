@@ -638,3 +638,5 @@ src/Generator/Generator/generator
 build/
 src/Generator/Generator/ModuleCache.noindex/Session.modulevalidation
 src/Generator/Generator/Generator-emmzeqevaoeevohberbchelxpaaf/info.plist
+*.plist
+*.idx
