@@ -1,0 +1,8 @@
+# CMake generation dependency list for this directory.
+C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/vcpkg_installed/x86-windows/share/jsoncpp/jsoncpp-namespaced-targets.cmake
+C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/vcpkg_installed/x86-windows/share/jsoncpp/jsoncpp-targets-debug.cmake
+C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/vcpkg_installed/x86-windows/share/jsoncpp/jsoncpp-targets-release.cmake
+C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/vcpkg_installed/x86-windows/share/jsoncpp/jsoncpp-targets.cmake
+C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/vcpkg_installed/x86-windows/share/jsoncpp/jsoncppConfig.cmake
+C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/build/vcpkg_installed/x86-windows/share/jsoncpp/jsoncppConfigVersion.cmake
+C:/Users/andre/OneDrive/Desktop/Closedfish/closedfish/src/opening/CMakeLists.txt

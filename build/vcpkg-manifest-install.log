@@ -1,0 +1,23 @@
+Detecting compiler hash for triplet x64-windows...
+Detecting compiler hash for triplet x86-windows...
+All requested packages are currently installed.
+Restored 0 package(s) from C:\Users\andre\AppData\Local\vcpkg\archives in 126.9 us. Use --debug to see more details.
+Total install time: 164.6 us
+catch2 provides CMake targets:
+
+    # this is heuristically generated, and may not be correct
+    find_package(Catch2 CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE Catch2::Catch2 Catch2::Catch2WithMain)
+
+eigen3 provides CMake targets:
+
+    # this is heuristically generated, and may not be correct
+    find_package(Eigen3 CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE Eigen3::Eigen)
+
+jsoncpp provides CMake targets:
+
+    # this is heuristically generated, and may not be correct
+    find_package(jsoncpp CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE jsoncpp_lib jsoncpp_object JsonCpp::JsonCpp)
+

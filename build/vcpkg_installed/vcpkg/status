@@ -1,0 +1,49 @@
+Package: vcpkg-cmake-config
+Version: 2022-02-06
+Port-Version: 1
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 6723839ebb3e529ddc3cfe47ecd8914c31ae2b632fe15b8422373a27a70e734d
+Type: Port
+Status: install ok installed
+
+Package: vcpkg-cmake
+Version: 2022-10-30
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 9c6baafdbc4e7c74260d4fe60ee77ea38bc4d9bb94e0ca3e332741c39aaf22e2
+Type: Port
+Status: install ok installed
+
+Package: catch2
+Version: 3.1.1
+Port-Version: 2
+Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
+Architecture: x86-windows
+Multi-Arch: same
+Abi: 11171cc49aaa60abc3adbdf5aacdcded0ea5fa5082625b15ea7989052d70ad6c
+Description: A modern, header-only test framework for unit testing.
+Type: Port
+Status: install ok installed
+
+Package: eigen3
+Version: 3.4.0
+Port-Version: 2
+Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
+Architecture: x86-windows
+Multi-Arch: same
+Abi: c612dcdd26b27004f62db92c1abb2cd78e16d6834f7995c35c9867c9c1a898db
+Description: C++ template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms.
+Type: Port
+Status: install ok installed
+
+Package: jsoncpp
+Version: 1.9.5
+Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
+Architecture: x86-windows
+Multi-Arch: same
+Abi: 6c9eb6df856cf13514a867f72c91b445d47eb930cc5d7cf535d06e12b8d0839c
+Description: jsoncpp is an implementation of a JSON reader and writer in C++. JSON (JavaScript Object Notation) is a lightweight data-interchange format that it is easy to parse and redeable for human.
+Type: Port
+Status: install ok installed
+

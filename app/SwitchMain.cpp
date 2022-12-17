@@ -1,5 +1,4 @@
 #include <iostream>
-#include <nlohmann/json.hpp>
 //#include "config.hpp"
 #include "SwitchMain.h"
 int main()

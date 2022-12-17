@@ -26,3 +26,13 @@ Description: C++ template library for linear algebra: matrices, vectors, numeric
 Type: Port
 Status: install ok installed
 
+Package: jsoncpp
+Version: 1.9.5
+Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
+Architecture: x86-windows
+Multi-Arch: same
+Abi: 027ca77be7a3c3b7b757042dfc5375875267540055ee9755d925c5f25700054f
+Description: jsoncpp is an implementation of a JSON reader and writer in C++. JSON (JavaScript Object Notation) is a lightweight data-interchange format that it is easy to parse and redeable for human.
+Type: Port
+Status: install ok installed
+
