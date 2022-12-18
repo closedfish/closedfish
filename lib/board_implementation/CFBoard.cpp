@@ -10,15 +10,9 @@
 
 // implemented
 
+/*
 int main(){
-    /*
-    CFBoard testBoard = CFBoard();
-    for (int i=0; i<12; i+=1){
-        std::cout << testBoard.getRepr() << std::endl;
-        std::cout << testBoard.getBit(i, 8) << std::endl;
-    }
-    */
-
+    
     
     //CFBoard testBoard = CFBoard("8/8/8/8/8/8/8/8 w - -");
     CFBoard testBoard = CFBoard();
@@ -31,6 +25,7 @@ int main(){
     
     return 0;
 }
+*/
 
 // ----- Constructors, Formatting, Representation -----
 
