@@ -13,9 +13,13 @@ using namespace std;
 std::vector<std::vector<int>> listpawns();
 std::vector<std::vector<int>> listpawnsclosed();
 std::vector<std::vector<int>> listpawns_6_white_6_black();
+std::vector<std::vector<int>> listpawnsaced();
+std::vector<std::vector<int>> listpawns_0_4();
 void file_generator_general(int); //Input number of pawns and return a file with every possible closed position with only pawns
 void file_generator_100_closed(int);
 void file_generator_6_white_6_black(int);
+void file_generator_general_spaced(int position_amount);
+void file_generator_0_to_4(int position_amount);
 void database_edit(); // cannot be implemented
 
 
@@ -90,7 +94,7 @@ public:
     void visualize(); // inputs a chessboard and returns a visual representation
     
     void single_generator(int pawns); //Input number of pawns and return a random closed position with only pawns
-    
+    void single_generator_spaced(int pawns);
 
     bool check(); // check if the king is in check or not
 

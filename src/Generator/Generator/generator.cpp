@@ -37,9 +37,31 @@ std::vector<std::vector<int>> listpawns(){
     }
     return listpawn;
 }
-
 /**
-@brief This function takes no input, generates a chessboard closed position and converts it into an output for cassidy.
+@brief This function takes no input, generates a chessboard closed position and converts it into an output for cassidy. The output has spaced pawns
+
+@return This function returns a two dimensional vector where the first element is the column location of all the top pawns in the board and the second element is the position of all the bottom pawns in the board these positions are completely closed
+
+ */
+
+std::vector<std::vector<int>> listpawnspaced(){
+    std::vector<std::vector<int>> listpawn
+    {{-1,-1,-1,-1,-1,-1,-1,-1}, {8,8,8,8,8,8,8,8}};
+    Chessboard chessboard;
+    int pawns_num=16;
+    chessboard.single_generator_spaced(pawns_num);
+    int color=-1;
+    for (int i = 0; i < listpawn.size(); i++){
+        color+=1;
+        for(int j = 0; j < listpawn[i].size(); j++){
+            int a=chessboard.find_pawn_in_column(chessboard, j, color);
+            listpawn[i][j]=a;
+        }
+    }
+    return listpawn;
+}
+/**
+@brief This function takes no input, generates a chessboard closed position and converts it into an output for cassidy. The output is completely closed
 
 @return This function returns a two dimensional vector where the first element is the column location of all the top pawns in the board and the second element is the position of all the bottom pawns in the board these positions are completely closed
 
@@ -62,7 +84,7 @@ std::vector<std::vector<int>> listpawnsclosed(){
     return listpawn;
 }
 /**
-@brief This function takes no input, generates a chessboard closed position and converts it into an output for cassidy.
+@brief This function takes no input, generates a chessboard closed position and converts it into an output for cassidy. The output contains 6 white pawns and 6 black pawns
 
 @return This function returns a two dimensional vector where the first element is the column location of all the top pawns in the board and the second element is the position of all the bottom pawns in the board these positions have exactly 6 black pawns and 6 white pawns
 
@@ -83,7 +105,28 @@ std::vector<std::vector<int>> listpawns_6_white_6_black(){
     }
     return listpawn;
 }
+/**
+@brief This function takes no input, generates a chessboard closed position and converts it into an output for cassidy. The output contains 0 to 4 pawns on each side of the board
+@return This function returns a two dimensional vector where the first element is the column location of all the top pawns in the board and the second element is the position of all the bottom pawns in the board these positions have exactly 6 black pawns and 6 white pawns
 
+ */
+std::vector<std::vector<int>> listpawns_0_4(){
+    std::vector<std::vector<int>> listpawn
+    {{-1,-1,-1,-1,-1,-1,-1,-1}, {8,8,8,8,8,8,8,8}};
+    Chessboard chessboard;
+    int pawns_num=rand()%4;
+    pawns_num*=2;
+    chessboard.single_generator(pawns_num);
+    int color=-1;
+    for (int i = 0; i < listpawn.size(); i++){
+        color+=1;
+        for(int j = 0; j < listpawn[i].size(); j++){
+            int a=chessboard.find_pawn_in_column(chessboard, j, color);
+            listpawn[i][j]=a;
+        }
+    }
+    return listpawn;
+}
 /**
 @brief this function has the goal of taking an amount of pawns (even or odd) and returning a random board with those pawns
  
@@ -114,7 +157,37 @@ void Chessboard::single_generator(int pawns){ //To be fixed
     }
     }
 }
+/**
+@brief this function has the goal of taking an amount of pawns (even or odd) and returning a random board with those pawns. The pawns in this generated board have a randomized chance of being spaced out
+ 
+@param pawns which is the number of pawns you want on your board for now it should be even
 
+ */
+void Chessboard::single_generator_spaced(int pawns){ //To be fixed
+    int white_counter=0;
+    int fullcolumns_white[]={0,0,0,0,0,0,0,0};
+    if (pawns%2!=0 or pawns>16 or pawns<0){ // check for correct number of pawns (needs to be even, and within 1-16)
+        std::cout<<"Please input a correct amount of pawns for completely closed positions i.e even number and less than 16 and more than 0. The board will not be generated."<<std::endl;
+    }
+    else{
+        while(white_counter<pawns/2){
+            int random_pos=rand()%48;
+            if ((board[random_pos].is_empty()) and (fullcolumns_white[(random_pos%8)]!=1) and (random_pos>8)){
+                board[random_pos].piece=6;
+                board[random_pos].piece_color=0;
+                white_counter+=1;
+                fullcolumns_white[(random_pos%8)]+=1;           //make sure there are no more than two white pawns per column
+            }
+        }
+        for (int i=0; i<32;i++){
+            if (board[i].piece==6 and board[i].piece_color==0){
+                int j=rand()%3;
+                board[i+8*j].piece=6;
+                board[i+8*j].piece_color=1;
+        }
+    }
+    }
+}
 /**
 @brief Creates a file of mostly closed positions in the vector in vector output format for the switch algo.
 @param position_amount The parameter here is the amount of positions you want to have generated in the file.
@@ -146,9 +219,40 @@ void file_generator_general(int position_amount){
     }
     file.close();
 }
+/**
+@brief Creates a file of mostly closed positions in the vector in vector output format for the switch algo. The positions in this file have the addition criteria of randomly being spaced (the positions are quite open)
+@param position_amount The parameter here is the amount of positions you want to have generated in the file.
+ */
+void file_generator_general_spaced(int position_amount){
+    ofstream file;
+    file.open ("general_positions_spaced_pawns.txt");
+    int counter=-1;
+    for (int i=0; i<position_amount;i++){
+        string output="";
+        std::vector<std::vector<int>> theboard = listpawnspaced();
+        for (int i = 0; i < theboard.size(); i++){
+            counter+=1;
+            int count=0;
+            output+="\nX[";
+            output+=to_string(counter);
+            output+="] = new int[8]{";
+            for(int j = 0; j < theboard[i].size(); j++){
+                output+=to_string(theboard[i][j]);
+                count+=1;
+                if (count<8){
+                    output+=", ";
+                }
+            }
+            output+="};";
+        }
+        cout<<output;
+        file<<output<<endl;
+    }
+    file.close();
+}
 
 /**
-@brief Creates a file of completely closed positions in the vector in vector output format for the switch algo.
+@brief Creates a file of completely closed positions in the vector in vector output format for the switch algo. The positions in this file are completely closed
 @param position_amount The parameter here is the amount of positions you want to have generated in the file.
  */
 void file_generator_100_closed(int position_amount){
@@ -182,7 +286,7 @@ void file_generator_100_closed(int position_amount){
 }
 
 /**
-@brief Creates a file of completely closed positions in the vector in vector output format for the switch algo.
+@brief Creates a file of completely closed positions in the vector in vector output format for the switch algo. The positions generated in this file have 6 white and 6 black pawns
 @param position_amount The parameter here is the amount of positions you want to have generated in the file.
  */
 void file_generator_6_white_6_black(int position_amount){
@@ -192,6 +296,39 @@ void file_generator_6_white_6_black(int position_amount){
     for (int i=0; i<position_amount;i++){
         string output="";
         std::vector<std::vector<int>> theboard = listpawns_6_white_6_black();
+        for (int i = 0; i < theboard.size(); i++){
+            counter+=1;
+            int count=0;
+            output+="\n";
+            output+="X[";
+            output+=to_string(counter);
+            output+="] = ";
+            output+="new int[8]{";
+            for(int j = 0; j < theboard[i].size(); j++){
+                output+=to_string(theboard[i][j]);
+                count+=1;
+                if (count<8){
+                    output+=", ";
+                }
+            }
+            output+="};";
+        }
+        cout<<output;
+        file<<output<<endl;
+    }
+    file.close();
+}
+/**
+@brief Creates a file of completely closed positions in the vector in vector output format for the switch algo. The positions generated in this file have 0 to 4 pawns
+@param position_amount The parameter here is the amount of positions you want to have generated in the file.
+ */
+void file_generator_0_to_4(int position_amount){
+    ofstream file;
+    file.open ("0_to_4_positions.txt");
+    int counter=-1;
+    for (int i=0; i<position_amount;i++){
+        string output="";
+        std::vector<std::vector<int>> theboard = listpawns_0_4();
         for (int i = 0; i < theboard.size(); i++){
             counter+=1;
             int count=0;
