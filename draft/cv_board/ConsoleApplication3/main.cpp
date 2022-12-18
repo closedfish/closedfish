@@ -13,6 +13,8 @@ Scalar whitelow = cv::Scalar(30, 24, 233);
 Scalar whitehigh = cv::Scalar(36, 255, 255);
 Scalar blacklow = cv::Scalar(40, 102, 143);
 Scalar blackhigh = cv::Scalar(46, 255, 255);
+//getPosition takes as an imput a board object, player color and (x,y) coordinates on the board.
+//It then converts the coordinates to a chess board coordinate system.
 std::string getPosition(Board board, int x, int y,Player col) {
     char white[] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
     char black[] = { 'h','g','f','e','d','c','b','a' };
@@ -34,6 +36,8 @@ std::string getPosition(Board board, int x, int y,Player col) {
 
     return position;
 }
+//findRects takes as imput the image and color boundaries for the chessboard square colors, and then it proceeds
+//to find the squares and return the overall board position on the screen.
 void findRects(cv::Mat img, cv::Scalar low, cv::Scalar high, cv::Scalar low1, cv::Scalar high1, COLOR color, COLOR color1,Board board) {
     cv::Mat mask;
     cv::inRange(img, low, high, mask);
@@ -76,7 +80,7 @@ void drawRects(cv::Mat img) { //draws highlight squares on the image of the boar
     };
 };
 
-vector<Tile> addTiles(int size,bool col) {
+vector<Tile> addTiles(int size,bool col) { //adds tiles to a vector
     char white[] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
     char black[] = { 'h','g','f','e','d','c','b','a' };
     int iter = size / 8;
@@ -95,7 +99,13 @@ vector<Tile> addTiles(int size,bool col) {
     }
     return Tiles;
 }
+//The idea is to store the pieces just as values, and then detect their movements by color changes on the block.
+
+
+
+
 int main(){  
+    bool playerColor;
     Board board;
     //Takes the input image
     cv::Mat img = cv::imread("C:\\Users\\dimit\\Desktop\\scr3.png");
@@ -122,21 +132,31 @@ int main(){
         }
 
     };
-
-
+    ///storin the pieces
     board.width = board.right - board.left;
     board.height = board.bottom - board.top;
     //cv::imshow("output", mask);
     //std::cout << board.width << std::endl;
     //std::cout << board.height << std::endl; 
-    vector<Tile> tile_vect=addTiles(board.width,true);//true for now until i get player color
+    Point p1(board.left + board.width / 16, board.top + 50);
+    Point p3(board.left + board.width / 16, board.bottom + 20);
+    Vec3b col1 =orig.at<Vec3b>(p1);
+    Vec3b col2 = orig.at<Vec3b>(p3);
+    cout << col1 << endl;
+    cout << col2 << endl;
+    if (col2[0] > col1[0]) {
+        playerColor = true;
+    }
+    else {
+        playerColor = false;
+    }
+    vector<Tile> tile_vect=addTiles(board.width,playerColor);
     board.Tiles = tile_vect;
-    Point p1(board.left, board.top + 50);
-    Point p2(board.left + 50, board.top);
-    Point p3(board.right, board.bottom + 20);
-    Point p4(board.right + 20, board.bottom);
+    Point p2(board.left + 50, board.top+board.height/16);
+    Point p4(board.left + 20, board.bottom - board.width / 16);
     rectangle(orig,p1,p2, Scalar(255, 0, 0) ,2,LINE_8);
     rectangle(orig, p3, p4, Scalar(255, 0, 0), 2, LINE_8);
     cv::imshow("conts", orig);
+    cout << board.Tiles.size() << endl;
     cv::waitKey(0);
 }

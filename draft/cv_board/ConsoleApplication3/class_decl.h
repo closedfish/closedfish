@@ -28,8 +28,18 @@ public:
 	Player();
 	Player(bool);
 };
+
+class Piece {
+public:
+	char type;
+	COLOR color;
+	Tile position;
+	Piece();
+	Piece(char, COLOR, Tile);
+};
 class Board {
 public:
+	vector<Piece> pieces;
 	int width;
 	int height;
 	int left;
