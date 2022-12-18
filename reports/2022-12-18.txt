@@ -8,3 +8,12 @@ This week:
 Next week:
 	  - Start making test functions for different teams such as the algorithm team
 	  - Work with the switch team if new types of positions need to be made
+
+Etienne:
+This Week:
+	- Transitioned to the algorithm / unit-test team. 
+	- Conducted further research into the existing chessboard implementation and its respective functions and how these worked with meetings with the team, and how to implement said unit-tests.
+	- Created the unit-test files and framework, worked on unit-tests. 
+Next Week:
+	- Finish the unit tests and move onto debugging the CFBoard implementation.
+	- Continue working with the algorithms team and delve into more research for more optimal implementations. 
