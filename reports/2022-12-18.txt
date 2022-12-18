@@ -1,1 +1,10 @@
 Ariel:
+This week: 
+          - Finished functions for many different types of chessboards (very open ones with different 		
+	    amounts of pawns different spaces in between pawns etc.
+	  - Tested outputs with the switch team and made fixes to errors.
+	  - Formatted the output to fit exactly the input to the switch team ai
+	  - Finished testing the generator and work with the switch team for final edits.
+Next week:
+	  - Start making test functions for different teams such as the algorithm team
+	  - Work with the switch team if new types of positions need to be made
