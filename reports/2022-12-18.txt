@@ -29,3 +29,12 @@ Week 3: Added methods according to feedback, and lightly tested my ruleset code 
 Week 4: Optimized a large part of the process for getting legal moves in the board implementation.
   Moved my progress report to this most recent file instead of updating the old file every week (hopefully not a problem).
 Week 5: Will slowly transition to working with the algorithm team more closely, and hopefully get a better picture of the project as a whole.
+
+Ba Cong:
+	This week: 
+		- Found a better coefficient for the heat map implementation
+		- Came up with idea of maximal matching to find the position maximizing the benefit from placing pieces on their targeted squares.
+		- Tested the implementation on more hand-generated test cases
+	Next week:
+		- Implement the maximal matching idea using Dinic's algorithm
+		- Support the implementation of UCI as suggested by Sirawit
