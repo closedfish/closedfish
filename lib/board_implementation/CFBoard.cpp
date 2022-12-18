@@ -6,6 +6,26 @@
 #include <string>
 #include <vector>
 
+// implemented
+
+// ----- Constructors, Formatting, Representation -----
+
+CFBoard::CFBoard() { // This is just the starter board.
+    pawnBoard = (((1ll << 8) - 1) << 48) + (((1ll << 8) - 1) << 8);
+    knightBoard = (1ll << 1) + (1ll << 6) + (1ll << 57) + (1ll << 62);
+    bishopBoard = (1ll << 2) + (1ll << 5) + (1ll << 58) + (1ll << 61);
+    rookBoard = (1ll << 0) + (1ll << 7) + (1ll << 56) + (1ll << 63);
+    queenBoard = (1ll << 3) + (1ll << 59);
+    kingBoard = (1ll << 4) + (1ll << 60);
+
+    whiteBoard = ((1ll << 16) - 1) << 48;
+    blackBoard = (1ll << 16) - 1;
+
+    turn = 0;
+    enPassantTarget = -1;
+    castleCheck = 15;
+}
+
 void CFBoard::fromFEN(std::string FEN) {
     // configure the current board from input FEN
     // Clearing the board
@@ -156,23 +176,197 @@ std::string CFBoard::toFEN() {
     return fenString;
 }
 
+
+std::string CFBoard::getRepr() {
+    std::string repr = "|";
+    for (int tile = 0; tile < 64; tile++) {
+        repr += " ";
+
+        int pieceId = getPieceFromCoords(tile);
+        char pieceChar = pieceIdToChar(pieceId);
+        repr += pieceChar;
+
+        repr += " |";
+        if ((tile + 1) % 8 == 0) {
+            repr += "\n|";
+        }
+    }
+    return repr;
+}
+
+
+char CFBoard::pieceIdToChar(int pieceId) {
+    char pieceChar = '.';
+    bool color = pieceId & 1;
+    pieceId = pieceId >> 1;
+    switch (pieceId) {
+    case 0:
+        pieceChar = 'P';
+        break;
+    case 1:
+        pieceChar = 'N';
+        break;
+    case 2:
+        pieceChar = 'B';
+        break;
+    case 3:
+        pieceChar = 'R';
+        break;
+    case 4:
+        pieceChar = 'Q';
+        break;
+    case 5:
+        pieceChar = 'K';
+        break;
+    default:
+        break;
+    }
+    if (color) {
+        pieceChar = tolower(pieceChar);
+    }
+    return pieceChar;
+}
+
+
+int CFBoard::pieceCharToId(char pieceChar) {
+    int pieceId = -1;
+    switch (pieceChar) {
+    case 'P':
+        return 0;
+    case 'p':
+        return 1;
+    case 'N':
+        return 2;
+    case 'n':
+        return 3;
+    case 'B':
+        return 4;
+    case 'b':
+        return 5;
+    case 'R':
+        return 6;
+    case 'r':
+        return 7;
+    case 'Q':
+        return 8;
+    case 'q':
+        return 9;
+    case 'K':
+        return 10;
+    case 'k':
+        return 11;
+    }
+    return pieceId;
+}
+
+// ----- Get functions -----
+
+
+uint64_t CFBoard::getColorBitBoard(bool color) {
+    if (color) {
+        return blackBoard;
+    }
+    return whiteBoard;
+}
+
+
+uint64_t CFBoard::getPieceColorBitBoard(int pieceId) {
+    return getPieceBoardFromIndex(pieceId >> 1) & getColorBitBoard(pieceId & 1);
+}
+
+
+uint64_t &CFBoard::getPieceBoardFromIndex(int boardIndex) {
+    switch (boardIndex) {
+    case 0:
+        return pawnBoard;
+    case 1:
+        return knightBoard;
+    case 2:
+        return bishopBoard;
+    case 3:
+        return rookBoard;
+    case 4:
+        return queenBoard;
+    default:
+        return kingBoard;
+    }
+}
+
+
+bool CFBoard::getCurrentPlayer() { return turn; }
+
+
+int CFBoard::getPieceFromCoords(int tile) {
+    for (int i = 0; i < 6; i++) {
+        if ((getPieceBoardFromIndex(i) >> tile) & 1) {
+            return (i << 1) | ((blackBoard >> tile) & 1);
+        }
+    }
+    return -1;
+}
+
+
+bool CFBoard::getBit(int pieceId, int tile) {
+    return (getPieceColorBitBoard(pieceId) >> tile) & 1;
+}
+
+
+int CFBoard::getMaterialCount(bool color) {
+    return __builtin_popcountll(pawnBoard) * 1 +
+           __builtin_popcountll(knightBoard) * 3 +
+           __builtin_popcountll(bishopBoard) * 3 +
+           __builtin_popcountll(rookBoard) * 5 +
+           __builtin_popcountll(queenBoard) * 9;
+}
+
+// ----- Manipulation -----
+
+void CFBoard::addPiece(int pieceId, int tile) {
+    uint64_t pieceBoard = 1ll << tile;
+    removePiece(tile);
+
+    int pieceType = pieceId >> 1;
+    bool color = pieceId & 1;
+
+    uint64_t &targetBoard = getPieceBoardFromIndex(pieceType);
+    targetBoard = targetBoard | pieceBoard;
+
+    if (color) {
+        blackBoard = blackBoard | pieceBoard;
+    } else {
+        whiteBoard = whiteBoard | pieceBoard;
+    }
+}
+
+
+void CFBoard::removePiece(int tile) {
+    uint64_t antiPieceBoard = ~(1ll << tile);
+    for (int pieceType = 0; pieceType < 6; pieceType++) {
+        uint64_t &targetBoard = getPieceBoardFromIndex(pieceType);
+        targetBoard = targetBoard & antiPieceBoard;
+    }
+    blackBoard = blackBoard & antiPieceBoard;
+    whiteBoard = whiteBoard & antiPieceBoard;
+}
+
+
 void CFBoard::movePiece(int startTile, int endTile){
-		int piece = getPieceFromCoords(starttile);
-		if ~((1ll << endtile) & getLegalMoves(pieceIdToChar, starttile)){
+		int piece = getPieceFromCoords(startTile);
+		if (~((1ll << endTile) & getLegalMoves(pieceIdToChar(startTile), startTile))){
 			exit(-1);
 		}
 		if ((piece & 1) ^ turn){
 			exit(-1);
 		}
 
-		removePiece(starttile);
-		addPiece(piece, endtile);
+		removePiece(startTile);
+		addPiece(piece, endTile);
 
 		if (~turn){ // white
 			if ((piece>>1) == 3){ // rook
-				if (starttile == 63){
+				if (startTile == 63){
 					castleCheck & ~1;
-				} else if (starttile == 56){
+				} else if (startTile == 56){
                     castleCheck & ~2;
                 }
 			}
@@ -181,15 +375,15 @@ void CFBoard::movePiece(int startTile, int endTile){
             }
 
             if ((piece>>1) == 0){ // pawn
-                if ((starttile - endtile) == 16){
-                    enPassantTarget = starttile - 8;
+                if ((startTile - endTile) == 16){
+                    enPassantTarget = startTile - 8;
                 }
             }
 		} else {
             if ((piece>>1) == 3){ // rook
-				if (starttile == 0){
+				if (startTile == 0){
 					castleCheck & ~8;
-				} else if (starttile == 7){
+				} else if (startTile == 7){
                     castleCheck & ~4;
                 }
 			}
@@ -198,14 +392,15 @@ void CFBoard::movePiece(int startTile, int endTile){
             }
 
             if ((piece>>1) == 0){ // pawn
-                if ((endtile - starttile) == 16){
-                    enPassantTarget = starttile + 8;
+                if ((endTile - startTile) == 16){
+                    enPassantTarget = startTile + 8;
                 }
             }
         }
 
 		turn = ~turn;
 	}
+
 
 void CFBoard::forceUndo(int startTileLastTurn, int endTileLastTurn, int capturedPiece = -1){
     int piece = getPieceFromCoords(endTileLastTurn);
@@ -218,21 +413,8 @@ void CFBoard::forceUndo(int startTileLastTurn, int endTileLastTurn, int captured
     enPassantTarget = -1;
 }
 
-// void CFBoard::naiveMovePiece(int starttile, int endtile) {}
+// ----- Ruleset -----
 
-// ---- to test ----
-
-// __builtin_popcountll()
-
-int CFBoard::getMaterialCount(bool color) {
-    return __builtin_popcountll(pawnBoard) * 1 +
-           __builtin_popcountll(knightBoard) * 3 +
-           __builtin_popcountll(bishopBoard) * 3 +
-           __builtin_popcountll(rookBoard) * 5 +
-           __builtin_popcountll(queenBoard) * 9;
-}
-
-bool CFBoard::getCurrentPlayer() { return turn; }
 
 uint64_t CFBoard::getCardinals(int tile, bool color) {
     uint64_t cardinalBoard = 0;
@@ -292,6 +474,7 @@ uint64_t CFBoard::getCardinals(int tile, bool color) {
 
     return cardinalBoard;
 }
+
 
 uint64_t CFBoard::getDiagonals(int tile, bool color) {
     uint64_t diagonalBoard = 0;
@@ -357,6 +540,7 @@ uint64_t CFBoard::getDiagonals(int tile, bool color) {
 
     return diagonalBoard;
 }
+
 
 uint64_t CFBoard::getKnightPattern(int tile, bool color) {
     uint64_t knightPattern = 0;
@@ -452,6 +636,7 @@ uint64_t CFBoard::getKnightPattern(int tile, bool color) {
     return knightPattern;
 }
 
+
 uint64_t CFBoard::getKingPattern(int tile, bool color) {
     uint64_t kingPattern = 0;
     int column = tile & 7;
@@ -484,6 +669,7 @@ uint64_t CFBoard::getKingPattern(int tile, bool color) {
     }
     return kingPattern;
 }
+
 
 uint64_t CFBoard::getPawnPattern(int tile, bool color) {
     uint64_t pawnPattern = 0;
@@ -549,6 +735,7 @@ uint64_t CFBoard::getPawnPattern(int tile, bool color) {
     return pawnPattern;
 }
 
+
 uint64_t CFBoard::getLegalMoves(int pieceId, int tile) {
     bool color = pieceId & 1;
     uint64_t retBoard;
@@ -576,171 +763,4 @@ uint64_t CFBoard::getLegalMoves(int pieceId, int tile) {
         }
     }
     return retBoard;
-}
-
-CFBoard::CFBoard() { // This is just the starter board.
-    pawnBoard = (((1ll << 8) - 1) << 48) + (((1ll << 8) - 1) << 8);
-    knightBoard = (1ll << 1) + (1ll << 6) + (1ll << 57) + (1ll << 62);
-    bishopBoard = (1ll << 2) + (1ll << 5) + (1ll << 58) + (1ll << 61);
-    rookBoard = (1ll << 0) + (1ll << 7) + (1ll << 56) + (1ll << 63);
-    queenBoard = (1ll << 3) + (1ll << 59);
-    kingBoard = (1ll << 4) + (1ll << 60);
-
-    whiteBoard = ((1ll << 16) - 1) << 48;
-    blackBoard = (1ll << 16) - 1;
-
-    turn = 0;
-    enPassantTarget = -1;
-    castleCheck = 15;
-}
-
-char CFBoard::pieceIdToChar(int pieceId) {
-    char pieceChar = '.';
-    bool color = pieceId & 1;
-    pieceId = pieceId >> 1;
-    switch (pieceId) {
-    case 0:
-        pieceChar = 'P';
-        break;
-    case 1:
-        pieceChar = 'N';
-        break;
-    case 2:
-        pieceChar = 'B';
-        break;
-    case 3:
-        pieceChar = 'R';
-        break;
-    case 4:
-        pieceChar = 'Q';
-        break;
-    case 5:
-        pieceChar = 'K';
-        break;
-    default:
-        break;
-    }
-    if (color) {
-        pieceChar = tolower(pieceChar);
-    }
-    return pieceChar;
-}
-
-int CFBoard::pieceCharToId(char pieceChar) {
-    int pieceId = NULL;
-    switch (pieceChar) {
-    case 'P':
-        return 0;
-    case 'p':
-        return 1;
-    case 'N':
-        return 2;
-    case 'n':
-        return 3;
-    case 'B':
-        return 4;
-    case 'b':
-        return 5;
-    case 'R':
-        return 6;
-    case 'r':
-        return 7;
-    case 'Q':
-        return 8;
-    case 'q':
-        return 9;
-    case 'K':
-        return 10;
-    case 'k':
-        return 11;
-    }
-    return pieceId;
-}
-
-int CFBoard::getPieceFromCoords(int tile) {
-    for (int i = 0; i < 6; i++) {
-        if ((getPieceBoardFromIndex(i) >> tile) & 1) {
-            return (i << 1) | ((blackBoard >> tile) & 1);
-        }
-    }
-    return -1;
-}
-
-uint64_t &CFBoard::getPieceBoardFromIndex(int boardIndex) {
-    switch (boardIndex) {
-    case 0:
-        return pawnBoard;
-    case 1:
-        return knightBoard;
-    case 2:
-        return bishopBoard;
-    case 3:
-        return rookBoard;
-    case 4:
-        return queenBoard;
-    default:
-        return kingBoard;
-    }
-}
-
-void CFBoard::addPiece(int pieceId, int tile) {
-    uint64_t pieceBoard = 1ll << tile;
-    removePiece(tile);
-
-    int pieceType = pieceId >> 1;
-    bool color = pieceId & 1;
-
-    uint64_t &targetBoard = getPieceBoardFromIndex(pieceType);
-    targetBoard = targetBoard | pieceBoard;
-
-    if (color) {
-        blackBoard = blackBoard | pieceBoard;
-    } else {
-        whiteBoard = whiteBoard | pieceBoard;
-    }
-}
-void CFBoard::removePiece(int tile) {
-    uint64_t antiPieceBoard = ~(1ll << tile);
-    for (int pieceType = 0; pieceType < 6; pieceType++) {
-        uint64_t &targetBoard = getPieceBoardFromIndex(pieceType);
-        targetBoard = targetBoard & antiPieceBoard;
-    }
-    blackBoard = blackBoard & antiPieceBoard;
-    whiteBoard = whiteBoard & antiPieceBoard;
-}
-
-bool CFBoard::getBit(int pieceId, int tile) {
-    return (getPieceColorBitBoard(pieceId) >> tile) & 1;
-}
-
-uint64_t CFBoard::getColorBitBoard(bool color) {
-    if (color) {
-        return blackBoard;
-    }
-    return whiteBoard;
-}
-uint64_t CFBoard::getPieceColorBitBoard(int pieceId) {
-    return getPieceBoardFromIndex(pieceId >> 1) & getColorBitBoard(pieceId & 1);
-}
-
-std::string CFBoard::getRepr() {
-    std::string repr = "|";
-    for (int tile = 0; tile < 64; tile++) {
-        repr += " ";
-
-        int pieceId = getPieceFromCoords(tile);
-        char pieceChar = pieceIdToChar(pieceId);
-        /*
-        if (pieceId & 1) {
-            pieceChar = tolower(pieceChar);
-        }
-        */
-        repr += pieceChar;
-
-        repr += " |";
-        if ((tile + 1) % 8 == 0) {
-            repr += "\n|";
-        }
-    }
-    return repr;
 }
