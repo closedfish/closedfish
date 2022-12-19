@@ -38,6 +38,21 @@ Ba Cong:
 	Next week:
 		- Implement the maximal matching idea using Dinic's algorithm
 		- Support the implementation of UCI as suggested by Sirawit
+		
+Cassidy:
+	This week:
+		-found a way to make a matrix invertible without changing too much the data (I add 0.001 times the identity, this new matrix is non-invertible iff 0.001 is an Eigenvalue of the matrix ( very unlikely)).
+		-Added some new basis such as the erf and tan^{-1} and tested it out with some data from the generating team.
+		- Implemented a function that compares how good two ai's do compared to one another on some given data set and also the evaluation funcion for the ai.
+		- Did all of the docstring
+		- the whole core of the switch ai is done (now we only need to get doxygen to work)
+	Next week:
+		- test the more abondent and precise data that should be provided by the generating team in the days to come.
+		- find the best basis and therefore the ai that will be used in the end for the evaluation function (so that we are 100% done with the switch)
+		- join the algo team and work on some theory (maybe unsupervised machine learning seems very intresting)
+		
+		
+		
 
 Shirelle: This week I have finished my function on generating a chessboard with random pions, and tested it. Next week I will switch to the test team, help this team by creating algorithms to test their functions. 
 
