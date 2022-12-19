@@ -176,9 +176,7 @@ std::string CFBoard::toFEN() {
     return fenString;
 }
 
-/**
-* @brief Returns printable board representation.
-*/
+
 std::string CFBoard::getRepr() {
     std::string repr = "|";
     for (int tile = 0; tile < 64; tile++) {
@@ -196,15 +194,7 @@ std::string CFBoard::getRepr() {
     return repr;
 }
 
-/**
-* @brief This function takes a pieceId and returns the associated
-* character.
-*
-* @param pieceId : <int> equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the
-* piece is black.
-*
-* @return P/N/B/R/Q/K depending on the piece, lowercase if black piece.
-*/
+
 char CFBoard::pieceIdToChar(int pieceId) {
     char pieceChar = '.';
     bool color = pieceId & 1;
@@ -237,16 +227,7 @@ char CFBoard::pieceIdToChar(int pieceId) {
     return pieceChar;
 }
 
-/**
-* @brief This function takes a pieceId and returns the associated
-* character.
-*
-* @param pieceChar : <char> P/N/B/R/Q/K depending on the piece, lowercase
-* if black piece.
-*
-* @return <int> equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the piece is
-* black.
-*/
+
 int CFBoard::pieceCharToId(char pieceChar) {
     int pieceId = -1;
     switch (pieceChar) {
@@ -280,14 +261,7 @@ int CFBoard::pieceCharToId(char pieceChar) {
 
 // ----- Get functions -----
 
-/**
-* @brief This function returns the bitboard for one of the two chess piece
-* colors.
-*
-* @param color : 1 for black, 0 for white.
-*
-* @return <uint64_t> copy of stored attribute for all pieces of a color.
-*/
+
 uint64_t CFBoard::getColorBitBoard(bool color) {
     if (color) {
         return blackBoard;
@@ -295,28 +269,12 @@ uint64_t CFBoard::getColorBitBoard(bool color) {
     return whiteBoard;
 }
 
-/**
-* @brief This function returns a bitboard for a piece of a specific color.
-*
-* @param pieceId : <int> equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the
-* piece is black.
-*
-* @return <uint64_t> bitboard for the specified piece (color taken into
-* account).
-*/
+
 uint64_t CFBoard::getPieceColorBitBoard(int pieceId) {
     return getPieceBoardFromIndex(pieceId >> 1) & getColorBitBoard(pieceId & 1);
 }
 
-/**
-* @brief This function returns a reference to a board, in order to make
-* iterating over boards easier.
-*
-* @param boardIndex : Index of the required piece bitboard (identical to
-* pieceId>>1).
-*
-* @return <uint64_t &> reference to private attribute bitboard.
-*/
+
 uint64_t &CFBoard::getPieceBoardFromIndex(int boardIndex) {
     switch (boardIndex) {
     case 0:
@@ -334,22 +292,10 @@ uint64_t &CFBoard::getPieceBoardFromIndex(int boardIndex) {
     }
 }
 
-/**
-* @brief Returns whose turn it is to play.
-*
-* @return Material count for that color.
-*/
+
 bool CFBoard::getCurrentPlayer() { return turn; }
 
-/**
-* @brief This function returns the piece id from a specific tile.
-*
-* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
-* h7, ......, a1, ..., h1).
-*
-* @return <int> equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the piece is
-* black.
-*/
+
 int CFBoard::getPieceFromCoords(int tile) {
     for (int i = 0; i < 6; i++) {
         if ((getPieceBoardFromIndex(i) >> tile) & 1) {
@@ -359,28 +305,12 @@ int CFBoard::getPieceFromCoords(int tile) {
     return -1;
 }
 
-/**
-* @brief This function returns whether or not there is a piece of pieceId
-* in the specified tile.
-*
-* @param pieceId : <int> equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the
-* piece is black.
-* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
-* h7, ......, a1, ..., h1).
-*
-* @return <bool> 1 if the piece is on that tile, 0 otherwise.
-*/
+
 bool CFBoard::getBit(int pieceId, int tile) {
     return (getPieceColorBitBoard(pieceId) >> tile) & 1;
 }
 
-/**
-* @brief Computes the material count for a specific color.
-*
-* @param color : 1 for black, 0 for white.
-*
-* @return Material count for that color.
-*/
+
 int CFBoard::getMaterialCount(bool color) {
     return __builtin_popcountll(pawnBoard) * 1 +
            __builtin_popcountll(knightBoard) * 3 +
@@ -390,17 +320,7 @@ int CFBoard::getMaterialCount(bool color) {
 }
 
 // ----- Manipulation -----
-/**
-* @brief This function places a piece on a given tile. It will replace any
-* piece on the target tile.
-*
-* @param pieceId : <int> equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the
-* piece is black.
-* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
-* h7, ......, a1, ..., h1).
-*
-* @return void
-*/
+
 void CFBoard::addPiece(int pieceId, int tile) {
     uint64_t pieceBoard = 1ll << tile;
     removePiece(tile);
@@ -418,14 +338,7 @@ void CFBoard::addPiece(int pieceId, int tile) {
     }
 }
 
-/**
-* @brief This function removes a piece on a given tile.
-*
-* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
-* h7, ......, a1, ..., h1).
-*
-* @return void
-*/
+
 void CFBoard::removePiece(int tile) {
     uint64_t antiPieceBoard = ~(1ll << tile);
     for (int pieceType = 0; pieceType < 6; pieceType++) {
@@ -436,14 +349,7 @@ void CFBoard::removePiece(int tile) {
     whiteBoard = whiteBoard & antiPieceBoard;
 }
 
-/**
-* @brief Makes a legal chess move.
-*
-* @param startTile : start tile for move.
-* @param endTile : end tile for move.
-* 
-* @return void.
-*/
+
 void CFBoard::movePiece(int startTile, int endTile){
 		int piece = getPieceFromCoords(startTile);
 		if (~((1ll << endTile) & getLegalMoves(pieceIdToChar(startTile), startTile))){
@@ -495,15 +401,7 @@ void CFBoard::movePiece(int startTile, int endTile){
 		turn = ~turn;
 	}
 
-/**
-* @brief Forces the undo of a move. Makes assumptions on castling and en passant (they do not get updated).
-*
-* @param startTileLastTurn : start tile for last move.
-* @param endTileLastTurn : end tile for last move.
-* @param capturedPiece : pieceId for any potentially captured piece last turn. -1 (no piece) by default.
-* 
-* @return void.
-*/
+
 void CFBoard::forceUndo(int startTileLastTurn, int endTileLastTurn, int capturedPiece = -1){
     int piece = getPieceFromCoords(endTileLastTurn);
     if (capturedPiece == -1){
@@ -517,15 +415,7 @@ void CFBoard::forceUndo(int startTileLastTurn, int endTileLastTurn, int captured
 
 // ----- Ruleset -----
 
-/**
-* @brief This function returns the naive move pattern for a rook.
-*
-* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
-* h7, ......, a1, ..., h1).
-* @param color : 1 for black, 0 for white.
-*
-* @return <uint64_t> bitboard for where a rook at tile can move/capture.
-*/
+
 uint64_t CFBoard::getCardinals(int tile, bool color) {
     uint64_t cardinalBoard = 0;
     uint64_t tempBoard = 0;
@@ -585,15 +475,7 @@ uint64_t CFBoard::getCardinals(int tile, bool color) {
     return cardinalBoard;
 }
 
-/**
-* @brief This function returns the naive move pattern for a bishop.
-*
-* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
-* h7, ......, a1, ..., h1).
-* @param color : 1 for black, 0 for white.
-*
-* @return <uint64_t> bitboard for where a bishop at tile can move/capture.
-*/
+
 uint64_t CFBoard::getDiagonals(int tile, bool color) {
     uint64_t diagonalBoard = 0;
     uint64_t tempBoard = 0;
@@ -659,15 +541,7 @@ uint64_t CFBoard::getDiagonals(int tile, bool color) {
     return diagonalBoard;
 }
 
-/**
-* @brief This function returns the naive move pattern for a knight.
-*
-* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
-* h7, ......, a1, ..., h1).
-* @param color : 1 for black, 0 for white.
-*
-* @return <uint64_t> bitboard for where a knight at tile can move/capture.
-*/
+
 uint64_t CFBoard::getKnightPattern(int tile, bool color) {
     uint64_t knightPattern = 0;
     int column = tile & 7;
@@ -762,15 +636,7 @@ uint64_t CFBoard::getKnightPattern(int tile, bool color) {
     return knightPattern;
 }
 
-/**
-* @brief This function returns the naive move pattern for a king.
-*
-* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
-* h7, ......, a1, ..., h1).
-* @param color : 1 for black, 0 for white.
-*
-* @return <uint64_t> bitboard for where a king at tile can move/capture.
-*/
+
 uint64_t CFBoard::getKingPattern(int tile, bool color) {
     uint64_t kingPattern = 0;
     int column = tile & 7;
@@ -804,15 +670,7 @@ uint64_t CFBoard::getKingPattern(int tile, bool color) {
     return kingPattern;
 }
 
-/**
-* @brief This function returns the naive move pattern for a pawn.
-*
-* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
-* h7, ......, a1, ..., h1).
-* @param color : 1 for black, 0 for white.
-*
-* @return <uint64_t> bitboard for where a pawn at tile can move/capture.
-*/
+
 uint64_t CFBoard::getPawnPattern(int tile, bool color) {
     uint64_t pawnPattern = 0;
     int column = tile & 7;
@@ -877,17 +735,7 @@ uint64_t CFBoard::getPawnPattern(int tile, bool color) {
     return pawnPattern;
 }
 
-/**
-* @brief This function returns the naive move pattern for a pieceId piece.
-*
-* @param pieceId : <int> equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the
-* piece is black.
-* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
-* h7, ......, a1, ..., h1).
-*
-* @return <uint64_t> bitboard for where a piece of pieceId at tile can
-* move/capture.
-*/
+
 uint64_t CFBoard::getLegalMoves(int pieceId, int tile) {
     bool color = pieceId & 1;
     uint64_t retBoard;
