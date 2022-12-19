@@ -68,3 +68,12 @@ Aarrya:
 	This week: 
 		- tested and commented a lot of code
 		- our project ran into the first problem in terms of idea and structure. Most of my time went dedicated to finding the solutions and optimizing them as 		  much as possible to present in the next meeting and decide the future.
+		
+Dimitrije:
+This week:
+	-Spent time on finding optimal solutions for the problem mentioned in Aarrya's report.
+	-Did player color recognition for opencv.
+	-Added documentation.
+	-Found a way to detect pieces easily.
+Next week:
+	-Use the piece movement method and implement it.
