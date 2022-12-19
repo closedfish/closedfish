@@ -40,3 +40,11 @@ Ba Cong:
 		- Support the implementation of UCI as suggested by Sirawit
 
 Shirelle: This week I have finished my function on generating a chessboard with random pions, and tested it. Next week I will switch to the test team, help this team by creating algorithms to test their functions. 
+
+Sirawit:
+	This week:
+		- Finished linking stockfish
+		- Finished experiment modelling on closed position
+	Next week:
+		- Finish the experiment
+		- Connect the whole flow of the project
