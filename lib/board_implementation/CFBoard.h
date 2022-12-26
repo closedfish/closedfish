@@ -1,7 +1,9 @@
 #pragma once
+#define DEBUG 1 //turn off for final version
 
 #include <iostream>
 #include <stdint.h>
+
 
 class CFBoard {
   public:
@@ -143,38 +145,15 @@ class CFBoard {
     // ----- Manipulation -----
 
 	/**
-	* @brief This function places a piece on a given tile. It will replace any
-	* piece on the target tile.
-	*
-	* @param pieceId : <int> equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the
-	* piece is black.
-	* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
-	* h7, ......, a1, ..., h1).
-	*
-	* @return void
-	*/
-    void addPiece(int pieceId, int tile);
-
-
-	/**
-	* @brief This function removes a piece on a given tile.
-	*
-	* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
-	* h7, ......, a1, ..., h1).
-	*
-	* @return void
-	*/
-    void removePiece(int tile);
-
-	/**
-	* @brief Makes a legal chess move.
+	* @brief Makes a legal chess move. Pawns are promoted to queens by default.
 	*
 	* @param startTile : start tile for move.
 	* @param endTile : end tile for move.
+	* @param pawnPromotionType : one of 2/4/6/8 (+1 if black) => N/B/R/Q which indicates the type to which the pawn is promoted in the event of a pawn promotion move.
 	*
 	* @return void.
 	*/
-    void movePiece(int starttile, int endtile);
+    void movePiece(int starttile, int endtile, int pawnPromotionType = -1);
 
 
 	/**
@@ -187,6 +166,25 @@ class CFBoard {
 	* @return void.
 	*/
     void forceUndo(int startTileLastTurn, int endTileLastTurn, int capturedPiece);
+
+
+	// -------   Non-Legal Manipulation -------
+
+#if DEBUG == 1
+	/**
+	* @brief Functionally the same as addPiece but is only exposed when debug is enabled
+	*/
+	void forceAddPiece(int pieceId, int tile) {
+		addPiece(pieceId, tile);
+	}
+
+	/**
+	* @brief Functionally the same as removePiece but is only exposed when debug is enabled
+	*/
+	void forceRemovePiece(int tile) {
+		removePiece(tile);
+	}
+#endif
 
     // ----- Ruleset -----
 
@@ -299,7 +297,6 @@ class CFBoard {
     uint64_t queenBoard;
     uint64_t kingBoard;
 
-    // TODO reduce both of these to the smallest int types
     int enPassantTarget; // a single coordinate from 0-63
     int castleCheck; // 4 bits of information
                      //(long black - short black- long white - short white)
@@ -308,6 +305,31 @@ class CFBoard {
     uint64_t whiteBoard;
 
     bool turn; // 0 for white, 1 for black
+
+
+	/**
+	* @brief This function places a piece on a given tile. It will replace any
+	* piece on the target tile.
+	*
+	* @param pieceId : <int> equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the
+	* piece is black.
+	* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
+	* h7, ......, a1, ..., h1).
+	*
+	* @return void
+	*/
+	void addPiece(int pieceId, int tile);
+
+
+	/**
+	* @brief This function removes a piece on a given tile.
+	*
+	* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
+	* h7, ......, a1, ..., h1).
+	*
+	* @return void
+	*/
+	void removePiece(int tile);
 
     /*
         a8 = 2^0
