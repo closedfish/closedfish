@@ -873,27 +873,21 @@ uint64_t CFBoard::getLegalMoves(int pieceId, int tile) {
     std::cout << (pieceId>>1) << std::endl;
     switch (pieceId >> 1) {
     case 0: // pawn
-        std::cout << "pawn" << std::endl;
         retBoard = getPawnPattern(tile, color);
         break;
     case 1: // knight
-        std::cout << "knight" << std::endl;
         retBoard = getKnightPattern(tile, color);
         break;
     case 2: // bishop
-        std::cout << "bishop" << std::endl;
         retBoard = getDiagonals(tile, color);
         break;
     case 3: // rook
-        std::cout << "rook" << std::endl;
         retBoard = getCardinals(tile, color);
         break;
     case 4: // queen
-        std::cout << "queen" << std::endl;
         retBoard = getDiagonals(tile, color) | getCardinals(tile, color);
         break;
     case 5: // king
-        std::cout << "king" << std::endl;
         retBoard = getKingPattern(tile, color);
         break;
     }
