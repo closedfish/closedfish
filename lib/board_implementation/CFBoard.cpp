@@ -351,12 +351,13 @@ void CFBoard::removePiece(int tile) {
 }
 
 
-void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType = -1){
+void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
 
 		int piece = getPieceFromCoords(startTile);
 
 		//check that move is legal
-		if (~((1ll << endTile) & getLegalMoves(pieceIdToChar(startTile), startTile))){
+		if (~((1ll << endTile) & getLegalMoves(piece, startTile))){
+			std::cout << getLegalMoves(piece,startTile);
 			exit(-1);
 		}
 		if ((piece & 1) ^ turn){
@@ -378,6 +379,7 @@ void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType = -1){
 						addPiece(pawnPromotionType, endTile);
 					}
 					else {
+
 						exit(-1);
 					}
 				}
@@ -396,6 +398,7 @@ void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType = -1){
 						addPiece(pawnPromotionType, endTile);
 					}
 					else {
+
 						exit(-1);
 					}
 
@@ -791,16 +794,24 @@ uint64_t CFBoard::getLegalMoves(int pieceId, int tile) {
     switch (pieceId >> 1) {
     case 0: // pawn
         retBoard = getPawnPattern(tile, color);
+		break;
     case 1: // knight
         retBoard = getKnightPattern(tile, color);
+		break;
     case 2: // bishop
         retBoard = getDiagonals(tile, color);
+		break;
     case 3: // rook
         retBoard = getCardinals(tile, color);
+		break;
     case 4: // queen
         retBoard = getDiagonals(tile, color) | getCardinals(tile, color);
+		break;
     case 5: // king
         retBoard = getKingPattern(tile, color);
+		break;
+	default : //failsafe
+		return 0;
     }
     uint64_t tmpBoard = retBoard;
     while (tmpBoard) {
