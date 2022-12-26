@@ -355,16 +355,21 @@ void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
 
 		int piece = getPieceFromCoords(startTile);
 
+
+
 		//check that move is legal
-		if (~((1ll << endTile) & getLegalMoves(piece, startTile))){
-			std::cout << getLegalMoves(piece,startTile);
+		if (  1 - ((1ll << endTile) & getLegalMoves(piece, startTile))   ){
 			exit(-1);
 		}
+
 		if ((piece & 1) ^ turn){
 			exit(-1);
 		}
 
+
+
 		removePiece(startTile);
+
 
 		//check whether the pawn reached point of promotion, if so promote it to specified new piece type
 		if (piece <= 1) {
@@ -379,7 +384,6 @@ void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
 						addPiece(pawnPromotionType, endTile);
 					}
 					else {
-
 						exit(-1);
 					}
 				}
