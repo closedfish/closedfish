@@ -1,9 +1,9 @@
 ﻿// Chess_AI.cpp : définit le point d'entrée de l'application.
 //
 
-#include "../../lib/board_implementation/CFBoard.cpp"
-#include "../../lib/board_implementation/naiveCheckCheck.cpp"
-#include "../../lib/board_implementation/CFBoard.h"
+#include "../board_implementation/CFBoard.cpp"
+#include "../board_implementation/naiveCheckCheck.cpp"
+#include "../board_implementation/CFBoard.h"
 
 #include <iostream>
 using namespace std;
