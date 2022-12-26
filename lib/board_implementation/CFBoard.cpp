@@ -463,10 +463,8 @@ void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
 
 
 		//check that move is legal
-		if (  1 - ((1ll << endTile) & getLegalMoves(piece, startTile))   ){
-			std::cout << "start" << std::endl;
-			std::cout << getLegalMoves(piece, startTile);
-			std::cout << "end" << std::endl;
+		if (  ((1ll << endTile) & getLegalMoves(piece, startTile)) == 0  ){
+
 			exit(-1);
 		}
 
@@ -835,8 +833,8 @@ uint64_t CFBoard::getPawnPattern(int tile, bool color) {
 uint64_t CFBoard::getLegalMoves(int pieceId, int tile) {
     bool color = pieceId & 1;
     uint64_t retBoard;
-    std::cout << (pieceId>>1) << std::endl;
-    switch (pieceId >> 1) {
+
+	switch (pieceId >> 1) {
     case 0: // pawn
         retBoard = getPawnPattern(tile, color);
 		break;
