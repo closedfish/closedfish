@@ -556,13 +556,13 @@ void CFBoard::movePiece(int startTile, int endTile){
 		if (~turn){ // white
 			if ((piece>>1) == 3){ // rook
 				if (startTile == 63){
-					castleCheck = castleCheck & ~1;
+					castleCheck &= ~1;
 				} else if (startTile == 56){
-                    castleCheck = castleCheck & ~2;
+                    castleCheck &= ~2;
                 }
 			}
             if ((piece>>1) == 5){ // king
-                castleCheck = castleCheck & ~3;
+                castleCheck &= ~3;
             }
 
             if ((piece>>1) == 0){ // pawn
@@ -573,13 +573,13 @@ void CFBoard::movePiece(int startTile, int endTile){
 		} else {
             if ((piece>>1) == 3){ // rook
 				if (startTile == 0){
-					castleCheck = castleCheck & ~8;
+					castleCheck &= ~8;
 				} else if (startTile == 7){
-                    castleCheck = castleCheck & ~4;
+                    castleCheck &= ~4;
                 }
 			}
             if ((piece>>1) == 5){ // king
-                castleCheck = castleCheck & ~12;
+                castleCheck &= ~12;
             }
 
             if ((piece>>1) == 0){ // pawn
