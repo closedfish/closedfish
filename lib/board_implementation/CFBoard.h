@@ -157,7 +157,7 @@ public:
 
 
 	/**
-	* @brief Functionnaly the same as movePiece. Accepts every single possible move however, and makes the state illegal.
+	* @brief Functionnaly the same as movePiece. Accepts every single possible move however, and makes the state illegal from now until this move is undone using undoLastMove.
 	*
 	* @param startTile : start tile for move.
 	* @param endTile : end tile for move.
@@ -167,20 +167,11 @@ public:
 	*/
 	void forceMovePiece(int starttile, int endtile, int pawnPromotionType = -1);
 
-	/**
-	* @brief Forces the undo of a move. Makes assumptions on castling and en passant (they do not get updated).
-	*
-	* @param startTileLastTurn : start tile for last move.
-	* @param endTileLastTurn : end tile for last move.
-	* @param capturedPiece : pieceId for any potentially captured piece last turn. -1 (no piece) by default.
-	*
-	* @return void.
-	*/
-	void forceUndo(int startTileLastTurn, int endTileLastTurn, int capturedPiece);
+
 
 
 	/**
-	* @brief Undos the last move exactly using our state backup (can only be done 4 times in a row max currently)
+	* @brief Undoes the last move exactly using our state backup (can only be done 4 times in a row max currently)
 	*
 	* @return void.
 	*/
@@ -278,6 +269,16 @@ public:
 	* move/capture.
 	*/
 	uint64_t getLegalMoves(int pieceId, int tile);
+
+
+	/**
+	* @brief As soon as a forced move is performed, we return false even if the current board could be legal. Basically a check of whether the current board was only reached using fully legal moves.
+
+	* @return The boolean which indicates legality of the board.
+	*/
+	bool isCurrentBoardLegal() {
+		return isStateLegal;
+	}
 
 
 	/**

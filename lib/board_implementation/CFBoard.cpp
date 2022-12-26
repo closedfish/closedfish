@@ -457,151 +457,163 @@ void CFBoard::removePiece(int tile) {
 
 
 void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
+	int piece = getPieceFromCoords(startTile);
 
-		int piece = getPieceFromCoords(startTile);
+	//check that move is legal
+	if (  ((1ll << endTile) & getLegalMoves(piece, startTile)) == 0  ){
 
+		exit(-1);
+	}
 
-
-		//check that move is legal
-		if (  ((1ll << endTile) & getLegalMoves(piece, startTile)) == 0  ){
-
-			exit(-1);
-		}
-
-		if ((piece & 1) ^ turn){
-			exit(-1);
-		}
-
-
-
-		removePiece(startTile);
-
-
-		//check whether the pawn reached point of promotion, if so promote it to specified new piece type
-		if (piece <= 1) {
-			if (piece == 0) {
-				if (endTile <= 7) {
-
-					//default promotion to queen
-					if (pawnPromotionType == -1) {
-						addPiece(8, endTile);
-					}
-					else if (pawnPromotionType % 2 == 0 && abs(pawnPromotionType - 5) <= 3) {
-						addPiece(pawnPromotionType, endTile);
-					}
-					else {
-						exit(-1);
-					}
-				}
-				else {
-					addPiece(piece, endTile);
-				}
-			}
-			else {
-				if (endTile >= 56) {
-
-					//default promotion to queen
-					if (pawnPromotionType == -1) {
-						addPiece(9, endTile);
-					}
-					else if (pawnPromotionType % 2 == 1 && abs(pawnPromotionType - 6) <= 3) {
-						addPiece(pawnPromotionType, endTile);
-					}
-					else {
-
-						exit(-1);
-					}
-
-				}
-				else {
-					addPiece(piece, endTile);
-
-				}
-			}
-		}
-		else {
-			addPiece(piece, endTile);
-		}
-
-
-		if (~turn){ // white
-			if ((piece>>1) == 3){ // rook
-				if (startTile == 63){
-					castleCheck &= ~1;
-				} else if (startTile == 56){
-                    castleCheck &= ~2;
-                }
-			}
-            if ((piece>>1) == 5){ // king
-                castleCheck &= ~3;
-            }
-
-            if ((piece>>1) == 0){ // pawn
-                if ((startTile - endTile) == 16){
-                    enPassantTarget = startTile - 8;
-                }
-            }
-		} else {
-            if ((piece>>1) == 3){ // rook
-				if (startTile == 0){
-					castleCheck &= ~8;
-				} else if (startTile == 7){
-                    castleCheck &= ~4;
-                }
-			}
-            if ((piece>>1) == 5){ // king
-                castleCheck &= ~12;
-            }
-
-            if ((piece>>1) == 0){ // pawn
-                if ((endTile - startTile) == 16){
-                    enPassantTarget = startTile + 8;
-                }
-            }
-        }
-
-        if ((piece>>1 == 5) && (abs(startTile - endTile)==2)){
-            int castle;
-            if (piece&1){
-                castle = castleCheck >> 2;
-            } else {
-                castle = castleCheck & 3;
-            }
-            castleCheck = castleCheck & ~castle;
-            if (abs(startTile - endTile)==2){
-                removePiece(startTile - 4);
-                addPiece(6 + (piece & 1), startTile - 1);
-            } else {
-                removePiece(startTile + 3);
-                addPiece(6 + (piece & 1), startTile + 1);
-            }
-
-        }
-
-		turn = ~turn;
-
-		//make a backup of our state
-		backupState();
+	if ((piece & 1) ^ turn){
+		exit(-1);
 	}
 
 
-void CFBoard::forceUndo(int startTileLastTurn, int endTileLastTurn, int capturedPiece = -1){
-    int piece = getPieceFromCoords(endTileLastTurn);
-    if (capturedPiece == -1){
-        removePiece(endTileLastTurn);
-    } else {
-        addPiece(capturedPiece, endTileLastTurn);
-    }
-    addPiece(piece, startTileLastTurn);
-    enPassantTarget = -1;
+	//call force move piece
+	forceMovePiece(startTile, endTile, pawnPromotionType);
+
+
+	//make the move legitimate
+	isStateLegal = true;
 }
+
+
+void CFBoard::forceMovePiece(int startTile, int endTile, int pawnPromotionType) {
+	int piece = getPieceFromCoords(startTile);
+
+	//make a backup of our state
+	backupState();
+
+
+	removePiece(startTile);
+
+
+	//check whether the pawn reached point of promotion, if so promote it to specified new piece type
+	if (piece <= 1) {
+		if (piece == 0) {
+			if (endTile <= 7) {
+
+				//default promotion to queen
+				if (pawnPromotionType == -1) {
+					addPiece(8, endTile);
+				}
+				else if (pawnPromotionType % 2 == 0 && abs(pawnPromotionType - 5) <= 3) {
+					addPiece(pawnPromotionType, endTile);
+				}
+				else {
+					exit(-1);
+				}
+			}
+			else {
+				addPiece(piece, endTile);
+			}
+		}
+		else {
+			if (endTile >= 56) {
+
+				//default promotion to queen
+				if (pawnPromotionType == -1) {
+					addPiece(9, endTile);
+				}
+				else if (pawnPromotionType % 2 == 1 && abs(pawnPromotionType - 6) <= 3) {
+					addPiece(pawnPromotionType, endTile);
+				}
+				else {
+
+					exit(-1);
+				}
+
+			}
+			else {
+				addPiece(piece, endTile);
+
+			}
+		}
+	}
+	else {
+		addPiece(piece, endTile);
+	}
+
+
+	if (~turn) { // white
+		if ((piece >> 1) == 3) { // rook
+			if (startTile == 63) {
+				castleCheck &= ~1;
+			}
+			else if (startTile == 56) {
+				castleCheck &= ~2;
+			}
+		}
+		if ((piece >> 1) == 5) { // king
+			castleCheck &= ~3;
+		}
+
+		if ((piece >> 1) == 0) { // pawn
+			if ((startTile - endTile) == 16) {
+				enPassantTarget = startTile - 8;
+			}
+		}
+	}
+	else {
+		if ((piece >> 1) == 3) { // rook
+			if (startTile == 0) {
+				castleCheck &= ~8;
+			}
+			else if (startTile == 7) {
+				castleCheck &= ~4;
+			}
+		}
+		if ((piece >> 1) == 5) { // king
+			castleCheck &= ~12;
+		}
+
+		if ((piece >> 1) == 0) { // pawn
+			if ((endTile - startTile) == 16) {
+				enPassantTarget = startTile + 8;
+			}
+		}
+	}
+
+	if ((piece >> 1 == 5) && (abs(startTile - endTile) == 2)) {
+		int castle;
+		if (piece & 1) {
+			castle = castleCheck >> 2;
+		}
+		else {
+			castle = castleCheck & 3;
+		}
+		castleCheck = castleCheck & ~castle;
+		if (abs(startTile - endTile) == 2) {
+			removePiece(startTile - 4);
+			addPiece(6 + (piece & 1), startTile - 1);
+		}
+		else {
+			removePiece(startTile + 3);
+			addPiece(6 + (piece & 1), startTile + 1);
+		}
+
+	}
+
+	turn = ~turn;
+
+
+	//from now on, our state is illegitimate
+	isStateLegal = false;
+
+}
+
 
 void CFBoard::undoLastMove() {
 	if (backupStock == 0) { //check that we even have backups
 		exit(-1);
 	}
 
+
 	//if so, set our state
+	std::cout << pawnBoard << std::endl;
+	std::cout << pawnBoardBackups[0] << std::endl;
+
 	pawnBoard = pawnBoardBackups[0];
 	knightBoard = knightBoardBackups[0] ;
 	bishopBoard = bishopBoardBackups[0];
