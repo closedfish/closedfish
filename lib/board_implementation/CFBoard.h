@@ -1,7 +1,9 @@
 #pragma once
+#define DEBUG 1 //turn off for final version
 
 #include <iostream>
 #include <stdint.h>
+
 
 class CFBoard {
   public:
@@ -138,8 +140,6 @@ class CFBoard {
 
     // ----- Manipulation -----
 
-
-
 	/**
 	* @brief Makes a legal chess move. Pawns are promoted to queens by default.
 	*
@@ -162,6 +162,25 @@ class CFBoard {
 	* @return void.
 	*/
     void forceUndo(int startTileLastTurn, int endTileLastTurn, int capturedPiece);
+
+
+	// -------   Non-Legal Manipulation -------
+
+#if DEBUG == 1
+	/**
+	* @brief Functionally the same as addPiece but is only exposed when debug is enabled
+	*/
+	void forceAddPiece(int pieceId, int tile) {
+		addPiece(pieceId, tile);
+	}
+
+	/**
+	* @brief Functionally the same as removePiece but is only exposed when debug is enabled
+	*/
+	void forceRemovePiece(int tile) {
+		removePiece(tile);
+	}
+#endif
 
     // ----- Ruleset -----
 
