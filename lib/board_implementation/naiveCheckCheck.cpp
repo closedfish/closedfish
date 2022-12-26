@@ -12,16 +12,7 @@ inline bool isPositionValid(const int &row, const int &col) {
     return row >= 0 && row < 8 && col >= 0 && col < 8;
 }
 
-/**
- * @brief Checks if the current king is being checked by the opponent or not
- *
- * @param color current color
- * @param coordA (optional) pretend that there is nothing here
- * @param coordB (optional) pretend that there is something here with the
- * current color
- * @return true if it is checked
- * @return false if it is not checked
- */
+
 bool CFBoard::naiveCheckCheck(bool color, int coordA, int coordB) {
     uint64_t thisKingBoard = kingBoard & getColorBitBoard(color);
     if (!thisKingBoard)
