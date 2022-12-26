@@ -352,7 +352,7 @@ void CFBoard::removePiece(int tile) {
 
 void CFBoard::movePiece(int startTile, int endTile){
 		int piece = getPieceFromCoords(startTile);
-		if (~((1ll << endTile) & getLegalMoves(pieceIdToChar(startTile), startTile))){
+		if (~((1ll << endTile) & getLegalMoves(piece, startTile))){
 			exit(-1);
 		}
 		if ((piece & 1) ^ turn){
