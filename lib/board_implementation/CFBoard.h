@@ -138,29 +138,7 @@ class CFBoard {
 
     // ----- Manipulation -----
 
-	/**
-	* @brief This function places a piece on a given tile. It will replace any
-	* piece on the target tile.
-	*
-	* @param pieceId : <int> equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the
-	* piece is black.
-	* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
-	* h7, ......, a1, ..., h1).
-	*
-	* @return void
-	*/
-    void addPiece(int pieceId, int tile);
 
-
-	/**
-	* @brief This function removes a piece on a given tile.
-	*
-	* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
-	* h7, ......, a1, ..., h1).
-	*
-	* @return void
-	*/
-    void removePiece(int tile);
 
 	/**
 	* @brief Makes a legal chess move.
@@ -295,7 +273,6 @@ class CFBoard {
     uint64_t queenBoard;
     uint64_t kingBoard;
 
-    // TODO reduce both of these to the smallest int types
     int enPassantTarget; // a single coordinate from 0-63
     int castleCheck; // 4 bits of information (long black - short black- long
                      // white - short white)
@@ -304,6 +281,31 @@ class CFBoard {
     uint64_t whiteBoard;
 
     bool turn; // 0 for white, 1 for black
+
+
+	/**
+	* @brief This function places a piece on a given tile. It will replace any
+	* piece on the target tile.
+	*
+	* @param pieceId : <int> equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the
+	* piece is black.
+	* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
+	* h7, ......, a1, ..., h1).
+	*
+	* @return void
+	*/
+	void addPiece(int pieceId, int tile);
+
+
+	/**
+	* @brief This function removes a piece on a given tile.
+	*
+	* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
+	* h7, ......, a1, ..., h1).
+	*
+	* @return void
+	*/
+	void removePiece(int tile);
 
     /*
         a8 = 2^0
