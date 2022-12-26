@@ -141,14 +141,15 @@ class CFBoard {
 
 
 	/**
-	* @brief Makes a legal chess move.
+	* @brief Makes a legal chess move. Pawns are promoted to queens by default.
 	*
 	* @param startTile : start tile for move.
 	* @param endTile : end tile for move.
+	* @param pawnPromotionType : one of 2/4/6/8 (+1 if black) => N/B/R/Q which indicates the type to which the pawn is promoted in the event of a pawn promotion move.
 	*
 	* @return void.
 	*/
-    void movePiece(int starttile, int endtile);
+    void movePiece(int starttile, int endtile, int pawnPromotionType = -1);
 
 
 	/**

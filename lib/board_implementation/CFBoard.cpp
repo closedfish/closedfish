@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include <cmath>
 
 // implemented
 
@@ -350,8 +351,11 @@ void CFBoard::removePiece(int tile) {
 }
 
 
-void CFBoard::movePiece(int startTile, int endTile){
+void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType = -1){
+
 		int piece = getPieceFromCoords(startTile);
+
+		//check that move is legal
 		if (~((1ll << endTile) & getLegalMoves(pieceIdToChar(startTile), startTile))){
 			exit(-1);
 		}
@@ -360,7 +364,52 @@ void CFBoard::movePiece(int startTile, int endTile){
 		}
 
 		removePiece(startTile);
-		addPiece(piece, endTile);
+
+		//check whether the pawn reached point of promotion, if so promote it to specified new piece type
+		if (piece <= 1) {
+			if (piece == 0) {
+				if (endTile <= 7) {
+
+					//default promotion to queen
+					if (pawnPromotionType == -1) {
+						addPiece(8, endTile);
+					}
+					else if (pawnPromotionType % 2 == 0 && abs(pawnPromotionType - 5) <= 3) {
+						addPiece(pawnPromotionType, endTile);
+					}
+					else {
+						exit(-1);
+					}
+				}
+				else {
+					addPiece(piece, endTile);
+				}
+			}
+			else {
+				if (endTile >= 56) {
+
+					//default promotion to queen
+					if (pawnPromotionType == -1) {
+						addPiece(9, endTile);
+					}
+					else if (pawnPromotionType % 2 == 1 && abs(pawnPromotionType - 6) <= 3) {
+						addPiece(pawnPromotionType, endTile);
+					}
+					else {
+						exit(-1);
+					}
+
+				}
+				else {
+					addPiece(piece, endTile);
+
+				}
+			}
+		}
+		else {
+			addPiece(piece, endTile);
+		}
+
 
 		if (~turn){ // white
 			if ((piece>>1) == 3){ // rook
