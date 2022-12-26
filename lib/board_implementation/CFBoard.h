@@ -31,6 +31,7 @@ class CFBoard {
 	* @brief Returns printable board representation.
 	*/
     std::string getRepr();
+    std::string getReprLegalMove(int pieceId, int tile);
   
 	/**
 	* @brief This function takes a pieceId and returns the associated
@@ -137,6 +138,9 @@ class CFBoard {
 	* @return Material count for that color.
 	*/
     int getMaterialCount(bool color);
+
+    std::string tileToCoords(int tile);
+    std::string getNextMoveRepr(int startTile, int endTile);
 
     // ----- Manipulation -----
 
@@ -294,8 +298,8 @@ class CFBoard {
     uint64_t kingBoard;
 
     int enPassantTarget; // a single coordinate from 0-63
-    int castleCheck; // 4 bits of information (long black - short black- long
-                     // white - short white)
+    int castleCheck; // 4 bits of information
+                     //(long black - short black- long white - short white)
 
     uint64_t blackBoard;
     uint64_t whiteBoard;

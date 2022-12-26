@@ -7,7 +7,26 @@
 #include <vector>
 #include <cmath>
 
+#include "naiveCheckCheck.cpp"
+
 // implemented
+
+/*
+int main(){
+    
+    
+    //CFBoard testBoard = CFBoard("8/8/8/8/8/8/8/8 w - -");
+    CFBoard testBoard = CFBoard();
+
+    for (int i=10; i<12; i+=1){
+        // std::cout << testBoard.getReprLegalMove(i, 0) << std::endl;
+        std::cout << testBoard.getReprLegalMove(i, 36) << std::endl;
+    }
+    
+    
+    return 0;
+}
+*/
 
 // ----- Constructors, Formatting, Representation -----
 
@@ -196,6 +215,36 @@ std::string CFBoard::getRepr() {
 }
 
 
+std::string CFBoard::getReprLegalMove(int pieceId, int tile){
+    uint64_t legalMoves = getLegalMoves(pieceId, tile);
+    std::string repr = "|";
+    bool isLegalMove;
+    for (int tileI = 0; tileI < 64; tileI++) {
+        isLegalMove = (legalMoves>>tileI)&1;
+        repr += (tileI == tile)?">":isLegalMove?"[":" ";
+
+        int pieceIdI = getPieceFromCoords(tileI);
+        char pieceCharI = pieceIdToChar(pieceIdI);
+        repr += pieceCharI;
+
+        repr += isLegalMove?"]":(tileI == tile)?"<":" ";
+        repr += "|";
+        if ((tileI + 1) % 8 == 0) {
+            repr += "\n|";
+        }
+    }
+    return repr;
+}
+
+/**
+* @brief This function takes a pieceId and returns the associated
+* character.
+*
+* @param pieceId : <int> equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the
+* piece is black.
+*
+* @return P/N/B/R/Q/K depending on the piece, lowercase if black piece.
+*/
 char CFBoard::pieceIdToChar(int pieceId) {
     char pieceChar = '.';
     bool color = pieceId & 1;
@@ -320,6 +369,63 @@ int CFBoard::getMaterialCount(bool color) {
            __builtin_popcountll(queenBoard) * 9;
 }
 
+/**
+* @brief Gives a text representation of a coordinate.
+*
+* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
+* h7, ......, a1, ..., h1).
+* 
+* @return string representation of the corresponding board tile coordinate
+*/
+std::string CFBoard::tileToCoords(int tile){
+    std::string ret = "";
+    
+    int column = tile & 7;
+    int row = tile >> 3;
+
+    ret += 97 + row;
+    ret += column + 1;
+
+    return ret;
+}
+
+/**
+* @brief Gives a text representation of a hypothetical move.
+*
+* @param startTile : start tile for move.
+* @param endTile : end tile for move.
+* 
+* @return string representation of the move from startTile to endTile
+*/
+std::string CFBoard::getNextMoveRepr(int startTile, int endTile){
+
+    int piece = getPieceFromCoords(startTile);
+
+    if ((piece>>1 == 5) && (abs(startTile - endTile)==2)){
+        int castle;
+        if (abs(startTile - endTile)==2){
+            return "O-O-O";
+        } else {
+            return "O-O";
+        }
+
+    }
+
+    std::string ret = "";
+
+    ret += pieceIdToChar(piece);
+    if (getPieceFromCoords(endTile) != -1){
+        ret += "x";
+    } else if ((piece>>1 == 0) && (endTile == enPassantTarget)){
+        ret += "x";
+    }
+
+    ret += tileToCoords(startTile);
+    ret += tileToCoords(endTile);
+
+    return ret;
+}
+
 // ----- Manipulation -----
 
 void CFBoard::addPiece(int pieceId, int tile) {
@@ -421,13 +527,13 @@ void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
 		if (~turn){ // white
 			if ((piece>>1) == 3){ // rook
 				if (startTile == 63){
-					castleCheck & ~1;
+					castleCheck &= ~1;
 				} else if (startTile == 56){
-                    castleCheck & ~2;
+                    castleCheck &= ~2;
                 }
 			}
             if ((piece>>1) == 5){ // king
-                castleCheck & ~3;
+                castleCheck &= ~3;
             }
 
             if ((piece>>1) == 0){ // pawn
@@ -438,13 +544,13 @@ void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
 		} else {
             if ((piece>>1) == 3){ // rook
 				if (startTile == 0){
-					castleCheck & ~8;
+					castleCheck &= ~8;
 				} else if (startTile == 7){
-                    castleCheck & ~4;
+                    castleCheck &= ~4;
                 }
 			}
             if ((piece>>1) == 5){ // king
-                castleCheck & ~12;
+                castleCheck &= ~12;
             }
 
             if ((piece>>1) == 0){ // pawn
@@ -452,6 +558,24 @@ void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
                     enPassantTarget = startTile + 8;
                 }
             }
+        }
+
+        if ((piece>>1 == 5) && (abs(startTile - endTile)==2)){
+            int castle;
+            if (piece&1){
+                castle = castleCheck >> 2;
+            } else {
+                castle = castleCheck & 3;
+            }
+            castleCheck = castleCheck & ~castle;
+            if (abs(startTile - endTile)==2){
+                removePiece(startTile - 4);
+                addPiece(6 + (piece & 1), startTile - 1);
+            } else {
+                removePiece(startTile + 3);
+                addPiece(6 + (piece & 1), startTile + 1);
+            }
+
         }
 
 		turn = ~turn;
@@ -473,223 +597,77 @@ void CFBoard::forceUndo(int startTileLastTurn, int endTileLastTurn, int captured
 
 
 uint64_t CFBoard::getCardinals(int tile, bool color) {
-    uint64_t cardinalBoard = 0;
-    uint64_t tempBoard = 0;
-    int column = tile & 7;
-    int row = tile >> 3;
-    uint64_t allyBoard = getColorBitBoard(color);
-    uint64_t enemyBoard = getColorBitBoard(!color);
+    //int column = tile & 7;
+    //int row = tile >> 3;
 
-    // left
-    for (int i = 1; i <= column; i++) {
-        tempBoard = (1ll << (tile - i));
-        if (tempBoard & allyBoard) {
-            break;
-        } else if (tempBoard & enemyBoard) {
-            cardinalBoard = cardinalBoard | tempBoard;
-            break;
-        }
-        cardinalBoard = cardinalBoard | tempBoard;
-    }
+    uint64_t columnMap = (1ll + (1ll<<8) + (1ll<<16) + (1ll<<24) + (1ll<<32) + (1ll<<40) + (1ll<<48) + (1ll<<56)) << (tile & 7);
+    uint64_t rowMap = (((1ll << 8) - 1) << (tile>>3<<3));
 
-    // right
-    for (int i = 1; i <= (7 - column); i++) {
-        tempBoard = (1ll << (tile + i));
-        if (tempBoard & allyBoard) {
-            break;
-        } else if (tempBoard & enemyBoard) {
-            cardinalBoard = cardinalBoard | tempBoard;
-            break;
-        }
-        cardinalBoard = cardinalBoard | tempBoard;
-    }
+    uint64_t allBoard = whiteBoard | blackBoard;
 
-    // up
-    for (int i = 1; i <= row; i++) {
-        tempBoard = (1ll << (tile - 8 * i));
-        if (tempBoard & allyBoard) {
-            break;
-        } else if (tempBoard & enemyBoard) {
-            cardinalBoard = cardinalBoard | tempBoard;
-            break;
-        }
-        cardinalBoard = cardinalBoard | tempBoard;
-    }
-
-    // down
-    for (int i = 1; i <= (7 - row); i++) {
-        tempBoard = (1ll << (tile + 8 * i));
-        if (tempBoard & allyBoard) {
-            break;
-        } else if (tempBoard & enemyBoard) {
-            cardinalBoard = cardinalBoard | tempBoard;
-            break;
-        }
-        cardinalBoard = cardinalBoard | tempBoard;
-    }
-
-    return cardinalBoard;
+    // least significant bit : (b & -b)
+    // most significant bit: (1ll << (63 - __builtin_clzll(b)))
+    
+    // up | left | right | down
+    return (\
+    (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard & columnMap ))) - 1)) & (columnMap >> (64 - (tile>>3<<3))) | \
+    (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard))) - 1)) & (rowMap & ((1ll<<tile)-1)) | \
+    (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1)) & -(allBoard & ~((1ll << (tile+1))-1))) << 1) -1 \
+    & (rowMap & ~((1ll << (tile+1))-1))) | (tile != 63)*\
+    ((((allBoard & ~((1ll << (tile+1))-1) & columnMap) & -(allBoard & ~((1ll << (tile+1))-1) & columnMap)) << 1) -1\
+    & (columnMap & ~((1ll << (tile+1))-1))) ) & (~getColorBitBoard(color));
 }
 
 
 uint64_t CFBoard::getDiagonals(int tile, bool color) {
-    uint64_t diagonalBoard = 0;
-    uint64_t tempBoard = 0;
     int column = tile & 7;
     int row = tile >> 3;
-    uint64_t allyBoard = getColorBitBoard(color);
-    uint64_t enemyBoard = getColorBitBoard(!color);
+    uint64_t allBoard = whiteBoard | blackBoard;
 
-    // up-left
-    for (int i = 1; i <= (column ^ ((row ^ column) & -(row < column)));
-         i++) { // y ^ ((x ^ y) & -(x < y)) = min(x,y)
-        tempBoard = (1ll << (tile - (9 * i)));
-        if (tempBoard & allyBoard) {
-            break;
-        } else if (tempBoard & enemyBoard) {
-            diagonalBoard = diagonalBoard | tempBoard;
-            break;
-        }
-        diagonalBoard = diagonalBoard | tempBoard;
-    }
+    int slashId = (tile + row + 1) & 7;
+    int bslashId = (tile - row) & 7;
+    uint64_t slashMap = ((1ll << (8*0 + ((slashId - 0 - 1)&7)) ) * !((row < slashId)^(0 < slashId))) | \
+                        ((1ll << (8*1 + ((slashId - 1 - 1)&7)) ) * !((row < slashId)^(1 < slashId))) | \
+                        ((1ll << (8*2 + ((slashId - 2 - 1)&7)) ) * !((row < slashId)^(2 < slashId))) | \
+                        ((1ll << (8*3 + ((slashId - 3 - 1)&7)) ) * !((row < slashId)^(3 < slashId))) | \
+                        ((1ll << (8*4 + ((slashId - 4 - 1)&7)) ) * !((row < slashId)^(4 < slashId))) | \
+                        ((1ll << (8*5 + ((slashId - 5 - 1)&7)) ) * !((row < slashId)^(5 < slashId))) | \
+                        ((1ll << (8*6 + ((slashId - 6 - 1)&7)) ) * !((row < slashId)^(6 < slashId))) | \
+                        ((1ll << (8*7 + ((slashId - 7 - 1)&7)) ) * !((row < slashId)^(7 < slashId)));
 
-    // up-right
-    for (int i = 1;
-         i <= ((7 - column) ^ ((row ^ (7 - column)) & -(row < (7 - column))));
-         i++) {
-        tempBoard = (1ll << (tile - (7 * i)));
-        if (tempBoard & allyBoard) {
-            break;
-        } else if (tempBoard & enemyBoard) {
-            diagonalBoard = diagonalBoard | tempBoard;
-            break;
-        }
-        diagonalBoard = diagonalBoard | tempBoard;
-    }
+    uint64_t bslashMap =((1ll << (8*0 + ((bslashId + 0)&7)) ) * !((7-row < bslashId)^(7-0 < bslashId))) | \
+                        ((1ll << (8*1 + ((bslashId + 1)&7)) ) * !((7-row < bslashId)^(7-1 < bslashId))) | \
+                        ((1ll << (8*2 + ((bslashId + 2)&7)) ) * !((7-row < bslashId)^(7-2 < bslashId))) | \
+                        ((1ll << (8*3 + ((bslashId + 3)&7)) ) * !((7-row < bslashId)^(7-3 < bslashId))) | \
+                        ((1ll << (8*4 + ((bslashId + 4)&7)) ) * !((7-row < bslashId)^(7-4 < bslashId))) | \
+                        ((1ll << (8*5 + ((bslashId + 5)&7)) ) * !((7-row < bslashId)^(7-5 < bslashId))) | \
+                        ((1ll << (8*6 + ((bslashId + 6)&7)) ) * !((7-row < bslashId)^(7-6 < bslashId))) | \
+                        ((1ll << (8*7 + ((bslashId + 7)&7)) ) * !((7-row < bslashId)^(7-7 < bslashId)));
 
-    // down-left
-    for (int i = 1;
-         i <= (column ^ (((7 - row) ^ column) & -((7 - row) < column))); i++) {
-        tempBoard = (1ll << (tile + (7 * i)));
-        if (tempBoard & allyBoard) {
-            break;
-        } else if (tempBoard & enemyBoard) {
-            diagonalBoard = diagonalBoard | tempBoard;
-            break;
-        }
-        diagonalBoard = diagonalBoard | tempBoard;
-    }
-
-    // down-right
-    for (int i = 1; i <= ((7 - column) ^ (((7 - row) ^ (7 - column)) &
-                                          -((7 - row) < (7 - column))));
-         i++) {
-        tempBoard = (1ll << (tile + (9 * i)));
-        if (tempBoard & allyBoard) {
-            break;
-        } else if (tempBoard & enemyBoard) {
-            diagonalBoard = diagonalBoard | tempBoard;
-            break;
-        }
-        diagonalBoard = diagonalBoard | tempBoard;
-    }
-
-    return diagonalBoard;
+    return (\
+    (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard & slashMap ))) - 1)) & (slashMap & ((1ll<<tile)-1)) | \
+    (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard & bslashMap))) - 1)) & (bslashMap & ((1ll<<tile)-1)) | \
+    (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1) & bslashMap) & -(allBoard & ~((1ll << (tile+1))-1))) << 1) -1 \
+    & (bslashMap & ~((1ll << (tile+1))-1))) | (tile != 63)*\
+    ((((allBoard & ~((1ll << (tile+1))-1) & slashMap) & -(allBoard & ~((1ll << (tile+1))-1) & slashMap)) << 1) -1\
+    & (slashMap & ~((1ll << (tile+1))-1))) ) & (~getColorBitBoard(color));
 }
 
 
 uint64_t CFBoard::getKnightPattern(int tile, bool color) {
-    uint64_t knightPattern = 0;
     int column = tile & 7;
     int row = tile >> 3;
     uint64_t allyBoard = getColorBitBoard(color);
 
-    int knightPositions = (1 << 8) - 1;
-    /*
-    . 0 . 1 .
-    2 . . . 3
-    . . x . .
-    4 . . . 5
-    . 6 . 7 .
-    */
-
-    // may be able to be optimized
-    switch (column) {
-    case 0:
-        knightPositions =
-            knightPositions & ~((1 << 2) + (1 << 4) + 1 + (1 << 6));
-        break;
-    case 1:
-        knightPositions = knightPositions & ~((1 << 2) + (1 << 4));
-        break;
-    case 6:
-        knightPositions = knightPositions & ~((1 << 3) + (1 << 5));
-        break;
-    case 7:
-        knightPositions =
-            knightPositions & ~((1 << 3) + (1 << 5) + 2 + (1 << 7));
-        break;
-    default:
-        break;
-    }
-
-    switch (row) {
-    case 0:
-        knightPositions = knightPositions & ~((1 << 4) - 1);
-        break;
-    case 1:
-        knightPositions = knightPositions & ~((1 << 2) - 1);
-        break;
-    case 6:
-        knightPositions = knightPositions & ~(((1 << 2) - 1) << 6);
-        break;
-    case 7:
-        knightPositions = knightPositions & ~(((1 << 4) - 1) << 4);
-        break;
-    default:
-        break;
-    }
-
-    for (int i = 0; i < 8; i++) {
-        if ((knightPositions >> i) & 1) {
-            switch (i) {
-            case 0:
-                knightPattern =
-                    knightPattern | ((1ll << (tile - 17)) & ~allyBoard);
-                break;
-            case 1:
-                knightPattern =
-                    knightPattern | ((1ll << (tile - 15)) & ~allyBoard);
-                break;
-            case 2:
-                knightPattern =
-                    knightPattern | ((1ll << (tile - 10)) & ~allyBoard);
-                break;
-            case 3:
-                knightPattern =
-                    knightPattern | ((1ll << (tile - 6)) & ~allyBoard);
-                break;
-            case 4:
-                knightPattern =
-                    knightPattern | ((1ll << (tile + 6)) & ~allyBoard);
-                break;
-            case 5:
-                knightPattern =
-                    knightPattern | ((1ll << (tile + 10)) & ~allyBoard);
-                break;
-            case 6:
-                knightPattern =
-                    knightPattern | ((1ll << (tile + 15)) & ~allyBoard);
-                break;
-            case 7:
-                knightPattern =
-                    knightPattern | ((1ll << (tile + 17)) & ~allyBoard);
-                break;
-            }
-        }
-    }
-
-    return knightPattern;
+    return \
+        ( (column > 0 && row > 1) * ((1ll << (tile - 17)) & ~allyBoard) ) | \
+        ( (column < 7 && row > 1) * ((1ll << (tile - 15)) & ~allyBoard) ) | \
+        ( (column > 1 && row > 0) * ((1ll << (tile - 10)) & ~allyBoard) ) | \
+        ( (column < 6 && row > 0) * ((1ll << (tile -  6)) & ~allyBoard) ) | \
+        ( (column > 1 && row < 7) * ((1ll << (tile +  6)) & ~allyBoard) ) | \
+        ( (column < 6 && row < 7) * ((1ll << (tile + 10)) & ~allyBoard) ) | \
+        ( (column > 0 && row < 6) * ((1ll << (tile + 15)) & ~allyBoard) ) | \
+        ( (column < 7 && row < 6) * ((1ll << (tile + 17)) & ~allyBoard) );
 }
 
 
@@ -699,30 +677,40 @@ uint64_t CFBoard::getKingPattern(int tile, bool color) {
     int row = tile >> 3;
     uint64_t allyBoard = getColorBitBoard(color);
 
-    if (column > 0) {
-        kingPattern += (1 << (tile - 1));
+    kingPattern = \
+    (1ll << (tile - 1))*(column > 0) | \
+    (1ll << (tile - 8))*(row > 0) | \
+    (1ll << (tile + 1))*(column < 7) | \
+    (1ll << (tile + 8))*(row < 7) | \
+    (1ll << (tile - 9))*(column > 0 && row > 0) | \
+    (1ll << (tile + 7))*(column > 0 && row < 7) | \
+    (1ll << (tile - 7))*(column < 7 && row > 0) | \
+    (1ll << (tile + 9))*(column < 7 && row < 7);
+
+    if (tile!=60 && tile!=4){
+        return kingPattern;
     }
-    if (row > 0) {
-        kingPattern += (1 << (tile - 8));
+
+    //castle
+    int castle;
+    if (color){
+        castle = castleCheck >> 2;
+    } else {
+        castle = castleCheck & 3;
     }
-    if (column < 7) {
-        kingPattern += (1 << (tile + 1));
+
+    // WARNING: this makes a handful of assumptions.
+    // If you customized the whole board into an illegal position, this part may crash the code.
+    uint64_t board = whiteBoard | blackBoard;
+    if (castle>>1){ //long
+        bool longsideoccupied = ((board << (tile - 1)) & 1) | ((board << (tile - 2)) & 1) | ((board << (tile - 3)) & 1);
+        if (!longsideoccupied){kingPattern += (1ll << (tile-2));}
     }
-    if (row < 7) {
-        kingPattern += (1 << (tile + 8));
+    if (castle&1){ //short
+        bool shortsideoccupied = ((board << (tile + 1)) & 1) | ((board << (tile + 2)) & 1);
+        if (!shortsideoccupied){kingPattern += (1ll << (tile+2));}
     }
-    if (column > 0 && row > 0) {
-        kingPattern += (1 << (tile - 9));
-    }
-    if (column > 0 && row < 7) {
-        kingPattern += (1 << (tile + 7));
-    }
-    if (column < 7 && row > 0) {
-        kingPattern += (1 << (tile - 7));
-    }
-    if (column < 7 && row < 7) {
-        kingPattern += (1 << (tile + 9));
-    }
+
     return kingPattern;
 }
 
@@ -795,6 +783,7 @@ uint64_t CFBoard::getPawnPattern(int tile, bool color) {
 uint64_t CFBoard::getLegalMoves(int pieceId, int tile) {
     bool color = pieceId & 1;
     uint64_t retBoard;
+    std::cout << (pieceId>>1) << std::endl;
     switch (pieceId >> 1) {
     case 0: // pawn
         retBoard = getPawnPattern(tile, color);
@@ -816,7 +805,9 @@ uint64_t CFBoard::getLegalMoves(int pieceId, int tile) {
 		break;
 	default : //failsafe
 		return 0;
+
     }
+
     uint64_t tmpBoard = retBoard;
     while (tmpBoard) {
         uint64_t lsb = tmpBoard & -tmpBoard;
