@@ -7,7 +7,6 @@
 #include <vector>
 #include <cmath>
 
-#include "naiveCheckCheck.cpp"
 
 // implemented
 
@@ -465,6 +464,9 @@ void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
 
 		//check that move is legal
 		if (  1 - ((1ll << endTile) & getLegalMoves(piece, startTile))   ){
+			std::cout << "start" << std::endl;
+			std::cout << getLegalMoves(piece, startTile);
+			std::cout << "end" << std::endl;
 			exit(-1);
 		}
 
@@ -579,6 +581,9 @@ void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
         }
 
 		turn = ~turn;
+
+		//make a backup of our state
+		backupState();
 	}
 
 
@@ -591,6 +596,53 @@ void CFBoard::forceUndo(int startTileLastTurn, int endTileLastTurn, int captured
     }
     addPiece(piece, startTileLastTurn);
     enPassantTarget = -1;
+}
+
+void CFBoard::undoLastMove() {
+	if (backupStock == 0) { //check that we even have backups
+		exit(-1);
+	}
+
+	//if so, set our state
+	pawnBoard = pawnBoardBackups[0];
+	knightBoard = knightBoardBackups[0] ;
+	bishopBoard = bishopBoardBackups[0];
+	rookBoard = rookBoardBackups[0];
+	queenBoard = queenBoardBackups[0] ;
+	kingBoard  = kingBoardBackups[0];
+
+	blackBoard = blackBoardBackups[0];
+	whiteBoard = whiteBoardBackups[0];
+
+	enPassantTarget = enPassantTargetBackups[0];
+	castleCheck = castleCheckBackups[0];
+	isStateLegal = isStateLegalBackups[0];
+
+	turn = 1-turn;
+
+
+
+	//update and remove the backup we just reverted to
+	backupStock--;
+
+	for (int i = 0; i <= backupCount - 2; i++) {
+		pawnBoardBackups[i] = pawnBoardBackups[i + 1];
+		knightBoardBackups[i] = knightBoardBackups[i + 1];
+		bishopBoardBackups[i] = bishopBoardBackups[i + 1];
+		rookBoardBackups[i] = rookBoardBackups[i + 1];
+		queenBoardBackups[i] = queenBoardBackups[i + 1];
+		kingBoardBackups[i] = kingBoardBackups[i + 1];
+
+		blackBoardBackups[i] = blackBoardBackups[i + 1];
+		whiteBoardBackups[i] = whiteBoardBackups[i + 1];
+
+		enPassantTargetBackups[i] = enPassantTargetBackups[i + 1];
+		castleCheckBackups[i] = castleCheckBackups[i + 1];
+		isStateLegalBackups[i] = isStateLegalBackups[i + 1];
+
+
+	}
+
 }
 
 // ----- Ruleset -----
@@ -818,4 +870,61 @@ uint64_t CFBoard::getLegalMoves(int pieceId, int tile) {
         }
     }
     return retBoard;
+}
+
+
+void CFBoard::backupState() {
+	//if this is our first backup, initialize the arrays
+	if (backupStock == 0) {
+		pawnBoardBackups = new uint64_t[backupCount];
+		knightBoardBackups = new uint64_t[backupCount];
+		bishopBoardBackups = new uint64_t[backupCount];
+		rookBoardBackups = new uint64_t[backupCount];
+		queenBoardBackups = new uint64_t[backupCount];
+		kingBoardBackups = new uint64_t[backupCount];
+
+		blackBoardBackups = new uint64_t[backupCount];
+		whiteBoardBackups = new uint64_t[backupCount];
+
+		enPassantTargetBackups = new int[backupCount];
+		castleCheckBackups = new int[backupCount];
+		isStateLegalBackups = new bool[backupCount];
+	}
+	else { //roll all backups forward
+		for (int i = backupCount - 1; i >= 1; i--) {
+			pawnBoardBackups[i] = pawnBoardBackups[i - 1];
+			knightBoardBackups[i] = knightBoardBackups[i - 1];
+			bishopBoardBackups[i] = bishopBoardBackups[i - 1];
+			rookBoardBackups[i] = rookBoardBackups[i - 1];
+			queenBoardBackups[i] = queenBoardBackups[i - 1];
+			kingBoardBackups[i] = kingBoardBackups[i - 1];
+
+			blackBoardBackups[i] = blackBoardBackups[i - 1];
+			whiteBoardBackups[i] = whiteBoardBackups[i - 1];
+
+			enPassantTargetBackups[i] = enPassantTargetBackups[i - 1];
+			castleCheckBackups[i] = castleCheckBackups[i-1];
+			isStateLegalBackups[i] = isStateLegalBackups[i-1];
+
+
+		}
+	}
+
+	//now save the current state at the first index
+	pawnBoardBackups[0] = pawnBoard;
+	knightBoardBackups[0] = knightBoard;
+	bishopBoardBackups[0] = bishopBoard;
+	rookBoardBackups[0] = rookBoard;
+	queenBoardBackups[0] = queenBoard;
+	kingBoardBackups[0] = kingBoard;
+
+	blackBoardBackups[0] = blackBoard;
+	whiteBoardBackups[0] = whiteBoard;
+
+	enPassantTargetBackups[0] = enPassantTarget;
+	castleCheckBackups[0] = castleCheck;
+	isStateLegalBackups[0] = isStateLegal;
+
+	//increase the backup stock
+	backupStock++;
 }
