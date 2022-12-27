@@ -1,5 +1,5 @@
 set(INPUT_SOURCES 
-    "input.cc")
+    "input.cpp")
 set(INPUT_HEADERS
     "input.hpp")
 
