@@ -4,7 +4,10 @@
 #include <vector>
 #include <string>
 #include <string.h>
-#include "../../lib/board_implementation/CFBoard.cpp"
+
+#include "../board_implementation/CFBoard.h"
+#include "Heatmap.h"
+
 #include "BitOperations.h"
 
 
@@ -45,7 +48,7 @@ void Heatmap::displayPawnBoard(const uint64_t& pawnBoard) { // for testing only
 }
 
 void Heatmap::addHeatMapPieceProtect(const int &i, const int &j, int (&heatMap)[6][8][8], const char &piece,
-							const int &noPieces, const uint64_t &opponentPawnBoard, int (&pawnHeight)[8], const int &coefficient = 1) {
+							const int &noPieces, const uint64_t &opponentPawnBoard, int (&pawnHeight)[8], const int &coefficient) {
 	if (noPieces == 0) return;
 	std::vector<std::vector<int>> nextSquares;
 	if (piece == 'P') {
@@ -374,7 +377,7 @@ void Heatmap::addHeatMap(CFBoard& board, int (&heatMap)[6][8][8], const uint64_t
 	}
 }
 
-int main() {
+int heatmapTest() {
 	int heatMap[6][8][8]; // heat map for each pieces 0: pawn, 1: knight, 2: bishop, 3: rook, 4: queen, 5: king
 	memset(heatMap, 0, sizeof heatMap);
 
@@ -387,7 +390,7 @@ int main() {
 	// board.fromFEN("rkq1bnnr/2b4p/p5pP/Pp3pP1/1Pp1pP2/2PpP2N/3P4/1NBQRBKR w - - 0 1");
 	uint64_t weakPawns = 1ll; // placeholder for finished weak pawns implementation
 	// std::cout << board.getRepr();
-	addHeatMap(board, heatMap, weakPawns);
+	Heatmap::addHeatMap(board, heatMap, weakPawns);
 	for (int halfPieceId = 0; halfPieceId < 6; halfPieceId++) {
 		std::cout << "\nHeat map for" << ' ' << board.pieceIdToChar(halfPieceId*2) << ":\n";
 		for (int i = 0; i < 8; i++) {

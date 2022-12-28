@@ -6,7 +6,7 @@
 #include <vector>
 #include <string>
 #include <string.h>
-#include "../../lib/board_implementation/CFBoard.cpp"
+#include "../board_implementation/CFBoard.h"
 
 namespace Heatmap {
 
