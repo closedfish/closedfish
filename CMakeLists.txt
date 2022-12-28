@@ -6,7 +6,7 @@ project(ChessSwitchAI VERSION 1.0.0 LANGUAGES CXX)
 include(GNUInstallDirs)
 
 #Enable unit testing
-option(ENABLE_TESTING "Whether to enable the unit testing build" ON)
+option(ENABLE_TESTING "Whether to enable the unit testing build" OFF)
 
 #Enable warnings
 option(ENABLE_WARNINGS      "Enable to add warnings to a target."   ON)
@@ -67,7 +67,13 @@ include(LTO)
 include(Ccache)
 
 #Include Doxygen module
-include(Docs)
+find_program(DOXYGEN_FOUND "doxygen")
+if(DOXYGEN_FOUND)
+	message("Using Doxygen")
+	include(Docs)
+else(DOXYGEN_FOUND)
+	message("Doxygen not found")
+endif(DOXYGEN_FOUND)
 
 #Include Conan Libraries
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
@@ -79,7 +85,7 @@ add_subdirectory(lib)
  
 
 #Enable unit testing
-option(ENABLE_TESTING "Whether to enable the unit testing build" ON)
+option(ENABLE_TESTING "Whether to enable the unit testing build" OFF)
 
 #Check if there is need to compile unit test
 if(ENABLE_TESTING)
@@ -89,7 +95,7 @@ else()
 endif()
 
 #Check if there is need to compile the executable
-option(COMPILE_EXECUTABLE "Whether to compile the executable" ON)
+option(COMPILE_EXECUTABLE "Whether to compile the executable" OFF)
 if(COMPILE_EXECUTABLE)
     add_subdirectory(app)
 else()
