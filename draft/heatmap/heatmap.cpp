@@ -7,18 +7,20 @@
 #include "../../lib/board_implementation/CFBoard.cpp"
 #include "BitOperations.h"
 
-bool validSquare(int i, int j) {
+
+
+bool Heatmap::validSquare(int i, int j) {
 	return i >= 0 && i < 8 && j >= 0 && j < 8;
 }
-std::vector<int> tileToPos(int tile) {
+std::vector<int> Heatmap::tileToPos(int tile) {
 	return {tile/8, tile%8};
 }
 
-int posToTile(std::vector<int> pos) {
+int Heatmap::posToTile(std::vector<int> pos) {
 	return pos[0] * 8 + pos[1];
 }
 
-std::vector<std::vector<int>> posSetFromBoard(const uint64_t &board) {
+std::vector<std::vector<int>> Heatmap::posSetFromBoard(const uint64_t &board) {
 	std::vector<std::vector<int>> pos;
 	std::vector<int> tiles = bitSetPositions(board);
 	for (auto x: tiles) {
@@ -27,13 +29,13 @@ std::vector<std::vector<int>> posSetFromBoard(const uint64_t &board) {
 	return pos;
 }
 
-bool squareNotAttackedByPawn(const uint64_t& opponentPawnBoard, 
+bool Heatmap::squareNotAttackedByPawn(const uint64_t& opponentPawnBoard, 
 							const int& row, const int &col) {
 	return row == 7 || ((col == 0 || !isBitSet(opponentPawnBoard, posToTile({row+1, col-1})))
 				&& (col == 7 || !isBitSet(opponentPawnBoard, posToTile({row+1, col+1}))));
 }
 
-void displayPawnBoard(const uint64_t& pawnBoard) { // for testing only
+void Heatmap::displayPawnBoard(const uint64_t& pawnBoard) { // for testing only
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
 			std::cout << ((pawnBoard>>(i*8+j))&1ll);
@@ -42,7 +44,7 @@ void displayPawnBoard(const uint64_t& pawnBoard) { // for testing only
 	}
 }
 
-void addHeatMapPieceProtect(const int &i, const int &j, int (&heatMap)[6][8][8], const char &piece,
+void Heatmap::addHeatMapPieceProtect(const int &i, const int &j, int (&heatMap)[6][8][8], const char &piece,
 							const int &noPieces, const uint64_t &opponentPawnBoard, int (&pawnHeight)[8], const int &coefficient = 1) {
 	if (noPieces == 0) return;
 	std::vector<std::vector<int>> nextSquares;
@@ -90,7 +92,7 @@ void addHeatMapPieceProtect(const int &i, const int &j, int (&heatMap)[6][8][8],
 	}
 }
 
-void addHeatMap(CFBoard& board, int (&heatMap)[6][8][8], const uint64_t &weakPawns) {
+void Heatmap::addHeatMap(CFBoard& board, int (&heatMap)[6][8][8], const uint64_t &weakPawns) {
 	uint64_t maskRow[8], maskCol[8]; // 1 for one column or one row, 0 otherwise
 	maskRow[0] = (1LL<<8)-1;
 	maskCol[0] = 1LL + (1LL<<8) + (1LL<<16) + (1LL<<24) + (1LL<<32) + (1LL<<40) + (1LL<<48) + (1LL<<56);
