@@ -670,3 +670,9 @@ build/
 *.exe
 *.out
 *.app
+
+###
+
+*.plist
+*.index-v1
+out/
