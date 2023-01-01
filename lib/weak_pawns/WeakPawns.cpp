@@ -354,8 +354,13 @@ namespace WeakPawns{
 
 			repr += (tileI == tile)?"/":" ";
 			repr += "|";
-			if ((tileI + 1) % 8 == 0) {
-				repr += "\n|";
+			if ((tileI + 1) % 8 == 0){
+				if((tileI == 63)){
+					repr += "\n";
+				}
+				else{
+					repr += "\n|";
+				}
 			}
 		}
 		return repr;
