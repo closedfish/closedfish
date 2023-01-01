@@ -651,3 +651,6 @@ src/Generator/Generator/Generator-emmzeqevaoeevohberbchelxpaaf/info.plist
 *.plist
 *.modulevalidation
 *.plist
+*.plist
+*.index-v1
+out/
