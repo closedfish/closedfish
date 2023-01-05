@@ -636,3 +636,6 @@ FodyWeavers.xsd
 src/Generator/Generator/generator
 
 build/
+*.plist
+*.index-v1
+out/
