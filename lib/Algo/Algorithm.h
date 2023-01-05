@@ -43,7 +43,7 @@ public:
 
 
 
-private:
+protected:
 
 
 	CFBoard* currentBoard;
