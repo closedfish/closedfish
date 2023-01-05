@@ -6,16 +6,16 @@
 #include <vector>
 
 namespace CFBoardTester {
-    void test_pieceIdToChar(); // Etienne
-    void test_pieceCharToId(); // Shirelle
+    void test_pieceIdToChar(); // Etienne - done
+    void test_pieceCharToId(); // Shirelle - done
     void test_getColorBitBoard(); //Etienne
     void test_getPieceColorBitBoard(); // Shirelle
     void test_getPieceBoardFromIndex(); // Etienne
     void test_getCurrentPlayer(); // Shirelle
-    void test_getPieceFromCoords(); // Etienne
+    void test_getPieceFromCoords(); // Etienne - done
     void test_getBit();
     void test_getMaterialCount();
-    void test_addPiece();
+    void test_addPiece(); // Etienne 
     void test_removePiece();
     void test_movePiece();
     void test_forceUndo();

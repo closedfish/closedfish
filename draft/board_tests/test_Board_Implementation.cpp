@@ -10,7 +10,7 @@ void test_pieceIdToChar(){
     std::cout << "[";
     bool TF = true
     for (int i=0; i < 12; i++) {
-        if (pieceIdToChar(int test[i]) != out[i]){
+        if (pieceIdToChar( test[i] ) != out[i]) {
             cout << "Failure";
             TF = false;
         }
@@ -28,14 +28,15 @@ void test_pieceCharToId(){
     std::cout << "[";
     bool TF = true
     for (int i=0; i<12; i++) {
-        if(test[i] != out[i]) {
-            cout << "Failure";
-                .TF = false;
+        if(pieceCharToId( test[i] ) != out[i]) {
+            cout << "Failure :(";
+            TF = false;
         }
     }
     if (TF == true){
-        cout << "Success";        
+        cout << "Success!";
     }
+    std::cout << "]" << std::endl;
 }
 
 void test_getColorBitBoard(){
@@ -88,13 +89,23 @@ void test_getCurrentPlayer(){
 }
 void test_getPieceFromCoords(){
     CFBoard();
-    int tests = {0,1,2,3,4,5,6,7,11,55,}
+    int tests[18] = {0,1,2,3,4,5,6,7,11,23,55,56,57,58,59,60,61,62,63};
+    int out[18] = {7,3,5,9,11,5,3,7,1,-1,0,6,2,4,8,10,4,2,6};
     std::cout << "test_getPieceFromCoords ";
     std::cout << "[";
-    for (auto test : tests) {
-        //implement
+    bool TF = true
+    for (int i=0; i<18; i++) {
+        if (getPieceFromCoords( tests[i] ) != out[i]) {
+            cout << "Failure :(";
+            TF = false;
+        }
     }
+    if (TF == true){
+        cout << "Success!";
+    }
+    std::cout << "]" << std::endl;
 }
+
 void test_getBit(){
     std::vector<std::tuple<bool, bool, CFBoard>> tests = {// check test cases
         std::make_tuple(false, false, CFBoard()),
