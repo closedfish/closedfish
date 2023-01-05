@@ -2,7 +2,8 @@
     "files.associations": {
         "ostream": "cpp",
         "streambuf": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "iostream": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

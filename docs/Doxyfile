@@ -2,8 +2,8 @@
 # Project related configuration options
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
-PROJECT_NAME           = "Chess Switch AI"
-PROJECT_NUMBER         = 1.0.0
+PROJECT_NAME           = "Closedfish"
+PROJECT_NUMBER         = 0.1.0
 PROJECT_BRIEF          = "Chess AI"
 PROJECT_LOGO           =
 OUTPUT_DIRECTORY       = ./
