@@ -4,16 +4,21 @@ using namespace std;
 namespace CFBoardTester {
 
 void test_pieceIdToChar(){
-    std::vector<std::tuple<bool, bool, CFBoard>> tests = { // check test cases
-        std::make_tuple(false, false, CFBoard()),
-        std::make_tuple(true, true,
-                        CFBoard("rnbqkbnr/ppp1pppp/3p4/8/Q7/2P5/PP1PPPPP/"
-                                "RNBQKBNR w KQkq - 0 1"))};
-    std::cout << "test_pieceIdToChar ";
+    int tests[12] = {0,1,2,3,4,5,6,7,8,9,10,11}; // check test cases
+    int out[12] = {'P','p','N','n','B','b','R','r','Q','q','K','k'};
+    std::cout << "test_pieceIdToChar";
     std::cout << "[";
-    for (auto test : tests) {
-        //Implement
+    bool TF = true
+    for (int i=0; i < 12; i++) {
+        if (pieceIdToChar(int test[i]) != out[i]){
+            cout << "Failure";
+            TF = false;
+        }
     }
+    if (TF == true){
+        cout << "Success";
+    }
+    std::cout << "]" << std::endl;
 }
 
 void test_pieceCharToId(){
@@ -78,11 +83,8 @@ void test_getCurrentPlayer(){
     }
 }
 void test_getPieceFromCoords(){
-    std::vector<std::tuple<bool, bool, CFBoard>> tests = {// check test cases
-        std::make_tuple(false, false, CFBoard()),
-        std::make_tuple(true, true,
-                        CFBoard("rnbqkbnr/ppp1pppp/3p4/8/Q7/2P5/PP1PPPPP/"
-                                "RNBQKBNR w KQkq - 0 1"))};
+    CFBoard();
+    int tests = {0,1,2,3,4,5,6,7,11,55,}
     std::cout << "test_getPieceFromCoords ";
     std::cout << "[";
     for (auto test : tests) {
@@ -240,14 +242,15 @@ void testNaiveCheckCheck() {
         std::make_tuple(true, true,
                         CFBoard("rnbqkbnr/ppp1pppp/3p4/8/Q7/2P5/PP1PPPPP/"
                                 "RNBQKBNR w KQkq - 0 1"))};
+    
     std::cout << "testNaiveCheckCheck ";
     std::cout << "[";
     for (auto test : tests) {
         bool isCheck = std::get<0>(test);
         if (isCheck == std::get<2>(test).naiveCheckCheck(std::get<1>(test))) {
-            std::cout << "P";
+            std::cout << "Success";
         } else {
-            std::cout << "-";
+            std::cout << "Failure";
         }
     }
     std::cout << "]" << std::endl;
@@ -263,9 +266,9 @@ void test_ToFEN() {
         std::string fen = test.first;
         std::string ret = test.second.toFEN();
         if (ret == fen) {
-            std::cout << "P";
+            std::cout << "Success";
         } else {
-            std::cout << "-";
+            std::cout << "Failure";
         }
     }
     std::cout << "]" << std::endl;
@@ -281,9 +284,9 @@ void test_FromFEN() {
         std::string fen = test.first;
         CFBoard board = test.second;
         if (board == CFBoard(fen)) {
-            std::cout << "P";
+            std::cout << "Success!";
         } else {
-            std::cout << "-";
+            std::cout << "Failure :(";
         }
     }
     std::cout << "]" << std::endl;
