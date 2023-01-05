@@ -35,6 +35,7 @@ std::tuple<int, int, float> DFS1P::getNextMove() {
     for (int halfPieceId = 0; halfPieceId < 6; halfPieceId++) {
         for (int startTile = 0; startTile < 64; startTile++) {
             uint64_t legalMoves =  currentBoard->getLegalMoves(2*halfPieceId+currentTurn, startTile);
+            std::cout << legalMoves<< '\n';
             std::vector<int> endTiles = bitSetPositions(legalMoves);
             for (int endTile: endTiles) {
                 possibleMoves.push_back(std::make_tuple(startTile, endTile, 0.0));
@@ -57,12 +58,11 @@ std::tuple<int, int, float> DFS1P::getNextMove() {
     return ansMove;
 }
 
-// int main() {
-//     DFS1P algo;
-//     CFBoard board;
-//     board.fromFEN("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
-//     std::cout << board.getRepr();
+int main() {
+    DFS1P algo;
+    CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
 
-//     // algo.setBoardPointer(&board);
-//     // std::cout << std::get<0>(algo.getNextMove()) << ' ' << std::get<1>(algo.getNextMove()) << ' ' << std::get<2>(algo.getNextMove()) << '\n';
-// }
+    algo.setBoardPointer(&board);
+    auto move = algo.getNextMove();
+    std::cout << std::get<0>(move) << ' ' << std::get<1>(move) << ' ' << std::get<2>(move) << '\n';
+}

@@ -1,4 +1,7 @@
-uint64_t reverseBit(uint64_t v) {
+#pragma once
+#include <vector>
+
+inline uint64_t reverseBit(uint64_t v) {
 	//credit to https://graphics.stanford.edu/~seander/bithacks.html#BitReverseObvious
 	uint64_t r = v; // r will be reversed bits of v; first get LSB of v
 	int s = sizeof(v) * CHAR_BIT - 1; // extra shift needed at end
@@ -13,7 +16,7 @@ uint64_t reverseBit(uint64_t v) {
 	return r;
 }
 
-std::vector<int> bitSetPositions(uint64_t board) {
+inline std::vector<int> bitSetPositions(uint64_t board) {
 	std::vector<int> positions;
 	while (board != 0) {
 		positions.push_back(__builtin_ctzll(board));
@@ -23,6 +26,6 @@ std::vector<int> bitSetPositions(uint64_t board) {
 	return positions;
 }
 
-bool isBitSet(const uint64_t& board, const int &tile) {
+inline bool isBitSet(const uint64_t& board, const int &tile) {
 	return board&(1ll<<tile);
 }
