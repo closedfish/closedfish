@@ -461,11 +461,12 @@ void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
 
 	//check that move is legal
 	if (  ((1ll << endTile) & getLegalMoves(piece, startTile)) == 0  ){
-
+        std::cerr<<"illegal move!\n";
 		exit(-1);
 	}
 
 	if ((piece & 1) ^ turn){
+        std::cerr<<"illegal move!\n";
 		exit(-1);
 	}
 
@@ -611,8 +612,8 @@ void CFBoard::undoLastMove() {
 
 
 	//if so, set our state
-	std::cout << pawnBoard << std::endl;
-	std::cout << pawnBoardBackups[0] << std::endl;
+	// std::cout << pawnBoard << std::endl;
+	// std::cout << pawnBoardBackups[0] << std::endl;
 
 	pawnBoard = pawnBoardBackups[0];
 	knightBoard = knightBoardBackups[0] ;
