@@ -1,0 +1,88 @@
+Ariel:
+This week: 
+          - Finished functions for many different types of chessboards (very open ones with different 		
+	    amounts of pawns different spaces in between pawns etc.
+	  - Tested outputs with the switch team and made fixes to errors.
+	  - Formatted the output to fit exactly the input to the switch team ai
+	  - Finished testing the generator and work with the switch team for final edits.
+Next week:
+	  - Start making test functions for different teams such as the algorithm team
+	  - Work with the switch team if new types of positions need to be made
+
+Etienne:
+This Week:
+	- Transitioned to the algorithm / unit-test team. 
+	- Conducted further research into the existing chessboard implementation and its respective functions and how these worked with meetings with the team, and how to implement said unit-tests.
+	- Created the unit-test files and framework, worked on unit-tests. 
+Next Week:
+	- Finish the unit tests and move onto debugging the CFBoard implementation.
+	- Continue working with the algorithms team and delve into more research for more optimal implementations.
+	
+Yoshimi-Theophile
+Week 1: Started implementation of the ClosedFish board. Laid the groundwork for data representation.
+  Implemented necessary functions to access this data in meaningful ways, as well as a way to visualize the current board.
+Week 2: Highly optimized the Board class from the previous week by changing the way chess pieces' information is stored.
+  Implemented the greater part of chess pieces' moves within the class (some work still to be done). 
+  With the help of Sirawit, made the CFBoard class callable to make moves, and generally usable for others.
+  Made docstrings for all methods.
+Week 3: Added methods according to feedback, and lightly tested my ruleset code to suss out any errors.
+Week 4: Optimized a large part of the process for getting legal moves in the board implementation.
+  Moved my progress report to this most recent file instead of updating the old file every week (hopefully not a problem).
+Week 5: Will slowly transition to working with the algorithm team more closely, and hopefully get a better picture of the project as a whole.
+
+Ba Cong:
+	This week: 
+		- Found a better coefficient for the heat map implementation
+		- Came up with idea of maximal matching to find the position maximizing the benefit from placing pieces on their targeted squares.
+		- Tested the implementation on more hand-generated test cases
+	Next week:
+		- Implement the maximal matching idea using Dinic's algorithm
+		- Support the implementation of UCI as suggested by Sirawit
+		
+Cassidy:
+	This week:
+		-found a way to make a matrix invertible without changing too much the data (I add 0.001 times the identity, this new matrix is non-invertible iff 0.001 is an Eigenvalue of the matrix ( very unlikely)).
+		-Added some new basis such as the erf and tan^{-1} and tested it out with some data from the generating team.
+		- Implemented a function that compares how good two ai's do compared to one another on some given data set and also the evaluation funcion for the ai.
+		- Did all of the docstring
+		- the whole core of the switch ai is done (now we only need to get doxygen to work)
+	Next week:
+		- test the more abondent and precise data that should be provided by the generating team in the days to come.
+		- find the best basis and therefore the ai that will be used in the end for the evaluation function (so that we are 100% done with the switch)
+		- join the algo team and work on some theory (maybe unsupervised machine learning seems very intresting)
+		
+		
+		
+
+Shirelle: This week I have finished my function on generating a chessboard with random pions, and tested it. Next week I will switch to the test team, help this team by creating algorithms to test their functions. 
+
+Sirawit:
+	This week:
+		- Finished linking stockfish
+		- Finished experiment modelling on closed position
+	Next week:
+		- Finish the experiment
+		- Connect the whole flow of the project
+		
+Aarrya:
+	This week: 
+		- tested and commented a lot of code
+		- our project ran into the first problem in terms of idea and structure. Most of my time went dedicated to finding the solutions and optimizing them as 		  much as possible to present in the next meeting and decide the future.
+		
+Dimitrije:
+This week:
+	-Spent time on finding optimal solutions for the problem mentioned in Aarrya's report.
+	-Did player color recognition for opencv.
+	-Added documentation.
+	-Found a way to detect pieces easily.
+Next week:
+	-Use the piece movement method and implement it.
+	
+		
+Razvan:
+This week:
+	-Merged my code with Dimitrije's
+	-Changed his code to a set of methods that i can use for the main app
+Next week:
+	-Optimise the chess board colour detection
+	-Move to working on the algorithm

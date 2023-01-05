@@ -22,15 +22,19 @@ void test_pieceIdToChar(){
 }
 
 void test_pieceCharToId(){
-    std::vector<std::tuple<bool, bool, CFBoard>> tests = { // check test cases
-        std::make_tuple(false, false, CFBoard()),
-        std::make_tuple(true, true,
-                        CFBoard("rnbqkbnr/ppp1pppp/3p4/8/Q7/2P5/PP1PPPPP/"
-                                "RNBQKBNR w KQkq - 0 1"))};
+    char test[12] = {'P', 'p', 'N', 'n', 'B', 'b', 'R', 'r', 'Q', 'q', 'K', 'k'};
+    char out[12] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
     std::cout << "test_pieceCarToId ";
     std::cout << "[";
-    for (auto test : tests) {
-        //implement
+    bool TF = true
+    for (int i=0; i<12; i++) {
+        if(test[i] != out[i]) {
+            cout << "Failure";
+                .TF = false;
+        }
+    }
+    if (TF == true){
+        cout << "Success";        
     }
 }
 
