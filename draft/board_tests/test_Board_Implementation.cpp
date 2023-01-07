@@ -72,7 +72,19 @@ void test_getPieceBoardFromIndex(){
     std::cout << "test_etPieceBoardFromIndex ";
     std::cout << "[";
     for (auto test : tests) {
-        //implement
+        CFBoard board;
+
+    
+        assert(board.getPieceBoardFromIndex(0) == board.pawnBoard);
+        assert(board.getPieceBoardFromIndex(1) == board.knightBoard);
+        assert(board.getPieceBoardFromIndex(2) == board.bishopBoard);
+        assert(board.getPieceBoardFromIndex(3) == board.rookBoard);
+        assert(board.getPieceBoardFromIndex(4) == board.queenBoard);
+
+    
+        assert(board.getPieceBoardFromIndex(-1) == board.kingBoard);
+        assert(board.getPieceBoardFromIndex(5) == board.kingBoard);
+}
     }
 }
 void test_getCurrentPlayer(){
