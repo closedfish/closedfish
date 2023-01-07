@@ -1,0 +1,8 @@
+Ariel:
+This week: 
+          - Met with the switch team to run tests on the AI using the generator code.
+	  - Looked into how to create test functions
+	  - Started coding test functions for CFBoard.cpp
+Next week:
+	  - Continue writing test functions
+	  - Continue working with the switch team to train the AI
