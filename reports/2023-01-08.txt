@@ -23,4 +23,14 @@ Next week:
 	- Continue working on the unit-tests.
 	- Work on debugging the algorithm.
 
+Aarrya 
+This week: 
+  1) Made a blueprint of the breakthrough algorithm 
+  2) The original plan of the project has been done so new thought of new optimizations and features and rearranged teams accordingly
+  3) Finalised how all algorithms will come together
+Next week:
+  1) Complete the breakthrough algorithm
+  2) Start putting everything together 
+
+Please also note that there was a problem with the git commit last week. The commit from last week can be seen in the begninning of this week.
 
