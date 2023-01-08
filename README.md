@@ -15,6 +15,7 @@ The aim of this project is to create a chess engine, to improve the
 - Yoshimi-Théophile Etienne, Yoshimi-Theophile, yoshimitheophile
 - Aarrya Saraf, AarryaSaraf, AarryaSaraf. [leader]
 - Dimitrije Zdrale, D-2n, @dimitrije32, [UI]
+- Etienne Leroy, etienne-leroy, etienneleroy8, [member]
 
 
 ## Teams
