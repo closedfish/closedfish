@@ -45,3 +45,12 @@ Week 3: Added methods according to feedback, and lightly tested my ruleset code 
 Week 4: Optimized a large part of the process for getting legal moves in the board implementation.
   Moved my progress report to this most recent file instead of updating the old file every week (hopefully not a problem).
 Week 5: Suggested changes to algorithm to the current iteration, and studied some of the repository. Will assist in the creation of DFS's next week.
+
+Sirawit:
+This week:
+	- Did 2 meetings on resolving `TeamSwitchAI` branch and the breakthrough algorithmic structure.
+	- (unfinished) Implement a function to evaluate a `CFBoard` using Stockfish naive evaluation.
+Next week:
+	- Continue the implementation.
+	- Resolve `TeamSwitchAI`.
+	- Help Yoshi and Aarrya on the breakthrough algorithm.
