@@ -89,13 +89,13 @@ void test_getCurrentPlayer(){
 }
 void test_getPieceFromCoords(){
     CFBoard();
-    int tests[18] = {0,1,2,3,4,5,6,7,11,23,55,56,57,58,59,60,61,62,63};
-    int out[18] = {7,3,5,9,11,5,3,7,1,-1,0,6,2,4,8,10,4,2,6};
+    int tests[19] = {0,1,2,3,4,5,6,7,11,23,55,56,57,58,59,60,61,62,63};
+    int out[19] = {7,3,5,9,11,5,3,7,1,-1,0,6,2,4,8,10,4,2,6};
     std::cout << "test_getPieceFromCoords ";
     std::cout << "[";
     bool TF = true
-    for (int i=0; i<18; i++) {
-        if (getPieceFromCoords( tests[i] ) != out[i]) {
+    for (int i=0; i<19; i++) {
+        if (CFBoard.getPieceFromCoords( tests[i] ) != out[i]) {
             cout << "Failure :(";
             TF = false;
         }
@@ -107,28 +107,41 @@ void test_getPieceFromCoords(){
 }
 
 void test_getBit(){
-    std::vector<std::tuple<bool, bool, CFBoard>> tests = {// check test cases
-        std::make_tuple(false, false, CFBoard()),
-        std::make_tuple(true, true,
-                        CFBoard("rnbqkbnr/ppp1pppp/3p4/8/Q7/2P5/PP1PPPPP/"
-                                "RNBQKBNR w KQkq - 0 1"))};
+    CFBoard();
+    int tests_pos[10] = {0,1,2,3,4,5,6,7,23,55};
+    int tests_piece[10] = {7,3,5,9,11,1,1,1,0,0}
+    int out[10] = {1,1,1,1,1,0,0,0,0,1};
     std::cout << "test_getBit ";
     std::cout << "[";
-    for (auto test : tests) {
-        //implement
+    bool TF = true
+    for (int i=0; i<10; i++) {
+        if (CFBoard.getBit(tests_piece[i], tests_pos[i]) != out[i]) {
+            cout << "Failure :(";
+            TF = false;
+        }
     }
+    if (TF == true){
+        cout << "Success!";
+    }
+    std::cout << "]" << std::endl;
 }
 void test_getMaterialCount(){
-    std::vector<std::tuple<bool, bool, CFBoard>> tests = {// check test cases
-        std::make_tuple(false, false, CFBoard()),
-        std::make_tuple(true, true,
-                        CFBoard("rnbqkbnr/ppp1pppp/3p4/8/Q7/2P5/PP1PPPPP/"
-                                "RNBQKBNR w KQkq - 0 1"))};
-    std::cout << "test_getMaterialCount ";
+    CFBoard();
+    int tests[2] = {1,2}
+    int out[2] = {16,16}
+    std::cout << "test_getMaterialCount() ";
     std::cout << "[";
-    for (auto test : tests) {
-        //implement
+    bool TF = true
+    for (int i=0; i<2; i++) {
+        if (CFBoard.getMaterialCount(tests[i]) != out[i]) {
+            cout << "Failure :(";
+            TF = false;
+        }
     }
+    if (TF == true){
+        cout << "Success!";
+    }
+    std::cout << "]" << std::endl;
 }
 void test_addPiece(){
     std::vector<std::tuple<bool, bool, CFBoard>> tests = {// check test cases

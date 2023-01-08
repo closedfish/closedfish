@@ -13,8 +13,8 @@ namespace CFBoardTester {
     void test_getPieceBoardFromIndex(); // Etienne
     void test_getCurrentPlayer(); // Shirelle
     void test_getPieceFromCoords(); // Etienne - done
-    void test_getBit();
-    void test_getMaterialCount();
+    void test_getBit(); // Etienne - done
+    void test_getMaterialCount(); // Etienne - done
     void test_addPiece(); // Etienne 
     void test_removePiece();
     void test_movePiece();
