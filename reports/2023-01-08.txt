@@ -1,0 +1,16 @@
+Ariel:
+This week: 
+          - Met with the switch team to run tests on the AI using the generator code.
+	  - Looked into how to create test functions
+	  - Started coding test functions for CFBoard.cpp
+Next week:
+	  - Continue writing test functions
+	  - Continue working with the switch team to train the AI
+
+Ba Cong:
+This week:
+	- Implement one-person DFS algorithm by moving towards positions closest to the heat map
+	- Use the algorithm class provided by Rali to set up an architecture for communication between components of the project.
+Next week:
+	- Tweak the one-person DFS algorithm for better performance
+	- Help the team doing two-people DFS algorithm
