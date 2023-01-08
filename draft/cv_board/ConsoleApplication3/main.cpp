@@ -148,6 +148,36 @@ void movePiece(string move, Board &board) {//executes the move, updates the boar
     }
     board.Pieces = piecescopy;
 }
+bool use_mask;
+Mat img; Mat templ; Mat mask; Mat result;
+const char* image_window = "Source Image";
+const char* result_window = "Result window";
+
+int match_method;
+int max_Trackbar = 5;
+
+void detectPieces(Board board, Mat img1) {//works for black only, not for all pawns
+    Mat img_orig;
+    cv::Mat templ = cv::imread("C:\\Users\\dimit\\Desktop\\cps\\black_king.png");
+    imshow("aa", templ);
+    //Mat grey_orig;
+    //Mat grey_template;
+    //cvtColor(templ,grey_template, COLOR_BGR2GRAY);
+    //cvtColor(img1, grey_orig, COLOR_BGR2GRAY);
+    //grey_template.copyTo(img_orig);
+    Mat result;
+    matchTemplate(img1, templ, result, TM_CCOEFF);
+    normalize(result, result, 0, 1, NORM_MINMAX, -1, Mat());
+    double minVal; double maxVal; Point minLoc; Point maxLoc;
+    Point matchLoc;
+    minMaxLoc(result, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
+    matchLoc = maxLoc;
+    rectangle(img_orig, matchLoc, Point(matchLoc.x + templ.cols, matchLoc.y + templ.rows), Scalar::all(0), 2, 8, 0);
+    rectangle(result, matchLoc, Point(matchLoc.x + templ.cols, matchLoc.y + templ.rows), Scalar::all(0), 2, 8, 0);
+    //imshow(image_window, img_orig);
+    imshow(result_window, result);
+    
+}
 int  main() {  //when merging into the algo code change the name for the call
     //this func finds the board and initializes the main board class accordingly, storing all the data
     bool playerColor;
@@ -198,10 +228,11 @@ int  main() {  //when merging into the algo code change the name for the call
     addPieces(board);
     movePiece("Pa2a3", board);
     //
+    detectPieces(board, img);
     Point p2(board.left + 50, board.top+board.height/16);
     Point p4(board.left + 20, board.bottom - board.width / 16);
     rectangle(orig,p1,p2, Scalar(255, 0, 0) ,2,LINE_8); 
     rectangle(orig, p3, p4, Scalar(255, 0, 0), 2, LINE_8);
-    cv::imshow("conts", orig);
+    //cv::imshow("conts", orig);
     cv::waitKey(0);
 }
