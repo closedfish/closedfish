@@ -368,14 +368,11 @@ int CFBoard::getMaterialCount(bool color) {
            __builtin_popcountll(queenBoard) * 9;
 }
 
-/**
-* @brief Gives a text representation of a coordinate.
-*
-* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
-* h7, ......, a1, ..., h1).
-* 
-* @return string representation of the corresponding board tile coordinate
-*/
+bool CFBoard::isCurrentBoardLegal() {
+	return isStateLegal;
+}
+
+
 std::string CFBoard::tileToCoords(int tile){
     std::string ret = "";
     
@@ -388,14 +385,7 @@ std::string CFBoard::tileToCoords(int tile){
     return ret;
 }
 
-/**
-* @brief Gives a text representation of a hypothetical move.
-*
-* @param startTile : start tile for move.
-* @param endTile : end tile for move.
-* 
-* @return string representation of the move from startTile to endTile
-*/
+
 std::string CFBoard::getNextMoveRepr(int startTile, int endTile){
 
     int piece = getPieceFromCoords(startTile);
@@ -653,6 +643,22 @@ void CFBoard::undoLastMove() {
 
 	}
 
+}
+
+void CFBoard::forceAddPiece(int pieceId, int tile) {
+	//backup before making move
+	backupState();
+
+	isStateLegal = false;
+	addPiece(pieceId, tile);
+}
+
+
+void CFBoard::forceRemovePiece(int tile) {
+	backupState();
+
+	isStateLegal = false;
+	removePiece(tile);
 }
 
 // ----- Ruleset -----
