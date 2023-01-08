@@ -34,3 +34,14 @@ Next week:
 
 Please also note that there was a problem with the git commit last week. The commit from last week can be seen in the begninning of this week.
 
+Yoshimi-Theophile
+Week 1: Started implementation of the ClosedFish board. Laid the groundwork for data representation.
+  Implemented necessary functions to access this data in meaningful ways, as well as a way to visualize the current board.
+Week 2: Highly optimized the Board class from the previous week by changing the way chess pieces' information is stored.
+  Implemented the greater part of chess pieces' moves within the class (some work still to be done). 
+  With the help of Sirawit, made the CFBoard class callable to make moves, and generally usable for others.
+  Made docstrings for all methods.
+Week 3: Added methods according to feedback, and lightly tested my ruleset code to suss out any errors.
+Week 4: Optimized a large part of the process for getting legal moves in the board implementation.
+  Moved my progress report to this most recent file instead of updating the old file every week (hopefully not a problem).
+Week 5: Suggested changes to algorithm to the current iteration, and studied some of the repository. Will assist in the creation of DFS's next week.
