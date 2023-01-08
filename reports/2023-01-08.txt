@@ -54,3 +54,10 @@ Next week:
 	- Continue the implementation.
 	- Resolve `TeamSwitchAI`.
 	- Help Yoshi and Aarrya on the breakthrough algorithm.
+
+Shirelle: 
+This week : 
+	-went on meeting with other teams
+	-work on creating functions to test other teams' algorithms 
+Next week:
+	-continue writing test functions 
