@@ -639,3 +639,6 @@ build/
 *.plist
 *.index-v1
 out/
+
+# Executable files
+a.exe
