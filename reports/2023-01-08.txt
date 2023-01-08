@@ -14,3 +14,13 @@ This week:
 Next week:
 	- Tweak the one-person DFS algorithm for better performance
 	- Help the team doing two-people DFS algorithm
+
+Etienne:
+This week:
+	- Continued working on and implementing the unit-tests for our algorithm.
+	- Had more meetings with the members of the algorithm team to better understand its respective functions and conducted further research into more testing methods and syntax along with much trial-and-error.
+Next week:
+	- Continue working on the unit-tests.
+	- Work on debugging the algorithm.
+
+
