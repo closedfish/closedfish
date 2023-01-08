@@ -1,0 +1,63 @@
+Ariel:
+This week: 
+          - Met with the switch team to run tests on the AI using the generator code.
+	  - Looked into how to create test functions
+	  - Started coding test functions for CFBoard.cpp
+Next week:
+	  - Continue writing test functions
+	  - Continue working with the switch team to train the AI
+
+Ba Cong:
+This week:
+	- Implement one-person DFS algorithm by moving towards positions closest to the heat map
+	- Use the algorithm class provided by Rali to set up an architecture for communication between components of the project.
+Next week:
+	- Tweak the one-person DFS algorithm for better performance
+	- Help the team doing two-people DFS algorithm
+
+Etienne:
+This week:
+	- Continued working on and implementing the unit-tests for our algorithm.
+	- Had more meetings with the members of the algorithm team to better understand its respective functions and conducted further research into more testing methods and syntax along with much trial-and-error.
+Next week:
+	- Continue working on the unit-tests.
+	- Work on debugging the algorithm.
+
+Aarrya 
+This week: 
+  1) Made a blueprint of the breakthrough algorithm 
+  2) The original plan of the project has been done so new thought of new optimizations and features and rearranged teams accordingly
+  3) Finalised how all algorithms will come together
+Next week:
+  1) Complete the breakthrough algorithm
+  2) Start putting everything together 
+
+Please also note that there was a problem with the git commit last week. The commit from last week can be seen in the begninning of this week.
+
+Yoshimi-Theophile
+Week 1: Started implementation of the ClosedFish board. Laid the groundwork for data representation.
+  Implemented necessary functions to access this data in meaningful ways, as well as a way to visualize the current board.
+Week 2: Highly optimized the Board class from the previous week by changing the way chess pieces' information is stored.
+  Implemented the greater part of chess pieces' moves within the class (some work still to be done). 
+  With the help of Sirawit, made the CFBoard class callable to make moves, and generally usable for others.
+  Made docstrings for all methods.
+Week 3: Added methods according to feedback, and lightly tested my ruleset code to suss out any errors.
+Week 4: Optimized a large part of the process for getting legal moves in the board implementation.
+  Moved my progress report to this most recent file instead of updating the old file every week (hopefully not a problem).
+Week 5: Suggested changes to algorithm to the current iteration, and studied some of the repository. Will assist in the creation of DFS's next week.
+
+Sirawit:
+This week:
+	- Did 2 meetings on resolving `TeamSwitchAI` branch and the breakthrough algorithmic structure.
+	- (unfinished) Implement a function to evaluate a `CFBoard` using Stockfish naive evaluation.
+Next week:
+	- Continue the implementation.
+	- Resolve `TeamSwitchAI`.
+	- Help Yoshi and Aarrya on the breakthrough algorithm.
+
+Shirelle: 
+This week : 
+	-went on meeting with other teams
+	-work on creating functions to test other teams' algorithms 
+Next week:
+	-continue writing test functions 
