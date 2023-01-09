@@ -39,11 +39,21 @@ void initdidj() {
     dj[5] = {-1, 0, 1, -1, 1, -1, 0, 1};
 }
 
+bool squareSafeFromOpponentPawns(const bool &currentTurn, const uint64_t& opponentPawnBoard, const int& row, const int &col) {
+    if (currentTurn)
+	    return row == 7 || ((col == 0 || !isBitSet(opponentPawnBoard, Heatmap::posToTile({row+1, col-1})))
+				&& (col == 7 || !isBitSet(opponentPawnBoard, Heatmap::posToTile({row+1, col+1}))));
+    else
+        return row == 0 || ((col == 0 || !isBitSet(opponentPawnBoard, Heatmap::posToTile({row-1, col-1})))
+				&& (col == 7 || !isBitSet(opponentPawnBoard, Heatmap::posToTile({row-1, col+1}))));
+}
+
 //Distance between two squares with respect to a piece's movement
 int distFromTileToTileAsPiece(CFBoard& board, int halfPieceId, int startTile, int endTile) {
     std::queue<std::tuple<int,int>> q;
     int dist[8][8];
     bool currentTurn = board.getCurrentPlayer(); // 0: white, 1: black
+    uint64_t opponentPawnBoard = board.getPieceColorBitBoard(!currentTurn);
     memset(dist, -1, sizeof dist);
     dist[startTile/8][startTile%8] = 0;
     q.push(std::make_tuple(startTile/8, startTile%8));
@@ -57,8 +67,11 @@ int distFromTileToTileAsPiece(CFBoard& board, int halfPieceId, int startTile, in
             int newj = curj+dj[halfPieceId][k];
             if (!Heatmap::validSquare(newi, newj)) continue; // out of bound
             if (dist[newi][newj] != -1) continue; // already visited
-            if (board.getPieceFromCoords(newi*8 + newj)&1 == currentTurn) continue; // our piece already on that square
+            if (board.getPieceFromCoords(newi*8+newj) != -1) continue; // our piece or opponent piece already on that square
+            if (!squareSafeFromOpponentPawns(currentTurn, opponentPawnBoard, newi, newj)) continue;
+            // cout << newi << ' ' << newj << ' ' << (board.getPieceFromCoords(newi*8 + newj)) << '\n';
             dist[newi][newj] = dist[curi][curj] + 1;
+            q.push(std::make_tuple(newi, newj));
         }
     }
     return -1;
@@ -125,16 +138,30 @@ std::tuple<int, int, float> DFS1P::getNextMove() {
 
 int main() {
     DFS1P algo;
-    CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
+    // CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
+    CFBoard board = CFBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
 
     algo.setBoardPointer(&board);
     initdidj();
+    cout << board.getRepr() << '\n';
+
+    // // Test di, dj
     // for (int halfPieceId = 0; halfPieceId < 6; halfPieceId++) {
     //     cout << halfPieceId << '\n';
     //     for (int k = 0; k < di[halfPieceId].size(); k++) {
     //         cout << di[halfPieceId][k] << ' ' << dj[halfPieceId][k] << '\n';
     //     }
     // }
+
+    // // Test dist between tiles
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            int tile = i*8 + j;
+            cout << distFromTileToTileAsPiece(board, 4, 59, tile) << ' '; // queen move
+        }
+        cout << '\n';
+    }
+
     auto move = algo.getNextMove();
     std::cout << std::get<0>(move) << ' ' << std::get<1>(move) << ' ' << std::get<2>(move) << '\n';
 }
