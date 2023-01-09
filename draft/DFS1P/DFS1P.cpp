@@ -9,36 +9,6 @@ void DFS1P::setBoardPointer(CFBoard* ptr) {
         currentBoard = ptr;
 }
 
-std::vector<int> di[6], dj[6];
-void initdidj() {
-    di[1] = {1, 2, 2, 1, -1, -2, -2, -1};
-    dj[1] = {2, 1, -1, -2, -2, -1, 1, 2};
-
-    for (int k = -7; k < 7; k++) {
-        if (k == 0) continue;
-        di[2].push_back(k);
-        dj[2].push_back(k);
-        di[2].push_back(k);
-        dj[2].push_back(-k);
-
-        di[3].push_back(k);
-        dj[3].push_back(0);
-        di[3].push_back(0);
-        dj[3].push_back(k);
-
-        di[4].push_back(k);
-        dj[4].push_back(k);
-        di[4].push_back(k);
-        dj[4].push_back(-k);
-        di[4].push_back(k);
-        dj[4].push_back(0);
-        di[4].push_back(0);
-        dj[4].push_back(k);
-    }
-    di[5] = {-1, -1, -1, 0, 0, 1, 1, 1};
-    dj[5] = {-1, 0, 1, -1, 1, -1, 0, 1};
-}
-
 bool squareSafeFromOpponentPawns(const bool &currentTurn, const uint64_t& opponentPawnBoard, const int& row, const int &col) {
     if (currentTurn)
 	    return row == 7 || ((col == 0 || !isBitSet(opponentPawnBoard, Heatmap::posToTile({row+1, col-1})))
@@ -62,9 +32,11 @@ int distFromTileToTileAsPiece(CFBoard& board, int halfPieceId, int startTile, in
         int curi = std::get<0>(q.front()), curj = std::get<1>(q.front());
         q.pop();
         if (curi*8 + curj == endTile) return dist[curi][curj];
-        for (int k = 0; k < di[halfPieceId].size(); k++) {
-            int newi = curi+di[halfPieceId][k];
-            int newj = curj+dj[halfPieceId][k];
+
+        uint64_t nextSquares = board.getLegalMoves(2*halfPieceId + currentTurn, curi*8 + curj);
+        for (int newTile: bitSetPositions(nextSquares)) {
+            int newi = newTile/8;
+            int newj = newTile%8;
             if (!Heatmap::validSquare(newi, newj)) continue; // out of bound
             if (dist[newi][newj] != -1) continue; // already visited
             if (board.getPieceFromCoords(newi*8+newj) != -1) continue; // our piece or opponent piece already on that square
@@ -142,7 +114,6 @@ int main() {
     CFBoard board = CFBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
 
     algo.setBoardPointer(&board);
-    initdidj();
     cout << board.getRepr() << '\n';
 
     // // Test di, dj
@@ -154,13 +125,13 @@ int main() {
     // }
 
     // // Test dist between tiles
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
-            int tile = i*8 + j;
-            cout << distFromTileToTileAsPiece(board, 4, 59, tile) << ' '; // queen move
-        }
-        cout << '\n';
-    }
+    // for (int i = 0; i < 8; i++) {
+    //     for (int j = 0; j < 8; j++) {
+    //         int tile = i*8 + j;
+    //         cout << distFromTileToTileAsPiece(board, 2, 61, tile) << ' ';
+    //     }
+    //     cout << '\n';
+    // }
 
     auto move = algo.getNextMove();
     std::cout << std::get<0>(move) << ' ' << std::get<1>(move) << ' ' << std::get<2>(move) << '\n';
