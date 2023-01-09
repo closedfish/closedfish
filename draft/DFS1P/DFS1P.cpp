@@ -70,48 +70,113 @@ int distFromHeatmap(CFBoard& board, int (&heatMap)[6][8][8]) {
     return dist;
 }
 
-std::tuple<int, int, float> DFS1P::getNextMove() {
-    int heatMap[6][8][8];
-    memset(heatMap, 0, sizeof heatMap);
-	uint64_t weakPawns = 1ll; // placeholder for finished weak pawns implementation
-    Heatmap::addHeatMap(*currentBoard, heatMap, weakPawns);
-    std::tuple<int, int, float> ansMove;
+void DFS1pAux(CFBoard* currentBoard, int depth, int maxDepth, std::vector<std::tuple<int, int, float>> curLine, std::vector<std::vector<std::tuple<int, int, float>>>& possibleLines) {
+    if (depth == maxDepth) {
+        possibleLines.push_back(curLine);
+        return;
+    }
 
-
-    // Get all possible moves
-    std::vector<std::tuple<int, int, float>> possibleMoves;
     bool currentTurn = currentBoard->getCurrentPlayer(); // 0: white, 1: black
     for (int startTile = 0; startTile < 64; startTile++) {
         int pieceId = currentBoard->getPieceFromCoords(startTile);
-        if (pieceId&1 != currentTurn) continue;
+        if (pieceId == -1 || pieceId&1 != currentTurn) continue;
+        // cout << "piece: " << pieceId << '\n';
         uint64_t legalMoves =  currentBoard->getLegalMoves(pieceId, startTile);
         std::vector<int> endTiles = bitSetPositions(legalMoves);
         for (int endTile: endTiles) {
             // std::cout << startTile << ' ' << endTile << '\n';
-            possibleMoves.push_back(std::make_tuple(startTile, endTile, 0.0));
+            curLine.push_back(std::make_tuple(startTile, endTile, 0.0));
+            // cout << "current turn: " << currentTurn << '\n';
+            currentBoard->movePiece(startTile, endTile);
+            currentBoard->forceFlipTurn();
+            // cout << "recent move: " << startTile << ' ' << endTile << '\n';
+            // cout << currentBoard->getRepr();
+            DFS1pAux(currentBoard, depth+1, maxDepth, curLine, possibleLines);
+            curLine.pop_back();
+            currentBoard->undoLastMove();
+            currentBoard->forceFlipTurn();
         }
     }
+}
+
+std::tuple<int, int, float> DFS1P::getNextMove() {
+    int heatMap[6][8][8];
+    memset(heatMap, 0, sizeof heatMap);
+	uint64_t weakPawns = 8ll; // placeholder for finished weak pawns implementation
+    Heatmap::addHeatMap(*currentBoard, heatMap, weakPawns);
+
+    int maxDepth = 2; // CUSTOMIZABLE MAX DEPTH FOR DFS, CAPPED AT 4 CURRENTLY
+    // Get all possible moves
+    std::vector<std::tuple<int, int, float>> ansLine;
+    std::vector<std::vector<std::tuple<int, int, float>>> possibleLines;
     
     // Check all moves (currently only look 1 turn ahead)
     int minDist = 1e9;
-    for (auto move: possibleMoves) {
-        // cout << "current turn: " << currentBoard->getCurrentPlayer() << '\n';
-        // cout << "next move: " << std::get<0>(move) << ' ' << std::get<1>(move) << '\n';
-        // cout << "current board: \n" << currentBoard->getRepr() << '\n'  << " current distance: " << distFromHeatmap(*currentBoard, heatMap) << '\n';
-        currentBoard->movePiece(std::get<0>(move), std::get<1>(move));
-        // cout << "turn after moving: " << currentBoard->getCurrentPlayer() << '\n';
-        // cout << "board after moving: \n" << currentBoard->getRepr() << '\n' << " distance after moving: " << distFromHeatmap(*currentBoard, heatMap) << "\n \n";
-        // Check if the move make us closer to the heatMap
+    DFS1pAux(currentBoard, 0, maxDepth, {}, possibleLines);
+
+    for (auto line: possibleLines) {
+        for (auto move: line) {
+            // cout << "current turn: " << currentBoard->getCurrentPlayer() << '\n';
+            // cout << "next move: " << std::get<0>(move) << ' ' << std::get<1>(move) << '\n';
+            // cout << "current board: \n" << currentBoard->getRepr() << '\n'  << " current distance: " << distFromHeatmap(*currentBoard, heatMap) << '\n';
+            currentBoard->movePiece(std::get<0>(move), std::get<1>(move));
+            currentBoard->forceFlipTurn();
+            // cout << "turn after moving: " << currentBoard->getCurrentPlayer() << '\n';
+            // cout << "board after moving: \n" << currentBoard->getRepr() << '\n' << " distance after moving: " << distFromHeatmap(*currentBoard, heatMap) << "\n \n";
+            // Check if the move make us closer to the heatMap
+            
+        }
         if (distFromHeatmap(*currentBoard, heatMap) < minDist) {
             minDist = distFromHeatmap(*currentBoard, heatMap);
             // If yes then update the potential move
-            ansMove = move;
+            ansLine = line;
         }
-        currentBoard->undoLastMove();
-        
+        for (auto move: line) {
+            currentBoard->undoLastMove();
+            currentBoard->forceFlipTurn();
+        }
     }
+    // for (auto move: ansLine) {
+    //     cout << std::get<0>(move) << ' ' << std::get<1>(move) << '\n';
+    // }
+    return ansLine[0];
 
-    return ansMove;
+    // // Depth 1 only
+    // // Get all possible moves
+    // std::tuple<int, int, float> ansMove;
+    // std::vector<std::tuple<int, int, float>> possibleMoves;
+    // bool currentTurn = currentBoard->getCurrentPlayer(); // 0: white, 1: black
+    // for (int startTile = 0; startTile < 64; startTile++) {
+    //     int pieceId = currentBoard->getPieceFromCoords(startTile);
+    //     if (pieceId&1 != currentTurn) continue;
+    //     uint64_t legalMoves =  currentBoard->getLegalMoves(pieceId, startTile);
+    //     std::vector<int> endTiles = bitSetPositions(legalMoves);
+    //     for (int endTile: endTiles) {
+    //         // std::cout << startTile << ' ' << endTile << '\n';
+    //         possibleMoves.push_back(std::make_tuple(startTile, endTile, 0.0));
+    //     }
+    // }
+    
+    // // Check all moves (currently only look 1 turn ahead)
+    // int minDist = 1e9;
+    // for (auto move: possibleMoves) {
+    //     // cout << "current turn: " << currentBoard->getCurrentPlayer() << '\n';
+    //     // cout << "next move: " << std::get<0>(move) << ' ' << std::get<1>(move) << '\n';
+    //     // cout << "current board: \n" << currentBoard->getRepr() << '\n'  << " current distance: " << distFromHeatmap(*currentBoard, heatMap) << '\n';
+    //     currentBoard->movePiece(std::get<0>(move), std::get<1>(move));
+    //     // cout << "turn after moving: " << currentBoard->getCurrentPlayer() << '\n';
+    //     // cout << "board after moving: \n" << currentBoard->getRepr() << '\n' << " distance after moving: " << distFromHeatmap(*currentBoard, heatMap) << "\n \n";
+    //     // Check if the move make us closer to the heatMap
+    //     if (distFromHeatmap(*currentBoard, heatMap) < minDist) {
+    //         minDist = distFromHeatmap(*currentBoard, heatMap);
+    //         // If yes then update the potential move
+    //         ansMove = move;
+    //     }
+    //     currentBoard->undoLastMove();
+        
+    // }
+
+    // return ansMove;
 }
 
 int main() {
@@ -121,14 +186,6 @@ int main() {
 
     algo.setBoardPointer(&board);
     cout << board.getRepr() << '\n';
-
-    // // Test di, dj
-    // for (int halfPieceId = 0; halfPieceId < 6; halfPieceId++) {
-    //     cout << halfPieceId << '\n';
-    //     for (int k = 0; k < di[halfPieceId].size(); k++) {
-    //         cout << di[halfPieceId][k] << ' ' << dj[halfPieceId][k] << '\n';
-    //     }
-    // }
 
     // // Test dist between tiles
     // for (int i = 0; i < 8; i++) {

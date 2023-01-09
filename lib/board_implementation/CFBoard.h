@@ -167,7 +167,12 @@ public:
 	*/
 	void forceMovePiece(int starttile, int endtile, int pawnPromotionType = -1);
 
-
+	/**
+	* @brief Force flipping turn for one-person dfs.
+	*
+	* @return void.
+	*/
+	void forceFlipTurn();
 
 
 	/**

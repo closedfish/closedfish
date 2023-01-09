@@ -604,6 +604,9 @@ void CFBoard::forceMovePiece(int startTile, int endTile, int pawnPromotionType) 
 
 }
 
+void CFBoard::forceFlipTurn() {
+    turn = !turn;
+}
 
 void CFBoard::undoLastMove() {
 	if (backupStock == 0) { //check that we even have backups
