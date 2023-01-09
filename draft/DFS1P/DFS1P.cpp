@@ -58,8 +58,10 @@ int distFromHeatmap(CFBoard& board, int (&heatMap)[6][8][8]) {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (heatMap[halfPieceId][i][j] != 0) {
-                    for (int startTile: pieceTiles)
+                    for (int startTile: pieceTiles) {
+                        if (distFromTileToTileAsPiece(board, halfPieceId, startTile, i*8+j) == -1) continue;
                         dist += distFromTileToTileAsPiece(board, halfPieceId, startTile, i*8+j);
+                    }
                 }
             }
         }
@@ -93,9 +95,13 @@ std::tuple<int, int, float> DFS1P::getNextMove() {
     // Check all moves (currently only look 1 turn ahead)
     int minDist = 1e9;
     for (auto move: possibleMoves) {
-        currentBoard->movePiece(std::get<0>(move), std::get<1>(move), -1);
+        // cout << "current turn: " << currentBoard->getCurrentPlayer() << '\n';
+        // cout << "next move: " << std::get<0>(move) << ' ' << std::get<1>(move) << '\n';
+        // cout << "current board: \n" << currentBoard->getRepr() << '\n'  << " current distance: " << distFromHeatmap(*currentBoard, heatMap) << '\n';
+        currentBoard->movePiece(std::get<0>(move), std::get<1>(move));
+        // cout << "turn after moving: " << currentBoard->getCurrentPlayer() << '\n';
+        // cout << "board after moving: \n" << currentBoard->getRepr() << '\n' << " distance after moving: " << distFromHeatmap(*currentBoard, heatMap) << "\n \n";
         // Check if the move make us closer to the heatMap
-        // cout << currentBoard->getRepr() << '\n' << distFromHeatmap(*currentBoard, heatMap) << '\n';
         if (distFromHeatmap(*currentBoard, heatMap) < minDist) {
             minDist = distFromHeatmap(*currentBoard, heatMap);
             // If yes then update the potential move
@@ -110,8 +116,8 @@ std::tuple<int, int, float> DFS1P::getNextMove() {
 
 int main() {
     DFS1P algo;
-    // CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
-    CFBoard board = CFBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
+    CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
+    // CFBoard board = CFBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
 
     algo.setBoardPointer(&board);
     cout << board.getRepr() << '\n';
@@ -133,6 +139,13 @@ int main() {
     //     cout << '\n';
     // }
 
-    auto move = algo.getNextMove();
-    std::cout << std::get<0>(move) << ' ' << std::get<1>(move) << ' ' << std::get<2>(move) << '\n';
+    for (int i = 0; i < 10; i++) {
+        auto move = algo.getNextMove();
+        int startTile = std::get<0>(move), endTile = std::get<1>(move);
+        float eval = std::get<2>(move);
+        std::cout << startTile << ' ' << endTile << ' ' << eval << '\n';
+        board.movePiece(startTile, endTile);
+        board.forceMovePiece(0, 0); // One person moving only
+        cout << board.getRepr() << '\n';
+    }
 }
