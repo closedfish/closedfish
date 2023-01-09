@@ -98,6 +98,13 @@ Next week:
 -Rectognition of pieces.
 -(Storing pieces and their coordinates in the board class).
 
+
+Andrei
+This week:
+-fix project structure
+-help with branch merging
+-help with debugging
+
 Razvan:
 This week:
 -Changed some design features for the main GUI
@@ -107,3 +114,13 @@ Next week:
 -Get images of the individual pieces for the recognition
 -Get the colours of the board for the recognition algorithm
 -Merge my part with Dimitrije's
+
+Nadja:
+This week:
+-starting to implement the openings
+-serach for a proper library to read .json files and import it properly
+-help Andrei with finding proper packages in order to import the library with vcpkg
+-actual read the file and conceive a good structure for my openings class
+
+Next week:
+-finish implementing the structure I conceived this week

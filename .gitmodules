@@ -1,3 +1,6 @@
 [submodule "external/stockfish"]
 	path = external/stockfish
 	url = https://github.com/official-stockfish/Stockfish
+[submodule "external/vcpkg"]
+	path = external/vcpkg
+	url = https://github.com/Microsoft/vcpkg.git
