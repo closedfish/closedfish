@@ -47,6 +47,7 @@ public:
 	int top;
 	int bottom;
 	std::vector<Tile> Tiles;
+	std::vector<Piece> Pieces;
 	Board();
 	Board(int,int,int,int);
 };

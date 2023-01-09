@@ -44,6 +44,14 @@ void consoleTest()//testing different stuff using the console
             GetCursorPos(&p);
             bc.sendClick(p.x, p.y);
             break;
+        case -21:
+        {
+            char* path = (char*)bc._saveScreenToFileWithType(L"Test.png", 1);
+            auto dpair = giveBoard(path, bc.giveW(), bc.giveH());
+            std::cout << dpair.first.first << " " << dpair.first.second << "<-\n";
+            std::cout << dpair.second.first << " " << dpair.second.second << "<-\n"; 
+        }
+            break;
         default:
             bc.printSq(nr);
             std::cout << nr << "<-\n";
