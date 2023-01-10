@@ -19,12 +19,12 @@ bool CFBoard::naiveCheckCheck(bool color, int coordA, int coordB) {
         return false;
     uint64_t kingTile = 63ll - __builtin_clzll(thisKingBoard);
     // make sure kingTile is not coordA or coordB
-    uint64_t otherBoard = getColorBitBoard(!color) &
-                          ~(1ll << (uint64_t)coordA) &
-                          ~(1ll << (uint64_t)coordB);
-    uint64_t allBoard =
-        ((whiteBoard | blackBoard) | (1ll << (uint64_t)coordB)) &
-        (1ll << (uint64_t)coordA);
+    uint64_t otherBoard = getColorBitBoard(!color);
+    if(coordA != -1) otherBoard &= ~(1ll << (uint64_t)coordA);
+    if(coordB != -1) otherBoard &= ~(1ll << (uint64_t)coordB);
+    uint64_t allBoard = whiteBoard | blackBoard;
+    if(coordB != -1) allBoard |= (1ll << (uint64_t)coordB);
+    if(coordA != -1) allBoard &= ~(1ll << (uint64_t)coordA);
     int kingRow = kingTile >> 3;
     int kingCol = kingTile & 7;
     // Check P, N
