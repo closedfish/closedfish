@@ -30,13 +30,23 @@ bool CFBoard::naiveCheckCheck(bool color, int coordA, int coordB) {
     // Check P, N
     int dx[] = {-1, -1, -1, -1, 1, 1, -2, -2, 2, 2};
     int dy[] = {-1, 1, -2, 2, -2, 2, -1, 1, -1, 1};
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 2; i++) {
         // This loop should be unrolled
         // I hope the compiler does this for me
         int px = kingRow + dx[i];
         int py = kingCol + dy[i];
         uint64_t pTile = 1ll << (uint64_t)(px * 8 + py);
-        if (isPositionValid(px, py) && (otherBoard & pTile)) {
+        if (isPositionValid(px, py) && (otherBoard & pawnBoard & pTile)) {
+            return true;
+        }
+    }
+    for (int i = 2; i < 10; i++) {
+        // This loop should be unrolled
+        // I hope the compiler does this for me
+        int px = kingRow + dx[i];
+        int py = kingCol + dy[i];
+        uint64_t pTile = 1ll << (uint64_t)(px * 8 + py);
+        if (isPositionValid(px, py) && (otherBoard & knightBoard & pTile)) {
             return true;
         }
     }
