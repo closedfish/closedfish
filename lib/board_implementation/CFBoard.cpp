@@ -10,7 +10,7 @@
 
 // implemented
 
-
+/*
 int main(){
     
     
@@ -20,17 +20,17 @@ int main(){
     // cout << board.naiveCheckCheck(0) << '\n';
     std::cout << testBoard.getReprLegalMove(4, 37); 
 
-    /*
+    
     for (int i=10; i<12; i+=1){
         // std::cout << testBoard.getReprLegalMove(i, 0) << std::endl;
         std::cout << testBoard.getReprLegalMove(i, 36) << std::endl;
     }
-    */
+    
     
     
     return 0;
 }
-
+*/
 
 // ----- Constructors, Formatting, Representation -----
 
