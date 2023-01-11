@@ -35,14 +35,15 @@ std::array<std::array<int, 8>, 8> distFromTileToTilesAsPiece(CFBoard& board, int
         q.pop();
 
         uint64_t nextSquares = board.getLegalMoves(2*halfPieceId + currentTurn, curi*8 + curj);
+        // cout << nextSquares << '\n';
         for (int newTile: bitSetPositions(nextSquares)) {
             int newi = newTile/8;
             int newj = newTile%8;
+            // cout << newi << ' ' << newj << ' ' << (board.getPieceFromCoords(newi*8 + newj)) << '\n';
             if (!Heatmap::validSquare(newi, newj)) continue; // out of bound
             if (dist[newi][newj] != -1) continue; // already visited
             if (board.getPieceFromCoords(newi*8+newj) != -1) continue; // our piece or opponent piece already on that square
             if (!squareSafeFromOpponentPawns(currentTurn, opponentPawnBoard, newi, newj)) continue; // square unsafe for our piece
-            // cout << newi << ' ' << newj << ' ' << (board.getPieceFromCoords(newi*8 + newj)) << '\n';
             dist[newi][newj] = dist[curi][curj] + 1;
             q.push(std::make_tuple(newi, newj));
         }
@@ -52,18 +53,27 @@ std::array<std::array<int, 8>, 8> distFromTileToTilesAsPiece(CFBoard& board, int
 
 int distFromHeatmap(CFBoard& board, int (&heatMap)[6][8][8]) {
     int dist = 0;
+    const int COEFF_SEPARATED = 100; // adjustable
     bool currentTurn = board.getCurrentPlayer(); // 0: white, 1: black
     for (int halfPieceId = 0; halfPieceId < 6; halfPieceId++) {
+        // if (halfPieceId != 1) continue;
+        // cout << "Dist map for: " << halfPieceId << '\n';
         uint64_t pieceBoard = board.getPieceColorBitBoard(2*halfPieceId|currentTurn);
         std::vector<int> pieceTiles = bitSetPositions(pieceBoard);
         for (int startTile: pieceTiles) {
             std::array<std::array<int, 8>, 8> distFromStart = distFromTileToTilesAsPiece(board, halfPieceId, startTile);
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
-                    if (heatMap[halfPieceId][i][j] != 0 && distFromStart[i][j] != -1) {
-                        dist = distFromStart[i][j];
+                    // cout << heatMap[halfPieceId][i][j] << ' ';
+                    // cout << distFromStart[i][j] << ' ';
+                    if (heatMap[halfPieceId][i][j] == 0) continue;
+                    if (distFromStart[i][j] != -1) {
+                        dist += heatMap[halfPieceId][i][j] * distFromStart[i][j];
+                    } else {
+                        dist += COEFF_SEPARATED*heatMap[halfPieceId][i][j];
                     }
                 }
+                // cout << '\n';
             }
         }
     }
@@ -119,7 +129,11 @@ std::tuple<int, int, float> DFS1P::getNextMove() {
     DFS1pAux(currentBoard, 0, maxDepth, {}, possibleLines);
 
     for (auto line: possibleLines) {
+        // if (std::get<0>(line[0]) != 54 || std::get<1>(line[0])  != 46) continue;
         // cout << "line: \n";
+        // cout << "dist before: " << distFromHeatmap(*currentBoard, heatMap) << '\n';
+        // cout << currentBoard->getRepr();
+        // cout << "in check: " << currentBoard->naiveCheckCheck(currentBoard->getCurrentPlayer()) << '\n';
         for (auto move: line) {
             // cout << "move: " << std::get<0>(move) << ' ' << std::get<1>(move) << '\n';
             // cout << "current turn: " << currentBoard->getCurrentPlayer() << '\n';
@@ -131,6 +145,13 @@ std::tuple<int, int, float> DFS1P::getNextMove() {
             // cout << "board after moving: \n" << currentBoard->getRepr() << '\n' << " distance after moving: " << distFromHeatmap(*currentBoard, heatMap) << "\n \n";
             // Check if the move make us closer to the heatMap
             
+        }
+        if (currentBoard->naiveCheckCheck(currentBoard->getCurrentPlayer())) {
+            cout << "REDFLAG: SHOULDN'T BE IN CHECK\n";
+            cout << "dist after: " << distFromHeatmap(*currentBoard, heatMap) << '\n';
+            cout << currentBoard->getRepr();
+            cout << currentBoard->toFEN();
+            cout << "in check: " << currentBoard->naiveCheckCheck(currentBoard->getCurrentPlayer()) << '\n';
         }
         if (distFromHeatmap(*currentBoard, heatMap) < minDist) {
             minDist = distFromHeatmap(*currentBoard, heatMap);
@@ -145,6 +166,7 @@ std::tuple<int, int, float> DFS1P::getNextMove() {
     // for (auto move: ansLine) {
     //     cout << std::get<0>(move) << ' ' << std::get<1>(move) << '\n';
     // }
+    cout << distFromHeatmap(*currentBoard, heatMap) << '\n';
     return ansLine[0];
 
     // // Depth 1 only
@@ -188,10 +210,16 @@ std::tuple<int, int, float> DFS1P::getNextMove() {
 int main() {
     DFS1P algo;
     CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
+    // CFBoard board = CFBoard("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1N1/2B1QB1R/3K3R w - - 0 1"); // no open files, >= 2 free rows
+	// CFBoard board = CFBoard("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R w - - 0 1"); // no open files, 1 free rows, no chance of winning, 3 is better than 4 for some reasons
     // CFBoard board = CFBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
+    // CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP4/PpP1BN1R/1P2QNK1/4RB2 w - - 0"); // wrong old naiveCheckCheck
+    // CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP1B2/PpP3QR/1P1N1N2/R4BK1 w - - 0 1"); // wrong legal moves for bishop
+    // cout << board.naiveCheckCheck(0) << '\n';
+    // cout << board.getReprLegalMove(6, 47); 
 
     algo.setBoardPointer(&board);
-    cout << board.getRepr() << '\n';
+    // cout << board.getRepr() << '\n';
 
     // // Test dist between tiles
     // for (int i = 0; i < 8; i++) {
@@ -202,13 +230,13 @@ int main() {
     //     cout << '\n';
     // }
 
-    for (int i = 0; i < 10; i++) {
-        auto move = algo.getNextMove();
-        int startTile = std::get<0>(move), endTile = std::get<1>(move);
-        float eval = std::get<2>(move);
-        std::cout << startTile << ' ' << endTile << ' ' << eval << '\n';
-        board.movePiece(startTile, endTile);
-        board.forceMovePiece(0, 0); // One person moving only
-        cout << board.getRepr() << '\n';
-    }
+    // for (int i = 0; i < 15; i++) {
+    //     auto move = algo.getNextMove();
+    //     int startTile = std::get<0>(move), endTile = std::get<1>(move);
+    //     float eval = std::get<2>(move);
+    //     std::cout << startTile << ' ' << endTile << ' ' << eval << '\n';
+    //     board.movePiece(startTile, endTile);
+    //     board.forceFlipTurn(); // One person moving only
+    //     cout << board.getRepr() << '\n';
+    // }
 }
