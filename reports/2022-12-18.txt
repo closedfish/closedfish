@@ -86,3 +86,10 @@ This week:
 Next week:
 	-Optimise the chess board colour detection
 	-Move to working on the algorithm
+
+Nadja: 
+	This week:
+	- Work on team strategy to devise if the machine learning approach would be good
+	- Try to see how much computer power would we need for a dep learning approach 
+	- Compute complexities for diverse strategies and see which one would be the nest
+
