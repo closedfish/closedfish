@@ -7,11 +7,22 @@
 
 namespace CFBoardTester {
     void test_pieceIdToChar(); // Etienne - done
+    // tests each piece, pieceId from 0-11, and compares pieceIdtoChar output to expected output
+
     void test_pieceCharToId(); // Shirelle - done
-    void test_getColorBitBoard(); //Etienne
+    // tests each piece, pieceChar for P/N/B/R/Q/K, and compares pieceChartoId output to expected output
+
+    void test_getColorBitBoard(); //Etienne - done - Check - could be too basic
+    // tests the default board, checks if white and black BitBoard match
+
     void test_getPieceColorBitBoard(); // Shirelle
-    void test_getPieceBoardFromIndex(); // Etienne
-    void test_getCurrentPlayer(); // Shirelle
+    //
+
+    void test_getPieceBoardFromIndex(); // Etienne - done
+    //
+
+    void test_getCurrentPlayer(); //Etienne
+
     void test_getPieceFromCoords(); // Etienne - done
     void test_getBit(); // Etienne - done
     void test_getMaterialCount(); // Etienne - done
