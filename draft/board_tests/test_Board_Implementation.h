@@ -19,9 +19,10 @@ namespace CFBoardTester {
     //
 
     void test_getPieceBoardFromIndex(); // Etienne - done
-    //
+    //tests the default board, checks every board from pawn - king
 
-    void test_getCurrentPlayer(); //Etienne
+    void test_getCurrentPlayer(); //Etienne - done - could be too basic
+    //tests the default board, tests that white is the first move.
 
     void test_getPieceFromCoords(); // Etienne - done
     void test_getBit(); // Etienne - done
@@ -36,8 +37,8 @@ namespace CFBoardTester {
     void test_getKingPattern();// shirelle
     void test_getPawnPattern();
     void test_getLegalMoves();
-    void test_naiveCheckCheck();
-    void test_fromFEN();
-    void test_toFEN();
+    void test_naiveCheckCheck(); // done
+    void test_fromFEN(); // done
+    void test_toFEN(); // done
 
 }
