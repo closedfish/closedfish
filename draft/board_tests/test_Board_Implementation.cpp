@@ -61,7 +61,7 @@ void test_getPieceColorBitBoard(){
         //implement
     }
 }
-void test_getPieceBoardFromIndex(){
+void test_getPieceBoardFromIndex(){ 
     std::cout << "test_getColorBitBoard : " << std::endl;
         
     CFBoard board;
@@ -70,22 +70,21 @@ void test_getPieceBoardFromIndex(){
     assert(board.getPieceBoardFromIndex(0) == board.pawnBoard);
         std::cout << "Test case 1 passed" << std::endl;
     // Test case 2: Check knight board
-    assert(board.getPieceBoardFromIndex(2) == board.knightBoard);
+    assert(board.getPieceBoardFromIndex(1) == board.knightBoard);
         std::cout << "Test case 2 passed" << std::endl;
     // Test case 3: Check bishop board
-    assert(board.getPieceBoardFromIndex(4) == board.bishopBoard);
+    assert(board.getPieceBoardFromIndex(2) == board.bishopBoard);
         std::cout << "Test case 3 passed" << std::endl;
     // Test case 4: Check rook board
-    assert(board.getPieceBoardFromIndex(6) == board.rookBoard);
+    assert(board.getPieceBoardFromIndex(3) == board.rookBoard);
         std::cout << "Test case 4 passed" << std::endl;
     // Test case 5: Check queen board
-    assert(board.getPieceBoardFromIndex(8) == board.queenBoard);
+    assert(board.getPieceBoardFromIndex(4) == board.queenBoard);
         std::cout << "Test case 5 passed" << std::endl;
     // Test case 6: Check king board
-    assert(board.getPieceBoardFromIndex(10) == board.kingBoard);
+    assert(board.getPieceBoardFromIndex(5) == board.kingBoard);
         std::cout << "Test case 6 passed" << std::endl;
         
-    
     std::cout << "[Success!]" << std::endl;
 }
 
@@ -161,8 +160,9 @@ void test_addPiece(){
     std::cout << "test_addPiece ";
     std::cout << "[";
     for (auto test : tests) {
-        //implement
+        implement
     }
+   
 }
 void test_removePiece(){
     std::vector<std::tuple<bool, bool, CFBoard>> tests = {// check test cases
@@ -224,41 +224,76 @@ void test_getDiagonals(){
         //implement
     }
 }
-void test_getKnightPattern(){
-    std::vector<std::tuple<bool, bool, CFBoard>> tests = {// check test cases
-        std::make_tuple(false, false, CFBoard()),
-        std::make_tuple(true, true,
-                        CFBoard("rnbqkbnr/ppp1pppp/3p4/8/Q7/2P5/PP1PPPPP/"
-                                "RNBQKBNR w KQkq - 0 1"))};
+void test_getKnightPattern() {
+    std::vector<std::tuple<int, bool, CFBoard, uint64_t>> tests = {
+        std::make_tuple(0, false, CFBoard(), 0x20400),
+        std::make_tuple(1, true, CFBoard("rnbqkbnr/ppp1pppp/3p4/8/Q7/2P5/PP1PPPPP/RNBQKBNR w KQkq - 0 1"), 0x10100)
+    };
+
     std::cout << "test_getKnightPattern ";
     std::cout << "[";
     for (auto test : tests) {
-        //implement
+        int tile = std::get<0>(test);
+        bool color = std::get<1>(test);
+        CFBoard board = std::get<2>(test);
+        uint64_t expected = std::get<3>(test);
+        uint64_t result = board.getKnightPattern(tile, color);
+        if (result != expected) {
+            std::cout << "FAILED";
+            return;
+        }
     }
+    std::cout << "PASSED";
+    std::cout << "]" << std::endl;
 }
-void test_getKingPattern(){
-    std::vector<std::tuple<bool, bool, CFBoard>> tests = {// check test cases
-        std::make_tuple(false, false, CFBoard()),
-        std::make_tuple(true, true,
-                        CFBoard("rnbqkbnr/ppp1pppp/3p4/8/Q7/2P5/PP1PPPPP/"
-                                "RNBQKBNR w KQkq - 0 1"))};
+void test_getKingPattern() {
+    std::vector<std::tuple<int, bool, CFBoard, uint64_t>> tests = {
+        std::make_tuple(0, false, CFBoard(), 0x302),
+        std::make_tuple(1, true, CFBoard("rnbqkbnr/ppp1pppp/3p4/8/Q7/2P5/PP1PPPPP/RNBQKBNR w KQkq - 0 1"), 0x202)
+    };
+
     std::cout << "test_getKingPattern ";
     std::cout << "[";
     for (auto test : tests) {
-        //implement
+        int tile = std::get<0>(test);
+        bool color = std::get<1>(test);
+        CFBoard board = std::get<2>(test);
+        uint64_t expected = std::get<3>(test);
+        uint64_t result = board.getKingPattern(tile, color);
+        if (result != expected) {
+            std::cout << "FAILED";
+            return;
+        }
     }
+    std::cout << "PASSED";
+    std::cout << "]" << std::endl;
 }
-void test_getPawnPattern(){
-    std::vector<std::tuple<bool, bool, CFBoard>> tests = {// check test cases
-        std::make_tuple(false, false, CFBoard()),
-        std::make_tuple(true, true,
-                        CFBoard("rnbqkbnr/ppp1pppp/3p4/8/Q7/2P5/PP1PPPPP/"
-                                "RNBQKBNR w KQkq - 0 1"))};
+void test_getPawnPattern() {
+    std::vector<std::tuple<uint64_t, bool, int, CFBoard>> tests = {
+        std::make_tuple(0x000000000000ff00, true, 0, CFBoard()),
+        std::make_tuple(0x000000000000ff00, true, 8, CFBoard()),
+        std::make_tuple(0x000000000000ff00, false, 56, CFBoard()),
+        std::make_tuple(0x00000000000000ff, false, 63, CFBoard()),
+        std::make_tuple(0x0020000000000000, true, 48,
+                        CFBoard("8/8/8/8/8/8/4P3/8 b - - 0 1"))};
+
     std::cout << "test_getPawnPattern ";
     std::cout << "[";
+
     for (auto test : tests) {
-        //implement
+        uint64_t expected = std::get<0>(test);
+        bool color = std::get<1>(test);
+        int tile = std::get<2>(test);
+        CFBoard board = std::get<3>(test);
+
+        uint64_t actual = board.getPawnPattern(tile, color);
+        if (expected == actual) {
+            std::cout << ".";
+        } else {
+            std::cout << "F";
+        }
     }
+    std::cout << "]" << std::endl;
 }
 void test_getLegalMoves(){
     std::vector<std::tuple<bool, bool, CFBoard>> tests = { // check test cases
