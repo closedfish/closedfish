@@ -32,8 +32,8 @@ namespace CFBoardTester {
     void test_forceUndo();
     void test_getCardinals();
     void test_getDiagonals();
-    void test_getKnightPattern();
-    void test_getKingPattern();
+    void test_getKnightPattern(); // shirelle
+    void test_getKingPattern();// shirelle
     void test_getPawnPattern();
     void test_getLegalMoves();
     void test_naiveCheckCheck();
