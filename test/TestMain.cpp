@@ -1,4 +1,5 @@
 #include <iostream>
+#include <PlayMain.h>
 
 int main() {
     std::cout << "Tests started!" << std::endl;
