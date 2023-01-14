@@ -107,6 +107,7 @@ option(ENABLE_TESTING "Whether to enable the unit testing build" ON)
 
 #Check if there is need to compile unit test
 if(ENABLE_TESTING)
+    enable_testing()
     add_subdirectory(test)
 else()
     message("W/o exe. unit")

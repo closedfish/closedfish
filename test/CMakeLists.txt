@@ -18,8 +18,6 @@ target_link_libraries(${TEST_MAIN} PUBLIC
     ${OPENING}
     ${FAC})   
 
-# enable_testing()
-
 find_package(Catch2 CONFIG REQUIRED)
 include(CTest)
 include(Catch)
