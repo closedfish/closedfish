@@ -1,8 +1,5 @@
 set(OPENING_SOURCES 
-    "opening_main.cpp")
-set(OPENING_HEADERS
-    "opening_main.hpp")
-
+    "OpeningMain.cpp")
 add_library(${OPENING} STATIC
     ${OPENING_SOURCES}
     ${OPENING_HEADERS})
@@ -10,7 +7,9 @@ add_library(${OPENING} STATIC
 target_include_directories(${OPENING} PUBLIC 
     "./"
     "${CMAKE_BINARY_DIR}/configured_files/include")
-
+find_package(jsoncpp CONFIG REQUIRED)
+target_link_libraries(${OPENING} PRIVATE 
+    JsonCpp::JsonCpp)
 if (${ENABLE_WARNINGS})
     target_set_warnings(TARGET ${OPENING} ENABLE ON AS_ERROR OFF)
 endif()
