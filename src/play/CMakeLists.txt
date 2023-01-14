@@ -14,8 +14,7 @@ target_include_directories(${PLAY} PUBLIC
     "./"
     "${CMAKE_BINARY_DIR}/_deps/eigenlib-src/Eigen"
     "${CMAKE_BINARY_DIR}/configured_files/include")
-target_link_libraries(${PLAY} PUBLIC  
-    nlohmann_json
+target_link_libraries(${PLAY} PUBLIC
     Eigen3::Eigen
    )
 

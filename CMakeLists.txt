@@ -107,15 +107,10 @@ option(ENABLE_TESTING "Whether to enable the unit testing build" ON)
 #Check if there is need to compile unit test
 if(ENABLE_TESTING)
     add_subdirectory(test)
-
     include(CTest)
-    
-    add_executable(tests test/TestMain.cpp)
-    find_package(Catch2 CONFIG REQUIRED)
-    target_link_libraries(tests PRIVATE Catch2::Catch2 Catch2::Catch2WithMain)
-    else()
-        message("W/o exe. unit")
-    endif()
+else()
+    message("W/o exe. unit")
+endif()
 
 #Check if there is need to compile the executable
 option(COMPILE_EXECUTABLE "Whether to compile the executable" OFF)

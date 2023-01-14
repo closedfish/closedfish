@@ -9,8 +9,6 @@ target_include_directories(${OPENING} PUBLIC
     "${CMAKE_BINARY_DIR}/configured_files/include")
 find_package(jsoncpp CONFIG REQUIRED)
 target_link_libraries(${OPENING} PRIVATE 
-    jsoncpp_lib 
-    jsoncpp_object 
     JsonCpp::JsonCpp)
 if (${ENABLE_WARNINGS})
     target_set_warnings(TARGET ${OPENING} ENABLE ON AS_ERROR OFF)
