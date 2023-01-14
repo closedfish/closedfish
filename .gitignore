@@ -636,6 +636,7 @@ FodyWeavers.xsd
 src/Generator/Generator/generator
 
 build/
+
 src/Generator/Generator/ModuleCache.noindex/Session.modulevalidation
 src/Generator/Generator/Generator-emmzeqevaoeevohberbchelxpaaf/info.plist
 *.plist
@@ -651,6 +652,44 @@ src/Generator/Generator/Generator-emmzeqevaoeevohberbchelxpaaf/info.plist
 *.plist
 *.modulevalidation
 *.plist
+
+
+### C++ ###
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+###
+
 *.plist
 *.index-v1
 out/
