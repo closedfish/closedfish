@@ -82,3 +82,10 @@ This week:
 Two implementations for board condition reading. Adapted the input and output for better connection with the rest of the code and worked on merging it.
 Next week:
 Come up with alternative to OpenCV native template matching functions and merge.
+
+
+Nadja:
+		This week
+		-Help Andrei for 5 hours to work on breakthroughs in closed positions.
+		-Study chess material and analyze closed positions
+		-Clean-up my local branches

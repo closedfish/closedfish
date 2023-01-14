@@ -1,7 +1,7 @@
 set(OUPUT_SOURCES 
     "output.cpp")
 set(OUPUT_HEADERS
-    "output.hpp")
+    "output.h")
 
 add_library(${OUTPUT} STATIC
     ${OUPUT_SOURCES}
