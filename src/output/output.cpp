@@ -1,14 +1,15 @@
-#include<iostream>
-#include<fstream>
+#include <iostream>
+#include <fstream>
+
 #include "output.h"
-void writting::write_in_file()
-{
+
+void writting::write_in_file() {
   std::ofstream myfile;
-  myfile.open ("out.txt");
-  myfile <<"Hello world!";
+  myfile.open("out.txt");
+  myfile << "Hello world!";
   myfile.close();
 }
-void OutputToUI()
-{
-writting::write_in_file();
+ 
+void OutputToUI() {
+  writting::write_in_file();
 }
