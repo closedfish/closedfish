@@ -1,5 +1,6 @@
 #include <iostream>
-#include "PlayMain.h"
+#include <PlayMain.h>
+
 int main() {
     std::cout << "Tests started!" << std::endl;
     std::cout << "Tests (0) succeeded!" << std::endl;
