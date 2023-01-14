@@ -1,5 +1,4 @@
 #pragma once
-#define DEBUG 1 //turn off for final version
 
 #ifdef _MSC_VER
 #include <nmmintrin.h>
@@ -147,10 +146,39 @@ public:
 	*/
 	int getMaterialCount(bool color);
 
+	/**
+	* @brief As soon as a forced move is performed, we return false even if the current board could be legal. Basically a check of whether the current board was only reached using fully legal moves.
+
+	* @return The boolean which indicates legality of the board.
+	*/
+	bool isCurrentBoardLegal();
+
+
+	/**
+	* @brief Gives a text representation of a coordinate.
+	*
+	* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
+	* h7, ......, a1, ..., h1).
+	*
+	* @return string representation of the corresponding board tile coordinate
+	*/
 	std::string tileToCoords(int tile);
+
+
+	/**
+	* @brief Gives a text representation of a hypothetical move.
+	*
+	* @param startTile : start tile for move.
+	* @param endTile : end tile for move.
+	*
+	* @return string representation of the move from startTile to endTile
+	*/
 	std::string getNextMoveRepr(int startTile, int endTile);
 
-	// ----- Manipulation -----
+
+
+
+	// ----- Board Manipulation -----
 
 	/**
 	* @brief Only accepts legal chess moves. Pawns are promoted to queens by default.
@@ -186,23 +214,16 @@ public:
 	void undoLastMove();
 
 
-	// -------   Debug-only Manipulation -------
-
-#if DEBUG == 1
-	/**
-	* @brief Functionally the same as addPiece but is only exposed when debug is enabled
-	*/
-	void forceAddPiece(int pieceId, int tile) {
-		addPiece(pieceId, tile);
-	}
 
 	/**
-	* @brief Functionally the same as removePiece but is only exposed when debug is enabled
+	* @brief Adds a piece of the given pieceId at the given tile, makes the state illegal from now on.
 	*/
-	void forceRemovePiece(int tile) {
-		removePiece(tile);
-	}
-#endif
+	void forceAddPiece(int pieceId, int tile);
+
+	/**
+	* @brief Removes the piece present at the given tile, makes the state illegal from now on.
+	*/
+	void forceRemovePiece(int tile);
 
 	// ----- Ruleset -----
 
@@ -279,14 +300,7 @@ public:
 	uint64_t getLegalMoves(int pieceId, int tile);
 
 
-	/**
-	* @brief As soon as a forced move is performed, we return false even if the current board could be legal. Basically a check of whether the current board was only reached using fully legal moves.
 
-	* @return The boolean which indicates legality of the board.
-	*/
-	bool isCurrentBoardLegal() {
-		return isStateLegal;
-	}
 
 
 	/**
