@@ -1,5 +1,5 @@
 set(BI_SOURCES 
-    "CFBoard.cpp")
+    "CFBoard.cpp" "naiveCheckCheck.cpp")
 set(BI_HEADERS
     "CFBoard.h")
 

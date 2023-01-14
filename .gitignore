@@ -676,3 +676,5 @@ build/
 *.plist
 *.index-v1
 out/
+
+Testing/
