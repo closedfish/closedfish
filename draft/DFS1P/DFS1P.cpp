@@ -53,7 +53,7 @@ std::array<std::array<int, 8>, 8> distFromTileToTilesAsPiece(CFBoard& board, int
 
 int distFromHeatmap(CFBoard& board, int (&heatMap)[6][8][8]) {
     int dist = 0;
-    const int COEFF_SEPARATED = 100; // adjustable
+    const int COEFF_SEPARATED = 5; // adjustable
     bool currentTurn = board.getCurrentPlayer(); // 0: white, 1: black
     for (int halfPieceId = 0; halfPieceId < 6; halfPieceId++) {
         // if (halfPieceId != 1) continue;
@@ -116,7 +116,7 @@ void DFS1pAux(CFBoard* currentBoard, int depth, int maxDepth, std::vector<std::t
 std::tuple<int, int, float> DFS1P::getNextMove() {
     int heatMap[6][8][8];
     memset(heatMap, 0, sizeof heatMap);
-	uint64_t weakPawns = 8ll; // placeholder for finished weak pawns implementation
+	uint64_t weakPawns = 1ll; // placeholder for finished weak pawns implementation
     Heatmap::addHeatMap(*currentBoard, heatMap, weakPawns);
 
     int maxDepth = 3; // CUSTOMIZABLE MAX DEPTH FOR DFS, CAPPED AT 4 CURRENTLY
@@ -209,7 +209,7 @@ std::tuple<int, int, float> DFS1P::getNextMove() {
 
 int main() {
     DFS1P algo;
-    CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
+    // CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
     // CFBoard board = CFBoard("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1N1/2B1QB1R/3K3R w - - 0 1"); // no open files, >= 2 free rows
 	// CFBoard board = CFBoard("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R w - - 0 1"); // no open files, 1 free rows, no chance of winning, 3 is better than 4 for some reasons
     // CFBoard board = CFBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
@@ -230,13 +230,13 @@ int main() {
     //     cout << '\n';
     // }
 
-    // for (int i = 0; i < 15; i++) {
-    //     auto move = algo.getNextMove();
-    //     int startTile = std::get<0>(move), endTile = std::get<1>(move);
-    //     float eval = std::get<2>(move);
-    //     std::cout << startTile << ' ' << endTile << ' ' << eval << '\n';
-    //     board.movePiece(startTile, endTile);
-    //     board.forceFlipTurn(); // One person moving only
-    //     cout << board.getRepr() << '\n';
-    // }
+    for (int i = 0; i < 15; i++) {
+        auto move = algo.getNextMove();
+        int startTile = std::get<0>(move), endTile = std::get<1>(move);
+        float eval = std::get<2>(move);
+        std::cout << startTile << ' ' << endTile << ' ' << eval << '\n';
+        board.movePiece(startTile, endTile);
+        board.forceFlipTurn(); // One person moving only
+        cout << board.getRepr() << '\n';
+    }
 }
