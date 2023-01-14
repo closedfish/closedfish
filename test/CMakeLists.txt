@@ -15,6 +15,7 @@ target_link_libraries(${TEST_MAIN} PUBLIC
     ${PLAY}
     ${INPUT}    
     ${OUTPUT}
-    ${OPENING})   
+    ${OPENING}
+    ${FAC})   
 
 enable_testing()

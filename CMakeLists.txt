@@ -29,6 +29,7 @@ set(INPUT ReceiveInputFromUI)
 set(OUTPUT SendOutputToUI)
 set(OPENING DeceideOverOpening)
 set(BI BoardImplementation)
+set(FAC FactorialImplementation)
 
 set(EXECUTABLE Executable)
 
