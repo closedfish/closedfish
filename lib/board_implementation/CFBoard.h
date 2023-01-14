@@ -1,5 +1,13 @@
 #pragma once
 
+#ifdef _MSC_VER
+#include <nmmintrin.h>
+#include <immintrin.h>
+#define __builtin_popcountll _mm_popcnt_u64
+#define __builtin_ctzll _tzcnt_u64
+#define __builtin_clzll _lzcnt_u64
+#endif
+
 #include <iostream>
 #include <stdint.h>
 

@@ -91,3 +91,14 @@ Week 2: Highly optimized the Board class from the previous week by changing the 
   Made docstrings for all methods.
 Week 3: Added methods according to feedback, and lightly tested my ruleset code to suss out any errors.
 Week 4 plan: heavily optimization-focused, will try to implement rulesets deterministically.
+
+Week three plan: Keep adding functionalities that are missing (currently castle and pawn promotion come to mind).
+  Adapt the class to fit user needs and feedback from other group members.
+  Start optimizing and testing the existing code.
+
+Andrei:
+This week:
+-build project structure with cmake
+-help others with debugging
+
+
