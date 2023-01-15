@@ -32,3 +32,13 @@ Next week:
 	  - Continue writing test functions
 	  - Continue working with the switch team to train the AI
 	  - Help Merge the project
+
+
+Ba Cong:
+This week:
+	- Fixed the one person dfs when it goes to an infinite loop too early.
+	- Optimized the one person dfs for higher depth.
+	- Discovered bugs in naiveCheckCheck and CFBoard from testing with one person dfs, informed Sirawit and Yoshi to fix them afterwards.
+Next week:
+	- Finish the one person dfs and help out on other algorithms.
+	- Help with building connectors between components of the project.
