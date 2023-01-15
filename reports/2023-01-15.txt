@@ -4,3 +4,11 @@ Aarrya:
     wrote the code and almost completed it
   Next week:
     put everything together, debug, test, pray to god
+
+
+Etienne:
+This week:
+	- Continued working on the Unit-Tests and almost finished them.
+	- Started researching and looking into debugging for the algorithm.
+Next week:
+	- Finish all the Unit-Tests, debug and finish the algorithm.
