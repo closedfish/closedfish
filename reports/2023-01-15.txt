@@ -17,7 +17,7 @@ Next week:
 Antonia:
 
 This week:
-	- in PieceMovement.cpp: implemented functiosn to detect blunders (to detect if we can eat any piece after the last opponent's move°. Since in closed positions no one should be able to take opponent pieces, if we suddenly can eat a piece it means that the opponent played badly.
+	- in PieceMovement.cpp: implemented functiosn to detect blunders (to detect if we can eat any piece after the last opponent's move°. Since in closed positions no one should be able to take opponent pieces, if we suddenly can eat a piece it means that the opponent played badly).
 	- in WeakPawns.cpp : implemented some more weak pawns functions for the needs of the 2-person dfs
 
 Next week:
