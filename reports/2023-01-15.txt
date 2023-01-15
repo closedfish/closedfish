@@ -23,3 +23,12 @@ This week:
 Next week:
 	- Fix bugs and merge
 	- start thinking about the presentation
+
+
+Ariel:
+This week: 
+	  - Coded test functions for CFBoard.cpp
+Next week:
+	  - Continue writing test functions
+	  - Continue working with the switch team to train the AI
+	  - Help Merge the project
