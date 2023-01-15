@@ -30,14 +30,13 @@ namespace WeakPawns{
 	 * @brief Returns the number of pawns currenly protecting the piece at the target tile.
 	 *
 	 * @param board : current CFBoard
-	 * @param color : color of the target pawn (white : 0, black : 1)
 	 * @param pTile : index of the tile to protect (0...63)
 	 * 
 	 * @return : number of protecting pawns 
 	 */
+	int nbProtectingPawns(CFBoard &board, int &pTile){
 
-	int nbProtectingPawns(CFBoard &board, bool &color, int &pTile){
-
+		bool color = board.getPieceFromCoords(tile)%2;
 		int pi = pTile/8;
 		int pj = pTile%8;
 		
@@ -80,17 +79,18 @@ namespace WeakPawns{
 	 * @brief Returns the number of boardId currenly protecting the piece at the target tile
 	 *
 	 * @param board : current CFBoard
-	 * @param color : color of the target pawn (white : 0, black : 1)
 	 * @param pTile : index of the tile to protect (0...63)
-	 * @param pType : type of the piece to protect equal to 0/2/4/6/8/10 for P/N/B/R/Q/K, +1 if the piece is black.
 	 * @param boardId : equal to 0/1/2/3/4/5 for P/N/B/R/Q/K (piece_id >> 1)
 	 * 
 	 * @return : number of pieces of boardId protecting the target tile
 	 */
-	int nbProtectingPiecesById(CFBoard &board, bool &color, int &pTile, int pType, int boardId){
+	int nbProtectingPiecesById(CFBoard &board, int &pTile, int boardId){
+
+		bool color = board.getPieceFromCoords(tile)%2;
+		int pType  = board.getPieceFromCoords(pTile);
 		
 		if(boardId == 0){ //if pawns, special case (since pawns move differently when they capture)
-			return nbProtectingPawns(board, color, pTile);
+			return nbProtectingPawns(board, pTile);
 		}
 
 		int count = 0;
@@ -98,9 +98,9 @@ namespace WeakPawns{
 		uint64_t allyPieceBoard = board.getPieceBoardFromIndex(boardId) & board.getColorBitBoard(color);
 
 		for (int tile = 0; tile <= 63; tile++){
-			if((allyPieceBoard & (1ll << tile))!= 0){ //we found an ally piece on tile
-				uint64_t moves = board.getLegalMoves((boardId<<1) + color, tile); //get the moves that our piece can do
-				if(((moves)&(1ll<<pTile))!=0){//if the piece can do a move that reaches the tile to protect
+			if((allyPieceBoard & (1ll << tile))!= 0){ //we found an ally piece
+				uint64_t moves = board.getLegalMoves((boardId<<1) + color, tile); //get the moves that the ally piece can do
+				if(((moves)&(1ll<<pTile))!=0){//if the ally piece can do a move that reaches the tile to protect
 					count++;
 				}
 			}
@@ -117,18 +117,18 @@ namespace WeakPawns{
 	 * (can be used to tell if any piece is protected)
 	 *
 	 * @param board : current CFBboard
-	 * @param color : color of the piece to protect (white : 0, black : 1)
 	 * @param tile : index of the tile to protect
-	 * @param type : type of the piece to protect
 	 * 
 	 * @return : number of protecting pieces/pawns 
 	 */
-	int nbProtectingPieces(CFBoard board, bool color, int tile, int type){
+	int nbProtectingPieces(CFBoard board, int tile){
+
+		bool color = board.getPieceFromCoords(tile)%2;
 
 		int count = 0;
 
 		for(int i = 0; i <= 5; i++){
-			count += nbProtectingPiecesById(board, color, tile, type, i);
+			count += nbProtectingPiecesById(board, tile, i);
 		}
 		return count;
 		
@@ -139,13 +139,13 @@ namespace WeakPawns{
 	 * (if it is protected by at least 1 pawn)
 	 *
 	 * @param board : current CFBoard
-	 * @param color : color of the target pawn (white : 0, black : 1)
 	 * @param tile : index of the tile of the pawn (0...63)
 	 * 
 	 * @return : true or false
 	 */
-	bool isConnected(CFBoard &board, bool &color, int &tile){
-		if(nbProtectingPiecesById(board, color, tile, 0, color) > 0){
+	bool isConnected(CFBoard &board, int &tile){
+		bool color = board.getPieceFromCoords(tile)%2;
+		if(nbProtectingPiecesById(board, tile, 0, color) > 0){ //boardId = color = 0 or 1
 			return true;
 		}
 		return false;
@@ -156,13 +156,13 @@ namespace WeakPawns{
 	 * (if the colomn between the pawn and the opponent's side of the board if free)
 	 *
 	 * @param board : current CFBboard
-	 * @param color : color of the target pawn (white : 0, black : 1)
 	 * @param tile : index of tile of the pawn (0..63)
 	 * 
 	 * @return : true or false 
 	 */
-	bool isPassed(CFBoard &board, bool &color, int &tile){
+	bool isPassed(CFBoard &board, int &tile){
 
+		bool color = board.getPieceFromCoords(tile)%2;
 		uint64_t straight_line = board.getLegalMoves(6 + color, tile); // we imagine that the pawn in a rook
 		for(int i = 0; i<= 7; i++){
 			int opponent_side = i; //if white, top
@@ -180,13 +180,13 @@ namespace WeakPawns{
 	 * @brief Checks if a pawn is isolated (if there are no ally pieces/pawns on any of its adjacent tiles)
 	 *
 	 * @param board : current CFboard
-	 * @param color : color of the target pawn (white : 0, black : 1)
 	 * @param tile : index of tile of the pawn (0...63)
 	 * 
 	 * @return : true or false
 	 */
-	bool isIsolated(CFBoard &board, bool &color, int &tile){ 
+	bool isIsolated(CFBoard &board, int &tile){ 
 		
+		bool color = board.getPieceFromCoords(tile)%2;
 		int count = 0; //counts the number of free tiles around 
 
 		//we imagine that we have a king on the tile and see where it can move
@@ -223,16 +223,16 @@ namespace WeakPawns{
 	/**
 	 * @brief Returns a bit board with 1s on the tiles that can protect the target tile
 	 * by putting pawn on the "protecting tile"
-	 * (helper function for prTilesById)
+	 * (helper function for protectingTilesById)
 	 *
 	 * @param board : <CFBoard> current board
-	 * @param color : <bool> color of the target pawn (white : 0, black : 1)
 	 * @param ptile : <int> index of the tile we want to protect
 	 * 
 	 * @return : bitboard
 	 */
-	uint64_t prTilesPawns(CFBoard &board, bool &color, int &pTile){
+	uint64_t protectingTilesForPawns(CFBoard &board, int &pTile){
 		
+		bool color = board.getPieceFromCoords(ptile)%2;
 		uint64_t result = 0;
 
 		int pi = pTile/8;
@@ -278,18 +278,18 @@ namespace WeakPawns{
 	 * (helper function for prTiles)
 	 * 
 	 * @param board : current CFBboard
-	 * @param color : color of the target pawn (white : 0, black : 1)
-	 * @param ptile : index of the tile we want to protect (0...63)
+	 * @param pTile : index of the tile we want to protect (0...63)
 	 * @param boardId : equal to 0/1/2/3/4/5 for P/N/B/R/Q/K (piece_id >> 1)
 	 * 
 	 * @return: bitboard
 	 */
-	uint64_t prTilesById(CFBoard &board, bool &color, int &pTile, int boardId){
+	uint64_t protectingTilesForId(CFBoard &board, int &pTile, int boardId){
 		
+		bool color = board.getPieceFromCoords(ptile)%2;
 		uint64_t result = 0;
 
 		if(boardId == 0){ //if pawn
-			return prTilesPawns(board, color, pTile);
+			return protectingTilesForPawns(board, color, pTile);
 		}
 
 		// we imagine we have a piece_id on the tile
@@ -308,17 +308,17 @@ namespace WeakPawns{
 	 * (if we can get one of the ally pieces on one of the "protecting tiles", then we will protect the target tile)
 	 *
 	 * @param board : current CFBboard
-	 * @param color : color of the target pawn (white : 0, black : 1)
 	 * @param tile : index of the tile we want to protect (0...63)
 	 * 
 	 * @return: bitboard
 	 */
-	uint64_t prTiles(CFBoard &board, bool &color, int &tile){
+	uint64_t protectingTiles(CFBoard &board, int &tile){
 		
+		bool color = board.getPieceFromCoords(tile)%2;
 		uint64_t result = 0; //output bitboard
 
 		for(int i = 0; i<=5; i++){
-			result = result | prTilesById(board, color, tile, i);
+			result = result | protectingTilesForId(board, color, tile, i);
 		}
 
 		return result;	
@@ -329,18 +329,18 @@ namespace WeakPawns{
 	 * with a '#' on the free tiles that can protect the target tile
 	 *
 	 * @param board : current CFBboard
-	 * @param color : color of the target pawn (white : 0, black : 1)
 	 * @param tile : index of the tile we want to protect (0...63)
 	 * 
 	 * @return: string
 	 */
-	string ReprProtectingTiles(CFBoard board, bool color, int tile){
+	string ReprProtectingTiles(CFBoard board, int tile){
 		
-		uint64_t protectingTiles = prTiles(board, color, tile);
+		bool color = board.getPieceFromCoords(tile)%2;
+		uint64_t proTiles = protectingTiles(board, tile);
 		std::string repr = "|";
 		bool isProtectingTile; //0 or 1
 		for (int tileI = 0; tileI <= 63; tileI++) {
-			isProtectingTile = (protectingTiles>>tileI)&1;
+			isProtectingTile = (proTiles>>tileI)&1;
 			repr += (tileI == tile)?"/":" ";
 
 			int pieceIdI = board.getPieceFromCoords(tileI);
@@ -364,5 +364,57 @@ namespace WeakPawns{
 			}
 		}
 		return repr;
+	}
+
+	/**
+	 * @brief Returns the bitboard of the tiles protected by the piece at tile
+	 *
+	 * @param board : current CFBboard
+	 * @param tile : index of the tile of the piece (0...63)
+	 * 
+	 * @return: bitboard (uint64_t)
+	 */
+	uint64_t getProtectedTiles(CFBoard board, int tile){
+
+		int pieceId = board.getPieceFromCoords(tile);
+		int color = pieceId%2;
+		vector<int> removed;
+
+		for(int t = 0; t <= 63; t++){
+			if((board.getColorBitBoard(color)&(1<<t)) && (t != tile)){
+				removed.push(board.getPieceFromCoords(t));
+				removed.push(t);
+				board.forceRemovePiece(t);
+			}
+		}
+
+		uint64_t res = board.getLegalMoves(pieceId, tile);
+
+		for (std::vector<int>::iterator i = removed.begin(); i != removed.end();i=i+2){
+			board.forceAddPiece(i*, (i+1)*);
+    	}
+
+		return res;
+	}
+
+	/**
+	 * @brief Returns the bitboard of the tiles protected by pawns + the tiles with pawns on them
+	 *
+	 * @param board : current CFBboard
+	 * @param color : white : 0, black : 1
+	 * 
+	 * @return: bitboard (uint64_t)
+	 */
+	uint64_t getBoardProtectedByPawns(CFBoard board, bool color){
+
+		uint64_t colorBoard = board.getColorBitBoard(color);
+		uint64_t protectedByPawn = 0;
+		for(int t = 0; t<=63; t++){
+			if((1ll<<t)&colorBoard){//found a pawn of the color
+				protectedByPawn = protectedByPawn | getProtectedTiles(board, t);
+			}
+		}
+
+		return protectedByPawn | (board.getPieceBoardFromIndex(0)&colorBoard);
 	}
 }
