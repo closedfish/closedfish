@@ -182,3 +182,28 @@ uint64_t* getPieceMovements(CFBoard &board, bool &color, int tile){
 
     return result;
 }
+
+
+
+/**
+ * @brief : Gives you the opponent's last move from the previous and current board 
+ * 
+ * @param lastBoard : board stored after our turn, before opponent's turn (important!)
+ * @param currentBoard : current board after opponent plays
+ * @param colorPlayed : color of the opponent
+ * 
+ * @return 0 if we detenct there have been multiple moves in between, otherwise:
+ * an int x = 64*(starttile) + endtile (start and end encoded in one int).
+ * 
+*/
+int getLastMove(CFBoard lastBoard, CFBoard currentBoard, bool colorPlayed){
+
+    uint64_t lastColorBoard = lastBoard.getColorBitBoard(colorPlayed);
+    uint64_t currentColorBoard = currentBoard.getColorBitBoard(colorPlayed);
+
+    uint64_t diffBoard = lastColorBoard ^ currentColorBoard;
+
+    if (__builtin_popcountll(diffBoard) > 2){return -1;}
+
+    return 64*(__builtin_ctzll(diffBoard & lastColorBoard)+1) + __builtin_ctzll(diffBoard & currentColorBoard)+1;
+}
