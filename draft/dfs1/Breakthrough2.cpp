@@ -76,6 +76,7 @@ vector<int> dfsBreak(CFBoard board, int start, uint64_t ends, float pruneval)
 {
 	// line of moves
 	vector<int> line;
+	vector<int> ans;
 	// flag to check if we have completed 1 bruteforce dfs or not
 	bool flag = false;
 	if (pruneval == -10.23)
@@ -89,7 +90,7 @@ vector<int> dfsBreak(CFBoard board, int start, uint64_t ends, float pruneval)
 			int p = board.getPieceFromCoords(sq);
 			board.movePiece(start, sq);
 			vector<int> temp;
-			line = dfsBruteForce(board, 1, 1, temp);
+			ans = dfsBruteForce(board, 1, 1, temp);
 			board.forceUndo(start, sq, p);
 			pruneval = line[0]+0.01*line[1];
 			flag = false;
@@ -102,10 +103,21 @@ vector<int> dfsBreak(CFBoard board, int start, uint64_t ends, float pruneval)
 			vector<int> temp;
 			line = dfsPruned(board, 0,1, temp, pruneval);
 			board.forceUndo(start, sq, p);
-			pruneval = line[0] + 0.01 * line[1];
+			float te = line[0] + 0.01 * line[1];
+			if (te > pruneval)
+			{
+				ans = line;
+				pruneval = te;
+			}
 		}
 	}
-	return line;
+	if (ans[0] == 0)
+	{
+		vector<int> nob;
+		nob.push_back(0);
+		return nob;
+	}
+	return ans;
 }
 
 /*
