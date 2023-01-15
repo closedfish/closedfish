@@ -9,7 +9,7 @@ void test_pieceIdToChar(){
     std::cout << "test_pieceIdToChar : " << std::endl;
     bool TF = true;
     for (int i=0; i < 12; i++) {
-        assert(pieceCharToId(test[i]) == out[i]);
+        assert(pieceCharToId(tests[i]) == out[i]);
         std::cout << "Test case " << i << "passed" << std::endl;
     }
 
@@ -19,20 +19,16 @@ void test_pieceIdToChar(){
 void test_pieceCharToId(){
     char test[12] = {'P', 'p', 'N', 'n', 'B', 'b', 'R', 'r', 'Q', 'q', 'K', 'k'}; // every pieceChar
     int out[12] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}; // every pieceId
-    std::cout << "test_pieceCarToId : ";
-    std::cout << "[";
+    std::cout << "test_pieceIdToChar : " << std::endl;
     bool TF = true;
-    for (int i=0; i<12; i++) {
-        if(pieceCharToId(test[i]) != out[i]) { // test pieceCharToId output to expected out
-            cout << "Failure :(";
-            TF = false;
-        }
+    for (int i=0; i < 12; i++) {
+        assert(pieceCharToId(test[i]) == out[i]);
+        std::cout << "Test case " << i << "passed" << std::endl;
     }
-    if (TF == true){
-        cout << "Success!";
-    }
-    std::cout << "]" << std::endl;
+
+    std::cout << "[Success!]" << std::endl;
 }
+
 
 void test_getColorBitBoard(){
     CFBoard board;  // Generate a default chess board
@@ -50,17 +46,21 @@ void test_getColorBitBoard(){
     
 }
 void test_getPieceColorBitBoard(){
-    std::vector<std::tuple<bool, bool, CFBoard>> tests = { // check test cases
-        std::make_tuple(false, false, CFBoard()),
-        std::make_tuple(true, true,
-                        CFBoard("rnbqkbnr/ppp1pppp/3p4/8/Q7/2P5/PP1PPPPP/"
-                                "RNBQKBNR w KQkq - 0 1"))};
-    std::cout << "test_getPieceColorBitBoard ";
-    std::cout << "[";
-    for (auto test : tests) {
-        //implement
-    }
+    CFBoard board;  // Generate a default chess board
+        
+    std::cout << "test_getPieceColorBitBoard : " << std::endl;
+    // Test case 1: Check black board
+    assert(board.getColorBitBoard(true) == board.whiteboard;
+    std::cout << "Test case 1 passed" << std::endl;
+           
+    // Test case 2: Check white board
+    assert(board.getColorBitBoard(false) == board.blackboard);
+    std::cout << "Test case 2 passed" << std::endl;
+    
+    std::cout << "[Success!]" << std::endl;
+    
 }
+               
 void test_getPieceBoardFromIndex(){ 
     std::cout << "test_getColorBitBoard : " << std::endl;
         
@@ -98,6 +98,7 @@ void test_getCurrentPlayer(){
             
     std::cout << "[Success!]" << std::endl;
 }
+           
 void test_getPieceFromCoords(){
     // default board
     CFBoard board;
@@ -160,7 +161,7 @@ void test_addPiece(){
     std::cout << "test_addPiece ";
     std::cout << "[";
     for (auto test : tests) {
-        implement
+        //implement
     }
    
 }
