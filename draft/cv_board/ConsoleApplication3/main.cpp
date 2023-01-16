@@ -275,12 +275,12 @@ int  main() {  //when merging into the algo code change the name for the call
     Mat white_pawn = imread("C:\\Users\\dimit\\Desktop\\cps\\white_pawn.png");
     Mat white_pawn1 = imread("C:\\Users\\dimit\\Desktop\\cps\\b_white_pawn.png");
     //Takes the input image
-    cv::Mat img = cv::imread("C:\\Users\\dimit\\Desktop\\testslika1.png");
+    cv::Mat img = imread("C:\\Users\\dimit\\Desktop\\testslika1.png");
     cv::Mat orig;
     //Switches to HSV
     img.copyTo(orig);
-    matchingMethod(board, orig, black_king);
-    matchingMethod(board, orig, black_queen);
+    //matchingMethod(board, orig, black_king);
+    //matchingMethod(board, orig, black_queen);
     //matchingMethod(board, orig, black_pawn);
     //matchingMethod(board, orig, black_pawn1);
     //matchingMethod(board, orig, black_knight);
