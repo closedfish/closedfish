@@ -159,6 +159,12 @@ const char* result_window = "Result window";
 int match_method;
 int max_Trackbar = 5;
 
+Mat conv(Mat& img)
+{
+    Mat hsvImg;
+    cvtColor(img, hsvImg, COLOR_BGR2HSV);
+    return hsvImg;
+}
 void detectPieces(Board &board, Mat &img1, Mat &templ) {//works for black only, not for all pawns
     Mat img_orig;
     img1.copyTo(img_orig);
@@ -176,7 +182,73 @@ void detectPieces(Board &board, Mat &img1, Mat &templ) {//works for black only, 
     matchLoc = maxLoc;
     rectangle(img1, matchLoc, Point(matchLoc.x + templ.cols, matchLoc.y + templ.rows), Scalar::all(0), 2, 8, 0);
     rectangle(result, matchLoc, Point(matchLoc.x + templ.cols, matchLoc.y + templ.rows), Scalar::all(0), 2, 8, 0);
-    imshow(image_window, img_orig);
+    //imshow(image_window, img_orig);
+}
+
+void matchingMethod(Board board,Mat& img, Mat& templ)
+{
+    /// Source image to display
+    Mat img_display; Mat result;
+    img.copyTo(img_display);//for later show off
+    Mat imgh = conv(img);
+    Mat templh = conv(templ);
+    /// Create the result matrix - shows template responces
+    int result_cols = img.cols - templ.cols + 1;
+    int result_rows = img.rows - templ.rows + 1;
+    result.create(result_cols, result_rows, CV_32FC1);
+
+    /// Do the Matching and Normalize
+    matchTemplate(imgh, templh, result, TM_CCORR_NORMED);
+    normalize(result, result, 0, 1, NORM_MINMAX, -1, Mat());
+
+    /// Localizing the best match with minMaxLoc
+    double minVal; double maxVal;
+    Point minLoc; Point maxLoc;
+    Point matchLoc;
+
+
+    //in my variant we create general initially positive mask 
+    Mat general_mask = Mat::ones(result.rows, result.cols, CV_8UC1);
+    for (int k = 0; k < 5; ++k)// look for N=5 objects
+    {
+        minMaxLoc(result, &minVal, &maxVal, &minLoc, &maxLoc, general_mask);
+        //just to visually observe centering I stay this part of code:
+        result.at<float>(minLoc) = 1.0;//
+        result.at<float>(maxLoc) = 0.0;//
+
+        matchLoc = maxLoc;
+        //koeffitient to control neiboring:
+//k_overlapping=1.- two neiboring selections can overlap half-body of     template
+//k_overlapping=2.- no overlapping,only border touching possible
+//k_overlapping>2.- distancing
+//0.< k_overlapping <1.-  selections can overlap more then half 
+        float k_overlapping = 1.7f;//little overlapping is good for my task
+
+        //create template size for masking objects, which have been found,
+        //to be excluded in the next loop run
+        int template_w = ceil(k_overlapping * templ.cols);
+        int template_h = ceil(k_overlapping * templ.rows);
+        int x = matchLoc.x - template_w / 2;
+        int y = matchLoc.y - template_h / 2;
+
+        //shrink template-mask size to avoid boundary violation
+        if (y < 0) y = 0;
+        if (x < 0) x = 0;
+        //will template come beyond the mask?:if yes-cut off margin; 
+        if (template_w + x > general_mask.cols)
+            template_w = general_mask.cols - x;
+        if (template_h + y > general_mask.rows)
+            template_h = general_mask.rows - y;
+
+        //set the negative mask to prevent repeating
+        Mat template_mask = Mat::zeros(template_h, template_w, CV_8UC1);
+        template_mask.copyTo(general_mask(cv::Rect(x, y, template_w, template_h)));
+
+        /// Show me what you got on main image and on result (
+        rectangle(img, matchLoc, Point(matchLoc.x + templ.cols, matchLoc.y + templ.rows), Scalar::all(0), 2, 8, 0);
+        //small correction here-size of "result" is smaller
+        rectangle(result, Point(matchLoc.x - templ.cols / 2, matchLoc.y - templ.rows / 2), Point(matchLoc.x + templ.cols / 2, matchLoc.y + templ.rows / 2), Scalar::all(0), 2, 8, 0);
+    }//for k= 0--5 
 }
 int  main() {  //when merging into the algo code change the name for the call
     //this func finds the board and initializes the main board class accordingly, storing all the data
@@ -185,30 +257,49 @@ int  main() {  //when merging into the algo code change the name for the call
     Mat black_king = imread("C:\\Users\\dimit\\Desktop\\cps\\black_king.png");
     Mat black_queen = imread("C:\\Users\\dimit\\Desktop\\cps\\black_queen.png");
     Mat black_knight = imread("C:\\Users\\dimit\\Desktop\\cps\\black_knight.png");
+    Mat black_knight1 = imread("C:\\Users\\dimit\\Desktop\\cps\\b_black_knight.png");
     Mat black_bishop = imread("C:\\Users\\dimit\\Desktop\\cps\\black_bishop.png");
+    Mat black_bishop1 = imread("C:\\Users\\dimit\\Desktop\\cps\\b_black_bishop.png");
     Mat black_rook = imread("C:\\Users\\dimit\\Desktop\\cps\\black_rook.png");
+    Mat black_rook1 = imread("C:\\Users\\dimit\\Desktop\\cps\\b_black_rook.png");
     Mat black_pawn = imread("C:\\Users\\dimit\\Desktop\\cps\\black_pawn.png");
+    Mat black_pawn1 = imread("C:\\Users\\dimit\\Desktop\\cps\\b_black_pawn.png");
     Mat white_king = imread("C:\\Users\\dimit\\Desktop\\cps\\white_king.png");
     Mat white_queen = imread("C:\\Users\\dimit\\Desktop\\cps\\white_queen.png");
     Mat white_knight = imread("C:\\Users\\dimit\\Desktop\\cps\\white_knight.png");
+    Mat white_knight1 = imread("C:\\Users\\dimit\\Desktop\\cps\\b_white_knight.png");
     Mat white_bishop = imread("C:\\Users\\dimit\\Desktop\\cps\\white_bishop.png");
+    Mat white_bishop1 = imread("C:\\Users\\dimit\\Desktop\\cps\\b_white_bishop.png");
     Mat white_rook = imread("C:\\Users\\dimit\\Desktop\\cps\\white_rook.png");
+    Mat white_rook1 = imread("C:\\Users\\dimit\\Desktop\\cps\\b_white_rook.png");
     Mat white_pawn = imread("C:\\Users\\dimit\\Desktop\\cps\\white_pawn.png");
+    Mat white_pawn1 = imread("C:\\Users\\dimit\\Desktop\\cps\\b_white_pawn.png");
     //Takes the input image
-    cv::Mat img = cv::imread("C:\\Users\\dimit\\Desktop\\scr3.png");
+    cv::Mat img = cv::imread("C:\\Users\\dimit\\Desktop\\testslika1.png");
     cv::Mat orig;
     //Switches to HSV
     img.copyTo(orig);
-    //detectPieces(board, orig, black_queen);
-    detectPieces(board, orig, black_bishop);
-    detectPieces(board, orig, black_king);
-    detectPieces(board, orig, black_queen);
-    detectPieces(board, orig, white_king);
-    detectPieces(board, orig, white_queen);
-    detectPieces(board, orig, white_bishop);
-    detectPieces(board, orig, white_rook);
-    detectPieces(board, orig, white_knight);
-    detectPieces(board, orig, white_pawn);
+    matchingMethod(board, orig, black_king);
+    matchingMethod(board, orig, black_queen);
+    //matchingMethod(board, orig, black_pawn);
+    //matchingMethod(board, orig, black_pawn1);
+    //matchingMethod(board, orig, black_knight);
+    //matchingMethod(board, orig, black_knight1);
+    //matchingMethod(board, orig, black_bishop);
+    //matchingMethod(board, orig, black_bishop1);
+    //matchingMethod(board, orig, black_rook1);
+    //matchingMethod(board, orig, black_rook);
+
+    //matchingMethod(board, orig, white_king);
+    //matchingMethod(board, orig, white_queen);
+    //matchingMethod(board, orig, white_pawn);
+    //matchingMethod(board, orig, white_pawn1);
+    //matchingMethod(board, orig, white_knight);
+    //matchingMethod(board, orig, white_knight1);
+    //matchingMethod(board, orig, white_bishop);
+    //matchingMethod(board, orig, white_bishop1);
+    //matchingMethod(board, orig, white_rook1);
+    //matchingMethod(board, orig, white_rook);
     //cv::imshow("test", img);
     cv::cvtColor(img, img, cv::COLOR_BGR2HSV);
     //White field detection
@@ -251,8 +342,8 @@ int  main() {  //when merging into the algo code change the name for the call
     //
     Point p2(board.left + 50, board.top+board.height/16);
     Point p4(board.left + 20, board.bottom - board.width / 16);
-    rectangle(orig,p1,p2, Scalar(255, 0, 0) ,2,LINE_8); 
-    rectangle(orig, p3, p4, Scalar(255, 0, 0), 2, LINE_8);
+    //rectangle(orig,p1,p2, Scalar(255, 0, 0) ,2,LINE_8); 
+    //rectangle(orig, p3, p4, Scalar(255, 0, 0), 2, LINE_8);
     namedWindow("aa", WINDOW_NORMAL);
     imshow("aa", orig);
     cv::waitKey(0);
