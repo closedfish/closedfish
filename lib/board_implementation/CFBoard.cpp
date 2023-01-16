@@ -5,8 +5,8 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include <cmath>
 
-#include "naiveCheckCheck.cpp"
 
 // implemented
 
@@ -15,12 +15,17 @@ int main(){
     
     
     //CFBoard testBoard = CFBoard("8/8/8/8/8/8/8/8 w - -");
-    CFBoard testBoard = CFBoard();
+    //CFBoard testBoard = CFBoard();
+    CFBoard testBoard = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP1B2/PpP3QR/1P1N1N2/R4BK1 w - - 0 1"); // wrong legal moves for bishop
+    // cout << board.naiveCheckCheck(0) << '\n';
+    std::cout << testBoard.getReprLegalMove(4, 37); 
 
+    
     for (int i=10; i<12; i+=1){
         // std::cout << testBoard.getReprLegalMove(i, 0) << std::endl;
         std::cout << testBoard.getReprLegalMove(i, 36) << std::endl;
     }
+    
     
     
     return 0;
@@ -368,14 +373,11 @@ int CFBoard::getMaterialCount(bool color) {
            __builtin_popcountll(queenBoard) * 9;
 }
 
-/**
-* @brief Gives a text representation of a coordinate.
-*
-* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
-* h7, ......, a1, ..., h1).
-* 
-* @return string representation of the corresponding board tile coordinate
-*/
+bool CFBoard::isCurrentBoardLegal() {
+	return isStateLegal;
+}
+
+
 std::string CFBoard::tileToCoords(int tile){
     std::string ret = "";
     
@@ -388,14 +390,7 @@ std::string CFBoard::tileToCoords(int tile){
     return ret;
 }
 
-/**
-* @brief Gives a text representation of a hypothetical move.
-*
-* @param startTile : start tile for move.
-* @param endTile : end tile for move.
-* 
-* @return string representation of the move from startTile to endTile
-*/
+
 std::string CFBoard::getNextMoveRepr(int startTile, int endTile){
 
     int piece = getPieceFromCoords(startTile);
@@ -456,85 +451,219 @@ void CFBoard::removePiece(int tile) {
 }
 
 
-void CFBoard::movePiece(int startTile, int endTile){
-		int piece = getPieceFromCoords(startTile);
-		if (~((1ll << endTile) & getLegalMoves(pieceIdToChar(startTile), startTile))){
-			exit(-1);
-		}
-		if ((piece & 1) ^ turn){
-			exit(-1);
-		}
+void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
+	int piece = getPieceFromCoords(startTile);
 
-		removePiece(startTile);
-		addPiece(piece, endTile);
+	//check that move is legal
+	if (  ((1ll << endTile) & getLegalMoves(piece, startTile)) == 0  ){
 
-		if (~turn){ // white
-			if ((piece>>1) == 3){ // rook
-				if (startTile == 63){
-					castleCheck &= ~1;
-				} else if (startTile == 56){
-                    castleCheck &= ~2;
-                }
-			}
-            if ((piece>>1) == 5){ // king
-                castleCheck &= ~3;
-            }
+		exit(-1);
+	}
 
-            if ((piece>>1) == 0){ // pawn
-                if ((startTile - endTile) == 16){
-                    enPassantTarget = startTile - 8;
-                }
-            }
-		} else {
-            if ((piece>>1) == 3){ // rook
-				if (startTile == 0){
-					castleCheck &= ~8;
-				} else if (startTile == 7){
-                    castleCheck &= ~4;
-                }
-			}
-            if ((piece>>1) == 5){ // king
-                castleCheck &= ~12;
-            }
-
-            if ((piece>>1) == 0){ // pawn
-                if ((endTile - startTile) == 16){
-                    enPassantTarget = startTile + 8;
-                }
-            }
-        }
-
-        if ((piece>>1 == 5) && (abs(startTile - endTile)==2)){
-            int castle;
-            if (piece&1){
-                castle = castleCheck >> 2;
-            } else {
-                castle = castleCheck & 3;
-            }
-            castleCheck = castleCheck & ~castle;
-            if (abs(startTile - endTile)==2){
-                removePiece(startTile - 4);
-                addPiece(6 + (piece & 1), startTile - 1);
-            } else {
-                removePiece(startTile + 3);
-                addPiece(6 + (piece & 1), startTile + 1);
-            }
-
-        }
-
-		turn = ~turn;
+	if ((piece & 1) ^ turn){
+		exit(-1);
 	}
 
 
-void CFBoard::forceUndo(int startTileLastTurn, int endTileLastTurn, int capturedPiece = -1){
-    int piece = getPieceFromCoords(endTileLastTurn);
-    if (capturedPiece == -1){
-        removePiece(endTileLastTurn);
-    } else {
-        addPiece(capturedPiece, endTileLastTurn);
-    }
-    addPiece(piece, startTileLastTurn);
-    enPassantTarget = -1;
+	//call force move piece
+	forceMovePiece(startTile, endTile, pawnPromotionType);
+
+
+	//make the move legitimate
+	isStateLegal = true;
+}
+
+
+void CFBoard::forceMovePiece(int startTile, int endTile, int pawnPromotionType) {
+	int piece = getPieceFromCoords(startTile);
+
+	//make a backup of our state
+	backupState();
+
+
+	removePiece(startTile);
+
+
+	//check whether the pawn reached point of promotion, if so promote it to specified new piece type
+	if (piece <= 1) {
+		if (piece == 0) {
+			if (endTile <= 7) {
+
+				//default promotion to queen
+				if (pawnPromotionType == -1) {
+					addPiece(8, endTile);
+				}
+				else if (pawnPromotionType % 2 == 0 && abs(pawnPromotionType - 5) <= 3) {
+					addPiece(pawnPromotionType, endTile);
+				}
+				else {
+					exit(-1);
+				}
+			}
+			else {
+				addPiece(piece, endTile);
+			}
+		}
+		else {
+			if (endTile >= 56) {
+
+				//default promotion to queen
+				if (pawnPromotionType == -1) {
+					addPiece(9, endTile);
+				}
+				else if (pawnPromotionType % 2 == 1 && abs(pawnPromotionType - 6) <= 3) {
+					addPiece(pawnPromotionType, endTile);
+				}
+				else {
+
+					exit(-1);
+				}
+
+			}
+			else {
+				addPiece(piece, endTile);
+
+			}
+		}
+	}
+	else {
+		addPiece(piece, endTile);
+	}
+
+
+	if (~turn) { // white
+		if ((piece >> 1) == 3) { // rook
+			if (startTile == 63) {
+				castleCheck &= ~1;
+			}
+			else if (startTile == 56) {
+				castleCheck &= ~2;
+			}
+		}
+		if ((piece >> 1) == 5) { // king
+			castleCheck &= ~3;
+		}
+
+		if ((piece >> 1) == 0) { // pawn
+			if ((startTile - endTile) == 16) {
+				enPassantTarget = startTile - 8;
+			}
+		}
+	}
+	else {
+		if ((piece >> 1) == 3) { // rook
+			if (startTile == 0) {
+				castleCheck &= ~8;
+			}
+			else if (startTile == 7) {
+				castleCheck &= ~4;
+			}
+		}
+		if ((piece >> 1) == 5) { // king
+			castleCheck &= ~12;
+		}
+
+		if ((piece >> 1) == 0) { // pawn
+			if ((endTile - startTile) == 16) {
+				enPassantTarget = startTile + 8;
+			}
+		}
+	}
+
+	if ((piece >> 1 == 5) && (abs(startTile - endTile) == 2)) {
+		int castle;
+		if (piece & 1) {
+			castle = castleCheck >> 2;
+		}
+		else {
+			castle = castleCheck & 3;
+		}
+		castleCheck = castleCheck & ~castle;
+		if (abs(startTile - endTile) == 2) {
+			removePiece(startTile - 4);
+			addPiece(6 + (piece & 1), startTile - 1);
+		}
+		else {
+			removePiece(startTile + 3);
+			addPiece(6 + (piece & 1), startTile + 1);
+		}
+
+	}
+
+	turn = ~turn;
+
+
+	//from now on, our state is illegitimate
+	isStateLegal = false;
+
+}
+
+
+void CFBoard::undoLastMove() {
+	if (backupStock == 0) { //check that we even have backups
+		exit(-1);
+	}
+
+
+	//if so, set our state
+	std::cout << pawnBoard << std::endl;
+	std::cout << pawnBoardBackups[0] << std::endl;
+
+	pawnBoard = pawnBoardBackups[0];
+	knightBoard = knightBoardBackups[0] ;
+	bishopBoard = bishopBoardBackups[0];
+	rookBoard = rookBoardBackups[0];
+	queenBoard = queenBoardBackups[0] ;
+	kingBoard  = kingBoardBackups[0];
+
+	blackBoard = blackBoardBackups[0];
+	whiteBoard = whiteBoardBackups[0];
+
+	enPassantTarget = enPassantTargetBackups[0];
+	castleCheck = castleCheckBackups[0];
+	isStateLegal = isStateLegalBackups[0];
+
+	turn = 1-turn;
+
+
+
+	//update and remove the backup we just reverted to
+	backupStock--;
+
+	for (int i = 0; i <= backupCount - 2; i++) {
+		pawnBoardBackups[i] = pawnBoardBackups[i + 1];
+		knightBoardBackups[i] = knightBoardBackups[i + 1];
+		bishopBoardBackups[i] = bishopBoardBackups[i + 1];
+		rookBoardBackups[i] = rookBoardBackups[i + 1];
+		queenBoardBackups[i] = queenBoardBackups[i + 1];
+		kingBoardBackups[i] = kingBoardBackups[i + 1];
+
+		blackBoardBackups[i] = blackBoardBackups[i + 1];
+		whiteBoardBackups[i] = whiteBoardBackups[i + 1];
+
+		enPassantTargetBackups[i] = enPassantTargetBackups[i + 1];
+		castleCheckBackups[i] = castleCheckBackups[i + 1];
+		isStateLegalBackups[i] = isStateLegalBackups[i + 1];
+
+
+	}
+
+}
+
+void CFBoard::forceAddPiece(int pieceId, int tile) {
+	//backup before making move
+	backupState();
+
+	isStateLegal = false;
+	addPiece(pieceId, tile);
+}
+
+
+void CFBoard::forceRemovePiece(int tile) {
+	backupState();
+
+	isStateLegal = false;
+	removePiece(tile);
 }
 
 // ----- Ruleset -----
@@ -591,7 +720,7 @@ uint64_t CFBoard::getDiagonals(int tile, bool color) {
     return (\
     (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard & slashMap ))) - 1)) & (slashMap & ((1ll<<tile)-1)) | \
     (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard & bslashMap))) - 1)) & (bslashMap & ((1ll<<tile)-1)) | \
-    (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1) & bslashMap) & -(allBoard & ~((1ll << (tile+1))-1))) << 1) -1 \
+    (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1) & bslashMap) & -(allBoard & ~((1ll << (tile+1))-1) & bslashMap)) << 1) -1 \
     & (bslashMap & ~((1ll << (tile+1))-1))) | (tile != 63)*\
     ((((allBoard & ~((1ll << (tile+1))-1) & slashMap) & -(allBoard & ~((1ll << (tile+1))-1) & slashMap)) << 1) -1\
     & (slashMap & ~((1ll << (tile+1))-1))) ) & (~getColorBitBoard(color));
@@ -727,26 +856,29 @@ uint64_t CFBoard::getPawnPattern(int tile, bool color) {
 uint64_t CFBoard::getLegalMoves(int pieceId, int tile) {
     bool color = pieceId & 1;
     uint64_t retBoard;
-    std::cout << (pieceId>>1) << std::endl;
-    switch (pieceId >> 1) {
+
+	switch (pieceId >> 1) {
     case 0: // pawn
         retBoard = getPawnPattern(tile, color);
-        break;
+		break;
     case 1: // knight
         retBoard = getKnightPattern(tile, color);
-        break;
+		break;
     case 2: // bishop
         retBoard = getDiagonals(tile, color);
-        break;
+		break;
     case 3: // rook
         retBoard = getCardinals(tile, color);
-        break;
+		break;
     case 4: // queen
         retBoard = getDiagonals(tile, color) | getCardinals(tile, color);
-        break;
+		break;
     case 5: // king
         retBoard = getKingPattern(tile, color);
-        break;
+		break;
+	default : //failsafe
+		return 0;
+
     }
 
     uint64_t tmpBoard = retBoard;
@@ -759,4 +891,61 @@ uint64_t CFBoard::getLegalMoves(int pieceId, int tile) {
         }
     }
     return retBoard;
+}
+
+
+void CFBoard::backupState() {
+	//if this is our first backup, initialize the arrays
+	if (backupStock == 0) {
+		pawnBoardBackups = new uint64_t[backupCount];
+		knightBoardBackups = new uint64_t[backupCount];
+		bishopBoardBackups = new uint64_t[backupCount];
+		rookBoardBackups = new uint64_t[backupCount];
+		queenBoardBackups = new uint64_t[backupCount];
+		kingBoardBackups = new uint64_t[backupCount];
+
+		blackBoardBackups = new uint64_t[backupCount];
+		whiteBoardBackups = new uint64_t[backupCount];
+
+		enPassantTargetBackups = new int[backupCount];
+		castleCheckBackups = new int[backupCount];
+		isStateLegalBackups = new bool[backupCount];
+	}
+	else { //roll all backups forward
+		for (int i = backupCount - 1; i >= 1; i--) {
+			pawnBoardBackups[i] = pawnBoardBackups[i - 1];
+			knightBoardBackups[i] = knightBoardBackups[i - 1];
+			bishopBoardBackups[i] = bishopBoardBackups[i - 1];
+			rookBoardBackups[i] = rookBoardBackups[i - 1];
+			queenBoardBackups[i] = queenBoardBackups[i - 1];
+			kingBoardBackups[i] = kingBoardBackups[i - 1];
+
+			blackBoardBackups[i] = blackBoardBackups[i - 1];
+			whiteBoardBackups[i] = whiteBoardBackups[i - 1];
+
+			enPassantTargetBackups[i] = enPassantTargetBackups[i - 1];
+			castleCheckBackups[i] = castleCheckBackups[i-1];
+			isStateLegalBackups[i] = isStateLegalBackups[i-1];
+
+
+		}
+	}
+
+	//now save the current state at the first index
+	pawnBoardBackups[0] = pawnBoard;
+	knightBoardBackups[0] = knightBoard;
+	bishopBoardBackups[0] = bishopBoard;
+	rookBoardBackups[0] = rookBoard;
+	queenBoardBackups[0] = queenBoard;
+	kingBoardBackups[0] = kingBoard;
+
+	blackBoardBackups[0] = blackBoard;
+	whiteBoardBackups[0] = whiteBoard;
+
+	enPassantTargetBackups[0] = enPassantTarget;
+	castleCheckBackups[0] = castleCheck;
+	isStateLegalBackups[0] = isStateLegal;
+
+	//increase the backup stock
+	backupStock++;
 }
