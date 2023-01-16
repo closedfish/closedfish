@@ -42,3 +42,11 @@ This week:
 Next week:
 	- Finish the one person dfs and help out on other algorithms.
 	- Help with building connectors between components of the project.
+	
+Sirawit:
+This week:
+	- Finished Stockfish naive eval
+	- Merged TeamSwitchAI pending PR
+Next week:
+	- Complete the Stockfish (and Closedfish) connector
+	- Integrate unit tests from testing team
