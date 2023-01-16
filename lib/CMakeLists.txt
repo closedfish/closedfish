@@ -1,1 +1,3 @@
+add_subdirectory(Algo)
 add_subdirectory(board_implementation)
+add_subdirectory(logger)
