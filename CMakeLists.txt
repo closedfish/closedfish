@@ -32,6 +32,8 @@ set(BI BoardImplementation)
 set(FAC FactorialImplementation)
 set(SF StockfishSource)
 set(LOGGER CustomLogger)
+set(WRAP EngineWrapper)
+set(ENGINE SwitchEngine)
 
 set(EXECUTABLE Executable)
 

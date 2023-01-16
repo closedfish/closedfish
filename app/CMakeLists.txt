@@ -38,7 +38,9 @@ target_link_libraries(${EXECUTABLE} PUBLIC
     ${OPENING}
     ${BI}
     ${SF}
+    ${WRAP}
     ${LOGGER}
+    ${ENGINE}
     JsonCpp::JsonCpp
 )
 

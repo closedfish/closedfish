@@ -1,6 +1,28 @@
 // #include "config.hpp"
 #include "SwitchMain.h"
 
+void chessGameLoop(SwitchEngine &engine) {
+	// not yet implemented
+
+	double ClosenessCoef;
+	double BestClosedfishScore, BestStockfishScore;
+
+	BestStockfishScore = ((double)rand() / RAND_MAX) + 1;
+	BestClosedfishScore = ((double)rand() / RAND_MAX) + 1;
+	ClosenessCoef = ((double)rand() / RAND_MAX) + 1;
+
+	if (ClosenessCoef * BestStockfishScore >
+			(1 - ClosenessCoef) * BestClosedfishScore) {
+		// We choose Closedfish
+		std::cout << "We choose Closedfish" << std::endl;
+	} else {
+		// We choose Stockfish
+		std::cout << "We choose Stockfish" << std::endl;
+	}
+
+	OutputToUI();
+}
+
 int main(int argc, char *argv[]) {
 	Closedfish::Logger logger;
 
@@ -26,23 +48,11 @@ int main(int argc, char *argv[]) {
 	Stockfish::StateListPtr states;
 
 	CFBoard board;
+	SwitchEngine engine(board, logger);
+
 	srand(time(NULL));
 
-	double ClosenessCoef;
-	double BestClosedfishScore, BestStockfishScore;
-
-	BestStockfishScore = ((double)rand() / RAND_MAX) + 1;
-	BestClosedfishScore = ((double)rand() / RAND_MAX) + 1;
-	ClosenessCoef = ((double)rand() / RAND_MAX) + 1;
-
-	if (ClosenessCoef * BestStockfishScore >
-			(1 - ClosenessCoef) * BestClosedfishScore) {
-		std::cout << "We choose Closedfish" << std::endl;
-	} else {
-		std::cout << "We choose Stockfish" << std::endl;
-	}
-
-	OutputToUI();
+	chessGameLoop(engine);
 
 	return 0;
 }

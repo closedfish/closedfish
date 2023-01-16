@@ -11,8 +11,6 @@ target_include_directories(${LOGGER} PUBLIC
     "./"
     "${CMAKE_BINARY_DIR}/configured_files/include")
 
-target_link_libraries(${LOGGER} PUBLIC ${SF}) 
-
 if (${ENABLE_WARNINGS})
     target_set_warnings(TARGET ${LOGGER} ENABLE ON AS_ERROR OFF)
 endif()
