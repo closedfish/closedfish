@@ -18,14 +18,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Checkout submodules
-      run: git submodule update --init --recursive
+    - uses: actions/checkout@v3
     
     - name: Prepare Directory
       run: mkdir ${{github.workspace}}/build
+      
+    - name: Install Conan
+      id: conan
+      uses: closedfish/get-conan@main
+      
+    - name: Conan version
+      run: echo "${{ steps.conan.outputs.version }}"
+    
+    - name: Conan install
+      working-directory: ${{github.workspace}}/build
+      run: conan install .. --build
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.

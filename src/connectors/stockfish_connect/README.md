@@ -1,0 +1,2 @@
+This class serves as an interface between the switch algorithm and stockfish.<br> <br>
+It introduces an additional layer of abstraction and conversion since stockfish takes in a different board representation than our bitboard one.
