@@ -21,31 +21,29 @@ bool squareSafeFromOpponentPawns(const bool &currentTurn, const uint64_t& oppone
 }
 
 //Distance between two squares with respect to a piece's movement
-std::array<std::array<int, 8>, 8> distFromTileToTilesAsPiece(CFBoard& board, int halfPieceId, int startTile) {
-    std::queue<std::tuple<int,int>> q;
-    std::array<std::array<int, 8>, 8> dist;
+std::array<int, 64> distFromTileToTilesAsPiece(CFBoard& board, int halfPieceId, int startTile) {
+    std::queue<int> q;
+    std::array<int, 64> dist;
     bool currentTurn = board.getCurrentPlayer(); // 0: white, 1: black
     uint64_t opponentPawnBoard = board.getPieceColorBitBoard(!currentTurn);
-    for (int i = 0; i < 8; i++) for (int j = 0; j < 8; j++) dist[i][j] = -1;
-    dist[startTile/8][startTile%8] = 0;
-    q.push(std::make_tuple(startTile/8, startTile%8));
+    for (int i = 0; i < 64; i++)
+        dist[i] = -1;
+    dist[startTile] = 0;
+    q.push(startTile);
     // BFS to find shortest distance from startTile to endTile
     while(!q.empty()) {
-        int curi = std::get<0>(q.front()), curj = std::get<1>(q.front());
+        int curTile = q.front();
         q.pop();
 
-        uint64_t nextSquares = board.getLegalMoves(2*halfPieceId + currentTurn, curi*8 + curj);
+        uint64_t nextSquares = board.getLegalMoves(2*halfPieceId + currentTurn, curTile);
         // cout << nextSquares << '\n';
         for (int newTile: bitSetPositions(nextSquares)) {
-            int newi = newTile/8;
-            int newj = newTile%8;
             // cout << newi << ' ' << newj << ' ' << (board.getPieceFromCoords(newi*8 + newj)) << '\n';
-            if (!Heatmap::validSquare(newi, newj)) continue; // out of bound
-            if (dist[newi][newj] != -1) continue; // already visited
-            if (board.getPieceFromCoords(newi*8+newj) != -1) continue; // our piece or opponent piece already on that square
-            if (!squareSafeFromOpponentPawns(currentTurn, opponentPawnBoard, newi, newj)) continue; // square unsafe for our piece
-            dist[newi][newj] = dist[curi][curj] + 1;
-            q.push(std::make_tuple(newi, newj));
+            if (dist[newTile] != -1) continue; // already visited
+            if (board.getPieceFromCoords(newTile) != -1) continue; // our piece or opponent piece already on that square
+            if (!squareSafeFromOpponentPawns(currentTurn, opponentPawnBoard, newTile/8, newTile%8)) continue; // square unsafe for our piece
+            dist[newTile] = dist[curTile] + 1;
+            q.push(newTile);
         }
     }
     return dist;
@@ -53,7 +51,7 @@ std::array<std::array<int, 8>, 8> distFromTileToTilesAsPiece(CFBoard& board, int
 
 int distFromHeatmap(CFBoard& board, int (&heatMap)[6][8][8]) {
     int dist = 0;
-    const int COEFF_SEPARATED = 5; // adjustable
+    const int COEFF_SEPARATED = 10; // adjustable
     bool currentTurn = board.getCurrentPlayer(); // 0: white, 1: black
     for (int halfPieceId = 0; halfPieceId < 6; halfPieceId++) {
         // if (halfPieceId != 1) continue;
@@ -61,14 +59,16 @@ int distFromHeatmap(CFBoard& board, int (&heatMap)[6][8][8]) {
         uint64_t pieceBoard = board.getPieceColorBitBoard(2*halfPieceId|currentTurn);
         std::vector<int> pieceTiles = bitSetPositions(pieceBoard);
         for (int startTile: pieceTiles) {
-            std::array<std::array<int, 8>, 8> distFromStart = distFromTileToTilesAsPiece(board, halfPieceId, startTile);
+            // std::array<std::array<int, 8>, 8> distFromStart = distFromTileToTilesAsPiece(board, halfPieceId, startTile);
+            std::array<int, 64> distFromStart = distFromTileToTilesAsPiece(board, halfPieceId, startTile);
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     // cout << heatMap[halfPieceId][i][j] << ' ';
                     // cout << distFromStart[i][j] << ' ';
                     if (heatMap[halfPieceId][i][j] == 0) continue;
-                    if (distFromStart[i][j] != -1) {
-                        dist += heatMap[halfPieceId][i][j] * distFromStart[i][j];
+                    int endTile = i*8+j;
+                    if (distFromStart[endTile] != -1) {
+                        dist += heatMap[halfPieceId][i][j] * distFromStart[endTile];
                     } else {
                         dist += COEFF_SEPARATED*heatMap[halfPieceId][i][j];
                     }
@@ -209,7 +209,7 @@ std::tuple<int, int, float> DFS1P::getNextMove() {
 
 int main() {
     DFS1P algo;
-    // CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
+    CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
     // CFBoard board = CFBoard("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1N1/2B1QB1R/3K3R w - - 0 1"); // no open files, >= 2 free rows
 	// CFBoard board = CFBoard("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R w - - 0 1"); // no open files, 1 free rows, no chance of winning, 3 is better than 4 for some reasons
     // CFBoard board = CFBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
