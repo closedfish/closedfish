@@ -27,6 +27,7 @@ if (${ENABLE_WARNINGS})
     target_set_warnings(TARGET ${EXECUTABLE} ENABLE ON AS_ERROR OFF)
 endif()
 
+find_package(jsoncpp CONFIG REQUIRED)
 target_link_libraries(${EXECUTABLE} PUBLIC 
     ${SC}
     ${GC}
@@ -35,6 +36,7 @@ target_link_libraries(${EXECUTABLE} PUBLIC
     ${INPUT}    
     ${OUTPUT}
     ${OPENING}
-    nlohmann_json)
+    JsonCpp::JsonCpp
+)
 
 

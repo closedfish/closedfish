@@ -11,9 +11,6 @@ target_include_directories(${CUI} PUBLIC
     "./"
     "${CMAKE_BINARY_DIR}/configured_files/include")
 
-target_link_libraries(${CUI} PUBLIC  
-    nlohmann_json)
-
 if (${ENABLE_WARNINGS})
     target_set_warnings(TARGET ${CUI} ENABLE ON AS_ERROR OFF)
 endif()

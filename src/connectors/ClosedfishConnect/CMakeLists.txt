@@ -11,10 +11,6 @@ target_include_directories(${GC} PUBLIC
     "./"
     "${CMAKE_BINARY_DIR}/configured_files/include")
 
-    
-target_link_libraries(${GC} PUBLIC  
-    nlohmann_json)
-
 if (${ENABLE_WARNINGS})
     target_set_warnings(TARGET ${GC} ENABLE ON AS_ERROR OFF)
 endif()

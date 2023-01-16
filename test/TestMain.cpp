@@ -1,7 +1,12 @@
-#include <iostream>
-#include "PlayMain.hpp"
-int main() {
-    std::cout << "Tests started!" << std::endl;
-    std::cout << "Tests (0) succeeded!" << std::endl;
-    return 0; // You can put a 1 here to see later that it would generate an error
+#define CATCH_CONFIG_MAIN
+#include <catch2/catch_test_macros.hpp>
+
+#include <cstdint>
+#include <factorial.hpp>
+
+TEST_CASE("Factorials are computed", "[factorial]") {
+	REQUIRE(factorial(1) == 1);
+	REQUIRE(factorial(2) == 2);
+	REQUIRE(factorial(3) == 6);
+	REQUIRE(factorial(10) == 3'628'800);
 }

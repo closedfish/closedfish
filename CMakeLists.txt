@@ -29,6 +29,7 @@ set(INPUT ReceiveInputFromUI)
 set(OUTPUT SendOutputToUI)
 set(OPENING DeceideOverOpening)
 set(BI BoardImplementation)
+set(FAC FactorialImplementation)
 
 set(EXECUTABLE Executable)
 
@@ -60,24 +61,15 @@ include(AddGitSubmodule)
 #import Eigen
 #add_git_submodule(external/Eigen)
 
-#add Catch2 with FetchContent
-Include(FetchContent)
+# #add Catch2 with FetchContent
+# Include(FetchContent)
 
-FetchContent_Declare(
-  Catch2
-  GIT_REPOSITORY https://github.com/catchorg/Catch2
-  GIT_TAG        v3.2.0 # or a later release
-  GIT_SHALLOW TRUE
-)
-#add Nlohmann
-FetchContent_MakeAvailable(Catch2)
-
-FetchContent_Declare(
-    nlohmann_json
-    GIT_REPOSITORY https://github.com/nlohmann/json
-    GIT_TAG v3.11.2
-    GIT_SHALLOW TRUE)
-FetchContent_MakeAvailable(nlohmann_json)
+# FetchContent_Declare(
+#   Catch2
+#   GIT_REPOSITORY https://github.com/catchorg/Catch2
+#   GIT_TAG        v3.2.0 # or a later release
+#   GIT_SHALLOW TRUE
+# )
 
 #import VCPKG
 option(USE_VCPKG "Whether to use VCPCKG" ON)
@@ -111,22 +103,18 @@ add_subdirectory(lib)
 add_subdirectory(external)
 
 #Enable unit testing
-option(ENABLE_TESTING "Whether to enable the unit testing build" OFF)
+option(ENABLE_TESTING "Whether to enable the unit testing build" ON)
 
 #Check if there is need to compile unit test
 if(ENABLE_TESTING)
+    enable_testing()
     add_subdirectory(test)
-
-    include(CTest)
-    
-    add_executable(tests test/TestMain.cpp)
-    target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
-    else()
-        message("W/o exe. unit")
-    endif()
+else()
+    message("W/o exe. unit")
+endif()
 
 #Check if there is need to compile the executable
-option(COMPILE_EXECUTABLE "Whether to compile the executable" ON)
+option(COMPILE_EXECUTABLE "Whether to compile the executable" OFF)
 if(COMPILE_EXECUTABLE)
     add_subdirectory(app)
 else()

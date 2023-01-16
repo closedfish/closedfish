@@ -115,3 +115,12 @@ Next week:
 -Get the colours of the board for the recognition algorithm
 -Merge my part with Dimitrije's
 
+Nadja:
+This week:
+-starting to implement the openings
+-serach for a proper library to read .json files and import it properly
+-help Andrei with finding proper packages in order to import the library with vcpkg
+-actual read the file and conceive a good structure for my openings class
+
+Next week:
+-finish implementing the structure I conceived this week
