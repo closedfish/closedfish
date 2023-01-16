@@ -6,6 +6,7 @@ int main(int argc, char *argv[]) {
 
 	std::cout << Stockfish::engine_info() << std::endl;
 	std::cerr << "Hello, world!" << std::endl;
+	logger.cout << "Hi!!" << std::endl;
 	std::string tst;
 	logger.stream >> tst;
 	std::cerr << tst << std::endl;

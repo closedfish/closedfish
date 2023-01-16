@@ -1,26 +1,27 @@
 #include "logger.h"
-using namespace std;
 
 namespace Closedfish {
 Logger::Logger() {
-	originalCoutRdbuf = cout.rdbuf();
-	cout.rdbuf(stream.rdbuf());
+	originalCoutRdbuf = std::cout.rdbuf();
+	std::cout.rdbuf(stream.rdbuf());
+	Logger::cout.rdbuf(originalCoutRdbuf);
 }
-Logger::~Logger() { cout.rdbuf(originalCoutRdbuf); }
+Logger::~Logger() { std::cout.rdbuf(originalCoutRdbuf); }
 } // namespace Closedfish
 
 // Example for usage in main
 int main_example() {
-	Closedfish::Logger *logger = new Closedfish::Logger(); // now cout is hacked
+	Closedfish::Logger *logger =
+			new Closedfish::Logger(); // now std::cout is hacked
 	int n;
-	cout << 60 << endl;
+	std::cout << 60 << std::endl;
 	logger->stream >> n;
-	cout << "Hello, " << n << endl;
-	string line;
+	std::cout << "Hello, " << n << std::endl;
+	std::string line;
 	while (getline(logger->stream, line)) {
-		cerr << line << endl;
+		std::cerr << line << std::endl;
 	}
-	delete logger; // now cout is unhacked
-	cout << "this should be fine" << endl;
+	delete logger; // now std::cout is unhacked
+	std::cout << "this should be fine" << std::endl;
 	return 0;
 }

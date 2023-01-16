@@ -11,6 +11,7 @@ private:
 
 public:
 	std::stringstream stream;
+	std::ostream cout = std::ostream(nullptr); // original cout
 	Logger();
 	~Logger();
 };
