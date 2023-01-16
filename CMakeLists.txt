@@ -99,6 +99,13 @@ else(DOXYGEN_FOUND)
 	message("Doxygen not found")
 endif(DOXYGEN_FOUND)
 
+#Install Stockfish net
+message("Building Stockfish")
+execute_process(
+    COMMAND "make" "net"
+    WORKING_DIRECTORY "./external/stockfish/src"
+)
+
 #Includes subdirectories
 
 add_subdirectory(src)
