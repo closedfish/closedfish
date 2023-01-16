@@ -61,7 +61,15 @@ This week :
 	-work on creating functions to test other teams' algorithms 
 Next week:
 	-continue writing test functions 
-	
+
+Razvan:
+This week:
+	- Started working on piece recognition with dimitrije
+	- (unfinished) Created a function to do Harris corner detetion
+Next week:
+	- Test efficiency and corectness of this, try out other methods
+	- Create base measurments for the chess pieces
+  
 Antonia:
 
 (Report from last week missing): Finshed to test the weak pawns functions and did the first pull-request of the branch Weak-Pawns.
