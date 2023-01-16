@@ -61,7 +61,6 @@ This week :
 	-work on creating functions to test other teams' algorithms 
 Next week:
 	-continue writing test functions 
-	
 
 Razvan:
 This week:
@@ -70,3 +69,31 @@ This week:
 Next week:
 	- Test efficiency and corectness of this, try out other methods
 	- Create base measurments for the chess pieces
+  
+Antonia:
+
+(Report from last week missing): Finshed to test the weak pawns functions and did the first pull-request of the branch Weak-Pawns.
+
+This week :
+	- As the newest version of CFBoard.cpp got merged over the vacation, I realized that CFBoard has some new member functions that overlap with my code and makes it much shorter. I ereased pretty much the whole old code and wrote a new one, more simple, shorter, and that uses the functions of CFBoard.cpp.
+	- Tested the new version of WeakPawns.cpp and did a new pull-request.
+	- Implemented functions that tell where the pieces can move in 1 or 2 moves. 
+
+Next week:
+ 	- Finish basic testing for PieceMovements.cpp and hopefully merge.
+	
+New task : work on a function that selects the move that closes the position the most. The move it given by stockfish and we want to close the position in order to 
+create a situation for closed fish algorithm.
+
+Dimitrije:
+This week:
+Two implementations for board condition reading. Adapted the input and output for better connection with the rest of the code and worked on merging it.
+Next week:
+Come up with alternative to OpenCV native template matching functions and merge.
+
+
+Nadja:
+		This week
+		-Help Andrei for 5 hours to work on breakthroughs in closed positions.
+		-Study chess material and analyze closed positions
+		-Clean-up my local branches
