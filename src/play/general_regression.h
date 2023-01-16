@@ -1,6 +1,6 @@
 #pragma once
-#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
-//#include <Eigen\Dense>
+//#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
+#include <Eigen\Dense>
 
 
 /*
@@ -150,12 +150,12 @@ class Func
         {
             if (x > y)
             {
-                return (erf(10 * ((x - y) - 1)) + 1) / 2;
+                return (x - y) * (x - y);
             }
 
             else
             {
-                return (erf(10 * ((y - x) - 1)) + 1)/2;
+                return  (x - y) * (x - y);
             }
         }
 
@@ -438,7 +438,12 @@ namespace EvaluationFunction
         {
             return 1;
         }
-        _
+
+        elif (output_val <= 0)
+        {
+            return 0;
+        }
+        
         return output_val;
     }
 

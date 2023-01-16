@@ -76,10 +76,11 @@ int main()
         l_2[i] = i - 1;
     }
 
-    l_1[7] = -1;
-    l_1[6] = -1;
    
-    std::cout << EvaluationFunction::Evaluate(basis, theta, l_1, l_2, dimension)<<std::endl;
+ 
+ 
+   
+    std::cout << EvaluationFunction::Evaluate(basis, theta, l_1, l_2, dimension) << std::endl;
     std::cout << EvaluationFunction::TestAi(basis, theta, X, data_outputs, dimension, num_data_points);
     return 0;
 }
