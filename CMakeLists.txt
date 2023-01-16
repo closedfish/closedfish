@@ -105,6 +105,10 @@ execute_process(
     COMMAND "make" "net"
     WORKING_DIRECTORY "./external/stockfish/src"
 )
+execute_process(
+    COMMAND "make" "build" "-j8" "ARCH=x86-64-modern"
+    WORKING_DIRECTORY "./external/stockfish/src"
+)
 
 #Includes subdirectories
 
