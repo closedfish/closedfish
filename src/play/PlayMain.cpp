@@ -9,7 +9,7 @@ int main()
     Func* basis = AbsErfBasis::GenerateBasis();
     double data_outputs[134];
     int* X[134];
-
+    
     X[0] = new int[8]{3, 3, 4, 1, 1, 2, 2, 5};
     X[1] = new int[8]{4, 4, 5, 2, 2, 3, 3, 6};
 
@@ -216,7 +216,7 @@ int main()
     {
         data_outputs[i] = 0.01;
     }
-
+    delete[] X[0];
     X[0] = new int[8]{3, 5, 4, 5, 1, 5, 3, 1};
     X[1] = new int[8]{5, -1, -1, -1, 2, -1, 4, 3};
 
@@ -417,35 +417,32 @@ int main()
 
     X[132] = new int[8]{3, 8, 5, 1, 3, 8, 5, 5};
     X[133] = new int[8]{4, 3, -1, 3, 5, 3, -1, -1};
-
+    
+    
     for (int i = 67; i < 134; i ++)
     {
         data_outputs[i] = 0.99;
     }
 
-
-
     
 
-
+    
     int dimension = 23;
-    int num_data_points = 134;
-
+    int num_data_points = 67;
+    
     Eigen::VectorXd theta = TheRegression::bestFitF(basis, X, data_outputs, dimension, num_data_points);
-
+    
     float s = 0;
     int l_1[8];
     int l_2[8];
+
     for (int i = 0; i < 8; i++) 
     {
         l_1[i] = i;
         l_2[i] = i - 1;
     }
+    l_1[0] = 8;
    
-
-   
- 
- 
    
     std::cout << EvaluationFunction::Evaluate(basis, theta, l_1, l_2, dimension) << std::endl;
     std::cout << EvaluationFunction::TestAi(basis, theta, X, data_outputs, dimension, num_data_points);
