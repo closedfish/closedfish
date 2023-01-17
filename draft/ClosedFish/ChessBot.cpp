@@ -8,6 +8,7 @@
 #include <Windows.h>
 #include <wingdi.h>
 #include <atlimage.h>
+#include <wincodec.h>
 #include <utility>
 #include <queue>
 #include <algorithm>
@@ -21,6 +22,8 @@
 /// <param name="B">explains itself</param>
 /// <returns>the color as a 4-byte integer</returns>
 #define _convertRGBToInt(R,G,B) ((int)R + ((int)G << 8) + ((int)B << 16))
+
+#define swapPixels(arr,temp,pos1,pos2) temp = arr[pos1], arr[pos1] = arr[pos2], arr[pos2] = temp; temp = arr[pos1 + 1]; arr[pos1 + 1] = arr[pos2 + 1]; arr[pos2 + 1] = temp; temp = arr[pos1 + 2]; arr[pos1 + 2] = arr[pos2 + 2]; arr[pos2 + 2] = temp; temp = arr[pos1 + 3]; arr[pos1 + 3] = arr[pos2 + 3]; arr[pos2 + 3] = temp;
 
 /// <summary>
 /// Converts to 32-bit integers to a 64-bit integer
@@ -47,13 +50,15 @@ namespace conv
 	{
 		byte* color = new byte[3];
 		color[0] = (colour & 255);
-		colour = (colour>>8);
+		colour = (colour >> 8);
 		color[1] = (colour & 255);
-		colour = (colour>>8);
+		colour = (colour >> 8);
 		color[2] = (colour & 255);
 		return color;
 	}
 }
+
+//void bmpClass::_reverseInt(int nr, char*& rev)
 
 /// <summary>
 /// Sends a click to the given position
@@ -65,6 +70,9 @@ namespace conv
 /// </returns>
 bool bmpClass::sendClick(int posX, int posY)
 {
+#if _WIN32 == 1
+	//for some reason this is the always the active block
+	//but adding 64-bit compatibility will make this safer
 	SetCursorPos(posX, posY);
 
 	MOUSEINPUT mInp;
@@ -85,8 +93,30 @@ bool bmpClass::sendClick(int posX, int posY)
 	int sent = SendInput(1, click, sizeof(click));
 
 	return sent == 1;
-}
+#else
+	std::cout << "e pe 64 de biti";
+	SetCursorPos(posX, posY);
 
+	MOUSEINPUT mInp;
+
+	POINT curPos;
+	GetCursorPos(&curPos);
+
+	mInp.dx = (long long int)curPos.x;
+	mInp.dy = (long long int)curPos.y;
+	mInp.mouseData = NULL;
+	mInp.dwFlags = (long long int)(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP);
+	mInp.dwExtraInfo = NULL;
+
+	INPUT click[1];
+	click[0].type = (long long int)INPUT_MOUSE;
+	click[0].mi = mInp;
+
+	int sent = SendInput(1, click, sizeof(click));
+
+	return sent == 1;
+#endif
+}
 
 void bmpClass::send_input(char* inpt)
 {
@@ -99,12 +129,12 @@ void bmpClass::send_input(char* inpt)
 	std::cout << c1 << l1 << " " << c2 << l2 << "\n";
 
 	int fx, fy;
-	fx = (boardL + 50 + sideL * (int)(c1 - 'a')) * (scrW) / 1920;
-	fy = (boardT + 50 + sideL * (int)('8' - l1)) * (scrH) / 1080;
+	fx = (boardL + 50 + sideW * (int)(c1 - 'a')) * (scrW) / 1920;
+	fy = (boardT + 50 + sideH * (int)('8' - l1)) * (scrH) / 1080;
 
 	int sx, sy;
-	sx = (boardL + 50 + sideL * (int)(c2 - 'a')) * (scrW) / 1920;
-	sy = (boardT + 50 + sideL * (int)('8' - l2)) * (scrH) / 1080;
+	sx = (boardL + 50 + sideW * (int)(c2 - 'a')) * (scrW) / 1920;
+	sy = (boardT + 50 + sideH * (int)('8' - l2)) * (scrH) / 1080;
 
 	sendClick(fx, fy);
 
@@ -112,7 +142,6 @@ void bmpClass::send_input(char* inpt)
 
 	sendClick(sx, sy);
 }
-
 
 void bmpClass::getPrimaryScreen(BITMAP& bmpScreen)
 {
@@ -158,8 +187,7 @@ int getSizeChr(char* chr)
 	return cnt;
 }
 
-
-char* bmpClass::_saveScreenToFile(LPCWSTR filename)
+char* bmpClass::_saveScreenToFile(LPCSTR filename)
 {
 	HDC hdcScreen;
 	HDC hdcMemDC = NULL;
@@ -284,7 +312,7 @@ char* bmpClass::_saveScreenToFile(LPCWSTR filename)
 	return ret;
 }
 
-void bmpClass::saveScreenToFile(LPCWSTR filename)
+void bmpClass::saveScreenToFile(LPCSTR filename)
 {
 	HDC hdcScreen;
 	HDC hdcMemDC = NULL;
@@ -398,8 +426,9 @@ void bmpClass::init_squares()
 /// </summary>
 /// <param name="bits">bits for the screen</param>
 /// <param name="bi">bitmapinfo header</param>
-void getScreenBits(BYTE* &bits, BITMAPINFO &bi)
+void getScreenBits(BYTE*& bits, BITMAPINFO& bi)
 {
+
 	HDC hdcScreen;
 	HDC hdcMemDC = NULL;
 	HBITMAP hBmpScreen = NULL;
@@ -424,7 +453,7 @@ void getScreenBits(BYTE* &bits, BITMAPINFO &bi)
 
 	GetObject(hBmpScreen, sizeof(BITMAP), &bmpScreen);
 
-	 bi = { 0 };
+	bi = { 0 };
 
 	bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 
@@ -434,69 +463,130 @@ void getScreenBits(BYTE* &bits, BITMAPINFO &bi)
 	//better to be safe
 	bi.bmiHeader.biCompression = BI_RGB;
 
-	bits = new BYTE[bi.bmiHeader.biSizeImage + 1];//
+	bits = new BYTE[bi.bmiHeader.biSizeImage + 1];
 
 	GetDIBits(hdcScreen, hBmpScreen, 0, bi.bmiHeader.biHeight, (LPVOID)bits, &bi, DIB_RGB_COLORS);
 
 
 	//Clean up
+	DeleteObject(&bmpScreen);
 	DeleteObject(hBmpScreen);
 	DeleteObject(hdcMemDC);
 	ReleaseDC(NULL, hdcScreen);
 	ReleaseDC(hwndDesktop, hdcScreen);
 }
 
+void getHBMPBits(HBITMAP hBitmap, BYTE*& bits)
+{
+	HDC hdcMemDC = NULL;
+
+	hdcMemDC = CreateCompatibleDC(NULL);
+
+	SelectObject(hdcMemDC, hBitmap);
+
+	BITMAPINFO bi;
+
+	bi = { 0 };
+
+	bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+
+	//get the header
+	GetDIBits(hdcMemDC, hBitmap, 0, 0, NULL, &bi, DIB_RGB_COLORS);
+
+	//important
+	bi.bmiHeader.biCompression = BI_RGB;
+
+	bits = new BYTE[bi.bmiHeader.biSizeImage];
+
+	GetDIBits(hdcMemDC, hBitmap, 0, bi.bmiHeader.biHeight, (LPVOID)bits, &bi, DIB_RGB_COLORS);
+
+
+	//Clean up
+	DeleteObject(hdcMemDC);
+	ReleaseDC(NULL, hdcMemDC);
+}
+
 void bmpClass::split_the_board()
 {
+
+	if (this->col1 == NULL)
+	{
+		this->getBoardColours(this->col1, this->col2);
+	}
+
+	auto start = std::chrono::high_resolution_clock::now();
 
 	BYTE* bits;
 	BITMAPINFO bi;
 	getScreenBits(bits, bi);
 
-	int BPP = bi.bmiHeader.biBitCount / 8; 
-	BYTE* buffer = new BYTE[sideL * sideL * BPP];
+	int sideHForImage = sideH * 1.3, sideWForImage = sideW * 1.3;
+	int deltaH = sideHForImage - sideH, deltaW = sideWForImage - sideW;
+
+	int BPP = bi.bmiHeader.biBitCount / 8;
+	BYTE* buffer = new BYTE[sideWForImage * sideHForImage * BPP];
+	int match;
+
+	int bmpSize = sideWForImage * sideHForImage * BPP;
+
+	HBITMAP temp;
 
 	for (int i = 0; i < 8; ++i)
 	{
 		for (int j = 0; j < 8; ++j)
 		{
-			memset(buffer, (BYTE)0, sideL * sideL * BPP);
-			for (int scan = 0; scan < sideL; ++scan)
+			//checking if the current square has a piece or not
+			match = 0;
+			for (int scan = 0; scan < sideH; ++scan)
 			{
-				int start = bi.bmiHeader.biWidth * (this->boardT + i * sideL + scan) * BPP + //vertical offset of board
-					(this->boardL + sideL * j) * BPP; //horziontal offset of the board
-				if (scan == 0)
+				for (int w = 0; w < sideW; ++w)
 				{
-					memcpy(buffer, (bits + start), sideL * BPP);
+					int cpos = bi.bmiHeader.biWidth * (this->boardT + i * sideH + scan) * BPP + //vertical offset of board
+						(this->boardL + sideW * j) * BPP + w;//horziontal offset of the board
+					int col = _convertRGBToInt(bits[cpos], bits[cpos + 1], bits[cpos + 2]);
+					if (col == col1 || col == col2)
+					{
+						match++;
+					}
+				}
+			}
+			if (match >= minColMatch)
+			{
+				piece[i * 8 + j] = 0;
+			}
+
+			memset(buffer, (BYTE)0, bmpSize);
+
+			for (int scan = 0; scan < sideHForImage; ++scan)
+			{
+				int start = bi.bmiHeader.biWidth * (this->boardT - deltaH + i * sideH + scan) * BPP + //vertical offset of board
+					(this->boardL - deltaW + sideW * j) * BPP; //horziontal offset of the board
+				if (scan == sideHForImage)
+				{
+					memcpy(buffer, (bits + start), sideWForImage * BPP);
 				}
 				else
 				{
-					memcpy(buffer + scan * BPP * sideL, (bits + start), sideL * BPP);
+					//flip the image vertically so it is the correct orientation
+					memcpy(buffer + (sideHForImage - scan - 1) * BPP * sideWForImage, (bits + start), sideWForImage * BPP);
 				}
+
 				DeleteObject(hSquares[i * 8 + j]);
-				hSquares[i * 8 + j] = CreateBitmap(sideL, sideL, (UINT)bi.bmiHeader.biPlanes, (UINT)bi.bmiHeader.biBitCount, (void*)buffer);
+
+				hSquares[i * 8 + j] = CreateBitmap(sideWForImage, sideHForImage, (UINT)bi.bmiHeader.biPlanes, (UINT)bi.bmiHeader.biBitCount, (void*)buffer);
+
+				//detect pieces here
 			}
 		}
 	}
 
-	*(bits + bi.bmiHeader.biSize) = '\0';
-
-	/*std::ofstream fout("test.txt");
-
-	for (int i = 0; i < sideL; ++i)
-	{
-		for (int j = 0; j < sideL; ++j)
-		{
-			fout << (int)*(buffer + i * sideL + j)<<" ";
-		}
-		fout << '\n';
-	}*/
-
 	//deleting the bits
 	delete[] bits;
 	delete[] buffer;
-}
 
+	auto end = std::chrono::high_resolution_clock::now();
+	std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(start - end).count();
+}
 
 void bmpClass::printSq(int id)
 {
@@ -514,14 +604,15 @@ void bmpClass::printSq(int id)
 	}
 	if (hSquares[id])
 	{
-		try 
+		try
 		{
 			CImage ci = CImage();
 			std::cout << "init ";
 			ci.Attach(hSquares[id], CImage::DIBOR_DEFAULT);
 			std::cout << " attach ";
-			ci.Save(L"lucaESarac.bmp", Gdiplus::ImageFormatBMP);
+			ci.Save("lucaESarac.png", Gdiplus::ImageFormatPNG);
 			std::cout << " saved\n";
+			ci.Detach();
 		}
 		catch (const std::exception ex)
 		{
@@ -541,10 +632,10 @@ void bmpClass::getBoardColours(int& col1, int& col2)
 
 	getScreenBits(screenBits, bi);
 
-	//std::wcout << bi.bmiHeader.biBitCount << "<----\n\n\n\n";
-	//std::wcout << *screenBits << " " << *(screenBits + 1) << " " << *(screenBits + 2) << " " << *(screenBits + 3) << " " << *(screenBits + 4) << " ";
+	//std::cout << bi.bmiHeader.biBitCount << "<----\n\n\n\n";
+	//std::cout << *screenBits << " " << *(screenBits + 1) << " " << *(screenBits + 2) << " " << *(screenBits + 3) << " " << *(screenBits + 4) << " ";
 
-	int** screenArr = new int*[bi.bmiHeader.biHeight];
+	int** screenArr = new int* [bi.bmiHeader.biHeight];
 
 	for (int i = 0; i < bi.bmiHeader.biHeight; ++i)
 	{
@@ -553,17 +644,19 @@ void bmpClass::getBoardColours(int& col1, int& col2)
 	}
 
 	std::vector<int> colours;//colours which are in "appropiate" squares
-	//an "appropiate" squatre is a square of size~1/128 of the screen size (64 squares which may take ~1/2 of the screen)
+	//an "appropiate" square is a square of size ~1/128 of the screen size (64 squares which may take ~1/2 of the screen)
 
 	double scrRatio = GetSystemMetrics(SM_CXSCREEN) / 1920.0;
 
 	//actual expected range for the size of the square, divided by 15, to account for probable errors
-	int sqSizeMax = ((GetSystemMetrics(SM_CXSCREEN) * GetSystemMetrics(SM_CYSCREEN))>>7);
-	int sqSizeMin = ((GetSystemMetrics(SM_CXSCREEN) * GetSystemMetrics(SM_CYSCREEN))>>9);
+	int sqSizeMax = ((GetSystemMetrics(SM_CXSCREEN) * GetSystemMetrics(SM_CYSCREEN)) >> 7);
+	int sqSizeMin = ((GetSystemMetrics(SM_CXSCREEN) * GetSystemMetrics(SM_CYSCREEN)) >> 9);
 
 	int starts = 0;
 
 	int maxSqSz = -1;
+
+	std::deque< int_fast64_t > positions;
 
 	for (int i = 0; i < bi.bmiHeader.biHeight; ++i)
 	{
@@ -573,8 +666,7 @@ void bmpClass::getBoardColours(int& col1, int& col2)
 			{
 				starts++;
 				int topLeftX = i, topLeftY = j;
-				std::queue< int_fast64_t > positions;
-				positions.push(i64(i, j));
+				positions.push_back(i64(i, j));
 				int curColour = _convertRGBToInt(screenBits[4 * (i * bi.bmiHeader.biWidth + j)],
 					screenBits[4 * (i * bi.bmiHeader.biWidth + j) + 1], screenBits[4 * (i * bi.bmiHeader.biWidth + j) + 2]);
 
@@ -584,7 +676,7 @@ void bmpClass::getBoardColours(int& col1, int& col2)
 				while (!positions.empty())
 				{
 					int_fast64_t cpos = positions.front();
-					positions.pop();
+					positions.pop_front();
 					int Xc, Yc;
 					Xc = cpos & last32Bits;
 					Yc = (cpos >> 32);
@@ -608,26 +700,22 @@ void bmpClass::getBoardColours(int& col1, int& col2)
 
 					corCol++;
 					screenArr[Xc][Yc] = scrCol;
-					
-					if (curSqSz < (Xc - topLeftX + 1) * (Yc - topLeftY + 1) )
+
+					if (curSqSz < (Xc - topLeftX + 1) * (Yc - topLeftY + 1))
 						//this means there is a more bottom right square of the same colour
 					{
 						curSqSz = (Xc - topLeftX + 1) * (Yc - topLeftY + 1);
 					}
 
 					//Only going in the bottom & right directions since it's searching for the bottom-right corner of the square/rectangle
-					positions.push(i64(Xc + 1LL, Yc));
-					positions.push(i64(Xc, Yc + 1LL));
+					positions.push_front(i64(Xc + 1LL, Yc));
+					positions.push_front(i64(Xc, Yc + 1LL));
 				}
-				
+
 				if (corCol * 1.1 > curSqSz)// this means it's mostly a solid colour
 				{
 					if (sqSizeMax > curSqSz && sqSizeMin < curSqSz)//it's of the right size
 					{
-						/*std::cout << (int)screenBits[4 * (i * bi.bmiHeader.biWidth + j)] << " " <<
-							(int)screenBits[4 * (i * bi.bmiHeader.biWidth + j) + 1] << " "  << (int)screenBits[4 * (i * bi.bmiHeader.biWidth + j) + 2] << " " <<
-							_convertRGBToInt(screenBits[4 * (i * bi.bmiHeader.biWidth + j)],
-								screenBits[4 * (i * bi.bmiHeader.biWidth + j) + 1], screenBits[4 * (i * bi.bmiHeader.biWidth + j) + 2]) << "\n";*/
 						colours.push_back(_convertRGBToInt(screenBits[4 * (i * bi.bmiHeader.biWidth + j)],
 							screenBits[4 * (i * bi.bmiHeader.biWidth + j) + 1], screenBits[4 * (i * bi.bmiHeader.biWidth + j) + 2]));
 					}
@@ -635,19 +723,18 @@ void bmpClass::getBoardColours(int& col1, int& col2)
 			}
 		}
 	}
-	//std::cout << colours.size() << " " << maxSqSz << " " << starts << "\n";
+
 	std::sort(colours.begin(), colours.end());
 	int curApp = 0, curCol = 0;
 	int bestApp = -1, bestCol = -1;
+
 	//find first colour with most appearences
 	for (auto it : colours)
 	{
-		//std::cout << it << " ";
 		if (curCol != it)
 		{
 			if (bestApp < curApp)
 			{
-				std::cout << curCol << "<-\n";
 				bestApp = curApp;
 				bestCol = curCol;
 			}
@@ -657,8 +744,7 @@ void bmpClass::getBoardColours(int& col1, int& col2)
 		}
 		curApp++;
 	}
-	std::cout << bestApp << " ";
-	col1 = bestCol; 
+	col1 = bestCol;
 	bestApp = 0;
 	curCol = -1;
 	curApp = 0;
@@ -669,7 +755,6 @@ void bmpClass::getBoardColours(int& col1, int& col2)
 			continue;
 		if (curCol != it)
 		{
-			std::cout << it << "<-\n";
 			if (bestApp < curApp)
 			{
 				bestApp = curApp;
@@ -681,19 +766,99 @@ void bmpClass::getBoardColours(int& col1, int& col2)
 		}
 		curApp++;
 	}
-	std::cout << bestApp << "\n";
+
+#if _DEBUG
 	col2 = bestCol;
 	byte* bCol1 = conv::_intToRGB(col1);
 	byte* bCol2 = conv::_intToRGB(col2);
 	std::cout << (int)*bCol1 << " <> " << (int)*(bCol1 + 1) << " <> " << (int)*(bCol1 + 2) << "\n";
 	std::cout << (int)*bCol2 << " <> " << (int)*(bCol2 + 1) << " <> " << (int)*(bCol2 + 2) << "\n";
+
+
+	//Clean up
 	delete[] bCol1;
 	delete[] bCol2;
+#endif
 	delete[] screenArr;
 	delete[] screenBits;
 }
 
-void bmpClass::saveScreenToFileWithType(LPCWSTR filename, int type)
+void bmpClass::removeBgColours(HBITMAP& hbitmap)
+{
+	if (col1 == NULL)
+	{
+		this->getBoardColours(col1, col2);
+	}
+
+	BITMAPINFO bi;
+
+	bi = { 0 };
+
+	bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+
+	HDC hdc = CreateCompatibleDC(NULL);
+
+	GetDIBits(hdc, hbitmap, 0, 0, NULL, &bi, DIB_RGB_COLORS);
+
+	//NEVER DELETE THIS or else really bad crashes happen
+	//And mad memory leaks
+	bi.bmiHeader.biCompression = BI_RGB;
+
+	BYTE* bits = new BYTE[bi.bmiHeader.biSize];
+
+	GetDIBits(hdc, hbitmap, 0, bi.bmiHeader.biHeight, (LPVOID)bits, &bi, DIB_RGB_COLORS);
+
+	int bitsSize = bi.bmiHeader.biSize;
+
+	if (bi.bmiHeader.biBitCount == 24)
+	{
+		//I make the if statement this way because I expect 32bpp always, this is just to be extra safe
+		BYTE* bits2 = new BYTE[bi.bmiHeader.biSize * 4 / 3];
+		int cpos = 0;
+		bitsSize = bi.bmiHeader.biSize * 4 / 3;
+		for (int i = 0; i < bi.bmiHeader.biSize; i += 3)
+		{
+			bits2[cpos] = bits[i];
+			bits2[cpos + 1] = bits[i + 1];
+			bits2[cpos + 2] = bits[i + 2];
+			bits2[cpos + 3] = 0;
+			cpos += 4;
+		}
+		delete[] bits;
+		bits = new BYTE[bitsSize];
+		memcpy(bits, bits2, bitsSize);
+		delete[] bits2;
+	}
+
+	for (int i = 0; i < bitsSize; i += 4)
+	{
+		int curColour = _convertRGBToInt(bits[i],
+			bits[i + 1], bits[i + 2]);
+		if (curColour == col1 || curColour == col2)//it's a match
+		{
+			//white pieces will always have a dark border
+			//so removing the background should make it red and not something else
+			//hopefully it all goes smooth
+			bits[i] = 255;
+			bits[i + 1] = 0;
+			bits[i + 2] = 0;
+		}
+	}
+	//hbitmap = CreateBitmap()
+}
+
+void bmpClass::testRemoveBg()
+{
+	HBITMAP _new = (HBITMAP)CopyImage(hSquares[1], IMAGE_BITMAP, 0, 0, LR_DEFAULTSIZE);
+	removeBgColours(_new);
+	CImage _ci;
+	_ci.Attach(hSquares[1], CImage::DIBOR_DEFAULT);
+	_ci.Save("TestRemoveBg.bmp", Gdiplus::ImageFormatBMP);
+	//ci.Destroy();
+	DeleteObject(_new);
+}
+
+void bmpClass::saveScreenToFileWithType(LPCSTR filename, int type)
 {
 	HDC hdcScreen;
 	HDC hdcMemDC = NULL;
@@ -748,7 +913,7 @@ void bmpClass::saveScreenToFileWithType(LPCWSTR filename, int type)
 	ReleaseDC(hwndDesktop, hdcScreen);
 }
 
-WCHAR* bmpClass::_saveScreenToFileWithType(LPCWSTR filename, int type)
+WCHAR* bmpClass::_saveScreenToFileWithType(LPCSTR filename, int type)
 {
 	HDC hdcScreen;
 	HDC hdcMemDC = NULL;
@@ -792,7 +957,7 @@ WCHAR* bmpClass::_saveScreenToFileWithType(LPCWSTR filename, int type)
 		break;
 	}
 
-	WIN32_FIND_DATAW fileData;
+	WIN32_FIND_DATAA fileData;
 
 	HANDLE hFind = FindFirstFile(filename, &fileData);
 
@@ -808,10 +973,10 @@ WCHAR* bmpClass::_saveScreenToFileWithType(LPCWSTR filename, int type)
 	ReleaseDC(hwndDesktop, hdcScreen);
 	FindClose(hFind);
 
-	return fileData.cFileName;
+	return (WCHAR*)fileData.cFileName;
 }
 
-void bmpClass::writeToFile(LPCWSTR filename, char* data)
+void bmpClass::writeToFile(LPCSTR filename, char* data)
 {
 	HANDLE hf = CreateFile(filename, GENERIC_READ | GENERIC_WRITE,
 		(DWORD)0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, (HANDLE)NULL);
