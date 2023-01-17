@@ -1,6 +1,12 @@
 #pragma once
+
 #include <Windows.h>
+#include <iostream>
+#include <atlimage.h>
 #include <utility>
+#include <sys/stat.h>
+
+#define MAX_PATH 100
 
 struct piece
 {
@@ -39,18 +45,38 @@ public:
 	{
 		scrW = GetSystemMetrics(SM_CXSCREEN);
 		scrH = GetSystemMetrics(SM_CYSCREEN);
+		col1 = NULL;
+		col2 = NULL;
+
+		ci = CImage();
+
+		files = new char* [64];
+
+		initFileNames();
+
+		wchar_t* fileN = new wchar_t[4];
+		fileN[0] = 's';
+		fileN[1] = 'q';
+		fileN[2] = 's';
+		fileN[3] = '\0';
+
+		_wmkdir(fileN);
+
+		delete[] fileN;
+
 		if (type_of_init == false)//this is only for testing on chess.com
 		{
 			boardL = 304 * scrW / 1920;
 			boardT = 105 * scrH / 1080;
-			sideL = 99 * scrH / 1080;
-			//sideL += (sideL & 1);
+			sideW = 104 * 1920 / scrW;
+			sideH = 104 * 1080 / scrH;
 		}
 		else
 		{
 			//TBD
 		}
-		split_the_board();
+		minColMatch = 0.9 * sideW * sideH;
+		//split_the_board();
 	}
 	/// <summary>
 	/// Default constructor, for some testing
@@ -66,6 +92,21 @@ public:
 			//hSquares[i] = NULL;
 		}
 	}//*/
+	/// <summary>
+	/// Does what the name suggests
+	/// </summary>
+	/// <returns>screen width</returns>
+	int giveW()
+	{
+		return scrW;
+	}
+	/// Does what the name suggests
+	/// </summary>
+	/// <returns>screen height</returns>
+	int giveH()
+	{
+		return scrH;
+	}
 	/// <summary>
 	/// Send a click to a given screen position
 	/// </summary>
@@ -88,12 +129,12 @@ public:
 	/// </summary>
 	/// <param name="filename">name of the file</param>
 	/// <returns>string representing the filepath</returns>
-	static char* _saveScreenToFile(LPCWSTR filename);
+	static char* _saveScreenToFile(LPCSTR filename);
 	/// <summary>
 	/// Creates a bitmap and returns the path to the file
 	/// </summary>
 	/// <param name="filename">name of the file</param>
-	static void saveScreenToFile(LPCWSTR filename);
+	static void saveScreenToFile(LPCSTR filename);
 	/// <summary>
 	/// Saves current screen to a file, with a given type
 	/// </summary>
@@ -103,7 +144,7 @@ public:
 	/// 1 - png
 	/// 2 - jpeg
 	/// default - raw bitmap</param>
-	void saveScreenToFileWithType(LPCWSTR filename, int type);
+	void saveScreenToFileWithType(LPCSTR filename, int type);
 	/// <summary>
 	/// Saves current screen to a file, with a given type, and return the path to the file
 	/// </summary>
@@ -114,13 +155,13 @@ public:
 	/// 2 - jpeg
 	/// default - raw bitmap</param>
 	/// <returns>WCHAR to filepath</returns>
-	WCHAR* _saveScreenToFileWithType(LPCWSTR filename, int type);
+	WCHAR* _saveScreenToFileWithType(LPCSTR filename, int type);
 	/// <summary>
 	/// DOES NOT WORK
 	/// </summary>
 	/// <param name="filename"></param>
 	/// <param name="data"></param>
-	void writeToFile(LPCWSTR filename, char* data);
+	void writeToFile(LPCSTR filename, char* data);
 	/// <summary>
 	/// prints a square, mostly for testing
 	/// </summary>
@@ -136,7 +177,123 @@ public:
 	/// </summary>
 	/// <param name  = "col1">first colour</param>
 	/// <param name  = "col2">second colour</param>
-	void getBoardColours(int &col1, int &col2);
+	void getBoardColours(int& col1, int& col2);
+	/// <summary>
+	/// Removes the background colour
+	/// Valid values for the background colour are given by getBoardColours
+	/// </summary>
+	void removeBgColours(HBITMAP& hbitmap);
+	/// <summary>
+	/// Testing the removeBgColours method
+	/// </summary>
+	void testRemoveBg();
+
+	static void _reverseInt(int nr, char*& rev)
+	{
+		if (nr == 0)
+		{
+			rev = new char[1];
+			rev[0] = '0';
+			return;
+		}
+		int nrDigits = 0;
+		int zeros = 0;
+		while (nr % 10 == 0 && nr)
+		{
+			nrDigits++;
+			zeros++;
+			nr /= 10;
+		}
+		int _rev = 0;
+		while (nr)
+		{
+			nrDigits++;
+			_rev = _rev * 10 + nr % 10;
+			nr /= 10;
+		}
+		int cpos = 0;
+		rev = new char[nrDigits];
+		while (_rev)
+		{
+			rev[cpos++] = _rev % 10 + '0';
+			_rev /= 10;
+		}
+		while (zeros)
+		{
+			rev[cpos++] = '0';
+			zeros--;
+		}
+	};
+
+	void initFileNames()
+	{
+		char* IHateOpenCVOnGod;
+		char* temp;
+		for (int i = 0; i < 64; ++i)
+		{
+			if (10 <= i)
+			{
+				IHateOpenCVOnGod = new char[13];
+				IHateOpenCVOnGod[0] = 's';
+				IHateOpenCVOnGod[1] = 'q';
+				IHateOpenCVOnGod[2] = 's';
+				IHateOpenCVOnGod[3] = '\\';
+				_reverseInt(i, temp);
+				IHateOpenCVOnGod[4] = 's';
+				IHateOpenCVOnGod[5] = 'q';
+				IHateOpenCVOnGod[6] = temp[0];
+				IHateOpenCVOnGod[7] = temp[1];
+				IHateOpenCVOnGod[8] = '.';
+				IHateOpenCVOnGod[9] = 'p';
+				IHateOpenCVOnGod[10] = 'n';
+				IHateOpenCVOnGod[11] = 'g';
+				IHateOpenCVOnGod[12] = '\0';
+			}
+			else
+			{
+				IHateOpenCVOnGod = new char[12];
+				IHateOpenCVOnGod[0] = 's';
+				IHateOpenCVOnGod[1] = 'q';
+				IHateOpenCVOnGod[2] = 's';
+				IHateOpenCVOnGod[3] = '\\';
+				_reverseInt(i, temp);
+				IHateOpenCVOnGod[4] = 's';
+				IHateOpenCVOnGod[5] = 'q';
+				IHateOpenCVOnGod[6] = temp[0];
+				IHateOpenCVOnGod[7] = '.';
+				IHateOpenCVOnGod[8] = 'p';
+				IHateOpenCVOnGod[9] = 'n';
+				IHateOpenCVOnGod[10] = 'g';
+				IHateOpenCVOnGod[11] = '\0';
+			}
+			files[i] = new char[MAX_PATH];
+			GetFullPathNameA(IHateOpenCVOnGod, MAX_PATH, files[i], nullptr);
+		}
+	}
+
+	void saveAllSquares()
+	{
+		for (int i = 0; i < 64; ++i)
+		{
+			ci.Attach(hSquares[i], CImage::DIBOR_DEFAULT);
+			ci.Save(files[i], Gdiplus::ImageFormatPNG);
+			ci.Detach();
+		}
+	}
+
+	void findAllPieces()
+	{
+		memcpy(oldPieces, piece, sizeof(int) * 64);
+		split_the_board();
+		saveAllSquares();
+		//Call to Dimitrije's thing for each square
+		/*
+		for (int i = 0; i < 64; ++i)
+		{
+			function(files[i], piece[i]);
+		}
+		*/
+	}
 
 private:
 
@@ -148,7 +305,18 @@ private:
 	//this is a memory leak waiting to happen :/
 	HBITMAP hSquares[64];
 
-	//piece pieces[32];
+	//piece types according to postion, 0 is bottom left
+	int piece[64], oldPieces[64];
+
+	//filenames
+	char** files;
+
+	//variables for different measurments
 	int scrW, scrH;
-	int boardL, boardT, sideL;
+	int boardL, boardT, boardR, boardB;
+	int sideW, sideH;
+	int minColMatch;
+	int col1, col2;
+
+	CImage ci;
 };
