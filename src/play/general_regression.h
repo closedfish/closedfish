@@ -148,15 +148,8 @@ class Func
 
         int AbsoluteErfDistance(int x, int y)
         {
-            if (x > y)
-            {
-                return (x - y) * (x - y);
-            }
-
-            else
-            {
-                return  (x - y) * (x - y);
-            }
+            return erf((x - y) * (x - y));
+            
         }
 
         /*
@@ -394,8 +387,6 @@ namespace AbsSqrtDifBasis{
     }
 
 }
-
-
 
 namespace SqrtAbsDifBasis
 {
