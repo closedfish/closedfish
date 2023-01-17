@@ -1,5 +1,5 @@
 #include<iostream>
-#include "ConnectUI-SAI.h"
+#include "ConnectUISAI.h"
 /*
 *@brief Translate the initial board to just pawns (1 are pawns of the bottom player and 2 are pawns of top player)
 *@param BoardInput Board from UI

@@ -1,12 +1,12 @@
 #pragma once
 
-#include "ConnectUI-SAI.h"
+#include "ConnectUISAI.h"
 #include "closenessAI.h"
 #include "general_regression.h"
 #include "input.h"
 #include "output.h"
 
-#include <CFBoard.h>
+//#include <CFBoard.h>
 #include <SwitchEngine.h>
 #include <logger.h>
 
