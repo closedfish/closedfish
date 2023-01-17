@@ -6,7 +6,7 @@
 #include <logger.h>
 #include <tuple>
 
-class SwitchEngine : ChessEngine {
+class SwitchEngine : public Closedfish::ChessEngine {
 public:
 	static enum Status { CLOSED, OPEN };
 	/**
@@ -17,7 +17,7 @@ public:
 	 */
 	SwitchEngine() : ChessEngine() {}
 	SwitchEngine(CFBoard &board, Closedfish::Logger &logger);
-	NextMove getNextMove();
+	Closedfish::Move getNextMove();
 
 private:
 	ClosedfishEngine *closedfish;

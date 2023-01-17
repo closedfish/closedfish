@@ -41,11 +41,22 @@ std::string call_stockfish(Stockfish::Position &pos,
 	return "bestmove not found";
 }
 
-NextMove StockfishEngine::getNextMove() {
+int parseAN(std::string str) {
+	int row = 7 - (str[1] - '0');
+	int col = str[0] - 'a';
+	return row * 8 + col;
+}
+
+Closedfish::Move StockfishEngine::getNextMove() {
 	Stockfish::Position pos;
 	Stockfish::StateListPtr states;
 	convert_CFBoard_to_Stockfish_Position(*currentBoard, pos, states);
 	std::string out = call_stockfish(pos, states, {}, false, logger);
 	Stockfish::Threads.set(0);
-	return {0, 0, 0.0}; // todo: parse from out
+	// std::cerr << out << std::endl;
+	if (out.size() != 4) {
+		throw "Stockfish invalid output";
+	}
+	return {parseAN(out.substr(0, 2)), parseAN(out.substr(2, 2)),
+					0.0}; // todo: parse from out
 }

@@ -2,8 +2,8 @@
 #include <EngineWrapper.h>
 #include <tuple>
 
-class ClosedfishEngine : public ChessEngine {
+class ClosedfishEngine : public Closedfish::ChessEngine {
 public:
 	ClosedfishEngine() : ChessEngine() {}
-	NextMove getNextMove();
+	Closedfish::Move getNextMove();
 };

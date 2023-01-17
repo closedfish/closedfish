@@ -1,12 +1,18 @@
 // #include "config.hpp"
 #include "SwitchMain.h"
 
-void chessGameLoop(SwitchEngine &engine) {
-	// not yet implemented
-	NextMove nm = engine.getNextMove();
-	// now process this object
+Closedfish::Move InputFromUI() { return {0, 0, 0.0}; }
 
-	OutputToUI();
+void chessGameLoop(SwitchEngine &engine) {
+	while (true) {
+		Closedfish::Move nm = engine.getNextMove();
+		// now process this object
+		OutputToUI();
+		engine.processMove(nm);
+		// get opponent's next move
+		Closedfish::Move opp = InputFromUI();
+		engine.processMove(opp);
+	}
 }
 
 int main(int argc, char *argv[]) {

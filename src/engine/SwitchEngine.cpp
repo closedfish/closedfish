@@ -9,14 +9,14 @@ SwitchEngine::SwitchEngine(CFBoard &board, Closedfish::Logger &logger)
 	stockfish->setBoardPointer(&board);
 }
 
-NextMove SwitchEngine::getNextMove() {
+Closedfish::Move SwitchEngine::getNextMove() {
 	double ClosenessCoef;
 	ClosenessCoef = ((double)rand() / RAND_MAX) + 1;
-	if (status == Status.CLOSED && ClosenessCoef > 0.6)
-		status = Status.OPEN;
-	else if (status == Status.OPEN && ClosenessCoef < 0.8)
-		status = Status.CLOSED;
-	if (status == Status.CLOSED) {
+	if (status == Status::CLOSED && ClosenessCoef > 0.6)
+		status = Status::OPEN;
+	else if (status == Status::OPEN && ClosenessCoef < 0.8)
+		status = Status::CLOSED;
+	if (status == Status::CLOSED) {
 		// We choose Closedfish
 		return closedfish->getNextMove();
 	} else {

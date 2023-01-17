@@ -3,8 +3,9 @@
 #include <iostream>
 #include <tuple>
 
+namespace Closedfish {
 // Gives you the information on next move
-typedef std::tuple<int, int, float> NextMove;
+typedef std::tuple<int, int, float> Move;
 
 /**
  * @brief Abstract class from which all of our algorithms are gonna be derived
@@ -30,6 +31,13 @@ public:
 	void setBoardPointer(CFBoard *board);
 
 	/**
+	 * @brief Make the move on the current board
+	 *
+	 * @param move the move to be made
+	 */
+	void processMove(Move move);
+
+	/**
 	 * @brief This function uses the current board to return
 	 * a tuple containing the next suggested move and its rating.
 	 *
@@ -39,8 +47,9 @@ public:
 	 * <int> is the [0, 63] id of the tile we want to move the piece to, and the
 	 * third element <float> is the evaluation of the move we're gonna make.
 	 */
-	virtual NextMove getNextMove() = 0; // pure virtual function
+	virtual Move getNextMove() = 0; // pure virtual function
 
 protected:
 	CFBoard *currentBoard;
 };
+}; // namespace Closedfish

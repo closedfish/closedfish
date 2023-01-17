@@ -12,7 +12,7 @@
 #include <stockfish/src/uci.h>
 #include <tuple>
 
-class StockfishEngine : public ChessEngine {
+class StockfishEngine : public Closedfish::ChessEngine {
 public:
 	StockfishEngine() : ChessEngine() {}
 	/**
@@ -23,7 +23,7 @@ public:
 	 */
 	StockfishEngine(Closedfish::Logger &logger)
 			: logger(&logger), ChessEngine() {}
-	NextMove getNextMove();
+	Closedfish::Move getNextMove();
 
 private:
 	Closedfish::Logger *logger;
