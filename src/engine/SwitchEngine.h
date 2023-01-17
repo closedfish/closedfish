@@ -8,7 +8,7 @@
 
 class SwitchEngine : public Closedfish::ChessEngine {
 public:
-	static enum Status { CLOSED, OPEN };
+	enum Status { CLOSED, OPEN };
 	/**
 	 * @brief Construct a new Switch Engine object
 	 *
