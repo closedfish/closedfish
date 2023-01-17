@@ -1,6 +1,6 @@
 #pragma once
-//#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
-#include <Eigen/Dense>
+#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
+//#include <Eigen/Dense>
 
 
 /*
@@ -20,6 +20,7 @@
 *   
 *
 */
+
 
 class Func
 {
@@ -89,7 +90,7 @@ class Func
 
             if (func_num == 0)
             {
-                return ceil(100 * AveragePos(l_top_pons, l_bottom_pons)) / 100;
+                return 0;
             }
 
             if (func_num == 1)
@@ -146,17 +147,10 @@ class Func
         *@return computation of the function
         */
 
-        int AbsoluteErfDistance(int x, int y)
+        float AbsoluteErfDistance(int x, int y)
         {
-            if (x > y)
-            {
-                return (x - y) * (x - y);
-            }
-
-            else
-            {
-                return  (x - y) * (x - y);
-            }
+            return erf((x - y) * (x - y));
+            
         }
 
         /*
@@ -395,8 +389,6 @@ namespace AbsSqrtDifBasis{
 
 }
 
-
-
 namespace SqrtAbsDifBasis
 {
      Func* GenerateBasis()
@@ -446,6 +438,10 @@ namespace EvaluationFunction
         
         return output_val;
     }
+    /*
+    *@brief this function enables us to test how well the ai performs on the data that wasn't used for training it but for testing.
+    *@return emp_risk: the empirical risk of the outputed data.
+    */  
 
     float TestAi(Func* basis, Eigen::VectorXd theta, int** test_data_points, double* outputs, int dimension, int num_data_points)
     {
