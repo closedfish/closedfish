@@ -1,5 +1,5 @@
 set(CUI_SOURCES 
-    "ConnectUI-SAI.cc")
+    "ConnectUISAI.cpp")
 set(CUI_HEADERS
     "ConnectUISAI.h")
 
