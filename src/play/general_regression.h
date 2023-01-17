@@ -21,6 +21,7 @@
 *
 */
 
+
 class Func
 {
     public:
@@ -146,7 +147,7 @@ class Func
         *@return computation of the function
         */
 
-        int AbsoluteErfDistance(int x, int y)
+        float AbsoluteErfDistance(int x, int y)
         {
             return erf((x - y) * (x - y));
             
