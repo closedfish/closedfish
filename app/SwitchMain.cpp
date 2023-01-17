@@ -3,22 +3,8 @@
 
 void chessGameLoop(SwitchEngine &engine) {
 	// not yet implemented
-
-	double ClosenessCoef;
-	double BestClosedfishScore, BestStockfishScore;
-
-	BestStockfishScore = ((double)rand() / RAND_MAX) + 1;
-	BestClosedfishScore = ((double)rand() / RAND_MAX) + 1;
-	ClosenessCoef = ((double)rand() / RAND_MAX) + 1;
-
-	if (ClosenessCoef * BestStockfishScore >
-			(1 - ClosenessCoef) * BestClosedfishScore) {
-		// We choose Closedfish
-		std::cout << "We choose Closedfish" << std::endl;
-	} else {
-		// We choose Stockfish
-		std::cout << "We choose Stockfish" << std::endl;
-	}
+	NextMove nm = engine.getNextMove();
+	// now process this object
 
 	OutputToUI();
 }

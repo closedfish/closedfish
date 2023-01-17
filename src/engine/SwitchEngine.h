@@ -8,6 +8,7 @@
 
 class SwitchEngine : ChessEngine {
 public:
+	static enum Status { CLOSED, OPEN };
 	/**
 	 * @brief Construct a new Switch Engine object
 	 *
@@ -21,4 +22,5 @@ public:
 private:
 	ClosedfishEngine *closedfish;
 	StockfishEngine *stockfish;
+	Status status;
 };
