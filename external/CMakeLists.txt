@@ -20,7 +20,8 @@ add_library(${SF} STATIC
     
 target_include_directories(${SF} PUBLIC 
     "./"
-    "${CMAKE_BINARY_DIR}/configured_files/include")
+    "${CMAKE_BINARY_DIR}/configured_files/include"
+	"./stockfish/src")
 
 if (${ENABLE_WARNINGS})
     target_set_warnings(TARGET ${SF} ENABLE ON AS_ERROR OFF)
