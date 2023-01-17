@@ -6,7 +6,7 @@
 #include "input.h"
 #include "output.h"
 
-//#include <CFBoard.h>
+#include <CFBoard.h>
 #include <SwitchEngine.h>
 #include <logger.h>
 
