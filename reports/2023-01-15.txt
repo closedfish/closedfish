@@ -1,0 +1,66 @@
+Aarrya:
+  This week:
+    spent more time refining the algorithm idea and finalised it to a rough version of an alpha beta pruning
+    wrote the code and almost completed it
+  Next week:
+    put everything together, debug, test, pray to god
+
+
+Etienne:
+This week:
+	- Continued working on the Unit-Tests and almost finished them.
+	- Started researching and looking into debugging for the algorithm.
+Next week:
+	- Finish all the Unit-Tests, debug and finish the algorithm.
+
+
+Antonia:
+
+This week:
+	- in PieceMovement.cpp: implemented functiosn to detect blunders (to detect if we can eat any piece after the last opponent's move°. Since in closed positions no one should be able to take opponent pieces, if we suddenly can eat a piece it means that the opponent played badly).
+	- in WeakPawns.cpp : implemented some more weak pawns functions for the needs of the 2-person dfs
+
+Next week:
+	- Fix bugs and merge
+	- start thinking about the presentation
+
+
+Ariel:
+This week: 
+	  - Coded test functions for CFBoard.cpp
+Next week:
+	  - Continue writing test functions
+	  - Continue working with the switch team to train the AI
+	  - Help Merge the project
+
+
+Ba Cong:
+This week:
+	- Fixed the one person dfs when it goes to an infinite loop too early.
+	- Optimized the one person dfs for higher depth.
+	- Discovered bugs in naiveCheckCheck and CFBoard from testing with one person dfs, informed Sirawit and Yoshi to fix them afterwards.
+Next week:
+	- Finish the one person dfs and help out on other algorithms.
+	- Help with building connectors between components of the project.
+	
+Sirawit:
+This week:
+	- Finished Stockfish naive eval
+	- Merged TeamSwitchAI pending PR
+Next week:
+	- Complete the Stockfish (and Closedfish) connector
+	- Integrate unit tests from testing team
+
+Yoshimi-Theophile
+Week 1: Started implementation of the ClosedFish board. Laid the groundwork for data representation.
+  Implemented necessary functions to access this data in meaningful ways, as well as a way to visualize the current board.
+Week 2: Highly optimized the Board class from the previous week by changing the way chess pieces' information is stored.
+  Implemented the greater part of chess pieces' moves within the class (some work still to be done). 
+  With the help of Sirawit, made the CFBoard class callable to make moves, and generally usable for others.
+  Made docstrings for all methods.
+Week 3: Added methods according to feedback, and lightly tested my ruleset code to suss out any errors.
+Week 4: Optimized a large part of the process for getting legal moves in the board implementation.
+  Moved my progress report to this most recent file instead of updating the old file every week (hopefully not a problem).
+Week 5: Suggested changes to algorithm to the current iteration, and studied some of the repository.
+Week 6: Implemented a helper function for blunder subsection of the algorithm. Participated in discussion about the project build
+  and plans for connectors: the plan now is to build a master function for the algorithm, and put 2 weeks of discussion into effect.
