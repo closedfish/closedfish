@@ -1,7 +1,7 @@
-#include "../../lib/board_implementation/CFBoard.cpp"
-#include "../../lib/board_implementation/naiveCheckCheck.cpp"
-#include "../../lib/board_implementation/CFBoard.h"
-#include "../../lib/weak_pawns/WeakPawns.cpp"
+#include "../board_implementation/CFBoard.cpp"
+#include "../board_implementation/naiveCheckCheck.cpp"
+#include "../board_implementation/CFBoard.h"
+#include "weak_pawns/WeakPawns.cpp"
 
 #include <iostream>
 using namespace std;
@@ -43,6 +43,47 @@ uint64_t getDangerousTiles(CFBoard board, bool color){
 uint64_t getTilesThatCanEat(CFBoard &board, bool &color){
 
     return getDangerousTiles(board, (color+1)%2);
+}
+
+/**
+ * @brief : Returns a vector of the tiles that we can capture after the opponent's last move
+ * (we identify blunders)
+ * -1 means we can't capture any new piece
+ * 
+ * @param board : current CFBoard
+ * @param lastMoveStart : tile from which the opponent's piece left
+ * @param lastMoveEnd : tile at which the piece landed
+ * 
+ * @return : vector
+*/
+vector<int> CapturesFromLastMove(CFBoard &board, int lastMoveStart, int lastMoveEnd){
+
+    bool oppColor = board.getPieceFromCoords(lastMoveEnd)%2;
+    vector<int> capture;
+
+    int typeLastMove = board.getPieceFromCoords(lastMoveEnd);
+
+    if(getTilesThatCanEat(board, color) && (1<<lastMoveEnd)){ //if we can eat the piece that last moved
+        capture.add(lastMoveEnd);
+        return capture;
+    }
+
+    uint64_t protectedPiecesStart = getProtectedTiles(board, lastMoveStart)&board.getColorBitBoard(oppColor);
+    
+    if (protectedPiecesStart == 0){ //if the piece didn't protect any piece, we return
+        capture.add(-1);
+        return capture;
+    }
+
+    uint64_t piecesInDanger = protectedPieces & getDangerousTiles(board, (color+1)%2);
+
+    for(int t = 0; t<= 63; t++){
+        if(piecesInDanger&(1ll << t)){
+            capture.add(t); //we add the pieces in danger to the output vector
+        }
+    }
+
+    return capture;
 }
 
 
