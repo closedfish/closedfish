@@ -1,6 +1,6 @@
 #pragma once
-//#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
-#include <Eigen/Dense>
+#include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
+//#include <Eigen/Dense>
 
 
 /*
@@ -439,7 +439,7 @@ namespace EvaluationFunction
             return 1;
         }
 
-        elif (output_val <= 0)
+        else if (output_val <= 0)
         {
             return 0;
         }

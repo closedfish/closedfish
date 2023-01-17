@@ -1,5 +1,5 @@
 #include <iostream>
-#include "closenessAI.h"
+#include "general_regression.h"
 #include <cmath>
 
 
