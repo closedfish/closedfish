@@ -7,5 +7,5 @@ void Closedfish::ChessEngine::processMove(Closedfish::Move move) {
 	if (!currentBoard) {
 		throw "Board not found";
 	}
-	currentBoard->movePiece(get<0>(move), get<1>(move));
+	currentBoard->movePiece(std::get<0>(move), std::get<1>(move));
 }
