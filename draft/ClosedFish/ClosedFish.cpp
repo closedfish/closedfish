@@ -3,10 +3,65 @@
 
 #include "framework.h"
 #include "ClosedFish.h"
-#include "ChessBotUI.h"
 #include <iostream>
 
 #define MAX_LOADSTRING 100
+
+#pragma region globalVariables //these are my global variables, which i will not mix with the windows ones for the sake of safety
+bmpClass bc(false);
+#pragma endregion globalVariables
+
+#pragma region testFunc
+std::thread t1;
+bool cont = true;
+void consoleTest()//testing different stuff using the console
+{
+    AllocConsole();
+    //opening the standard streams for use
+    FILE* stream;
+    freopen_s(&stream, "CONIN$", "r", stdin);
+    freopen_s(&stream, "CONOUT$", "w", stderr);
+    freopen_s(&stream, "CONOUT$", "w", stdout);
+    int nr = -1;
+    while (cont)
+    {
+        std::cin >> nr;
+        switch (nr)
+        {
+        case -1:
+            FreeConsole();
+            break;
+        case -9:
+            bc.split_the_board();
+            break;
+        case -7:
+        {
+            int c1, c2;
+            bc.getBoardColours(c1, c2); 
+        }
+        case -3:
+            POINT p;
+            GetCursorPos(&p);
+            bc.sendClick(p.x, p.y);
+            break;
+        case -21:
+        {
+            char* path = (char*)bc._saveScreenToFileWithType(L"Test.png", 1);
+            auto dpair = giveBoard(path, bc.giveW(), bc.giveH());
+            std::cout << dpair.first.first << " " << dpair.first.second << "<-\n";
+            std::cout << dpair.second.first << " " << dpair.second.second << "<-\n"; 
+        }
+            break;
+        default:
+            bc.printSq(nr);
+            std::cout << nr << "<-\n";
+            break;
+        break;
+        }
+        nr = -1;//Safety measure so external calls to FreeConsole don't call printSq on some deleted HBITMAP object
+    }
+}
+#pragma endregion testFunc
 
 // Global Variables:
 HINSTANCE hInst;                                // current instance
@@ -29,6 +84,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: Place code here.
+    t1 = std::thread(consoleTest);
 
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -111,11 +167,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    _CONSOLE_SCREEN_BUFFER_INFO scrInf;
    GetConsoleScreenBufferInfo(hWnd, &scrInf);
 
-   SMALL_RECT coords = scrInf.srWindow;
-
-   int width = coords.Right - coords.Left;
-   int height = coords.Top - coords.Bottom;
-
    //CREATE Start button
    HWND hwndStartButton = CreateWindow(
        L"BUTTON", L"Start",
@@ -136,11 +187,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    UpdateWindow(hWnd);
 
    return TRUE;
-}
-
-LRESULT CALLBACK StartBtnMsg(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-    return TRUE;
 }
 
 //
@@ -167,11 +213,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
                 break;
             case IDM_EXIT:
+                FreeConsole();
+                t1.join();
                 DestroyWindow(hWnd);
                 break;
             case BN_CLICKED://the one button was clicked
-            {bmpClass bc = bmpClass(false);
-            bc._saveScreenToFile(L"Buton.jpg"); }//just testing to be changed to main loop
+            {
+               bc.printSq(0);
+            }
                 break;
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
@@ -187,6 +236,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         }
         break;
     case WM_DESTROY:
+        FreeConsole();
+        t1.join();
         PostQuitMessage(0);
         break;
     default:
