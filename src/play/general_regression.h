@@ -3,6 +3,8 @@
 #include <Eigen/Dense>
 
 
+
+
 /*
 *@brief This is the funtion class that will enables us to have an array of functions without to many technical difficulties.
 *
@@ -31,6 +33,9 @@ class Func
 
         }
 
+
+
+
         /*
         *@brief This method Inititialises the function we choose
         *
@@ -49,6 +54,9 @@ class Func
             
 
         }
+
+
+
 
 
         /*
@@ -74,6 +82,7 @@ class Func
                 return Eval_help(l_top_pons, l_bottom_pons);
             }
         }
+
 
 
         /*
@@ -106,6 +115,8 @@ class Func
         }
 
 
+
+
         /*
         *@brief helper function for Evaluate in the case where we are considering difference between pons heights of pons of same color
         *@param l: the pons could be pons of top or bottom player depending on initialization
@@ -130,6 +141,8 @@ class Func
         }
 
         
+
+
         /*
         *@brief We consider here the square difference of two heights of two pons on the board
         *@return the square difference of two heights of two pons on the board
@@ -139,6 +152,8 @@ class Func
         {
             return  (x - y) * (x - y);
         }
+
+
 
 
         /*
@@ -160,6 +175,8 @@ class Func
         *@return the distance between the average position of all of the pons and the middle of the board (of height 3.5)
         */
         
+
+
 
         float AveragePos(int* l_top_pons, int* l_bottom_pons)
         {
@@ -194,6 +211,8 @@ class Func
         }
 
 
+
+
     private:
 
         int func_num;
@@ -202,6 +221,14 @@ class Func
         int height;
           
 };      
+
+
+
+
+
+
+
+
 
 
 /*
@@ -241,6 +268,9 @@ namespace TheRegression {
     }
 
 
+
+
+
     /*
     *@brief This function creates the vector containing the closness (on a interval from 0 to 1) of each give chessboard in order
     *@param data_outputs: the data outputs for closness given by the data team
@@ -256,6 +286,9 @@ namespace TheRegression {
 
         return Y;
     }
+
+
+
 
 
     /*
@@ -288,6 +321,9 @@ namespace TheRegression {
 
 
 }
+
+
+
 
 
 /*
@@ -328,6 +364,10 @@ namespace SqrtDifBasis
     }
 
 }
+
+
+
+
 /*
 *@brief This first namespace enables us to Genearate a basis based on the modified erf distance function solely.
 *
@@ -366,6 +406,11 @@ namespace AbsErfBasis
 }
 
 
+
+
+
+
+
 namespace AbsSqrtDifBasis{
      Func* GenerateBasis()
     {
@@ -388,6 +433,11 @@ namespace AbsSqrtDifBasis{
     }
 
 }
+
+
+
+
+
 
 namespace SqrtAbsDifBasis
 {
@@ -415,6 +465,9 @@ namespace SqrtAbsDifBasis
 
 
 
+
+
+
 namespace EvaluationFunction
 {   
     
@@ -438,6 +491,11 @@ namespace EvaluationFunction
         
         return output_val;
     }
+
+
+
+
+
     /*
     *@brief this function enables us to test how well the ai performs on the data that wasn't used for training it but for testing.
     *@return emp_risk: the empirical risk of the outputed data.
