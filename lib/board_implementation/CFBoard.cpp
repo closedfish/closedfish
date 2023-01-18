@@ -15,12 +15,17 @@ int main(){
     
     
     //CFBoard testBoard = CFBoard("8/8/8/8/8/8/8/8 w - -");
-    CFBoard testBoard = CFBoard();
+    //CFBoard testBoard = CFBoard();
+    CFBoard testBoard = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP1B2/PpP3QR/1P1N1N2/R4BK1 w - - 0 1"); // wrong legal moves for bishop
+    // cout << board.naiveCheckCheck(0) << '\n';
+    std::cout << testBoard.getReprLegalMove(4, 37); 
 
+    
     for (int i=10; i<12; i+=1){
         // std::cout << testBoard.getReprLegalMove(i, 0) << std::endl;
         std::cout << testBoard.getReprLegalMove(i, 36) << std::endl;
     }
+    
     
     
     return 0;
@@ -368,14 +373,11 @@ int CFBoard::getMaterialCount(bool color) {
            __builtin_popcountll(queenBoard) * 9;
 }
 
-/**
-* @brief Gives a text representation of a coordinate.
-*
-* @param tile : <int> from 0 to 63, in the order (a8, b8, ..., h8, a7, ...,
-* h7, ......, a1, ..., h1).
-* 
-* @return string representation of the corresponding board tile coordinate
-*/
+bool CFBoard::isCurrentBoardLegal() {
+	return isStateLegal;
+}
+
+
 std::string CFBoard::tileToCoords(int tile){
     std::string ret = "";
     
@@ -388,14 +390,7 @@ std::string CFBoard::tileToCoords(int tile){
     return ret;
 }
 
-/**
-* @brief Gives a text representation of a hypothetical move.
-*
-* @param startTile : start tile for move.
-* @param endTile : end tile for move.
-* 
-* @return string representation of the move from startTile to endTile
-*/
+
 std::string CFBoard::getNextMoveRepr(int startTile, int endTile){
 
     int piece = getPieceFromCoords(startTile);
@@ -655,6 +650,22 @@ void CFBoard::undoLastMove() {
 
 }
 
+void CFBoard::forceAddPiece(int pieceId, int tile) {
+	//backup before making move
+	backupState();
+
+	isStateLegal = false;
+	addPiece(pieceId, tile);
+}
+
+
+void CFBoard::forceRemovePiece(int tile) {
+	backupState();
+
+	isStateLegal = false;
+	removePiece(tile);
+}
+
 // ----- Ruleset -----
 
 
@@ -709,7 +720,7 @@ uint64_t CFBoard::getDiagonals(int tile, bool color) {
     return (\
     (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard & slashMap ))) - 1)) & (slashMap & ((1ll<<tile)-1)) | \
     (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard & bslashMap))) - 1)) & (bslashMap & ((1ll<<tile)-1)) | \
-    (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1) & bslashMap) & -(allBoard & ~((1ll << (tile+1))-1))) << 1) -1 \
+    (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1) & bslashMap) & -(allBoard & ~((1ll << (tile+1))-1) & bslashMap)) << 1) -1 \
     & (bslashMap & ~((1ll << (tile+1))-1))) | (tile != 63)*\
     ((((allBoard & ~((1ll << (tile+1))-1) & slashMap) & -(allBoard & ~((1ll << (tile+1))-1) & slashMap)) << 1) -1\
     & (slashMap & ~((1ll << (tile+1))-1))) ) & (~getColorBitBoard(color));

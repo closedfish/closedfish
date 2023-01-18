@@ -1,7 +1,7 @@
 set(INPUT_SOURCES 
     "input.cpp")
 set(INPUT_HEADERS
-    "input.hpp")
+    "input.h")
 
 add_library(${INPUT} STATIC
     ${INPUT_SOURCES}
