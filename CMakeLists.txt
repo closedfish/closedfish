@@ -13,6 +13,14 @@ else()
     message("No optimizations")
 endif()
 
+#Compile Features
+option(CF "Enable compile features" ON)
+if(CF)
+include(cmake/CXXCompileFeatures.cmake)
+else()
+    message("No compile features")
+endif()
+
 #Enable warnings
 option(ENABLE_WARNINGS      "Enable to add warnings to a target."   ON)
 
