@@ -45,6 +45,6 @@ int main(int argc, char *argv[]) {
 	srand(time(NULL));
 
 	chessGameLoop(engine);
-
+	EvaluationFunction::maincass();
 	return 0;
 }
