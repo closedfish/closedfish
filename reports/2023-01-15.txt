@@ -51,6 +51,13 @@ Next week:
 	- Complete the Stockfish (and Closedfish) connector
 	- Integrate unit tests from testing team
 
+Nadja:
+		This week:
+		- Fixing compiling features 
+		- Building optimizations
+		- Fixing multithreading from cmake settings
+		- Fixing CMake errors
+
 Yoshimi-Theophile
 Week 1: Started implementation of the ClosedFish board. Laid the groundwork for data representation.
   Implemented necessary functions to access this data in meaningful ways, as well as a way to visualize the current board.
