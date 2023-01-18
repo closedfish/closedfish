@@ -17,7 +17,7 @@ bool CFBoard::naiveCheckCheck(bool color, int coordA, int coordB) {
     uint64_t thisKingBoard = kingBoard & getColorBitBoard(color);
     if (!thisKingBoard)
         return false;
-    uint64_t kingTile = 63ll - __builtin_clz11(thisKingBoard);
+    uint64_t kingTile = 63ll - __builtin_clzll(thisKingBoard);
     // make sure kingTile is not coordA or coordB
     uint64_t otherBoard = getColorBitBoard(!color);
     if(coordA != -1) otherBoard &= ~(1ll << (uint64_t)coordA);
