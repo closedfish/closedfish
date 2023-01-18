@@ -662,9 +662,9 @@ uint64_t CFBoard::getCardinals(int tile, bool color) {
     return (\
     (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard & columnMap ))) - 1)) & (columnMap >> (64 - (tile>>3<<3))) | \
     (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard))) - 1)) & (rowMap & ((1ll<<tile)-1)) | \
-    (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1)) & -(allBoard & ~((1ll << (tile+1))-1))) << 1) -1 \
+    (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1)) & (1+(~(allBoard & ~((1ll << (tile+1))-1))))) << 1) -1 \
     & (rowMap & ~((1ll << (tile+1))-1))) | (tile != 63)*\
-    ((((allBoard & ~((1ll << (tile+1))-1) & columnMap) & -(allBoard & ~((1ll << (tile+1))-1) & columnMap)) << 1) -1\
+    ((((allBoard & ~((1ll << (tile+1))-1) & columnMap) & (1+(~(allBoard & ~((1ll << (tile+1))-1) & columnMap)))) << 1) -1\
     & (columnMap & ~((1ll << (tile+1))-1))) ) & (~getColorBitBoard(color));
 }
 
@@ -705,9 +705,9 @@ uint64_t CFBoard::getDiagonals(int tile, bool color) {
     return (\
     (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard & slashMap ))) - 1)) & (slashMap & ((1ll<<tile)-1)) | \
     (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard & bslashMap))) - 1)) & (bslashMap & ((1ll<<tile)-1)) | \
-    (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1) & bslashMap) & -(allBoard & ~((1ll << (tile+1))-1))) << 1) -1 \
+    (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1) & bslashMap) & (1+(~(allBoard & ~((1ll << (tile+1))-1))))) << 1) -1 \
     & (bslashMap & ~((1ll << (tile+1))-1))) | (tile != 63)*\
-    ((((allBoard & ~((1ll << (tile+1))-1) & slashMap) & -(allBoard & ~((1ll << (tile+1))-1) & slashMap)) << 1) -1\
+    ((((allBoard & ~((1ll << (tile+1))-1) & slashMap) & (1+(~(allBoard & ~((1ll << (tile+1))-1) & slashMap)))) << 1) -1\
     & (slashMap & ~((1ll << (tile+1))-1))) ) & (~getColorBitBoard(color));
 }
 
