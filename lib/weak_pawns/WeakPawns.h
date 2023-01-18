@@ -1,5 +1,5 @@
-﻿#include "../board_implementation/CFBoard.cpp"
-#include "../board_implementation/naiveCheckCheck.cpp"
+﻿// #include "../board_implementation/CFBoard.cpp"
+// #include "../board_implementation/naiveCheckCheck.cpp"
 #include "../board_implementation/CFBoard.h"
 
 #include <iostream>
@@ -23,6 +23,10 @@ Main functions:
 */
 
 using namespace std; 
+
+inline bool isPositionValid(const int &row, const int &col) {
+    return row >= 0 && row < 8 && col >= 0 && col < 8;
+}
 
 namespace WeakPawns{
 

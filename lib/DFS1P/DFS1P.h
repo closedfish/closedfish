@@ -4,6 +4,7 @@
 #include "../Algo/Algorithm.h"
 #include "../heatmap/Heatmap.h"
 #include "../heatmap/BitOperations.h"
+#include "../weak_pawns/WeakPawns.h"
 
 class DFS1P : public ChessEngine {
 public:

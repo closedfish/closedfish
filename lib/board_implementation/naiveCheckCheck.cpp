@@ -12,7 +12,6 @@ inline bool isPositionValid(const int &row, const int &col) {
     return row >= 0 && row < 8 && col >= 0 && col < 8;
 }
 
-
 bool CFBoard::naiveCheckCheck(bool color, int coordA, int coordB) {
     uint64_t thisKingBoard = kingBoard & getColorBitBoard(color);
     if (!thisKingBoard)

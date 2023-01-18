@@ -141,7 +141,24 @@ void DFS1P::DFS1pAux(CFBoard* currentBoard, int depth, int maxDepth, std::vector
 std::tuple<int, int, float> DFS1P::getNextMove() {
     int heatMap[6][8][8];
     memset(heatMap, 0, sizeof heatMap);
-	uint64_t weakPawns = 1ll; // placeholder for finished weak pawns implementation
+
+    // Build the weak pawns
+	uint64_t weakPawns = 0;
+    int weakPawnsNumProtect = 1e9;
+    for (int tile = 0; tile < 64; tile++) {
+        // Only consider opponent pawns
+        if (currentBoard->getPieceFromCoords(tile) != (!currentBoard->getCurrentPlayer()))
+            continue;
+        int numProtect = WeakPawns::nbProtectingPieces(*currentBoard, tile);
+        if (numProtect < weakPawnsNumProtect) {
+            weakPawns = 0;
+            weakPawnsNumProtect = WeakPawns::nbProtectingPieces(*currentBoard, tile);
+            weakPawns |= (1<<tile%8);
+        } else if (numProtect == weakPawnsNumProtect) {
+            weakPawns |= (1<<tile%8);
+        }
+    }
+    cout << weakPawns << '\n';
 
     // Build the heatmap
     Heatmap::addHeatMap(*currentBoard, heatMap, weakPawns);
@@ -193,36 +210,36 @@ std::tuple<int, int, float> DFS1P::getNextMove() {
 }
 
 // int testDFS() {
-// // int main() {
-//     DFS1P algo;
-//     CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
-//     // CFBoard board = CFBoard("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1N1/2B1QB1R/3K3R w - - 0 1"); // no open files, >= 2 free rows
-// 	// CFBoard board = CFBoard("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R w - - 0 1"); // no open files, 1 free rows, no chance of winning, 3 is better than 4 for some reasons
-//     // CFBoard board = CFBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
-//     // CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP4/PpP1BN1R/1P2QNK1/4RB2 w - - 0"); // wrong old naiveCheckCheck
-//     // CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP1B2/PpP3QR/1P1N1N2/R4BK1 w - - 0 1"); // wrong legal moves for bishop
-//     // cout << board.naiveCheckCheck(0) << '\n';
-//     // cout << board.getReprLegalMove(6, 47); 
+int main() {
+    DFS1P algo;
+    CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
+    // CFBoard board = CFBoard("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1N1/2B1QB1R/3K3R w - - 0 1"); // no open files, >= 2 free rows
+	// CFBoard board = CFBoard("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R w - - 0 1"); // no open files, 1 free rows, no chance of winning, 3 is better than 4 for some reasons
+    // CFBoard board = CFBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
+    // CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP4/PpP1BN1R/1P2QNK1/4RB2 w - - 0"); // wrong old naiveCheckCheck
+    // CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP1B2/PpP3QR/1P1N1N2/R4BK1 w - - 0 1"); // wrong legal moves for bishop
+    // cout << board.naiveCheckCheck(0) << '\n';
+    // cout << board.getReprLegalMove(6, 47); 
 
-//     algo.setBoardPointer(&board);
-//     // cout << board.getRepr() << '\n';
+    algo.setBoardPointer(&board);
+    // cout << board.getRepr() << '\n';
 
-//     // // Test dist between tiles
-//     // for (int i = 0; i < 8; i++) {
-//     //     for (int j = 0; j < 8; j++) {
-//     //         int tile = i*8 + j;
-//     //         cout << distFromTileToTileAsPiece(board, 2, 61, tile) << ' ';
-//     //     }
-//     //     cout << '\n';
-//     // }
+    // // Test dist between tiles
+    // for (int i = 0; i < 8; i++) {
+    //     for (int j = 0; j < 8; j++) {
+    //         int tile = i*8 + j;
+    //         cout << distFromTileToTileAsPiece(board, 2, 61, tile) << ' ';
+    //     }
+    //     cout << '\n';
+    // }
 
-//     for (int i = 0; i < 15; i++) {
-//         auto move = algo.getNextMove();
-//         int startTile = std::get<0>(move), endTile = std::get<1>(move);
-//         float eval = std::get<2>(move);
-//         std::cout << startTile << ' ' << endTile << ' ' << eval << '\n';
-//         board.movePiece(startTile, endTile);
-//         board.forceFlipTurn(); // One person moving only
-//         cout << board.getRepr() << '\n';
-//     }
-// }
+    for (int i = 0; i < 15; i++) {
+        auto move = algo.getNextMove();
+        int startTile = std::get<0>(move), endTile = std::get<1>(move);
+        float eval = std::get<2>(move);
+        std::cout << startTile << ' ' << endTile << ' ' << eval << '\n';
+        board.movePiece(startTile, endTile);
+        board.forceFlipTurn(); // One person moving only
+        cout << board.getRepr() << '\n';
+    }
+}
