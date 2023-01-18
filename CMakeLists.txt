@@ -5,6 +5,13 @@ project(ChessSwitchAI VERSION 1.0.0 LANGUAGES CXX)
 
 include(GNUInstallDirs)
 
+#Optimizations
+option(OPTI "Whether to use the optimizations for the code" ON)
+if(OPTI)
+include(cmake/optimization.cmake)
+else()
+    message("No optimizations")
+endif()
 
 #Enable warnings
 option(ENABLE_WARNINGS      "Enable to add warnings to a target."   ON)
@@ -124,3 +131,4 @@ if(COMPILE_EXECUTABLE)
 else()
     message("W/o exe. compiling")
 endif()
+
