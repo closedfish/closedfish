@@ -1,6 +1,6 @@
 #pragma once
 // #include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
-#include <Eigen/Dense>
+#include "../../build/vcpkg_installed/x64-osx/include/Eigen/Dense"
 
 /*
  *@brief This is the funtion class that will enables us to have an array of
@@ -193,7 +193,7 @@ namespace SqrtAbsDifBasis {
 Func *GenerateBasis();
 }
 namespace EvaluationFunction {
-int maincass();
+Eigen::VectorXd getTheta();
 float Evaluate(Func *basis, Eigen::VectorXd theta, int *l_top_pons,
 							 int *l_bottom_pons, int dimension);
 float TestAi(Func *basis, Eigen::VectorXd theta, int **test_data_points,

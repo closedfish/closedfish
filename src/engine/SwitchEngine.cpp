@@ -12,9 +12,10 @@ SwitchEngine::SwitchEngine(CFBoard &board, Closedfish::Logger &logger)
 Closedfish::Move SwitchEngine::getNextMove() {
 	double ClosenessCoef;
 	ClosenessCoef = ((double)rand() / RAND_MAX) + 1;
-	if (status == Status::CLOSED && ClosenessCoef > 0.6)
+	// Proposal: Maybe change this, depending on breakthrough
+	if (status == Status::CLOSED && ClosenessCoef >= 0.2)
 		status = Status::OPEN;
-	else if (status == Status::OPEN && ClosenessCoef < 0.8)
+	else if (status == Status::OPEN && ClosenessCoef < 0.2)
 		status = Status::CLOSED;
 	if (status == Status::CLOSED) {
 		// We choose Closedfish
