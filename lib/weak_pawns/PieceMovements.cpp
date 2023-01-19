@@ -1,9 +1,5 @@
-#include "../board_implementation/CFBoard.cpp"
-#include "../board_implementation/naiveCheckCheck.cpp"
-#include "../board_implementation/CFBoard.h"
-#include "weak_pawns/WeakPawns.cpp"
+#include "PieceMovements.h"
 
-#include <iostream>
 using namespace std;
 using namespace WeakPawns;
 
@@ -63,23 +59,28 @@ vector<int> CapturesFromLastMove(CFBoard &board, int lastMoveStart, int lastMove
 
     int typeLastMove = board.getPieceFromCoords(lastMoveEnd);
 
-    if(getTilesThatCanEat(board, color) && (1<<lastMoveEnd)){ //if we can eat the piece that last moved
-        capture.add(lastMoveEnd);
+    // Sirawit's hotfix (2023-01-19-02:43):
+    // - change color to oppColor
+    // - change add to push_back
+    // - change getProtectedTiles to protectingTiles
+    // - change protectedPieces to protectedPiecesStart
+    if(getTilesThatCanEat(board, oppColor) && (1<<lastMoveEnd)){ //if we can eat the piece that last moved
+        capture.push_back(lastMoveEnd);
         return capture;
     }
 
-    uint64_t protectedPiecesStart = getProtectedTiles(board, lastMoveStart)&board.getColorBitBoard(oppColor);
+    uint64_t protectedPiecesStart = protectingTiles(board, lastMoveStart)&board.getColorBitBoard(oppColor);
     
     if (protectedPiecesStart == 0){ //if the piece didn't protect any piece, we return
-        capture.add(-1);
+        capture.push_back(-1);
         return capture;
     }
 
-    uint64_t piecesInDanger = protectedPieces & getDangerousTiles(board, (color+1)%2);
+    uint64_t piecesInDanger = protectedPiecesStart & getDangerousTiles(board, (oppColor+1)%2);
 
     for(int t = 0; t<= 63; t++){
         if(piecesInDanger&(1ll << t)){
-            capture.add(t); //we add the pieces in danger to the output vector
+            capture.push_back(t); //we add the pieces in danger to the output vector
         }
     }
 
@@ -119,7 +120,7 @@ int canPieceMoveOut(CFBoard &board, int tile, int pieceId){
     bool color = board.getPieceFromCoords(tile)%2;
     uint64_t moves = board.getLegalMoves(pieceId, tile);
     if(moves == 0){ //it can't move
-        return 0
+        return 0;
     }
 
     for(int t = 0; t<=63; t++){
@@ -149,22 +150,22 @@ int canPieceMoveOut(CFBoard &board, int tile, int pieceId){
 */
 uint64_t* getPieceMovements(CFBoard &board, bool &color, int tile){
 
-    bool color = board.getPieceFromCoords(tile)%2;
-
-    uint64_t result[3];
-    uint64_t directPieceMovements = board.getLegalMoves(pieceId, tile);
-    uint64_t pieceMovements = 0ll;
-    uint64_t losses = 0ll;
+    color = board.getPieceFromCoords(tile)%2; // Sirawit: you cannot redefine this!!
 
     int pieceId = board.getPieceFromCoords(tile);
+
+    uint64_t result[3];
+    uint64_t directPieceMovements = board.getLegalMoves(pieceId, tile); 
+    uint64_t pieceMovements = 0ll;
+    uint64_t losses = 0ll;
 
     for(int t = 0; t<= 63; t++){
         int piece = board.getPieceFromCoords(t);
         if((piece%2 != -1) && (piece%2 == color)){ //we found an ally piece
             board.forceRemovePiece(tile); //we remove our piece 
-            prT = protectingTilesForId(board, t, pieceId >> 1);
+            uint64_t prT = protectingTilesForId(board, t, pieceId >> 1);
             if(prT&(1ll<<tile)){ //if the tile of our piece is protecting the tile t
-                int moveOut = canPieceMoveOut(board, color, t, board.getPieceFromCoords(t));
+                int moveOut = canPieceMoveOut(board, t, board.getPieceFromCoords(t));
                 if(moveOut > 0){ //the piece at tile t can move out 
                     pieceMovements += (1ll<<t); 
                 }
