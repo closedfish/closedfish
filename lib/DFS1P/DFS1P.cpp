@@ -139,6 +139,19 @@ void DFS1P::DFS1pAux(CFBoard* currentBoard, int depth, int maxDepth, std::vector
 }
 
 std::tuple<int, int, float> DFS1P::getNextMove() {
+
+    bool player = currentBoard->getCurrentPlayer();
+    uint64_t blunderCheck = WeakPawns::getBoardProtectedByPawns(*currentBoard, player);
+    if (currentBoard->getColorBitBoard(player) & blunderCheck){
+        int destination = 64 - __builtin_clzll(currentBoard->getColorBitBoard(player) & blunderCheck);
+        int backdirection = player?-1:1;
+        int cand1 = currentBoard->getPieceFromCoords(destination + backdirection*7);
+        int cand2 = currentBoard->getPieceFromCoords(destination + backdirection*9);
+
+        if cand1 == 0 + (!player){return make_tuple(destination + backdirection*7,destination);}
+        if cand2 == 0 + (!player){return make_tuple(destination + backdirection*9,destination);}
+    }
+
     int heatMap[6][8][8];
     memset(heatMap, 0, sizeof heatMap);
 
@@ -158,7 +171,7 @@ std::tuple<int, int, float> DFS1P::getNextMove() {
             weakPawns |= (1<<tile%8);
         }
     }
-    cout << weakPawns << '\n';
+    //cout << weakPawns << '\n';
 
     // Build the heatmap
     Heatmap::addHeatMap(*currentBoard, heatMap, weakPawns);
