@@ -1,5 +1,5 @@
 set(HMP_SOURCES 
-    "Heatmap.cpp")
+    "Heatmap.cpp" "BitOperations.cpp")
 set(HMP_HEADERS
     "Heatmap.h" "BitOperations.h")
 

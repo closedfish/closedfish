@@ -1,5 +1,9 @@
 #pragma once
 
+#ifndef CHAR_BIT
+#define CHAR_BIT (sizeof(char))
+#endif
+
 #ifdef _MSC_VER
 #include <immintrin.h>
 #include <nmmintrin.h>
@@ -12,6 +16,7 @@
 // will change later when we have time.
 
 #include <vector>
+#include <cstdint>
 
 inline uint64_t reverseBit(uint64_t v) {
 	// credit to
@@ -28,16 +33,6 @@ inline uint64_t reverseBit(uint64_t v) {
 	return r;
 }
 
-inline std::vector<int> bitSetPositions(uint64_t board) {
-	std::vector<int> positions;
-	while (board != 0) {
-		positions.push_back(__builtin_ctzll(board));
-		uint64_t lb = board & -board; // get lowest bit
-		board ^= lb;									// remove lowest bit from tmp
-	}
-	return positions;
-}
+inline std::vector<int> bitSetPositions(uint64_t board);
 
-inline bool isBitSet(const uint64_t &board, const int &tile) {
-	return board & (1ll << tile);
-}
+inline bool isBitSet(const uint64_t &board, const int &tile);

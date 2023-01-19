@@ -130,7 +130,7 @@ void DFS1P::DFS1pAux(CFBoard* currentBoard, int depth, int maxDepth, std::vector
 
 Closedfish::Move DFS1P::getNextMove() {
 	int heatMap[6][8][8];
-	memset(heatMap, 0, sizeof heatMap);
+	memset(heatMap, 0, sizeof(heatMap));
 
     bool player = currentBoard->getCurrentPlayer();
     uint64_t blunderCheck = WeakPawns::getBoardProtectedByPawns(*currentBoard, player);
@@ -140,12 +140,9 @@ Closedfish::Move DFS1P::getNextMove() {
         int cand1 = currentBoard->getPieceFromCoords(destination + backdirection*7);
         int cand2 = currentBoard->getPieceFromCoords(destination + backdirection*9);
 
-        if cand1 == 0 + (!player){return make_tuple(destination + backdirection*7,destination);}
-        if cand2 == 0 + (!player){return make_tuple(destination + backdirection*9,destination);}
+        if (cand1 == (int)player){return std::make_tuple(destination + backdirection*7,destination, 0.0);}
+        if (cand2 == (int)player){return std::make_tuple(destination + backdirection*9,destination, 0.0);}
     }
-
-    int heatMap[6][8][8];
-    memset(heatMap, 0, sizeof heatMap);
 
 	// Build the weak pawns
 	uint64_t weakPawns = 0;
