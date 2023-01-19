@@ -34,6 +34,9 @@ set(SF StockfishSource)
 set(LOGGER CustomLogger)
 set(WRAP EngineWrapper)
 set(ENGINE SwitchEngine)
+set(DFS1P DepthFirstSearchOnePerson)
+set(HMP Heatmap)
+set(WEAKP WeakPawns)
 
 set(EXECUTABLE Executable)
 

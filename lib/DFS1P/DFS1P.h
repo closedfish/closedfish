@@ -1,10 +1,15 @@
 #pragma once
 
-#include "../board_implementation/CFBoard.h"
-#include "../engine_wrapper/EngineWrapper.h"
-#include "../heatmap/BitOperations.h"
-#include "../heatmap/Heatmap.h"
-#include "../weak_pawns/WeakPawns.h"
+#include <BitOperations.h>
+#include <CFBoard.h>
+#include <EngineWrapper.h>
+#include <Heatmap.h>
+#include <WeakPawns.h>
+#include <algorithm>
+#include <array>
+#include <queue>
+#include <tuple>
+#include <vector>
 
 class DFS1P : public Closedfish::ChessEngine {
 public:

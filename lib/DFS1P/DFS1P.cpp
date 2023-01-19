@@ -1,9 +1,4 @@
 #include "DFS1P.h"
-#include <vector>
-#include <queue>
-#include <tuple>
-#include <array>
-#include <algorithm>
 using std::cout;
 
 bool DFS1P::squareSafeFromOpponentPawns(const bool &currentTurn, const uint64_t& opponentPawnBoard, const int& row, const int &col) {
