@@ -1,9 +1,10 @@
 set(PLAY_SOURCES 
-    "PlayMain.cpp")
+    "PlayMain.cpp"
+    "GeneralRegression.cpp")
 set(PLAY_HEADERS
     "PlayMain.h"
     "closenessAI.h"
-    "general_regression.h")
+    "GeneralRegression.h")
 
 add_library(${PLAY} STATIC
     ${PLAY_SOURCES}
