@@ -10,6 +10,7 @@
 #include <queue>
 #include <tuple>
 #include <vector>
+#include <iostream>
 
 class DFS1P : public Closedfish::ChessEngine {
 public:

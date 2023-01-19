@@ -1,4 +1,5 @@
 #include "DFS1P.h"
+using std::cout;
 
 bool DFS1P::squareSafeFromOpponentPawns(const bool &currentTurn, const uint64_t& opponentPawnBoard, const int& row, const int &col) {
     // Black's turn
@@ -231,4 +232,5 @@ int testDFS() {
         board.forceFlipTurn(); // One person moving only
         cout << board.getRepr() << '\n';
     }
+    return 0; // must return a value
 }
