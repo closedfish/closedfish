@@ -1,7 +1,5 @@
-#pragma once
-
 #include <iostream>
-#include "general_regression.h"
+#include "GeneralRegression.h"
 #include <cmath>
 
 
