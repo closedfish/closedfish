@@ -6,11 +6,6 @@
 #include <algorithm>
 using std::cout;
 
-void DFS1P::setBoardPointer(CFBoard* ptr) {
-    if (ptr)
-        currentBoard = ptr;
-}
-
 bool DFS1P::squareSafeFromOpponentPawns(const bool &currentTurn, const uint64_t& opponentPawnBoard, const int& row, const int &col) {
     // Black's turn
     if (currentTurn)
@@ -96,7 +91,7 @@ int DFS1P::distFromHeatmap(CFBoard& board, int (&heatMap)[6][8][8]) {
     return dist;
 }
 
-void DFS1P::DFS1pAux(CFBoard* currentBoard, int depth, int maxDepth, std::vector<std::tuple<int, int, float>> curLine, std::vector<std::vector<std::tuple<int, int, float>>>& possibleLines) {
+void DFS1P::DFS1pAux(CFBoard* currentBoard, int depth, int maxDepth, std::vector<Closedfish::Move> curLine, std::vector<std::vector<Closedfish::Move>>& possibleLines) {
     // Return if max depth is reached
     if (depth == maxDepth) {
         // Adding current line to possible lines
@@ -138,7 +133,7 @@ void DFS1P::DFS1pAux(CFBoard* currentBoard, int depth, int maxDepth, std::vector
     }
 }
 
-std::tuple<int, int, float> DFS1P::getNextMove() {
+Closedfish::Move DFS1P::getNextMove() {
     int heatMap[6][8][8];
     memset(heatMap, 0, sizeof heatMap);
 
@@ -167,8 +162,8 @@ std::tuple<int, int, float> DFS1P::getNextMove() {
     int maxDepth = 3;
 
     // Get all possible moves
-    std::vector<std::tuple<int, int, float>> ansLine;
-    std::vector<std::vector<std::tuple<int, int, float>>> possibleLines;
+    std::vector<Closedfish::Move> ansLine;
+    std::vector<std::vector<Closedfish::Move>> possibleLines;
     int minDist = 1e9;
 
     // Put all possible lines into possibleLines
