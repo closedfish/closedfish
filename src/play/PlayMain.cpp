@@ -1740,6 +1740,7 @@ Eigen::VectorXd EvaluationFunction::getTheta() {
 																 num_data_points);
 }
 
+/*
 int cassmain() {
 	float s = 0;
 	int l_1[8];
@@ -1756,3 +1757,4 @@ int cassmain() {
 	std::cout << EvaluationFunction::Evaluate(basis, theta, l_1, l_2, dimension);
 	return 0;
 }
+*/
