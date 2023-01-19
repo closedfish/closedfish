@@ -7,10 +7,10 @@
 *@brief This is the funtion class that will enables us to have an array of functions without to many technical difficulties.
 *
 *The class contains the following methods:
-*
+*                                                                                                                                                               
 *   - InitFunc: this will dermine what function of the class will be chosen. The following are the possible functions:
 *
-*       - the square distance function of a distance
+*       - the square distance function of a distance                                                                                                                                                                                                                                                        
 *       - a modified erf function computed on the absolute value of a difference
 *       - a modified erf function computed on the square of a difference
 *       - a modified arctan function computed on the absolute value of a difference
@@ -19,7 +19,8 @@
 *   - Eval: Evaluates the function on a given chess board board. The 
 *   
 *
-*/
+*/                                                                                                                              
+
 
 class Func
 {
@@ -89,7 +90,7 @@ class Func
 
             if (func_num == 0)
             {
-                return ceil(100 * AveragePos(l_top_pons, l_bottom_pons)) / 100;
+                return 0;
             }
 
             if (func_num == 1)
@@ -146,17 +147,10 @@ class Func
         *@return computation of the function
         */
 
-        int AbsoluteErfDistance(int x, int y)
+        float AbsoluteErfDistance(int x, int y)
         {
-            if (x > y)
-            {
-                return (erf(10 * ((x - y) - 1)) + 1) / 2;
-            }
-
-            else
-            {
-                return (erf(10 * ((y - x) - 1)) + 1)/2;
-            }
+            return erf((x - y) * (x - y));
+            
         }
 
         /*
@@ -395,8 +389,6 @@ namespace AbsSqrtDifBasis{
 
 }
 
-
-
 namespace SqrtAbsDifBasis
 {
      Func* GenerateBasis()
@@ -425,7 +417,7 @@ namespace SqrtAbsDifBasis
 
 namespace EvaluationFunction
 {   
-    
+    int maincass();
 
     float Evaluate(Func* basis, Eigen::VectorXd theta, int* l_top_pons, int* l_bottom_pons, int dimension)
     {
@@ -438,8 +430,18 @@ namespace EvaluationFunction
         {
             return 1;
         }
+
+        else if (output_val <= 0)
+        {
+            return 0;
+        }
+        
         return output_val;
     }
+    /*
+    *@brief this function enables us to test how well the ai performs on the data that wasn't used for training it but for testing.
+    *@return emp_risk: the empirical risk of the outputed data.
+    */  
 
     float TestAi(Func* basis, Eigen::VectorXd theta, int** test_data_points, double* outputs, int dimension, int num_data_points)
     {
