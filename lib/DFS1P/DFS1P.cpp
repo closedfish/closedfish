@@ -4,7 +4,7 @@
 #include <tuple>
 #include <array>
 #include <algorithm>
-using std::cout;
+// using std::cout;
 
 void DFS1P::setBoardPointer(CFBoard* ptr) {
     if (ptr)
@@ -209,8 +209,8 @@ std::tuple<int, int, float> DFS1P::getNextMove() {
     return ansLine[0];
 }
 
-// int testDFS() {
-int main() {
+int testDFS() {
+// int main() {
     DFS1P algo;
     CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
     // CFBoard board = CFBoard("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1N1/2B1QB1R/3K3R w - - 0 1"); // no open files, >= 2 free rows
