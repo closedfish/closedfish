@@ -44,12 +44,13 @@ CFBoard create_board_manually(bool color){
     int pi = 3;
     int pj = 2;
     piece_board[pi][pj] = color; //add 
-    //piece_board[pi-1][pj-1] = color; //add pawn
+    piece_board[pi-1][pj-1] = color; //add pawn
+    piece_board[4][7] = color; //add pawn
 
     //piece_board[pi + 2][pj + 2] = 5; //bishop
     //piece_board[pi + 2][pj - 2] = 5; //bishop
     //piece_board[pi + 3][pj] = 7; //rook
-    piece_board[pi + 2][pj - 1] = 3; //horse
+    //piece_board[pi + 2][pj - 1] = 3; //horse
     //piece_board[pi + 2][pj + 2] = 9; //queen
     //piece_board[pi][pj + 1] = 11; //king
 
@@ -140,7 +141,7 @@ void test_pro_pieces(){
     int pawn_j = 2;
     int tile = getBitFromPos(pawn_i, pawn_j);
     std::cout<<board.getRepr()<<std::endl;
-    int pro_pieces = nbProtectingPieces(board, color, tile, color);
+    int pro_pieces = nbProtectingPieces(board,tile);
     std::cout<<pro_pieces<<std::endl;
     
 }
@@ -160,11 +161,12 @@ void test_pro_tiles(){
 int main(){
     bool color = 1;
     CFBoard board = create_board_manually(color);
+    std::cout<<ReprProtectedByPawn(board, color)<<std::endl;
     int i = 3;
     int j = 2;
     int tile = i*8 + j;
-    //uint64_t c= prTiles(board, color, 3*8 + 2, 1);
-    std::cout<<ReprProtectingTiles(board, color, tile)<<std::endl;
+    //uint64_t c= nbProtectingPieces(board, tile);
+    //std::cout<<c<<std::endl;
     return 0;
 
 }

@@ -36,7 +36,7 @@ namespace WeakPawns{
 	 */
 	int nbProtectingPawns(CFBoard &board, int &pTile){
 
-		bool color = board.getPieceFromCoords(tile)%2;
+		bool color = board.getPieceFromCoords(pTile)%2;
 		int pi = pTile/8;
 		int pj = pTile%8;
 		
@@ -86,8 +86,8 @@ namespace WeakPawns{
 	 */
 	int nbProtectingPiecesById(CFBoard &board, int &pTile, int boardId){
 
-		bool color = board.getPieceFromCoords(tile)%2;
 		int pType  = board.getPieceFromCoords(pTile);
+		bool color = pType%2;
 		
 		if(boardId == 0){ //if pawns, special case (since pawns move differently when they capture)
 			return nbProtectingPawns(board, pTile);
@@ -145,7 +145,7 @@ namespace WeakPawns{
 	 */
 	bool isConnected(CFBoard &board, int &tile){
 		bool color = board.getPieceFromCoords(tile)%2;
-		if(nbProtectingPiecesById(board, tile, 0, color) > 0){ //boardId = color = 0 or 1
+		if(nbProtectingPiecesById(board, tile, 0) > 0){ //boardId = color = 0 or 1
 			return true;
 		}
 		return false;
@@ -232,7 +232,7 @@ namespace WeakPawns{
 	 */
 	uint64_t protectingTilesForPawns(CFBoard &board, int &pTile){
 		
-		bool color = board.getPieceFromCoords(ptile)%2;
+		bool color = board.getPieceFromCoords(pTile)%2;
 		uint64_t result = 0;
 
 		int pi = pTile/8;
@@ -283,13 +283,13 @@ namespace WeakPawns{
 	 * 
 	 * @return: bitboard
 	 */
-	uint64_t protectingTilesForId(CFBoard &board, int &pTile, int boardId){
+	uint64_t protectingTilesForId(CFBoard &board, int pTile, int boardId){
 		
-		bool color = board.getPieceFromCoords(ptile)%2;
+		int color = board.getPieceFromCoords(pTile)%2;
 		uint64_t result = 0;
 
 		if(boardId == 0){ //if pawn
-			return protectingTilesForPawns(board, color, pTile);
+			return protectingTilesForPawns(board, pTile);
 		}
 
 		// we imagine we have a piece_id on the tile
@@ -312,13 +312,13 @@ namespace WeakPawns{
 	 * 
 	 * @return: bitboard
 	 */
-	uint64_t protectingTiles(CFBoard &board, int &tile){
+	uint64_t protectingTiles(CFBoard &board, int tile){
 		
 		bool color = board.getPieceFromCoords(tile)%2;
 		uint64_t result = 0; //output bitboard
 
 		for(int i = 0; i<=5; i++){
-			result = result | protectingTilesForId(board, color, tile, i);
+			result = result | protectingTilesForId(board,tile, i);
 		}
 
 		return result;	
@@ -367,38 +367,7 @@ namespace WeakPawns{
 	}
 
 	/**
-	 * @brief Returns the bitboard of the tiles protected by the piece at tile
-	 *
-	 * @param board : current CFBboard
-	 * @param tile : index of the tile of the piece (0...63)
-	 * 
-	 * @return: bitboard (uint64_t)
-	 */
-	uint64_t getProtectedTiles(CFBoard board, int tile){
-
-		int pieceId = board.getPieceFromCoords(tile);
-		int color = pieceId%2;
-		vector<int> removed;
-
-		for(int t = 0; t <= 63; t++){
-			if((board.getColorBitBoard(color)&(1<<t)) && (t != tile)){
-				removed.push(board.getPieceFromCoords(t));
-				removed.push(t);
-				board.forceRemovePiece(t);
-			}
-		}
-
-		uint64_t res = board.getLegalMoves(pieceId, tile);
-
-		for (std::vector<int>::iterator i = removed.begin(); i != removed.end();i=i+2){
-			board.forceAddPiece(i*, (i+1)*);
-    	}
-
-		return res;
-	}
-
-	/**
-	 * @brief Returns the bitboard of the tiles protected by pawns + the tiles with pawns on them
+	 * @brief Returns the bitboard of the tiles protected by pawns 
 	 *
 	 * @param board : current CFBboard
 	 * @param color : white : 0, black : 1
@@ -407,14 +376,97 @@ namespace WeakPawns{
 	 */
 	uint64_t getBoardProtectedByPawns(CFBoard board, bool color){
 
-		uint64_t colorBoard = board.getColorBitBoard(color);
-		uint64_t protectedByPawn = 0;
+		uint64_t pawnBoard = board.getPieceBoardFromIndex(0) & board.getPieceColorBitBoard(color);
+		uint64_t res = 0ll;
+
 		for(int t = 0; t<=63; t++){
-			if((1ll<<t)&colorBoard){//found a pawn of the color
-				protectedByPawn = protectedByPawn | getProtectedTiles(board, t);
+			if((1ll<<t)&pawnBoard){ //found an ally pawn
+				
+				//get the cartesian coords of the pawn
+				int pi = t/8;
+				int pj = t%8;
+				
+				
+				if(color == 0){ //if white, we check if the two upper corners positions
+					if(isPositionValid(pi - 1 , pj - 1)){ //upper left
+						int tile = (pi - 1)*8 + (pj - 1);
+						res += (1ll<<tile);
+					}
+					if(isPositionValid(pi - 1 , pj + 1)){ //upper right
+						int tile = (pi - 1)*8 + (pj + 1);
+						res += (1ll<<tile);
+					}
+				}
+				else{ //if black, we check the two bottom corners positions
+					if(isPositionValid(pi + 1 , pj - 1)){
+						int tile = (pi + 1)*8 + (pj - 1);
+						res += (1ll<<tile);
+					}
+					if(isPositionValid(pi + 1 , pj + 1)){
+						int tile = (pi + 1)*8 + (pj + 1);
+						res += (1ll<<tile);
+					}
+				}
+					
 			}
 		}
 
-		return protectedByPawn | (board.getPieceBoardFromIndex(0)&colorBoard);
+		return res;
 	}
+
+	/**
+	 * @brief For blunder detectiong : returns the board with the ally pawns + the tiles protected by the pawns
+	 * If the opponent crosses that board, they get eaten
+	 * 
+	 * !!! to be computed BEFORE the opponent's move !!!
+	 *
+	 * @param board : current CFBboard
+	 * @param color : ally color 0 or 1
+	 * 
+	 * @return: string
+	 */
+	uint64_t blunderBoard(CFBoard board, bool color){
+		return getBoardProtectedByPawns(board, color) & (board.getPieceBoardFromIndex(0) & board.getColorBitBoard(color));
+	}
+
+	/**
+	 * @brief For debug purposes: returns the string representation of the board protected by pawns
+	 *
+	 * @param board : current CFBboard
+	 * @param color : ally color
+	 * 
+	 * @return: string
+	 */
+	string ReprProtectedByPawn(CFBoard board, bool color){
+		
+		uint64_t protByPawns = getBoardProtectedByPawns(board, color);
+		std::string repr = "|";
+		bool isProtectedTile; //0 or 1
+		for (int tileI = 0; tileI <= 63; tileI++) {
+			isProtectedTile = (protByPawns>>tileI)&1;
+			repr += " ";
+
+			int pieceIdI = board.getPieceFromCoords(tileI);
+			char pieceCharI = board.pieceIdToChar(pieceIdI);
+			if(pieceCharI != '.'){
+				repr += pieceCharI;
+			}
+			else{
+				repr+= isProtectedTile?"X":".";
+			}
+
+			repr += " ";
+			repr += "|";
+			if ((tileI + 1) % 8 == 0){
+				if((tileI == 63)){
+					repr += "\n";
+				}
+				else{
+					repr += "\n|";
+				}
+			}
+		}
+		return repr;
+	}
+
 }
