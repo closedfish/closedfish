@@ -1,5 +1,5 @@
-# closedfish
-Main repository for Closedfish
+# closedfish [![CMake](https://github.com/closedfish/closedfish/actions/workflows/cmake.yml/badge.svg)](https://github.com/closedfish/closedfish/actions/workflows/cmake.yml)
+Main repository for Closedfish 
 
 The aim of this project is to create a chess engine, to improve the
 `stockfish` engine by additionally considering closed positions in chess.
