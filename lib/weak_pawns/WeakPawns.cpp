@@ -1,20 +1,29 @@
-﻿#include "WeakPawns.h"
+#include "WeakPawns.h"
 
 /*---DESCRIPTION---
 
 Main functions:
 
-- nbProtectingPieces : Returns the total number of pieces/pawns currenly protecting the piece at the target tile
+- nbProtectingPieces : Returns the total number of pieces+pawns currenly protecting the piece at the target tile
 (can be used to tell if any piece is protected)
 
-- isConnected : Tells whether the pawn at tile is connected or not (if it is protected by at least 1 pawn)
+- nbProtectingPawns : Returns the total number of pawns currenly protecting the piece at the target tile
+(Sub-function of nbProtectingPieces but in closed positions we mainly worl with the pawns and don't need the 
+information for the other pieces too)
 
-- isPassed : Checks if a pawn is passed or not 
+- isConnected : Tells whether the pawn is connected ( = if it is protected by at least 1 pawn)
 
-- isIsolated : Checks if a pawn is isolated (if there are no ally pieces/pawns on any of its adjacent tiles)
+- isPassed : Checks if a pawn is passed
 
-- prTiles :  Gives the tiles that can protect the piece at a certain tile
+- isIsolated : Checks if a pawn is isolated (= if there are no ally pieces/pawns on any of its adjacent tiles)
+
+- protectingTiles :  Gives the tiles that can protect the piece at a certain tile
 (if we can get one of the ally pieces on one of the "protecting tiles", then we will protect the target tile)
+
+- blunderBoard : returns the board with both the ally pawns on it and the tiles protected by those pawns
+To be used in blunder detection.
+We work under the assumption that if the opponents gets on the blunderBoard, he either gets eaten by one
+of our pawns, or eats one of our pawns but gets eaten after.
 
 */
 
@@ -164,14 +173,18 @@ namespace WeakPawns{
 
 		bool color = board.getPieceFromCoords(tile)%2;
 		uint64_t straight_line = board.getLegalMoves(6 + color, tile); // we imagine that the pawn in a rook
-		for(int i = 0; i<= 7; i++){
-			int opponent_side = i; //if white, top
-			if (color){
-				opponent_side = 63 - i; //if black, bottom
-			}
-			if((straight_line)&(1<< opponent_side)){ //if we can reach the opponent side with a straight line
-				return true;
-			}
+
+
+		int to_reach;
+		if(color){//if black, we go to the last row
+			to_reach = 7*8 + tile%8;
+		}
+		else{///if white, we go to the top row
+			to_reach = tile%8;
+		}
+
+		if(straight_line & (1ll<<to_reach)){
+			return true;
 		}
 		return false;
 	}
@@ -191,14 +204,21 @@ namespace WeakPawns{
 
 		//we imagine that we have a king on the tile and see where it can move
 		uint64_t free_nei_tiles = board.getLegalMoves(10+color, tile); 
-		for (int tile = 0; tile <= 63; tile++){
-			if((free_nei_tiles & (1ll << tile))!= 0){ 
+		//board.forceRemovePiece(tile);
+		//board.forceAddPiece(10+color, tile);
+		//std::cout<<board.getReprLegalMove(10+color, tile)<<std::endl;
+
+		for (int t = 0; t <= 63; t++){
+			if((free_nei_tiles & (1ll << t))){ 
+				std::cout<<t/8<<" "<<t%8<<std::endl;
 				count ++;
 			}
 		}
 
-		int pi = tile/7; //get index of the row
-		int pj = tile%7; //get the index of the column
+
+
+		int pi = tile/8; //get index of the row
+		int pj = tile%8; //get the index of the column
 
 		if((pi == 0 && pj == 0) || (pi == 7 && pj == 7) || (pi == 0 && pj == 7) || (pi == 7 && pj == 0)){ //if we are on the corners
 			if(count == 3){ //only 3 free tiles are required
