@@ -7,11 +7,10 @@
 #include <vector>
 #include <cmath>
 
-#include "NaiveCheckCheck.cpp"
-
-// implemented
 
 /*
+#include "NaiveCheckCheck.cpp"
+
 int main(){
     
     
