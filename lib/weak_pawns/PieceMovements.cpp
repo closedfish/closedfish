@@ -1,6 +1,5 @@
-//#include "WeakPawns.cpp"
+#include "PieceMovements.h"
 
-#include <iostream>
 using namespace std;
 using namespace WeakPawns;
 
@@ -101,7 +100,7 @@ uint64_t* getPieceMovements(CFBoard &board, int tile){
         int piece = board.getPieceFromCoords(t);
         if((piece%2 != -1) && (piece%2 == color)){ //we found an ally piece
             board.forceRemovePiece(tile); //we remove our piece 
-            int prT = protectingTilesForId(board, t, pieceId >> 1);
+            uint64_t prT = protectingTilesForId(board, t, pieceId >> 1);
             if(prT&(1ll<<tile)){ //if the tile of our piece is protecting the tile t
                 int moveOut = canPieceMoveOut(board, t);
                 if(moveOut > 0){ //the piece at tile t can move out 

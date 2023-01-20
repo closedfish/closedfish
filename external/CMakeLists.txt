@@ -23,6 +23,8 @@ target_include_directories(${SF} PUBLIC
     "${CMAKE_BINARY_DIR}/configured_files/include"
 	"./stockfish/src")
 
+target_sources(${SF} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/stockfish/src/nn-ad9b42354671.nnue")
+
 if (${ENABLE_WARNINGS})
     target_set_warnings(TARGET ${SF} ENABLE ON AS_ERROR OFF)
 endif()

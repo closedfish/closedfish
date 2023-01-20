@@ -1,7 +1,7 @@
 #include "SwitchEngine.h"
 
-SwitchEngine::SwitchEngine(CFBoard &board, Closedfish::Logger &logger)
-		: ChessEngine() {
+SwitchEngine::SwitchEngine(CFBoard &board, Closedfish::Logger *logger)
+		: ChessEngine(), logger(logger) {
 	ChessEngine::setBoardPointer(&board);
 	closedfish = new ClosedfishEngine();
 	closedfish->setBoardPointer(&board);
@@ -17,6 +17,7 @@ Closedfish::Move SwitchEngine::getNextMove() {
 		status = Status::OPEN;
 	else if (status == Status::OPEN && ClosenessCoef < 0.2)
 		status = Status::CLOSED;
+	(logger ? logger->cout : std::cerr) << "DBG " << ClosenessCoef << std::endl;
 	if (status == Status::CLOSED) {
 		// We choose Closedfish
 		return closedfish->getNextMove();

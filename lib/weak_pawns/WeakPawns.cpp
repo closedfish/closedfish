@@ -1,8 +1,4 @@
-﻿//#include "../board_implementation/CFBoard.cpp"
-#include "../board_implementation/naiveCheckCheck.cpp"
-#include "../board_implementation/CFBoard.h"
-
-#include <iostream>
+#include "WeakPawns.h"
 
 /*---DESCRIPTION---
 
@@ -32,6 +28,10 @@ of our pawns, or eats one of our pawns but gets eaten after.
 */
 
 using namespace std; 
+
+inline bool isPositionValid(const int &row, const int &col) {
+    return row >= 0 && row < 8 && col >= 0 && col < 8;
+}
 
 namespace WeakPawns{
 
