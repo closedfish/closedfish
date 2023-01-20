@@ -134,7 +134,7 @@ int main(int argc, char *argv[]) {
 	Stockfish::Position::init();
 
 	DFS1P a;
-	// testDFS();
+	a.testDFS();
 
 	CFBoard board;
 	SwitchEngine engine(board, &logger);
