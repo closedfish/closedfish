@@ -1,1 +1,3 @@
+add_subdirectory(engine_wrapper)
 add_subdirectory(board_implementation)
+add_subdirectory(logger)
