@@ -18,7 +18,8 @@ set(EXE_SOURCES
     "SwitchMain.cpp")
 set(EXE_HEADERS 
     "SwitchMain.h")
-    
+
+add_compile_definitions(CMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
 add_executable(${EXECUTABLE} 
     ${EXE_SOURCES}
     ${EXE_HEADERS})

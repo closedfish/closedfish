@@ -29,7 +29,7 @@ std::string call_stockfish(Stockfish::Position &pos,
 	std::string line;
 	// wait for stockfish threads to finish
 	std::this_thread::sleep_until(std::chrono::system_clock::now() +
-																std::chrono::seconds(5));
+																std::chrono::seconds(1));
 	Stockfish::Threads.stop = true;
 	if (!logger) {
 		cout << "Done" << std::endl;
@@ -61,8 +61,6 @@ Closedfish::Move StockfishEngine::getNextMove() {
 	Stockfish::StateListPtr states;
 	convert_CFBoard_to_Stockfish_Position(*currentBoard, pos, states);
 	std::string out = call_stockfish(pos, states, {}, false, logger);
-	Stockfish::Threads.set(0);
-	// std::cerr << out << std::endl;
 	if (out.size() != 4) {
 		throw "Stockfish invalid output";
 	}
