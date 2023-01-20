@@ -3,6 +3,8 @@ using namespace std;
 
 #include "../../lib/weak_pawns/WeakPawns.cpp"
 #include "../../lib/weak_pawns/PieceMovements.cpp"
+#include "../../lib/board_implementation/CFBoard.h"
+#include "../../lib/board_implementation/CFBoard.cpp"
 
 using namespace WeakPawns;
 
@@ -62,7 +64,7 @@ CFBoard create_board_manually(bool color){
             if(piece_board[i][j] == 1 || piece_board[i][j] == 0){
                 bit = getBitFromPos(i,j);
                 pawns += (1ll << bit);
-                if(color){
+                if(piece_board[i][j] == 1){
                     blacks += (1ll<<bit);
                 }
                 else{
@@ -168,8 +170,9 @@ int main(){
     int j = 2;
     int tile = i*8 + j;
     std::cout<<board.getRepr()<<std::endl;
+    //std::cout<<board.getReprLegalMove(1, tile)<<std::endl;
     //uint64_t c= (board, 0);
-    bool c = isPassed(board, tile);
+    int c = nbProtectingPieces(board, tile);
     std::cout<<c<<std::endl;
     return 0;
 

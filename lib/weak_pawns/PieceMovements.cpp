@@ -24,8 +24,7 @@ uint64_t getDangerousTiles(CFBoard board, bool color){
             dangerBoard += board.getLegalMoves(piece, t);
         }
     }
-
-    return dangerBoard;
+    return dangerBoard | getBoardProtectedByPawns(board, opp_color);
 }
 
 
