@@ -113,6 +113,9 @@ int main(int argc, char *argv[]) {
 	Stockfish::Eval::NNUE::init();
 	Stockfish::Position::init();
 
+	DFS1P a;
+	// testDFS();
+
 	CFBoard board;
 	SwitchEngine engine(board, &logger);
 
@@ -124,5 +127,6 @@ int main(int argc, char *argv[]) {
 		CLIGameLoop(engine);
 	else
 		chessGameLoop(engine);
+
 	return 0;
 }
