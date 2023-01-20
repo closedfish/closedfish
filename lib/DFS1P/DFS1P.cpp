@@ -99,13 +99,22 @@ void DFS1P::DFS1pAux(CFBoard* currentBoard, int depth, int maxDepth, std::vector
 	for (int startTile = 0; startTile < 64; startTile++) {
 		// Get piece at startTile, skip if it's empty or it contains opponent piece
 		int pieceId = currentBoard->getPieceFromCoords(startTile);
-		if (pieceId == -1 || pieceId&1 != currentTurn) continue;
+		// if (startTile == 38) {
+		// 		cerr << currentBoard->getRepr();
+		// 		cerr << pieceId << ' ' << currentBoard->getCurrentPlayer() << '\n';
+		// 	}
+		if (pieceId == -1 || (pieceId%2 != currentTurn)) continue;
 
 		// Get all legal moves, represent it as a vector of possible end tiles
 		uint64_t legalMoves =  currentBoard->getLegalMoves(pieceId, startTile);
 		std::vector<int> endTiles = bitSetPositions(legalMoves);
 
 		for (int endTile: endTiles) {
+			// if (startTile == 38 && endTile == 30) {
+			// 	cerr << currentBoard->getRepr();
+			// 	cerr << pieceId << ' ' << currentBoard->getCurrentPlayer() << '\n';
+			// 	exit(-1);
+			// }
 			// Avoid capturing
 			if (currentBoard->getPieceFromCoords(endTile) != -1) continue;
 			// Avoid unsafe moves
@@ -135,7 +144,7 @@ Closedfish::Move DFS1P::getNextMove() {
 	// Check opponent blundering
     bool player = currentBoard->getCurrentPlayer();
     uint64_t ourPawnsProtect = WeakPawns::getBoardProtectedByPawns(*currentBoard, player);
-	cerr << ourPawnsProtect << '\n';
+	// cerr << ourPawnsProtect << '\n';
 	// for (auto x: bitSetPositions(ourPawnsProtect)) {
 	// 	cerr << x << ' ';
 	// }
@@ -247,7 +256,7 @@ void DFS1P::testDFS() {
 	//	 cout << '\n';
 	// }
 
-	for (int i = 0; i < 15; i++) {
+	for (int i = 0; i < 5; i++) {
 		auto move = getNextMove();
 		int startTile = std::get<0>(move), endTile = std::get<1>(move);
 		float eval = std::get<2>(move);
