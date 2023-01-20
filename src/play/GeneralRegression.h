@@ -193,7 +193,7 @@ namespace SqrtAbsDifBasis {
 Func *GenerateBasis();
 }
 namespace EvaluationFunction {
-int maincass();
+Eigen::VectorXd getTheta();
 float Evaluate(Func *basis, Eigen::VectorXd theta, int *l_top_pons,
 							 int *l_bottom_pons, int dimension);
 float TestAi(Func *basis, Eigen::VectorXd theta, int **test_data_points,
