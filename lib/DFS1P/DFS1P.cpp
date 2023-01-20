@@ -1,5 +1,5 @@
 #include "DFS1P.h"
-using std::cout;
+using std::cerr;
 
 bool DFS1P::squareSafeFromOpponentPawns(const bool &currentTurn, const uint64_t& opponentPawnBoard, const int& row, const int &col) {
 	// Black's turn
@@ -132,13 +132,26 @@ Closedfish::Move DFS1P::getNextMove() {
 	int heatMap[6][8][8];
 	memset(heatMap, 0, sizeof(heatMap));
 
+	// Check opponent blundering
     bool player = currentBoard->getCurrentPlayer();
-    uint64_t blunderCheck = WeakPawns::getBoardProtectedByPawns(*currentBoard, player);
-    if (currentBoard->getColorBitBoard(player) & blunderCheck){
-        int destination = 64 - __builtin_clzll(currentBoard->getColorBitBoard(player) & blunderCheck);
+    uint64_t ourPawnsProtect = WeakPawns::getBoardProtectedByPawns(*currentBoard, player);
+	cerr << ourPawnsProtect << '\n';
+	// for (auto x: bitSetPositions(ourPawnsProtect)) {
+	// 	cerr << x << ' ';
+	// }
+	// cerr << '\n';
+	// for (auto x: bitSetPositions(currentBoard->getColorBitBoard(!player))) {
+	// 	cerr << x << ' ';
+	// }
+	// cerr << '\n';
+    if (currentBoard->getColorBitBoard(!player) & ourPawnsProtect){
+        int destination = 63 - __builtin_clzll(currentBoard->getColorBitBoard(!player) & ourPawnsProtect);
+		// cerr << destination << "\n";
         int backdirection = player?-1:1;
+		// cerr << destination + backdirection*7 << ' ' << destination + backdirection*9 << '\n';
         int cand1 = currentBoard->getPieceFromCoords(destination + backdirection*7);
         int cand2 = currentBoard->getPieceFromCoords(destination + backdirection*9);
+		// cerr << cand1 << ' ' << cand2 << '\n';
 
         if (cand1 == (int)player){return std::make_tuple(destination + backdirection*7,destination, 0.0);}
         if (cand2 == (int)player){return std::make_tuple(destination + backdirection*9,destination, 0.0);}
@@ -160,7 +173,6 @@ Closedfish::Move DFS1P::getNextMove() {
 			weakPawns |= (1<<tile%8);
 		}
 	}
-	cout << weakPawns << '\n';
 
 	// Build the heatmap
 	Heatmap::addHeatMap(*currentBoard, heatMap, weakPawns);
@@ -211,20 +223,20 @@ Closedfish::Move DFS1P::getNextMove() {
 	return ansLine[0];
 }
 
-int testDFS() {
-// int main() {
-	DFS1P algo;
-	CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
+void DFS1P::testDFS() {
+	// CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
 	// CFBoard board = CFBoard("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1N1/2B1QB1R/3K3R w - - 0 1"); // no open files, >= 2 free rows
 	// CFBoard board = CFBoard("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R w - - 0 1"); // no open files, 1 free rows, no chance of winning, 3 is better than 4 for some reasons
 	// CFBoard board = CFBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
-	// CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP4/PpP1BN1R/1P2QNK1/4RB2 w - - 0"); // wrong old naiveCheckCheck
-	// CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP1B2/PpP3QR/1P1N1N2/R4BK1 w - - 0 1"); // wrong legal moves for bishop
+	// CFBoard board = CFBoard("2k5/p7/qp5p/1qp3pP/B1qp1pP1/3npPN1/P3PB1R/3KQ2R w - - 0 1"); // king supposed to have no legal moves
+	// std::cerr << board.getReprLegalMove(10, 59); 
+	// CFBoard board = CFBoard("2k5/p7/qp5p/1qp3pP/2qp1pP1/3npPN1/P1B1PB1R/3KQ2R w - - 0 1"); // test opponent blundering
+	// CFBoard board = CFBoard("2k5/p7/Pp5p/1Pp3pq/2Pp1pq1/3PpnN1/P1B1PB1R/3KQ2R w - - 0 1"); // test opponent blundering 2
+	// CFBoard board = CFBoard("2k5/p4q1q/Ppq1q1qp/1Ppq1qpq/2Ppqpq1/3PpnN1/P1B1PB1R/3KQ2R w - - 0 1"); // test opponent blundering 3
+	CFBoard board = CFBoard("2kqqqqq/p2qqq2/Pp5p/1Pp3pP/2Pp1NP1/3PpPB1/P1B1P2R/3KQ2R b - - 0 1"); // test opponent blundering 4
 	// cout << board.naiveCheckCheck(0) << '\n';
-	// cout << board.getReprLegalMove(6, 47); 
 
-	algo.setBoardPointer(&board);
-	// cout << board.getRepr() << '\n';
+	setBoardPointer(&board);
 
 	// // Test dist between tiles
 	// for (int i = 0; i < 8; i++) {
@@ -236,13 +248,12 @@ int testDFS() {
 	// }
 
 	for (int i = 0; i < 15; i++) {
-		auto move = algo.getNextMove();
+		auto move = getNextMove();
 		int startTile = std::get<0>(move), endTile = std::get<1>(move);
 		float eval = std::get<2>(move);
-		std::cout << startTile << ' ' << endTile << ' ' << eval << '\n';
+		std::cerr << startTile << ' ' << endTile << ' ' << eval << '\n';
 		board.movePiece(startTile, endTile);
 		board.forceFlipTurn(); // One person moving only
-		cout << board.getRepr() << '\n';
+		std::cerr << board.getRepr() << '\n';
 	}
-	return 0; // must return a value
 }

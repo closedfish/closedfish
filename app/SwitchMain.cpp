@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
 	Stockfish::StateListPtr states;
 
 	DFS1P a;
-	// testDFS();
+	a.testDFS();
 
 	CFBoard board;
 	SwitchEngine engine(board, logger);

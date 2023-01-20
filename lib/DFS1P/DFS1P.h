@@ -82,4 +82,6 @@ storing all lines that we have searched.
 	void DFS1pAux(CFBoard *currentBoard, int depth, int maxDepth,
 								std::vector<Closedfish::Move> curLine,
 								std::vector<std::vector<Closedfish::Move>> &possibleLines);
+
+	void testDFS();
 };

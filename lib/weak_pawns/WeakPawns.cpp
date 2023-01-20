@@ -390,21 +390,23 @@ namespace WeakPawns{
 				if(color == 0){ //if white, we check if the two upper corners positions
 					if(isPositionValid(pi - 1 , pj - 1)){ //upper left
 						int tile = (pi - 1)*8 + (pj - 1);
-						res += (1ll<<tile);
+						// std::cerr << "upper left white " << tile << '\n';
+						res |= (1ll<<tile);
 					}
 					if(isPositionValid(pi - 1 , pj + 1)){ //upper right
 						int tile = (pi - 1)*8 + (pj + 1);
-						res += (1ll<<tile);
+						// std::cerr << "upper right white " << tile << '\n';
+						res |= (1ll<<tile);
 					}
 				}
 				else{ //if black, we check the two bottom corners positions
 					if(isPositionValid(pi + 1 , pj - 1)){
 						int tile = (pi + 1)*8 + (pj - 1);
-						res += (1ll<<tile);
+						res |= (1ll<<tile);
 					}
 					if(isPositionValid(pi + 1 , pj + 1)){
 						int tile = (pi + 1)*8 + (pj + 1);
-						res += (1ll<<tile);
+						res |= (1ll<<tile);
 					}
 				}
 					
