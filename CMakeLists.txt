@@ -30,6 +30,10 @@ set(OUTPUT SendOutputToUI)
 set(OPENING DeceideOverOpening)
 set(BI BoardImplementation)
 set(FAC FactorialImplementation)
+set(SF StockfishSource)
+set(LOGGER CustomLogger)
+set(WRAP EngineWrapper)
+set(ENGINE SwitchEngine)
 
 set(EXECUTABLE Executable)
 
@@ -114,7 +118,7 @@ else()
 endif()
 
 #Check if there is need to compile the executable
-option(COMPILE_EXECUTABLE "Whether to compile the executable" OFF)
+option(COMPILE_EXECUTABLE "Whether to compile the executable" ON)
 if(COMPILE_EXECUTABLE)
     add_subdirectory(app)
 else()
