@@ -750,7 +750,7 @@ uint64_t CFBoard::getKingPattern(int tile, bool color) {
     int row = tile >> 3;
     uint64_t allyBoard = getColorBitBoard(color);
 
-    kingPattern = \
+    kingPattern = (\
     (1ll << (tile - 1))*(column > 0) | \
     (1ll << (tile - 8))*(row > 0) | \
     (1ll << (tile + 1))*(column < 7) | \
@@ -758,7 +758,7 @@ uint64_t CFBoard::getKingPattern(int tile, bool color) {
     (1ll << (tile - 9))*(column > 0 && row > 0) | \
     (1ll << (tile + 7))*(column > 0 && row < 7) | \
     (1ll << (tile - 7))*(column < 7 && row > 0) | \
-    (1ll << (tile + 9))*(column < 7 && row < 7);
+    (1ll << (tile + 9))*(column < 7 && row < 7)) & (~allyBoard);
 
     if (tile!=60 && tile!=4){
         return kingPattern;
