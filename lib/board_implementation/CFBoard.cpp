@@ -7,6 +7,7 @@
 #include <vector>
 #include <cmath>
 
+#include "NaiveCheckCheck.cpp"
 
 // implemented
 
@@ -15,10 +16,10 @@ int main(){
     
     
     //CFBoard testBoard = CFBoard("8/8/8/8/8/8/8/8 w - -");
-    //CFBoard testBoard = CFBoard();
-    CFBoard testBoard = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP1B2/PpP3QR/1P1N1N2/R4BK1 w - - 0 1"); // wrong legal moves for bishop
+    CFBoard testBoard = CFBoard();
+    //CFBoard testBoard = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP1B2/PpP3QR/1P1N1N2/R4BK1 w - - 0 1"); // wrong legal moves for bishop
     // cout << board.naiveCheckCheck(0) << '\n';
-    std::cout << testBoard.getReprLegalMove(4, 37); 
+    std::cout << testBoard.getReprLegalMove(0, 51); 
 
     
     for (int i=10; i<12; i+=1){
@@ -802,7 +803,7 @@ uint64_t CFBoard::getPawnPattern(int tile, bool color) {
         } else {
             if (!(((allyBoard | enemyBoard) >> (tile + 8)) & 1)) { // front
                 pawnPattern += (1ll << (tile + 8));
-                if ((row == 1) && (((allyBoard | enemyBoard) >> (tile + 16)) &
+                if ((row == 1) && !(((allyBoard | enemyBoard) >> (tile + 16)) &
                                    1)) { // frontfront
                     pawnPattern += (1ll << (tile + 16));
                 }
@@ -829,7 +830,7 @@ uint64_t CFBoard::getPawnPattern(int tile, bool color) {
         } else {
             if (!(((allyBoard | enemyBoard) >> (tile - 8)) & 1)) { // front
                 pawnPattern += (1ll << (tile - 8));
-                if ((row == 6) && (((allyBoard | enemyBoard) >> (tile - 16)) &
+                if ((row == 6) && !(((allyBoard | enemyBoard) >> (tile - 16)) &
                                    1)) { // frontfront
                     pawnPattern += (1ll << (tile - 16));
                 }
