@@ -1,7 +1,7 @@
 set(CUI_SOURCES 
-    "ConnectUI-SAI.cc")
+    "ConnectUISAI.cpp")
 set(CUI_HEADERS
-    "ConnectUI-SAI.h")
+    "ConnectUISAI.h")
 
 add_library(${CUI} STATIC
     ${CUI_SOURCES}
