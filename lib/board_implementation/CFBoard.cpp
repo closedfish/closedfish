@@ -7,8 +7,6 @@
 #include <vector>
 #include <cmath>
 
-#include "NaiveCheckCheck.cpp"
-
 // implemented
 
 /*
