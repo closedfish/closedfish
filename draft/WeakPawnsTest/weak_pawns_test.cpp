@@ -169,7 +169,7 @@ int main(){
     int tile = i*8 + j;
     std::cout<<board.getRepr()<<std::endl;
     //uint64_t c= (board, 0);
-    bool c = isTileDangerous(board, 0,  4*8 + 1);
+    bool c = isPassed(board, tile);
     std::cout<<c<<std::endl;
     return 0;
 

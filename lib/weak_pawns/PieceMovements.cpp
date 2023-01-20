@@ -93,7 +93,7 @@ uint64_t* getPieceMovements(CFBoard &board, int tile){
     int pieceId = board.getPieceFromCoords(tile);
     bool color = pieceId%2;
 
-    uint64_t result[3];
+    uint64_t* result = new uint64_t[3];
     uint64_t directPieceMovements = board.getLegalMoves(pieceId, tile);
     uint64_t pieceMovements = 0ll;
     uint64_t losses = 0ll;
