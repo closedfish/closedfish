@@ -1,6 +1,8 @@
 #include <vector>
 #include <array>
 #include "../../lib/board_implementation/CFBoard.h"
+#include "../../lib/weak_pawns/WeakPawns.cpp"
+
 #include <string>
 #ifdef _MSC_VER
 #include <nmmintrin.h>
@@ -11,6 +13,7 @@
 #endif
 
 using namespace std;
+using namespace WeakPawns;
 
 /* 
 * To do a breakthrough we will do a simple version of the alpha beta pruning technique
@@ -26,11 +29,6 @@ using namespace std;
 /*
 * blackbox for a weak pawns function
 */
-uint64_t pawn_pro(CFBoard board)
-{
-	 uint64_t u;
-	 return u;
-}
 
 float depthval(int n)
 {
@@ -55,11 +53,12 @@ int SFNeval(CFBoard board)
 /*
 * main function for the Breakthrough
 * @param- CFboard 
+* @param- color 0 for white 1 for black
 * @output - the best line for the breakthrough. The first 2 elements of it are 
 * the integer and decimal part of the evaluation
 * currently only for white 
 */
-vector<int> mainBreak(CFBoard board)
+vector<int> mainBreak(CFBoard board, int color)
 {
 	vector<int> line;
 	line.push_back(0);
@@ -73,7 +72,7 @@ vector<int> mainBreak(CFBoard board)
 		if (p>=0 && p%2==0)
 		{
 			// if it has a move that intersects with a breakthrough square
-			uint64_t moves = board.getLegalMoves(p,sq) & pawn_pro(board);
+			uint64_t moves = board.getLegalMoves(p,sq) & blunderBoard(board, (color+1)%2);
 			if (moves > 0)
 				//run the dfs
 				line = dfsBreak(board, sq,moves,pruneval);
@@ -96,7 +95,6 @@ vector<int> dfsBreak(CFBoard board, int start, uint64_t ends, float pruneval)
 	// line of moves
 	vector<int> line;
 	vector<int> ans;
-	// flag to check if we have completed 1 bruteforce dfs or not
 	// evaluation of the prune
 	for (int sq = 0; sq < 64; sq++)
 	{
@@ -193,3 +191,5 @@ vector<int> minmaxsort(vector<vector<int>> v, int color)
 					return v2;
 	}
 }
+
+
