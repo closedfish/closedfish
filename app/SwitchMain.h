@@ -7,6 +7,7 @@
 #include "output.h"
 
 #include <CFBoard.h>
+#include <DFS1P.h>
 #include <SwitchEngine.h>
 #include <logger.h>
 

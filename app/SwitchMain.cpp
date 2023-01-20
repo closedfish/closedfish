@@ -39,11 +39,15 @@ int main(int argc, char *argv[]) {
 	Stockfish::Position pos;
 	Stockfish::StateListPtr states;
 
+	DFS1P a;
+	// testDFS();
+
 	CFBoard board;
 	SwitchEngine engine(board, logger);
 
 	srand(time(NULL));
 
 	chessGameLoop(engine);
+
 	return 0;
 }

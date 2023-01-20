@@ -18,21 +18,8 @@
 #include <vector>
 #include <cstdint>
 
-inline uint64_t reverseBit(uint64_t v) {
-	// credit to
-	// https://graphics.stanford.edu/~seander/bithacks.html#BitReverseObvious
-	uint64_t r = v; // r will be reversed bits of v; first get LSB of v
-	int s = sizeof(v) * CHAR_BIT - 1; // extra shift needed at end
+uint64_t reverseBit(uint64_t v);
 
-	for (v >>= 1; v; v >>= 1) {
-		r <<= 1;
-		r |= v & 1;
-		s--;
-	}
-	r <<= s; // shift when v's highest bits are zero
-	return r;
-}
+std::vector<int> bitSetPositions(uint64_t board);
 
-inline std::vector<int> bitSetPositions(uint64_t board);
-
-inline bool isBitSet(const uint64_t &board, const int &tile);
+bool isBitSet(const uint64_t &board, const int &tile);
