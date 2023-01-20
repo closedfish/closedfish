@@ -2,6 +2,9 @@
 using namespace std;
 
 #include "../../lib/weak_pawns/WeakPawns.cpp"
+#include "../../lib/weak_pawns/PieceMovements.cpp"
+#include "../../lib/board_implementation/CFBoard.h"
+#include "../../lib/board_implementation/CFBoard.cpp"
 
 using namespace WeakPawns;
 
@@ -46,6 +49,7 @@ CFBoard create_board_manually(bool color){
     piece_board[pi][pj] = color; //add 
     piece_board[pi-1][pj-1] = color; //add pawn
     piece_board[4][7] = color; //add pawn
+    piece_board[pi+1][pj] = color; //add color
 
     //piece_board[pi + 2][pj + 2] = 5; //bishop
     //piece_board[pi + 2][pj - 2] = 5; //bishop
@@ -60,7 +64,7 @@ CFBoard create_board_manually(bool color){
             if(piece_board[i][j] == 1 || piece_board[i][j] == 0){
                 bit = getBitFromPos(i,j);
                 pawns += (1ll << bit);
-                if(color){
+                if(piece_board[i][j] == 1){
                     blacks += (1ll<<bit);
                 }
                 else{
@@ -161,14 +165,15 @@ void test_pro_tiles(){
 int main(){
     bool color = 1;
     CFBoard board = create_board_manually(color);
-    std::cout<<ReprProtectedByPawn(board, color)<<std::endl;
+    //std::cout<<ReprProtectedByPawn(board, color)<<std::endl;
     int i = 3;
     int j = 2;
     int tile = i*8 + j;
-    //uint64_t c= nbProtectingPieces(board, tile);
-    //std::cout<<c<<std::endl;
+    std::cout<<board.getRepr()<<std::endl;
+    //std::cout<<board.getReprLegalMove(1, tile)<<std::endl;
+    //uint64_t c= (board, 0);
+    int c = nbProtectingPieces(board, tile);
+    std::cout<<c<<std::endl;
     return 0;
 
 }
-
-

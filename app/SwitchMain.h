@@ -12,5 +12,9 @@
 #include <logger.h>
 
 #include <cstdio>
+#include <filesystem>
+#include <fstream>
+#include <functional>
+#include <ios>
 #include <iostream>
 #include <vector>
