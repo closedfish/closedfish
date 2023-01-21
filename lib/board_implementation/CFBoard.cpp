@@ -485,11 +485,12 @@ void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
 
 	//check that move is legal
 	if (  ((1ll << endTile) & getLegalMoves(piece, startTile)) == 0  ){
-
+        std::cerr<<"illegal move from " << startTile << " to " << endTile << "!\nPiece on start tile can not move there!" << std::endl;
 		exit(-1);
 	}
 
 	if ((piece & 1) ^ turn){
+        std::cerr<<"illegal move from " << startTile << " to " << endTile << "!\nNot the correct turn!" << std::endl;
 		exit(-1);
 	}
 
@@ -619,7 +620,7 @@ void CFBoard::forceMovePiece(int startTile, int endTile, int pawnPromotionType) 
 
 	}
 
-	turn = ~turn;
+	turn = !turn;
 
 
 	//from now on, our state is illegitimate
@@ -627,6 +628,9 @@ void CFBoard::forceMovePiece(int startTile, int endTile, int pawnPromotionType) 
 
 }
 
+void CFBoard::forceFlipTurn() {
+    turn = !turn;
+}
 
 void CFBoard::undoLastMove() {
 	if (backupStock == 0) { //check that we even have backups
@@ -635,8 +639,8 @@ void CFBoard::undoLastMove() {
 
 
 	//if so, set our state
-	std::cout << pawnBoard << std::endl;
-	std::cout << pawnBoardBackups[0] << std::endl;
+	// std::cout << pawnBoard << std::endl;
+	// std::cout << pawnBoardBackups[0] << std::endl;
 
 	pawnBoard = pawnBoardBackups[0];
 	knightBoard = knightBoardBackups[0] ;

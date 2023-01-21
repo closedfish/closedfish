@@ -2,6 +2,7 @@
 #include <array>
 #include "../../lib/board_implementation/CFBoard.h"
 #include "../../lib/weak_pawns/WeakPawns.cpp"
+#include "stockfish_naive_eval.h"
 
 #include <string>
 #ifdef _MSC_VER
@@ -47,7 +48,7 @@ float depthval(int n)
 */
 int SFNeval(CFBoard board)
 {
-	return 0;
+	return stockfishNaiveEval(board);
 }
 
 /*

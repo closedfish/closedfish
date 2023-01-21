@@ -31,9 +31,12 @@ set(OPENING DeceideOverOpening)
 set(BI BoardImplementation)
 set(FAC FactorialImplementation)
 set(SF StockfishSource)
-set(LOGGER CustomLogger)
+set(UTILS GeneralUtilities)
 set(WRAP EngineWrapper)
 set(ENGINE SwitchEngine)
+set(DFS1P DepthFirstSearchOnePerson)
+set(HMP Heatmap)
+set(WEAKP WeakPawns)
 
 set(EXECUTABLE Executable)
 
