@@ -2,6 +2,7 @@
 #include <cmath>
 #include <iostream>
 
+/*
 Eigen::VectorXd EvaluationFunction::getTheta() {
 	Func *basis = SqrtDifBasis::GenerateBasis();
 
@@ -1738,6 +1739,34 @@ Eigen::VectorXd EvaluationFunction::getTheta() {
 
 	return TheRegression::bestFitF(basis, X, data_outputs, dimension,
 																 num_data_points);
+}
+*/
+
+int convert_board(std::string fen)
+{	
+	int i = 0;
+	while (fen[i] != ' ')
+	{
+		i += 1;
+	}
+
+	std::string sub_fen = fen.substr(0, i);
+	bool white = true;
+	if sub_fen[i + 1] == 'b'
+	{
+		white = false;
+	}
+
+	std::cout << sub_fen; 
+	return 0;
+}
+
+int main()
+{
+	convert_board("abcd hfidfh");
+	return 0;
+
+
 }
 
 /*
