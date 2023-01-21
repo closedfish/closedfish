@@ -208,9 +208,11 @@ Closedfish::Move DFS1P::getNextMove() {
 	// Iterate all lines
 	for (auto line: possibleLines) {
 		// Simulate all move in a line
+		int minDistInLine = 1e9;
 		for (auto move: line) {
 			currentBoard->movePiece(std::get<0>(move), std::get<1>(move));
 			currentBoard->forceFlipTurn(); // one-person dfs so we assume the opponent doesn't move
+			minDistInLine = std::min(minDistInLine, distFromHeatmap(*currentBoard, heatMap)); // minimum distance achieved in a line
 		}
 
 		// if (currentBoard->naiveCheckCheck(currentBoard->getCurrentPlayer())) {
@@ -222,8 +224,8 @@ Closedfish::Move DFS1P::getNextMove() {
 		// }
 
 		// Check if the moves make us closer to the heatMap
-		if (distFromHeatmap(*currentBoard, heatMap) < minDist) {
-			minDist = distFromHeatmap(*currentBoard, heatMap);
+		if (minDistInLine < minDist) {
+			minDist = minDistInLine;
 			// If yes then update the most potential line
 			ansLine = line;
 		}
@@ -236,42 +238,45 @@ Closedfish::Move DFS1P::getNextMove() {
 	}
 
 	// Return the first move in the potential line
+	for (auto x: ansLine) {
+		cerr << std::get<0>(x) << ' ' << std::get<1>(x) << '\n';
+	}
 	Closedfish::Move ansMoveWithGradientDiff = std::make_tuple(std::get<0>(ansLine[0]), std::get<1>(ansLine[0]), distFromHeatmap(*currentBoard, heatMap) - minDist);
 	return ansMoveWithGradientDiff;
 }
 
-void DFS1P::testDFS() {
-	// CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
-	// CFBoard board = CFBoard("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1N1/2B1QB1R/3K3R w - - 0 1"); // no open files, >= 2 free rows
-	// CFBoard board = CFBoard("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R w - - 0 1"); // no open files, 1 free rows, no chance of winning, 3 is better than 4 for some reasons
-	CFBoard board = CFBoard("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R b - - 0 1"); // same as above but black to play
-	// CFBoard board = CFBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
-	// CFBoard board = CFBoard("2k5/p7/qp5p/1qp3pP/B1qp1pP1/3npPN1/P3PB1R/3KQ2R w - - 0 1"); // king supposed to have no legal moves
-	// std::cerr << board.getReprLegalMove(10, 59); 
-	// CFBoard board = CFBoard("2k5/p7/qp5p/1qp3pP/2qp1pP1/3npPN1/P1B1PB1R/3KQ2R w - - 0 1"); // test opponent blundering
-	// CFBoard board = CFBoard("2k5/p7/Pp5p/1Pp3pq/2Pp1pq1/3PpnN1/P1B1PB1R/3KQ2R w - - 0 1"); // test opponent blundering 2
-	// CFBoard board = CFBoard("2k5/p4q1q/Ppq1q1qp/1Ppq1qpq/2Ppqpq1/3PpnN1/P1B1PB1R/3KQ2R w - - 0 1"); // test opponent blundering 3
-	// CFBoard board = CFBoard("2kqqqqq/p2qqq2/Pp5p/1Pp3pP/2Pp1NP1/3PpPB1/P1B1P2R/3KQ2R b - - 0 1"); // test opponent blundering 4
-	// cout << board.naiveCheckCheck(0) << '\n';
+// void DFS1P::testDFS() {
+// 	// CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
+// 	// CFBoard board = CFBoard("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1N1/2B1QB1R/3K3R w - - 0 1"); // no open files, >= 2 free rows
+// 	// CFBoard board = CFBoard("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R w - - 0 1"); // no open files, 1 free rows, no chance of winning, 3 is better than 4 for some reasons
+// 	CFBoard board = CFBoard("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R b - - 0 1"); // same as above but black to play
+// 	// CFBoard board = CFBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
+// 	// CFBoard board = CFBoard("2k5/p7/qp5p/1qp3pP/B1qp1pP1/3npPN1/P3PB1R/3KQ2R w - - 0 1"); // king supposed to have no legal moves
+// 	// std::cerr << board.getReprLegalMove(10, 59); 
+// 	// CFBoard board = CFBoard("2k5/p7/qp5p/1qp3pP/2qp1pP1/3npPN1/P1B1PB1R/3KQ2R w - - 0 1"); // test opponent blundering
+// 	// CFBoard board = CFBoard("2k5/p7/Pp5p/1Pp3pq/2Pp1pq1/3PpnN1/P1B1PB1R/3KQ2R w - - 0 1"); // test opponent blundering 2
+// 	// CFBoard board = CFBoard("2k5/p4q1q/Ppq1q1qp/1Ppq1qpq/2Ppqpq1/3PpnN1/P1B1PB1R/3KQ2R w - - 0 1"); // test opponent blundering 3
+// 	// CFBoard board = CFBoard("2kqqqqq/p2qqq2/Pp5p/1Pp3pP/2Pp1NP1/3PpPB1/P1B1P2R/3KQ2R b - - 0 1"); // test opponent blundering 4
+// 	// cout << board.naiveCheckCheck(0) << '\n';
 
-	setBoardPointer(&board);
+// 	setBoardPointer(&board);
 
-	// // Test dist between tiles
-	// for (int i = 0; i < 8; i++) {
-	//	 for (int j = 0; j < 8; j++) {
-	//		 int tile = i*8 + j;
-	//		 cout << distFromTileToTileAsPiece(board, 2, 61, tile) << ' ';
-	//	 }
-	//	 cout << '\n';
-	// }
+// 	// // Test dist between tiles
+// 	// for (int i = 0; i < 8; i++) {
+// 	//	 for (int j = 0; j < 8; j++) {
+// 	//		 int tile = i*8 + j;
+// 	//		 cout << distFromTileToTileAsPiece(board, 2, 61, tile) << ' ';
+// 	//	 }
+// 	//	 cout << '\n';
+// 	// }
 
-	for (int i = 0; i < 5; i++) {
-		auto move = getNextMove();
-		int startTile = std::get<0>(move), endTile = std::get<1>(move);
-		float eval = std::get<2>(move);
-		std::cerr << startTile << ' ' << endTile << ' ' << eval << '\n';
-		board.movePiece(startTile, endTile);
-		board.forceFlipTurn(); // One person moving only
-		std::cerr << board.getRepr() << '\n';
-	}
-}
+// 	for (int i = 0; i < 5; i++) {
+// 		auto move = getNextMove();
+// 		int startTile = std::get<0>(move), endTile = std::get<1>(move);
+// 		float eval = std::get<2>(move);
+// 		std::cerr << startTile << ' ' << endTile << ' ' << eval << '\n';
+// 		board.movePiece(startTile, endTile);
+// 		board.forceFlipTurn(); // One person moving only
+// 		std::cerr << board.getRepr() << '\n';
+// 	}
+// }

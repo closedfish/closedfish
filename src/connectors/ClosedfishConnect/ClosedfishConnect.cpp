@@ -5,10 +5,14 @@ Closedfish::Move ClosedfishEngine::getNextMove() {
 	DFS1P d;
 	d.setBoardPointer(currentBoard);
 	Closedfish::Move nextMoveDFS1P = d.getNextMove();
-	if (std::get<2>(nextMoveDFS1P) <= 0) { // The move doesn't help up get closer to the heatmap
+	if (std::get<1>(nextMoveDFS1P) == std::get<0>(lastMove) && 
+	std::get<0>(nextMoveDFS1P) == std::get<1>(lastMove)) { // Repeated moves
 		// Call Aarrya's function
-		return std::make_tuple(0, 0, 0);
+		// std::cerr << "BREAKTHROUGH\n";
+		lastMove = std::make_tuple(0, 0, 0);
 	} else {
-		return nextMoveDFS1P;
+		// std::cerr << "Continue 1PDFS\n";
+		lastMove = nextMoveDFS1P;
 	}
+	return lastMove;
 }

@@ -10,4 +10,6 @@ class ClosedfishEngine : public Closedfish::ChessEngine {
 public:
 	ClosedfishEngine() : ChessEngine() {}
 	Closedfish::Move getNextMove();
+private:
+	Closedfish::Move lastMove;
 };
