@@ -14,23 +14,52 @@
 #include <algorithm>
 #include "ChessBotUI.h"
 
+#pragma region macros
 /// <summary>
 /// Converts an RGB value to a single int
 /// </summary>
-/// <param name="R">explains itself</param>
-/// <param name="G">explains itself</param>
-/// <param name="B">explains itself</param>
 /// <returns>the color as a 4-byte integer</returns>
-#define _convertRGBToInt(R,G,B) ((int)R + ((int)G << 8) + ((int)B << 16))
+#define _convertRGBToInt(R,G,B) ((int)R | ((int)G << 8) | ((int)B << 16))
 
 #define swapPixels(arr,temp,pos1,pos2) temp = arr[pos1], arr[pos1] = arr[pos2], arr[pos2] = temp; temp = arr[pos1 + 1]; arr[pos1 + 1] = arr[pos2 + 1]; arr[pos2 + 1] = temp; temp = arr[pos1 + 2]; arr[pos1 + 2] = arr[pos2 + 2]; arr[pos2 + 2] = temp; temp = arr[pos1 + 3]; arr[pos1 + 3] = arr[pos2 + 3]; arr[pos2 + 3] = temp;
+
+#define swapCols(R, G, B, col) R = col & 255, G = (col>>8) & 255, B = (col>>16)&255
 
 /// <summary>
 /// Converts to 32-bit integers to a 64-bit integer
 /// </summary>
 #define i64(a,b) a + (static_cast<int_fast64_t>(b) << 32LL)
 
-const unsigned int last32Bits = 4294967295;
+const unsigned int last32Bits = 4294967295;//would be a macro but giving a type makes everything more stable
+
+namespace templateVals2 {
+	char* templateNames[24] = { "\\black_king\0",
+		"\\b_black_king\0",
+		"\\black_queen\0",
+		"\\b_black_queen\0",
+		"\\black_knight\0",
+		"\\b_black_knight\0",
+		"\\black_bishop\0",
+		"\\b_black_bishop\0",
+		"\\black_rook\0",
+		"\\b_black_rook\0",
+		"\\black_pawn\0",
+		"\\b_black_pawn\0",
+		"\\white_king\0",
+		"\\w_white_king\0",
+		"\\white_queen\0",
+		"\\b_white_queen\0",
+		"\\white_knight\0",
+		"\\b_white_knight\0",
+		"\\white_bishop\0",
+		"\\b_white_bishop\0",
+		"\\white_rook\0",
+		"\\b_white_rook\0",
+		"\\white_pawn\0",
+		"\\b_white_pawn\0"
+	};
+}
+#pragma endregion
 
 /// <summary>
 /// namespace with conversion functions, from and to different types
@@ -39,10 +68,11 @@ namespace conv
 {
 	/// <summary>
 	/// tolerance to difference in neighbouring colours
+	/// might not be used
 	/// </summary>
 	const int tolerance = 2 + (2 << 8) + (2 << 16);
 	/// <summary>
-	/// Converts an integer to a colour
+	/// Converts an integer to an RGB colour
 	/// </summary>
 	/// <param name="colour">The colour, as an int</param>
 	// <returns>a pointer to 3 bytes, whicih are the RGB colours</returns>
@@ -58,7 +88,60 @@ namespace conv
 	}
 }
 
-//void bmpClass::_reverseInt(int nr, char*& rev)
+int getSizeChr(char* chr)
+{
+	char* beg = chr;
+	int cnt = 0;
+	while (*beg != '\0')
+	{
+		++cnt;
+		++beg;
+	}
+	return cnt;
+}
+
+char** templateNames = new char*[1];
+int nrTemplates = 1;
+
+void bmpClass::stretchTemplates()
+{
+	return;
+	templateNames[0] = "test\\test.png\0";
+
+	HDC hdc = CreateCompatibleDC(NULL);
+	HDC hdcStretch = CreateCompatibleDC(hdc);
+
+	HBITMAP hBmpTemp = NULL;
+	HBITMAP hBmpStretch = NULL;
+
+	for (int i = 0; i < nrTemplates; ++i)
+	{
+		hBmpTemp = (HBITMAP)ci.Load(templateNames[i]);
+
+		SelectObject(hdc, hdcStretch);
+
+		SetStretchBltMode(hdcStretch, HALFTONE);
+
+		hBmpStretch = CreateCompatibleBitmap(hdcStretch, sideW, sideH);
+
+		SelectObject(hdcStretch, hBmpStretch);
+
+		StretchBlt(hdcStretch, 0, 0, sideW, sideH, hdc, 0, 0, 104, 104, SRCCOPY);
+
+		ci.Detach();
+
+		ci.Attach(hBmpStretch, CImage::DIBOR_DEFAULT);
+
+		ci.Save("test\\test2.png", Gdiplus::ImageFormatPNG);
+
+		ci.Detach();
+	}
+
+	DeleteObject(hBmpTemp);
+	DeleteObject(hBmpStretch);
+	DeleteDC(hdc);
+	DeleteDC(hdcStretch);
+}
 
 /// <summary>
 /// Sends a click to the given position
@@ -70,7 +153,28 @@ namespace conv
 /// </returns>
 bool bmpClass::sendClick(int posX, int posY)
 {
-#if _WIN32 == 1
+#ifdef _WIN64
+	SetCursorPos(posX, posY);
+
+	MOUSEINPUT mInp;
+
+	POINT curPos;
+	GetCursorPos(&curPos);
+
+	mInp.dx = (long long int)curPos.x;
+	mInp.dy = (long long int)curPos.y;
+	mInp.mouseData = (long long int)NULL;
+	mInp.dwFlags = 0x00000002 | 0x00000004;
+	mInp.dwExtraInfo = (long long int)NULL;
+
+	INPUT click[1];
+	click[0].type = (long long int)INPUT_MOUSE;
+	click[0].mi = mInp;
+
+	int sent = SendInput((UINT)1, click, sizeof(click));
+
+	return sent == 1;
+#else
 	//for some reason this is the always the active block
 	//but adding 64-bit compatibility will make this safer
 	SetCursorPos(posX, posY);
@@ -88,28 +192,6 @@ bool bmpClass::sendClick(int posX, int posY)
 
 	INPUT click[1];
 	click[0].type = INPUT_MOUSE;
-	click[0].mi = mInp;
-
-	int sent = SendInput(1, click, sizeof(click));
-
-	return sent == 1;
-#else
-	std::cout << "e pe 64 de biti";
-	SetCursorPos(posX, posY);
-
-	MOUSEINPUT mInp;
-
-	POINT curPos;
-	GetCursorPos(&curPos);
-
-	mInp.dx = (long long int)curPos.x;
-	mInp.dy = (long long int)curPos.y;
-	mInp.mouseData = NULL;
-	mInp.dwFlags = (long long int)(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP);
-	mInp.dwExtraInfo = NULL;
-
-	INPUT click[1];
-	click[0].type = (long long int)INPUT_MOUSE;
 	click[0].mi = mInp;
 
 	int sent = SendInput(1, click, sizeof(click));
@@ -138,9 +220,11 @@ void bmpClass::send_input(char* inpt)
 
 	sendClick(fx, fy);
 
-	Sleep(50);
+	Sleep(150);
 
 	sendClick(sx, sy);
+
+	Sleep(150);
 }
 
 void bmpClass::getPrimaryScreen(BITMAP& bmpScreen)
@@ -173,18 +257,6 @@ void bmpClass::getPrimaryScreen(BITMAP& bmpScreen)
 	DeleteObject(hdcMemDC);
 	ReleaseDC(NULL, hdcScreen);
 	ReleaseDC(hwndDesktop, hdcScreen);
-}
-
-int getSizeChr(char* chr)
-{
-	char* beg = chr;
-	int cnt = 0;
-	while (*beg != '\0')
-	{
-		++cnt;
-		++beg;
-	}
-	return cnt;
 }
 
 char* bmpClass::_saveScreenToFile(LPCSTR filename)
@@ -476,34 +548,24 @@ void getScreenBits(BYTE*& bits, BITMAPINFO& bi)
 	ReleaseDC(hwndDesktop, hdcScreen);
 }
 
-void getHBMPBits(HBITMAP hBitmap, BYTE*& bits)
+void _getHBMPBits(HBITMAP hBitmap, BYTE* buffer, BITMAPINFO& bi)
 {
-	HDC hdcMemDC = NULL;
-
-	hdcMemDC = CreateCompatibleDC(NULL);
-
-	SelectObject(hdcMemDC, hBitmap);
-
-	BITMAPINFO bi;
+	HDC hdc = CreateCompatibleDC(NULL);
 
 	bi = { 0 };
 
 	bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 
-	//get the header
-	GetDIBits(hdcMemDC, hBitmap, 0, 0, NULL, &bi, DIB_RGB_COLORS);
+	GetDIBits(hdc, hBitmap, 0, 0, NULL, &bi, DIB_RGB_COLORS);
 
-	//important
+	//better to be safe
 	bi.bmiHeader.biCompression = BI_RGB;
 
-	bits = new BYTE[bi.bmiHeader.biSizeImage];
+	buffer = new BYTE[bi.bmiHeader.biSizeImage];
 
-	GetDIBits(hdcMemDC, hBitmap, 0, bi.bmiHeader.biHeight, (LPVOID)bits, &bi, DIB_RGB_COLORS);
+	GetDIBits(hdc, hBitmap, 0, bi.bmiHeader.biHeight, (LPVOID)&buffer, &bi, DIB_RGB_COLORS);
 
-
-	//Clean up
-	DeleteObject(hdcMemDC);
-	ReleaseDC(NULL, hdcMemDC);
+	ReleaseDC(NULL, hdc);
 }
 
 void bmpClass::split_the_board()
@@ -520,7 +582,7 @@ void bmpClass::split_the_board()
 	BITMAPINFO bi;
 	getScreenBits(bits, bi);
 
-	int sideHForImage = sideH * 1.3, sideWForImage = sideW * 1.3;
+	int sideHForImage = sideH * 1.0, sideWForImage = sideW * 1.0;
 	int deltaH = sideHForImage - sideH, deltaW = sideWForImage - sideW;
 
 	int BPP = bi.bmiHeader.biBitCount / 8;
@@ -536,31 +598,36 @@ void bmpClass::split_the_board()
 		for (int j = 0; j < 8; ++j)
 		{
 			//checking if the current square has a piece or not
-			match = 0;
-			for (int scan = 0; scan < sideH; ++scan)
+			int pos = ((this->scrH - this->boardB) + i * this->sideH + this->sideH / 6) * bi.bmiHeader.biWidth * BPP + (this->boardL + this->sideW / 2 + this->sideW * j) * BPP;
+			int col = _convertRGBToInt(bits[pos], bits[pos + 1], bits[pos + 2]);
+			int difW = (bits[pos] - 82) + (bits[pos + 1] - 83) + (bits[pos + 2] - 86);
+			int difB = (-bits[pos] + 248) + (-bits[pos + 1] + 248) + (-bits[pos + 2] + 248);
+
+			
+			if (abs(difW) > 4 && abs(difB) > 4)
 			{
-				for (int w = 0; w < sideW; ++w)
-				{
-					int cpos = bi.bmiHeader.biWidth * (this->boardT + i * sideH + scan) * BPP + //vertical offset of board
-						(this->boardL + sideW * j) * BPP + w;//horziontal offset of the board
-					int col = _convertRGBToInt(bits[cpos], bits[cpos + 1], bits[cpos + 2]);
-					if (col == col1 || col == col2)
-					{
-						match++;
-					}
-				}
+				piece[i*8 + j] = -1;
 			}
-			if (match >= minColMatch)
+
+			else
 			{
-				piece[i * 8 + j] = 0;
+				piece[i * 8 + j] = 1000;
 			}
+			
+
+			//if (match >= minColMatch)
+			//{
+				//std::cout << i * 8 + j << " ";
+				//piece[i * 8 + j] = -1;
+			//}
+			//std::cout << "\n";
 
 			memset(buffer, (BYTE)0, bmpSize);
 
 			for (int scan = 0; scan < sideHForImage; ++scan)
 			{
-				int start = bi.bmiHeader.biWidth * (this->boardT - deltaH + i * sideH + scan) * BPP + //vertical offset of board
-					(this->boardL - deltaW + sideW * j) * BPP; //horziontal offset of the board
+				int start = bi.bmiHeader.biWidth * ((this->scrH - this->boardB) + i * this->sideH + scan) * BPP + //vertical offset of board
+					(this->boardL + this->sideW * j) * BPP; //horziontal offset of the board
 				if (scan == sideHForImage)
 				{
 					memcpy(buffer, (bits + start), sideWForImage * BPP);
@@ -585,7 +652,7 @@ void bmpClass::split_the_board()
 	delete[] buffer;
 
 	auto end = std::chrono::high_resolution_clock::now();
-	std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(start - end).count();
+	//std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(start - end).count();
 }
 
 void bmpClass::printSq(int id)
@@ -766,13 +833,14 @@ void bmpClass::getBoardColours(int& col1, int& col2)
 		}
 		curApp++;
 	}
+	col2 = bestCol;
 
 #if _DEBUG
-	col2 = bestCol;
+	//std::cout << col1 << " " << col2 << "\n";
 	byte* bCol1 = conv::_intToRGB(col1);
 	byte* bCol2 = conv::_intToRGB(col2);
-	std::cout << (int)*bCol1 << " <> " << (int)*(bCol1 + 1) << " <> " << (int)*(bCol1 + 2) << "\n";
-	std::cout << (int)*bCol2 << " <> " << (int)*(bCol2 + 1) << " <> " << (int)*(bCol2 + 2) << "\n";
+	//std::cout << (int)*bCol1 << " <> " << (int)*(bCol1 + 1) << " <> " << (int)*(bCol1 + 2) << "\n";
+	//std::cout << (int)*bCol2 << " <> " << (int)*(bCol2 + 1) << " <> " << (int)*(bCol2 + 2) << "\n";
 
 
 	//Clean up
@@ -847,6 +915,119 @@ void bmpClass::removeBgColours(HBITMAP& hbitmap)
 	//hbitmap = CreateBitmap()
 }
 
+void bmpClass::changeBg(BYTE* bits, int _size)
+{
+
+	for (int i = 0; i < _size; i += 4)
+	{
+		//std::cout << _convertRGBToInt(bits[i + 1], bits[i + 2], bits[i + 3]) << " <> " << (int)bits[i] << " " << (int)bits[i + 1] << " " << (int)bits[i + 4] << " " << (int)bits[i+3] << " <> " << col1Orig << " " << col2Orig << "\n";
+		if (_convertRGBToInt(bits[i], bits[i + 1], bits[i + 2]) == col1Orig)
+		{
+			swapCols(bits[i], bits[i + 1], bits[i + 2], col1);
+		}
+		else
+			if (_convertRGBToInt(bits[i], bits[i + 1], bits[i + 2]) == col2Orig)
+			{
+				swapCols(bits[i], bits[i + 1], bits[i + 2], col2);
+			}
+		//bits[i] = 255;
+		//bits[i + 1] = 255;
+	}
+}
+
+void bmpClass::updateBgs()
+{
+	HBITMAP _template = NULL;
+
+	BITMAP bmp;
+
+	Gdiplus::Bitmap* image(NULL);
+
+	char* templPath = _opencv->giveTemplatePath();
+	int sz = sizeof(templPath);
+
+	BYTE* buffer = new BYTE[40000];
+
+	for (int i = 0; i < 24; ++i)
+	{
+		std::string __path = (std::string)templPath + (std::string)templateVals2::templateNames[i] + (std::string)".png";
+		std::string __path2 = (std::string)templPath + (std::string)templateVals2::templateNames[i] + (std::string)"7.png";
+
+		//char* _path = new char[__path.length() + 1];
+
+		int size = MultiByteToWideChar(CP_UTF8, 0, __path.c_str(), -1, NULL, 0);
+		WCHAR* _wpath = new WCHAR[size];
+		MultiByteToWideChar(CP_UTF8, 0, __path.c_str(), -1, _wpath, size);
+		
+		size = MultiByteToWideChar(CP_UTF8, 0, __path2.c_str(), -1, NULL, 0);
+		WCHAR* _wpath2 = new WCHAR[size];
+		MultiByteToWideChar(CP_UTF8, 0, __path2.c_str(), -1, _wpath2, size);
+
+		//strcpy(_path, __path.c_str());
+
+		char* _path2 = new char[__path2.length() + 1];
+
+		strcpy(_path2, __path2.c_str());
+
+		image = Gdiplus::Bitmap::FromFile(_wpath);
+
+		std::cout << "status: " << image->GetHBITMAP(NULL, &_template) << "\n";
+
+		BITMAPINFO _bi;
+
+		_getHBMPBits(_template, buffer, _bi);
+
+		int BPP = _bi.bmiHeader.biBitCount / 8;
+
+		int bmpSize = _bi.bmiHeader.biWidth * _bi.bmiHeader.biHeight * BPP;
+
+		if (i == 1)
+		{
+			ofstream fout("out.txt");
+			for (int i = 0; i < bmpSize; ++i)
+			{
+				fout << (int)buffer[i] << " ";
+			}
+		}
+
+		std::cout << ">" << bmpSize << " " << _bi.bmiHeader.biSizeImage << "< " << "\n";
+
+		changeBg(buffer, bmpSize);
+
+		CImage ci;
+
+		ci.Attach(_template, CImage::DIBOR_DEFAULT);
+
+		ci.Save(_path2, Gdiplus::ImageFormatPNG);
+
+		//image = Gdiplus::Bitmap::FromHBITMAP(_template, NULL);
+
+		//std::cout << "new status: " << image->Save(_T(_wpath2), &Gdiplus::ImageFormatPNG) << "\n";
+
+		std::cout << "5 ";
+
+		/*HRESULT hr = _ci.Save(("templatesNew" + '\\' + 't' + (char)(i + 15) + '.' + 'p' + 'n' + 'g'), Gdiplus::ImageFormatBMP);
+
+		if (hr != S_OK)
+		{
+			DWORD dw = GetLastError();
+
+			LPVOID lpMsgBuf;
+
+			FormatMessage(
+				FORMAT_MESSAGE_ALLOCATE_BUFFER |
+				FORMAT_MESSAGE_FROM_SYSTEM |
+				FORMAT_MESSAGE_IGNORE_INSERTS,
+				NULL,
+				dw,
+				MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+				(LPTSTR)&lpMsgBuf,
+				0, NULL);
+			std::cout << (LPCTSTR)lpMsgBuf << "<-\n";
+		}*/
+	}
+}
+
 void bmpClass::testRemoveBg()
 {
 	HBITMAP _new = (HBITMAP)CopyImage(hSquares[1], IMAGE_BITMAP, 0, 0, LR_DEFAULTSIZE);
@@ -913,7 +1094,7 @@ void bmpClass::saveScreenToFileWithType(LPCSTR filename, int type)
 	ReleaseDC(hwndDesktop, hdcScreen);
 }
 
-WCHAR* bmpClass::_saveScreenToFileWithType(LPCSTR filename, int type)
+char* bmpClass::_saveScreenToFileWithType(LPCSTR filename, int type)
 {
 	HDC hdcScreen;
 	HDC hdcMemDC = NULL;
@@ -957,23 +1138,17 @@ WCHAR* bmpClass::_saveScreenToFileWithType(LPCSTR filename, int type)
 		break;
 	}
 
-	WIN32_FIND_DATAA fileData;
+	char* _path = new char[MAX_PATH];
 
-	HANDLE hFind = FindFirstFile(filename, &fileData);
-
-	if (hFind = INVALID_HANDLE_VALUE)
-	{
-		return NULL;
-	}
+	GetFullPathNameA(filename, MAX_PATH, _path, nullptr);
 
 	//Clean up
 	DeleteObject(hBmpScreen);
 	DeleteObject(hdcMemDC);
 	ReleaseDC(NULL, hdcScreen);
 	ReleaseDC(hwndDesktop, hdcScreen);
-	FindClose(hFind);
 
-	return (WCHAR*)fileData.cFileName;
+	return _path;
 }
 
 void bmpClass::writeToFile(LPCSTR filename, char* data)
