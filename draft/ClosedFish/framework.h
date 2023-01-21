@@ -5,7 +5,7 @@
 #pragma once
 
 #include "ChessBotUI.h"
-#include "OpenCV.h"
+#include "Timers.h"
 #include <thread>
 
 #include "targetver.h"
