@@ -145,7 +145,7 @@ namespace WeakPawns{
 
 	/**
 	 * @brief Tells whether the pawn at tile is connected or not
-	 * (if it is protected by at least 1 pawn)
+	 * (if it is protected by at least 1 pawn or is protecting at least 1 pawn)
 	 *
 	 * @param board : current CFBoard
 	 * @param tile : index of the tile of the pawn (0...63)
@@ -153,11 +153,27 @@ namespace WeakPawns{
 	 * @return : true or false
 	 */
 	bool isConnected(CFBoard &board, int &tile){
+		
 		bool color = board.getPieceFromCoords(tile)%2;
-		if(nbProtectingPiecesById(board, tile, 0) > 0){ //boardId = color = 0 or 1
+		
+		int pi = tile/8;
+		int pj = tile%8;
+
+		if(board.getPieceFromCoords((pi+1)*8+(pj+1)) == color){
 			return true;
 		}
+		if(board.getPieceFromCoords((pi-1)*8+(pj+1)) == color){
+			return true;
+		}
+		if(board.getPieceFromCoords((pi+1)*8+(pj-1)) == color){
+			return true;
+		}
+		if(board.getPieceFromCoords((pi-1)*8+(pj-1)) == color){
+			return true;
+		}
+
 		return false;
+		
 	}
 
 	/**
@@ -190,8 +206,7 @@ namespace WeakPawns{
 	}
 
 	/**
-	 * @brief Checks if a pawn is isolated (if there are no ally pieces/pawns on any of its adjacent tiles)
-	 *
+	 * @brief Checks if a pawn is isolated (if there are no ally pawns on the same coloms and on col+1 and col-1)
 	 * @param board : current CFboard
 	 * @param tile : index of tile of the pawn (0...63)
 	 * 
@@ -199,45 +214,22 @@ namespace WeakPawns{
 	 */
 	bool isIsolated(CFBoard &board, int &tile){ 
 		
-		bool color = board.getPieceFromCoords(tile)%2;
-		int count = 0; //counts the number of free tiles around 
-
-		//we imagine that we have a king on the tile and see where it can move
-		uint64_t free_nei_tiles = board.getLegalMoves(10+color, tile); 
-		//board.forceRemovePiece(tile);
-		//board.forceAddPiece(10+color, tile);
-		//std::cout<<board.getReprLegalMove(10+color, tile)<<std::endl;
-
-		for (int t = 0; t <= 63; t++){
-			if((free_nei_tiles & (1ll << t))){ 
-				std::cout<<t/8<<" "<<t%8<<std::endl;
-				count ++;
+		int color = board.getPieceFromCoords(tile)%2;
+		int pj = tile%8;
+		for(int i = 0; i <= 7; i++){
+			if(board.getPieceFromCoords(i*8 + pj + 1) == color){
+				return false;
 			}
+			if(board.getPieceFromCoords(i*8 + pj - 1) == color){
+				return false;
+			}
+			if(board.getPieceFromCoords(i*8 + pj) == color){
+				return false;
+			}
+			
+
 		}
-
-
-
-		int pi = tile/8; //get index of the row
-		int pj = tile%8; //get the index of the column
-
-		if((pi == 0 && pj == 0) || (pi == 7 && pj == 7) || (pi == 0 && pj == 7) || (pi == 7 && pj == 0)){ //if we are on the corners
-			if(count == 3){ //only 3 free tiles are required
-				return true;
-			}
-		}
-		else{ //if we aren't on a corner
-			if(pi == 0 || pj == 0 || pi == 7 || pj == 7){ //if we are on a side
-				if(count == 5){ // we need 5 free tiles
-					return true;
-				}
-			}
-			else{ //if we are in the middle
-				if(count == 8){
-					return true;
-				}
-			}
-		}
-		return false;		
+		return true;	
 	}
 
 	/**
