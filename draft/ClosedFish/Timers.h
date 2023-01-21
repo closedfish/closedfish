@@ -4,6 +4,7 @@
 #include <thread>
 #include <Windows.h>
 #include <iostream>
+#include "ChessBotUI.h"
 
 //wrapper for the timer class
 struct timer
@@ -25,13 +26,29 @@ namespace timers
 				std::this_thread::sleep_for(std::chrono::milliseconds(_timer.delay));
 				if (_timer.shutdown == true)
 					break;
-				//std::cout << _timer.shutdown << "<-\n";
 				func(param);
 			}
 		});
 		t.detach();
 	}
+
+	void moveDetection(timer& _timer, bmpClass* bm)
+	{
+		std::thread t([_timer, bm]() {
+			while (true)
+			{
+				if (_timer.shutdown == true)
+					break;
+				std::this_thread::sleep_for(std::chrono::milliseconds(_timer.delay));
+				if (_timer.shutdown == true)
+					break;
+				bool move = bm->detectMove();
+				if (move == true)
+				{
+					//Algo runs
+				}
+			}
+		});
+		t.detach();
+	}
 }
-
-
-
