@@ -20,7 +20,7 @@ uint64_t getDangerousTiles(CFBoard board, bool color){
     for(int t = 0; t<=63; t++){ //we check each tile
         int piece = board.getPieceFromCoords(t);
         if((piece != -1) && (piece%2 == opp_color)){ //we found an opponent piece
-            dangerBoard += board.getLegalMoves(piece, t);
+            dangerBoard = dangerBoard | board.getLegalMoves(piece, t);
         }
     }
     return dangerBoard | getBoardProtectedByPawns(board, opp_color);
