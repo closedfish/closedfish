@@ -1,9 +1,9 @@
 #include <iostream>
 using namespace std;
 
-#include "../../lib/weak_pawns/WeakPawns.cpp"
-#include "../../lib/weak_pawns/PieceMovements.cpp"
-//#include "../../lib/board_implementation/CFBoard.h"
+//#include "../../lib/weak_pawns/WeakPawns.cpp"
+//#include "../../lib/weak_pawns/PieceMovements.cpp"
+#include "../../lib/board_implementation/CFBoard.h"
 //#include "../../lib/board_implementation/CFBoard.cpp"
 
 using namespace WeakPawns;

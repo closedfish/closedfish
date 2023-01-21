@@ -215,6 +215,7 @@ namespace WeakPawns{
 	bool isIsolated(CFBoard &board, int &tile){ 
 		
 		int color = board.getPieceFromCoords(tile)%2;
+		int pi = tile/8;
 		int pj = tile%8;
 		for(int i = 0; i <= 7; i++){
 			if(board.getPieceFromCoords(i*8 + pj + 1) == color){
@@ -223,7 +224,7 @@ namespace WeakPawns{
 			if(board.getPieceFromCoords(i*8 + pj - 1) == color){
 				return false;
 			}
-			if(board.getPieceFromCoords(i*8 + pj) == color){
+			if((board.getPieceFromCoords(i*8 + pj)) == color && (i != pi)){
 				return false;
 			}
 			
