@@ -20,6 +20,8 @@ std::string call_stockfish(Stockfish::Position &pos,
 													 Stockfish::StateListPtr &states,
 													 Stockfish::Search::LimitsType limits,
 													 bool ponderMode, Closedfish::Logger *logger) {
+	auto &cout = logger ? logger->cout : std::cerr;
+	cout << "Calling Stockfish" << std::endl;
 	limits.time[Stockfish::WHITE] = limits.time[Stockfish::BLACK] =
 			Stockfish::TimePoint(1000);
 	limits.startTime = Stockfish::now();
@@ -28,21 +30,28 @@ std::string call_stockfish(Stockfish::Position &pos,
 	// wait for stockfish threads to finish
 	std::this_thread::sleep_until(std::chrono::system_clock::now() +
 																std::chrono::seconds(1));
+	Stockfish::Threads.stop = true;
+	if (!logger) {
+		cout << "Done" << std::endl;
+		return "";
+	}
 	while (getline(logger->stream, line)) {
 		std::stringstream lstream(line);
 		std::string cmd;
 		lstream >> cmd;
+		cout << "[LINE] " << line << std::endl;
 		if (cmd == "bestmove") {
 			std::string bestmove;
 			lstream >> bestmove;
 			return bestmove;
 		}
 	}
+	cout << "bestmove not found" << std::endl;
 	return "bestmove not found";
 }
 
 int parseAN(std::string str) {
-	int row = 7 - (str[1] - '0');
+	int row = 7 - (str[1] - '1');
 	int col = str[0] - 'a';
 	return row * 8 + col;
 }
@@ -52,8 +61,6 @@ Closedfish::Move StockfishEngine::getNextMove() {
 	Stockfish::StateListPtr states;
 	convert_CFBoard_to_Stockfish_Position(*currentBoard, pos, states);
 	std::string out = call_stockfish(pos, states, {}, false, logger);
-	Stockfish::Threads.set(0);
-	// std::cerr << out << std::endl;
 	if (out.size() != 4) {
 		throw "Stockfish invalid output";
 	}

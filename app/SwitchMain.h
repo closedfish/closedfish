@@ -7,9 +7,14 @@
 #include "output.h"
 
 #include <CFBoard.h>
+#include <DFS1P.h>
 #include <SwitchEngine.h>
 #include <logger.h>
 
 #include <cstdio>
+#include <filesystem>
+#include <fstream>
+#include <functional>
+#include <ios>
 #include <iostream>
 #include <vector>

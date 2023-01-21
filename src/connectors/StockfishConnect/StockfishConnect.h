@@ -21,8 +21,7 @@ public:
 	 * @param logger pointer to the logger object. The logger should be
 	 * initialized in advance.
 	 */
-	StockfishEngine(Closedfish::Logger &logger)
-			: logger(&logger), ChessEngine() {}
+	StockfishEngine(Closedfish::Logger *logger) : logger(logger), ChessEngine() {}
 	Closedfish::Move getNextMove();
 
 private:

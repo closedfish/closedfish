@@ -1,16 +1,4 @@
-#include <iostream>
-#include <cstring>
-#include <algorithm>
-#include <vector>
-#include <string>
-#include <string.h>
-
-#include "../board_implementation/CFBoard.h"
 #include "Heatmap.h"
-
-#include "BitOperations.h"
-
-
 
 bool Heatmap::validSquare(int i, int j) {
 	return i >= 0 && i < 8 && j >= 0 && j < 8;
@@ -400,5 +388,5 @@ int heatmapTest() {
 			std::cout << '\n';
 		}
 	}
-	
+	return 0;
 }
