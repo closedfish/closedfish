@@ -1962,6 +1962,7 @@ Eigen::VectorXd getTheta()
 	Y[196] = new int[8]{5, 8, 8, 1, 2, 5, 2, 5};
 	Y[199] = new int[8]{3, 6, 2, -1, 3, 5, -1, 2};
 	Y[198] = new int[8]{2, 5, 1, 8, 2, 4, 8, 1};
+	
 #pragma endregion
 
 	for (int i = 0; i < 50; i++) {
