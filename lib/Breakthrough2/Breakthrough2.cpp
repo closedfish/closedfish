@@ -60,12 +60,13 @@ int Breakthrough2::SFNeval(CFBoard board)
 vector<int> Breakthrough2::mainBreak(CFBoard board, int color)
 {
 	vector<int> line;
+	vector<int> ans;
 	line.push_back(0);
 	line.push_back(0);
+	int pruneval = 0;
 	// checks every square for a piece
 	for(int sq = 0; sq < 64; sq++)
 	{
-		float pruneval = line[0]+line[1]/10;
 		// if there is a piece there
 		int p = board.getPieceFromCoords(sq);
 		if (p>=0 && p%2==0)
@@ -73,11 +74,24 @@ vector<int> Breakthrough2::mainBreak(CFBoard board, int color)
 			// if it has a move that intersects with a breakthrough square
 			uint64_t moves = board.getLegalMoves(p,sq) & blunderBoard(board, (color+1)%2);
 			if (moves > 0)
+			{
 				//run the dfs
-				line = dfsBreak(board, sq,moves,pruneval);
+				line = dfsBreak(board, sq, moves, pruneval);
+				if (line[0] > pruneval)
+				{
+					ans = line;
+					pruneval = ans[0];
+				}
+			}
 		}
 	}
-	return line;
+	if (ans[0] == 0)
+	{
+		vector<int> temp;
+		temp.push_back(0);
+		return temp;
+	}
+	return ans;
 }
 
 /*
@@ -89,7 +103,7 @@ vector<int> Breakthrough2::mainBreak(CFBoard board, int color)
 * the first 2 elements are used to store the integer and decimal part of the evaluation respectively
 * this function calls the DFS functions accoridngly to perform our alpha beta pruning
 */
-vector<int> Breakthrough2::dfsBreak(CFBoard board, int start, uint64_t ends, float pruneval)
+vector<int> Breakthrough2::dfsBreak(CFBoard board, int start, uint64_t ends, int pruneval)
 {
 	// line of moves
 	vector<int> line;
@@ -107,11 +121,10 @@ vector<int> Breakthrough2::dfsBreak(CFBoard board, int start, uint64_t ends, flo
 			vector<int> temp;
 			line = dfsPruneForce(board, 0,1, temp, pruneval);
 			board.undoLastMove();
-			float te = line[0] + 0.01 * line[1];
-			if (te > pruneval)
+			if (line[0] > pruneval)
 			{
 				ans = line;
-				pruneval = te;
+				pruneval = ans[0];
 			}
 		}
 	}
@@ -124,16 +137,14 @@ vector<int> Breakthrough2::dfsBreak(CFBoard board, int start, uint64_t ends, flo
 	return ans;
 }
 
-vector<int> Breakthrough2::dfsPruneForce(CFBoard board, int depth, int color, vector<int> v, float eval)
+vector<int> Breakthrough2::dfsPruneForce(CFBoard board, int depth, int color, vector<int> v, int eval)
 {
 	color = color % 2;
 	if (depth == 5)
 	{
-		float eval = SFNeval(board);
-		v.insert(v.begin(), static_cast<int>(eval));
-		double decp = (eval - v[0]) * 100;
-		v.insert(v.begin(), static_cast<int>(decp));
-		return v;
+		vector<int> tempeval;
+		tempeval.push_back(SFNeval(board));
+		return tempeval;
 	}
 	else
 	{
@@ -172,10 +183,10 @@ vector<int> Breakthrough2::minmaxsort(vector<vector<int>> v, int color)
 {
 	if (color == 0)
 	{
-		float max = v[0][0] + 0.01 * v[0][1];
+		int max = v[0][0];
 		for (vector<int> v2 : v)
 			if (v2[0] > max)
-				max = v2[0] + 0.01 * v2[1];
+				max = v2[0];
 		for (vector<int> v2 : v)
 			if (v2[0] >= max - 1)
 				if (max - v2[0] == v2[1])
@@ -183,10 +194,10 @@ vector<int> Breakthrough2::minmaxsort(vector<vector<int>> v, int color)
 	}
 	else
 	{
-		float min = v[0][0] + 0.01 * v[0][1];
+		int min = v[0][0];
 		for (vector<int> v2 : v)
 			if (v2[0] < min)
-				min = v2[0] + 0.01 * v2[1];
+				min = v2[0];
 		for (vector<int> v2 : v)
 			if (v2[0] <= min)
 				if (min - v2[0] == v2[1])

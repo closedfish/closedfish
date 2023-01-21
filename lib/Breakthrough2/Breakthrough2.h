@@ -19,7 +19,7 @@ public:
 	float depthval(int n);
 	int SFNeval(CFBoard board);
 	std::vector<int> mainBreak(CFBoard board, int color);
-	std::vector<int> dfsBreak(CFBoard board, int start, uint64_t ends, float pruneval);
-	std::vector<int> dfsPruneForce(CFBoard board, int depth, int color, std::vector<int> v, float eval);
+	std::vector<int> dfsBreak(CFBoard board, int start, uint64_t ends, int pruneval);
+	std::vector<int> dfsPruneForce(CFBoard board, int depth, int color, std::vector<int> v, int eval);
 	std::vector<int> minmaxsort(std::vector<std::vector<int>> v, int color);
 };
