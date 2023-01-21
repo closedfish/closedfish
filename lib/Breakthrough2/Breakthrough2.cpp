@@ -149,6 +149,7 @@ vector<int> Breakthrough2::dfsPruneForce(CFBoard board, int depth, int color, ve
 	color = color % 2;
 	if (depth == 5)
 	{
+		cerr << "Max depth reached\n";
 		vector<int> tempeval;
 		tempeval.push_back(SFNeval(board));
 		return tempeval;
@@ -157,47 +158,30 @@ vector<int> Breakthrough2::dfsPruneForce(CFBoard board, int depth, int color, ve
 	{
 	// cerr << board.getRepr() << ' ' << color << '\n';
 		vector<vector<int>> v2;
-		if (color == 0) {// white moving
-			for (int sq = 0; sq < 64; sq++) {
-				int p = board.getPieceFromCoords(sq);
-				if (p >= 0 && p % 2 == color) {
-					uint64_t moves = board.getLegalMoves(p, sq);
-					// checks if any piece was captured
-					int capt = 0;
-					for (int sq2 = 0; sq2 < 64; sq2++) {
-						if (((1ll << sq2) & moves) > 0) {
-							cerr << "FUCK\n" << sq << ' ' << sq2 << '\n';
-							v.push_back(sq);
-							v.push_back(sq2);
-							board.movePiece(sq, sq2);
-							if (SFNeval(board) < eval - depthval(depth))
-								continue;
-							v2.push_back(dfsPruneForce(board, depth + 1, color + 1, v,eval));
+		for (int sq = 0; sq < 64; sq++) {
+			int p = board.getPieceFromCoords(sq);
+			if (p >= 0 && p % 2 == color) {
+				uint64_t moves = board.getLegalMoves(p, sq);
+				// checks if any piece was captured
+				int capt = 0;
+				for (int sq2 = 0; sq2 < 64; sq2++) {
+					if (((1ll << sq2) & moves) > 0) {
+						v.push_back(sq);
+						v.push_back(sq2);
+						board.movePiece(sq, sq2);
+						cerr << "Before prune: " << color << ' ' << depth << ' ' << sq << ' ' << sq2 << '\n';
+						if (SFNeval(board) < eval - depthval(depth)) {
 							board.undoLastMove();
-							return(minmaxsort(v2, color));
+							v.pop_back();
+							v.pop_back();
+							continue;
 						}
-					}
-				}
-			}
-		} else { // black moving
-			for (int sq = 0; sq < 64; sq++) {
-				int p = board.getPieceFromCoords(sq);
-				if (p >= 0 && p % 2 == color) {
-					uint64_t moves = board.getLegalMoves(p, sq);
-					// checks if any piece was captured
-					int capt = 0;
-					for (int sq2 = 0; sq2 < 64; sq2++) {
-						if (((1ll << sq2) & moves) > 0) {
-							cerr << "FUCK\n" << sq << ' ' << sq2 << '\n';
-							v.push_back(sq);
-							v.push_back(sq2);
-							board.movePiece(sq, sq2);
-							if (SFNeval(board) < eval - depthval(depth))
-								continue;
-							v2.push_back(dfsPruneForce(board, depth + 1, color + 1, v,eval));
-							board.undoLastMove();
-							return(minmaxsort(v2, color));
-						}
+						cerr << "After prune: " << color << ' ' << depth << ' ' << sq << ' ' << sq2 << '\n';
+						v2.push_back(dfsPruneForce(board, depth + 1, color + 1, v,eval));
+						board.undoLastMove();
+						v.pop_back();
+						v.pop_back();
+						return(minmaxsort(v2, color));
 					}
 				}
 			}
