@@ -133,8 +133,8 @@ int main(int argc, char *argv[]) {
 	Stockfish::Eval::NNUE::init();
 	Stockfish::Position::init();
 
-	// DFS1P a;
-	// a.testDFS();
+	ClosedfishEngine a;
+	debug << std::get<0>(a.getNextMove());
 
 	debug << "[INFO] a.testDFS() done" << std::endl;
 	return 0;

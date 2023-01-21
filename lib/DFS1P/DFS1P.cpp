@@ -236,7 +236,8 @@ Closedfish::Move DFS1P::getNextMove() {
 	}
 
 	// Return the first move in the potential line
-	return ansLine[0];
+	Closedfish::Move ansMoveWithGradientDiff = std::make_tuple(std::get<0>(ansLine[0]), std::get<1>(ansLine[0]), distFromHeatmap(*currentBoard, heatMap) - minDist);
+	return ansMoveWithGradientDiff;
 }
 
 void DFS1P::testDFS() {
