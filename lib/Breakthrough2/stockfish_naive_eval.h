@@ -11,5 +11,6 @@
 #include "../../external/stockfish/src/tt.h"
 #include "../../external/stockfish/src/uci.h"
 #include "../../lib/board_implementation/CFBoard.h"
+#include <utils.h>
 
 Stockfish::Value stockfishNaiveEval(CFBoard board);

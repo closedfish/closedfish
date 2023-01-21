@@ -5,6 +5,7 @@
 #include <EngineWrapper.h>
 #include <stockfish_naive_eval.h>
 #include <BitOperations.h>
+#include <utils.h>
 
 class Breakthrough2 : public Closedfish::ChessEngine {
 public:

@@ -11,7 +11,7 @@ target_include_directories(${BT2} PUBLIC
     "./"
     "${CMAKE_BINARY_DIR}/configured_files/include")
 
-target_link_libraries(${BT2} PUBLIC ${BI} ${WRAP} ${WEAKP} ${HMP})
+target_link_libraries(${BT2} PUBLIC ${BI} ${WRAP} ${WEAKP} ${HMP} ${UTILS})
 
 if (${ENABLE_WARNINGS})
     target_set_warnings(TARGET ${BT2} ENABLE ON AS_ERROR OFF)
