@@ -206,5 +206,18 @@ void dfs_helper(CFBoard board, int count)
 
 void dfs_main(CFBoard& board)
 {
-
+		Stockfish::CommandLine::init(argc, argv);
+    Stockfish::UCI::init(Stockfish::Options);
+    Stockfish::Tune::init();
+    Stockfish::PSQT::init();
+    Stockfish::Bitboards::init();
+    Stockfish::Position::init();
+    Stockfish::Bitbases::init();
+    Stockfish::Endgames::init();
+    Stockfish::Threads.set(size_t(Stockfish::Options["Threads"]));
+    Stockfish::Search::clear(); // After threads are up
+    Stockfish::Eval::useNNUE = false;
+    // Stockfish::Eval::NNUE::init();
+    Stockfish::Position::init(); // if not yet init (should rather be inside the
+                                 // main function)
 }

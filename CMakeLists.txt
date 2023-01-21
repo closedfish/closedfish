@@ -5,8 +5,6 @@ project(ChessSwitchAI VERSION 1.0.0 LANGUAGES CXX)
 
 include(GNUInstallDirs)
 
-#Enable unit testing
-option(ENABLE_TESTING "Whether to enable the unit testing build" OFF)
 
 #Enable warnings
 option(ENABLE_WARNINGS      "Enable to add warnings to a target."   ON)
@@ -25,10 +23,20 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(SC StockfishConectors)
 set(GC GeneralConnectors)
+set(CUI ConnectorsFromUItoSwicthAI)
 set(PLAY PlayingRoutine)
 set(INPUT ReceiveInputFromUI)
 set(OUTPUT SendOutputToUI)
 set(OPENING DeceideOverOpening)
+set(BI BoardImplementation)
+set(FAC FactorialImplementation)
+set(SF StockfishSource)
+set(UTILS GeneralUtilities)
+set(WRAP EngineWrapper)
+set(ENGINE SwitchEngine)
+set(DFS1P DepthFirstSearchOnePerson)
+set(HMP Heatmap)
+set(WEAKP WeakPawns)
 
 set(EXECUTABLE Executable)
 
@@ -57,7 +65,26 @@ endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 #Help to include Cmake-based libraries
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 include(AddGitSubmodule)
+#import Eigen
+#add_git_submodule(external/Eigen)
 
+# #add Catch2 with FetchContent
+# Include(FetchContent)
+
+# FetchContent_Declare(
+#   Catch2
+#   GIT_REPOSITORY https://github.com/catchorg/Catch2
+#   GIT_TAG        v3.2.0 # or a later release
+#   GIT_SHALLOW TRUE
+# )
+
+#import VCPKG
+option(USE_VCPKG "Whether to use VCPCKG" ON)
+if(USE_VCPKG)
+    message("Using VCPKG")
+    include(${CMAKE_SOURCE_DIR}/external/vcpkg/scripts/buildsystems/vcpkg.cmake)
+    find_package(eigen3)
+endif()
 #inlude warnings
 include(Warnings)
 
@@ -75,27 +102,26 @@ else(DOXYGEN_FOUND)
 	message("Doxygen not found")
 endif(DOXYGEN_FOUND)
 
-#Include Conan Libraries
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-
 #Includes subdirectories
+
 add_subdirectory(src)
 add_subdirectory(config)
 add_subdirectory(lib)
- 
+add_subdirectory(external)
 
 #Enable unit testing
-option(ENABLE_TESTING "Whether to enable the unit testing build" OFF)
+option(ENABLE_TESTING "Whether to enable the unit testing build" ON)
 
 #Check if there is need to compile unit test
 if(ENABLE_TESTING)
+    enable_testing()
     add_subdirectory(test)
 else()
     message("W/o exe. unit")
 endif()
 
 #Check if there is need to compile the executable
-option(COMPILE_EXECUTABLE "Whether to compile the executable" OFF)
+option(COMPILE_EXECUTABLE "Whether to compile the executable" ON)
 if(COMPILE_EXECUTABLE)
     add_subdirectory(app)
 else()
