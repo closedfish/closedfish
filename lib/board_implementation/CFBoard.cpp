@@ -717,7 +717,7 @@ uint64_t CFBoard::getCardinals(int tile, bool color) {
     // up | left | right | down
 
     return (\
-    ((tile != 0) * ~((1ll << (63 - (__builtin_clzll( (((1ll<<tile)-1) & allBoard & columnMap) | (columnMap & (1 + ~columnMap)) )&63))) - 1)) & (columnMap >> (64 - (tile>>3<<3))) | \
+    ((tile/8 != 0) * ~((1ll << (63 - (__builtin_clzll( (((1ll<<tile)-1) & allBoard & columnMap) | (columnMap & (1 + ~columnMap)) )&63))) - 1)) & (columnMap >> (64 - (tile>>3<<3))) | \
     ((tile != 0) * ~((1ll << (63 - (__builtin_clzll( (((1ll<<tile)-1) & allBoard) | (rowMap & (1 + ~rowMap)) )&63))) - 1)) & (rowMap & ((1ll<<tile)-1)) | \
     (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1)) & (1+(~(allBoard & ~((1ll << (tile+1))-1))))) << 1) -1 \
     & (rowMap & ~((1ll << (tile+1))-1))) | (tile != 63)*\

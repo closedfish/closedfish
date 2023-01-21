@@ -38,7 +38,6 @@ target_link_libraries(${EXECUTABLE} PUBLIC
     ${OUTPUT}
     ${OPENING}
     ${BI}
-    ${DFS1P}
     ${SF}
     ${WRAP}
     ${LOGGER}
