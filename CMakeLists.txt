@@ -37,6 +37,7 @@ set(ENGINE SwitchEngine)
 set(DFS1P DepthFirstSearchOnePerson)
 set(HMP Heatmap)
 set(WEAKP WeakPawns)
+set(BT2 Breakthrough2)
 
 set(EXECUTABLE Executable)
 

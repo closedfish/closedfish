@@ -8,10 +8,12 @@ Closedfish::Move ClosedfishEngine::getNextMove() {
 	if (std::get<1>(nextMoveDFS1P) == std::get<0>(lastMove) && 
 	std::get<0>(nextMoveDFS1P) == std::get<1>(lastMove)) { // Repeated moves
 		// Call Aarrya's function
-		// std::cerr << "BREAKTHROUGH\n";
-		lastMove = std::make_tuple(0, 0, 0);
+		std::cerr << "BREAKTHROUGH\n";
+		Breakthrough2 b;
+		b.setBoardPointer(currentBoard);
+		lastMove = b.getNextMove();
 	} else {
-		// std::cerr << "Continue 1PDFS\n";
+		std::cerr << "Continue 1PDFS\n";
 		lastMove = nextMoveDFS1P;
 	}
 	return lastMove;
