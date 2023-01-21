@@ -1,2 +1,3 @@
-add_subdirectory(general)
-add_subdirectory(Stockfish_connect)
+add_subdirectory(ClosedfishConnect)
+add_subdirectory(StockfishConnect)
+add_subdirectory(ConnectorsUI)

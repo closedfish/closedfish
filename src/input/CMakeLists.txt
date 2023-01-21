@@ -1,7 +1,7 @@
 set(INPUT_SOURCES 
-    "input.cc")
+    "input.cpp")
 set(INPUT_HEADERS
-    "input.hpp")
+    "input.h")
 
 add_library(${INPUT} STATIC
     ${INPUT_SOURCES}
@@ -10,3 +10,11 @@ add_library(${INPUT} STATIC
 target_include_directories(${INPUT} PUBLIC 
     "./"
     "${CMAKE_BINARY_DIR}/configured_files/include")
+
+if (${ENABLE_WARNINGS})
+    target_set_warnings(TARGET ${INPUT} ENABLE ON AS_ERROR OFF)
+endif()
+
+if(${ENABLE_LTO})
+    target_enable_lto(${INPUT} optimized)
+endif()

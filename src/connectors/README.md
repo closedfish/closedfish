@@ -1,0 +1,2 @@
+These connectors allow the switch algorithm to get the next move to be played in a black box, abstracted manner. <br> <br>
+For now, we will assume that the moves received by the switch algorithm will always be valid moves and need not be checked.

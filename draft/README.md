@@ -1,0 +1,1 @@
+This folder will contain every single file that isn't natively integrated with the rest of the project. 

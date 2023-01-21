@@ -15,22 +15,35 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 
 set(EXE_SOURCES
-    "switch_main.cc")
+    "SwitchMain.cpp")
 set(EXE_HEADERS 
-    "switch_main.hpp")
-    
+    "SwitchMain.h")
+
+add_compile_definitions(CMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
 add_executable(${EXECUTABLE} 
     ${EXE_SOURCES}
     ${EXE_HEADERS})
 
+if (${ENABLE_WARNINGS})
+    target_set_warnings(TARGET ${EXECUTABLE} ENABLE ON AS_ERROR OFF)
+endif()
 
+find_package(jsoncpp CONFIG REQUIRED)
 target_link_libraries(${EXECUTABLE} PUBLIC 
     ${SC}
     ${GC}
+    ${CUI}
     ${PLAY}
     ${INPUT}    
     ${OUTPUT}
     ${OPENING}
-    ${CONAN_CATCH2}
-    external/stockfish)
-  
+    ${BI}
+    ${DFS1P}
+    ${SF}
+    ${WRAP}
+    ${LOGGER}
+    ${ENGINE}
+    JsonCpp::JsonCpp
+)
+
+

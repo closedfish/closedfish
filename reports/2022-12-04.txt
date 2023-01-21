@@ -1,0 +1,126 @@
+Sirawit:
+    This Week:
+        - Implemented the `naiveCheckCheck` algorithm for `CFBoard`
+        - Done stupid unit tests for basic `CFBoard` functionalities
+        - Study the output of Stockfish (which is stream based)
+    Next Week:
+        - [Urgent] Clone stockfish and use customized streams (i.e. `std::stringstream` or custom class supporting operations)
+        - [Urgent] Stockfish functionalities must be done this week
+        - Do more unit tests for CFBoard
+        - [Optional] Add automated GitHub actions for continuous deployment (to check for each PR whether it compiles/breaks)
+        - [Optional] Host Doxygen on a server
+        
+Cassidy:
+    This Week:
+        -after many chess games, I have come to understand that the pieces that (in a general sense) matter the most are the pons and adding more variables will make things too complicated
+        - I now have a full plan for the implementation of the AI using a generalized multivariable regression on a basis of functions that will depend on:
+            -the distance between consecutive pons of the same color
+            -the distance between oposing pons of the same color
+            -the mean of the coordinates of the pons
+            -the number of pons (one AI per number of pons and when one of the sides has strictly less than 6 pons we will simply consider the board as open and return the value 1.
+       - I have practiced using the Eigen/Dense library for matrix manipulation which should be very useful for the implementation (I also lost about 6 hours trying to get the library: I tried to import on visual studios and clion and I couldn't get any of them to work using cmake so I am simply doing it on vs code In the end).
+    Next Week:
+        -implement the main generalized multi variable regression so I can obtain many different AIs (each with a respective basis of functions) and then choose the best one by comparing results in the testing phase.
+        -Implement an algorithm to extract the positions of the pons and their color from the 8 64 bit representation.
+        -Make a list of basis of functions that intuitively would make for a better AI (for now summing the square distances seems like a first nice idea).
+
+Aarrya:
+    This week: 
+    -reorganised GIT
+    -redistrubuted/rearranged work
+    -heavily optimised previous idea of the DFS (to a now BFS)
+    -made a simple tree data structure to allow for the said BFS
+    Next week:
+    - complete the BFS
+    - plan the merger of all individual parts (part 1 of the algorithm is expetced to be over)
+
+Ariel:
+This week: 
+          - Implemented the generator algorithm for one closed position
+	  - Created a visualisation of the chessboard in order to test functions for the generator
+	    team 
+	  - Fixed the class implementation of chessboard in order to be more efficient (changed 
+	    return types to void)
+Next week:
+	  - Finish implementing the closed position generator
+   	  - Implement the file generator for closed positions as well as other functions in the
+	    chessboard class such as reading positions from a file and returning those with only	 
+            pawns
+	  - Work on finish the generator project and doing bug fixes and testing
+
+
+Shirelle: 
+This week: -I have worked on the algorithm that return a chessboard initially with pawns added by some other pions, (changed my strategy from last week with all the conditions the pions have eg the bishop needs to be on the diagonal..) 
+Next week : -I will check if my function works thanks to the chessboard visualisation made by Ariel
+-I will also create a new algorithm to test if the king is in check. 
+
+	
+
+	  
+Antonia:
+This week:
+	- finished the implementation of the function that returns the total number of pieces currently and immediatly protecting the target pawn
+	- migrated to vscode
+Next week:
+	- fix bugs
+	- implement the function that returns for each piece if it can potentially protect the target pawn and in how many moves
+
+
+Etienne:
+This week:
+	- Continued work on the Chessboard class, notably the closeness and openness functions. This required more research and practice into what actually quantitatively defines a closed or open position (considering only pawns) as to return a value between 0-1. 
+	- Helped team with their respective functions the Data and Testing.
+	- Migrated to VScode and fixed bugs.
+	- Conducted more research into .cbv files to manipulate a chess database to test closed position which resulted in a dead end as these appear to be near impossible to modify in our timeframe.
+
+Next Week:
+	- Finish the Generator project, fix bugs, test code.
+	
+Ba Cong:
+This week:
+	- Opened an issue for the new branch heat-map.
+	- Implemented the CFBoard::fromFEN function which supports easier testing (now possible to convert online board editor to FEN, then to CFBoard).
+	- Added a working heat map for boards with open files (rooks and queens directly on the open file, bishops and knights stay around to protect the pieces, supporting in case of an exchange happens).
+	- Simplified previous codes (generalize edge cases) so less lines of code.
+Next week:
+	- Add the heat map for the rest cases (without open file by adding weak pawns into account; with or without rows to maneuver pieces).
+	- Test the heat map rigorously.
+
+Dimitrije:
+This week:
+-Debugged the board and squares detection after many issues.
+-Redefined some functions to reduce runtime of the code and make it more compact.
+-Program successfully finds the board on the screen and stores it in a Board class.
+-Defined a function that converts on-screen coordinates to chess coordinates.
+Next week:
+-Debugging the bottom right corner detection.
+-Recognition whether player is playing as black or white.
+-Rectognition of pieces.
+-(Storing pieces and their coordinates in the board class).
+
+
+Andrei
+This week:
+-fix project structure
+-help with branch merging
+-help with debugging
+
+Razvan:
+This week:
+-Changed some design features for the main GUI
+-Created method for saving the screenshot in different formats (JPEG, PNG, BMP and GIF)
+-Fixed some unstable functions
+Next week:
+-Get images of the individual pieces for the recognition
+-Get the colours of the board for the recognition algorithm
+-Merge my part with Dimitrije's
+
+Nadja:
+This week:
+-starting to implement the openings
+-serach for a proper library to read .json files and import it properly
+-help Andrei with finding proper packages in order to import the library with vcpkg
+-actual read the file and conceive a good structure for my openings class
+
+Next week:
+-finish implementing the structure I conceived this week

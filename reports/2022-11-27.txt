@@ -22,6 +22,15 @@ Next week:
 - Piece recognition and storing their position in a class.
 - Merging with code that saves the current board screenshot.
 
+Razvan:
+This week:
+- Created the main app
+- Created a class that takes a screenshot form the primary monitor of the device and saves it as a bitmap (.bmp file)
+- Addeed functions to send clicks for moving the pieces to that class
+Next week:
+- Detect chess pieces' movements
+- Save the screenshot in differernt formats
+
 Ariel
 This Week: 
 - Created the Chessboard Class with different functions which edit chessboards in different ways, retrieve information from chessboards as well as create chessboards
@@ -54,4 +63,42 @@ This week:
 - started the implementation of the functions that tell us by how many pieces the target pawn is currently protected (need to finalize the check for bishops and queens)
 - adapted my code to Yoshi's board representation
 Next week:
-- check how many pieces can potentially protect the target pawn and in how many moves  
+- check how many pieces can potentially protect the target pawn and in how many moves
+
+Ba Cong
+This week:
+- Started implementing a heat map representing which square is the most important so that we know which square to priotize placing pieces on
+- Added suggestions for creating a method to convert from a FEN to a CFBoard
+Next week:
+- Take relative piece values into account when updating the heat map
+- Improve on the case where there are not a lot of free squares for pieces to maneuver easily.
+
+Cassidy
+This week:
+-studied various reinforcement learning models to get more understanding on how the AI to find how closed a position is should be implemented. Also studied lots of chess to get a better understanding of what a closed, slightly closed... positions look like (not necessary but I'm trying to get more intuition on what I'm doing). -had the chance to implement a simple model that takes values such that there cloud is at least some one linear so it can simply predict outcomes.
+-did research on Alpha-beta pruning and methods to make chess ai (Quite complicated to get full grasp of everything for now)
+Next week:
+-Get much better understanding of alpha-beta pruning implementation.
+-try implementing AIs that are still based on reinforcement learning and that are more complex to aproach the complexity of the chess board.
+
+
+Yoshimi-Theophile
+Week 1: Started implementation of the ClosedFish board. Laid the groundwork for data representation.
+  Implemented necessary functions to access this data in meaningful ways, as well as a way to visualize the current board.
+Week 2: Highly optimized the Board class from the previous week by changing the way chess pieces' information is stored.
+  Implemented the greater part of chess pieces' moves within the class (some work still to be done). 
+  With the help of Sirawit, made the CFBoard class callable to make moves, and generally usable for others.
+  Made docstrings for all methods.
+Week 3: Added methods according to feedback, and lightly tested my ruleset code to suss out any errors.
+Week 4 plan: heavily optimization-focused, will try to implement rulesets deterministically.
+
+Week three plan: Keep adding functionalities that are missing (currently castle and pawn promotion come to mind).
+  Adapt the class to fit user needs and feedback from other group members.
+  Start optimizing and testing the existing code.
+
+Andrei:
+This week:
+-build project structure with cmake
+-help others with debugging
+
+
