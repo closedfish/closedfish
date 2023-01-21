@@ -137,16 +137,12 @@ vector<int> dfsPruneForce(CFBoard board, int depth, int color, vector<int> v, fl
 	else
 	{
 		vector<vector<int>> v2;
-		if (color == 0)
-		{
 			for (int sq = 0; sq < 64; sq++)
 			{
 				int p = board.getPieceFromCoords(sq);
 				if (p >= 0 && p % 2 == color)
 				{
 					uint64_t moves = board.getLegalMoves(p, sq);
-					// checks if any piece was captured
-					int capt = 0;
 					for (int sq2 = 0; sq2 < 64; sq2++)
 					{
 						if (((1ll << sq2) & moves) > 0)
@@ -163,7 +159,6 @@ vector<int> dfsPruneForce(CFBoard board, int depth, int color, vector<int> v, fl
 					}
 				}
 			}
-		}
 	}
 }
 
