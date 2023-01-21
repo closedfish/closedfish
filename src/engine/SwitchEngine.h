@@ -3,8 +3,8 @@
 #include <ClosedfishConnect.h>
 #include <EngineWrapper.h>
 #include <StockfishConnect.h>
-#include <logger.h>
 #include <tuple>
+#include <utils.h>
 
 class SwitchEngine : public Closedfish::ChessEngine {
 public:
