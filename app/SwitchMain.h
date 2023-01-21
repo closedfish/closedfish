@@ -1,8 +1,8 @@
 #pragma once
 
 #include "ConnectUISAI.h"
+#include "GeneralRegression.h"
 #include "closenessAI.h"
-#include "general_regression.h"
 #include "input.h"
 #include "output.h"
 
