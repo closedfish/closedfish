@@ -28,43 +28,53 @@ void chessGameLoop(SwitchEngine &engine) {
 	}
 }
 
+int moveCount;
 void CLIGameLoop(SwitchEngine &engine) {
-	while (true) {
+	std::vector<Closedfish::Move> moves = {
+		{parseAN("e2"), parseAN("e4"), 0.0},
+		{parseAN("d7"), parseAN("d5"), 0.0},
+		{parseAN("e4"), parseAN("d5"), 0.0},
+		{parseAN("d8"), parseAN("d5"), 0.0},
+		{parseAN("b1"), parseAN("c3"), 0.0},
+		{parseAN("d5"), parseAN("e6"), 0.0},
+		{parseAN("f1"), parseAN("e2"), 0.0}
+	};
+	moveCount = 0;
+	while (moveCount < moves.size()) {
 		debug << "[DEBUG] CLIGameLoop" << std::endl;
-		try {
-			Closedfish::Move nm = engine.getNextMove();
-			debug << toAN(std::get<0>(nm)) << toAN(std::get<1>(nm)) << std::endl;
-			debug << "[INFO] getReprLegalMove\n"
-						<< engine.currentBoard->getReprLegalMove(
-									 engine.currentBoard->getPieceFromCoords(std::get<0>(nm)),
-									 std::get<0>(nm))
+		debug << "[INFO] getReprLegalMove\n"
+						<< engine.currentBoard->getRepr()
 						<< std::endl;
+		debug << "[INFO] Waiting for opponent\'s move" << std::endl;
+		// std::string opponentMove;
+		// std::cin >> opponentMove;
+		// if (opponentMove.size() == 4 && 'a' <= opponentMove[0] &&
+		// 		opponentMove[0] <= 'h' && 'a' <= opponentMove[2] &&
+		// 		opponentMove[2] <= 'h' && '1' <= opponentMove[1] &&
+		// 		opponentMove[1] <= '8' && '1' <= opponentMove[3] &&
+		// 		opponentMove[3] <= '8') {
+			Closedfish::Move opp = moves[moveCount++];
+					// std::make_tuple(parseAN(opponentMove.substr(0, 2)),
+					// 								parseAN(opponentMove.substr(2, 2)), 0.0);
+			debug << "[DEBUG] " << std::get<0>(opp) << " " << std::get<1>(opp)
+						<< std::endl;
+			engine.processMove(opp);
+		// } else {
+		// 	debug << "[DEBUG] Invalid move string!, got [" << opponentMove
+		// 				<< "]: " << opponentMove.size() << std::endl;
+		// 	throw "Invalid move string!";
+		// }
+		try {
+			Closedfish::Move nm = moves[moveCount++]; //engine.getNextMove();
+			debug << toAN(std::get<0>(nm)) << toAN(std::get<1>(nm)) << std::endl;
 			engine.processMove(nm);
 		} catch (std::string st) {
 			debug << "[ERROR] " << st << std::endl;
 			exit(1);
 		}
-		debug << "[INFO] Waiting for opponent\'s move" << std::endl;
-		std::string opponentMove;
-		std::cin >> opponentMove;
 		// quick sanity check
-		if (opponentMove.size() == 4 && 'a' <= opponentMove[0] &&
-				opponentMove[0] <= 'h' && 'a' <= opponentMove[2] &&
-				opponentMove[2] <= 'h' && '1' <= opponentMove[1] &&
-				opponentMove[1] <= '8' && '1' <= opponentMove[3] &&
-				opponentMove[3] <= '8') {
-			Closedfish::Move opp =
-					std::make_tuple(parseAN(opponentMove.substr(0, 2)),
-													parseAN(opponentMove.substr(2, 2)), 0.0);
-			debug << "[DEBUG] " << std::get<0>(opp) << " " << std::get<1>(opp)
-						<< std::endl;
-			engine.processMove(opp);
-		} else {
-			debug << "[DEBUG] Invalid move string!, got [" << opponentMove
-						<< "]: " << opponentMove.size() << std::endl;
-			throw "Invalid move string!";
-		}
 	}
+	debug << "[ALL GOOD]" << std::endl;
 }
 
 typedef void (*OnChange)(const Stockfish::UCI::Option &);
@@ -107,7 +117,6 @@ int main(int argc, char *argv[]) {
 	debug << "[INFO] a.testDFS() done" << std::endl;
 
 	CFBoard board;
-	board.forceFlipTurn();
 	SwitchEngine engine(board, &logger);
 
 	srand(time(NULL));
