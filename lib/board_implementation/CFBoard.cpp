@@ -8,17 +8,17 @@
 #include <cmath>
 
 
-// implemented
-
 /*
+#include "NaiveCheckCheck.cpp"
+
 int main(){
     
     
     //CFBoard testBoard = CFBoard("8/8/8/8/8/8/8/8 w - -");
-    //CFBoard testBoard = CFBoard();
-    CFBoard testBoard = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP1B2/PpP3QR/1P1N1N2/R4BK1 w - - 0 1"); // wrong legal moves for bishop
+    CFBoard testBoard = CFBoard();
+    //CFBoard testBoard = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP1B2/PpP3QR/1P1N1N2/R4BK1 w - - 0 1"); // wrong legal moves for bishop
     // cout << board.naiveCheckCheck(0) << '\n';
-    std::cout << testBoard.getReprLegalMove(4, 37); 
+    std::cout << testBoard.getReprLegalMove(0, 51); 
 
     
     for (int i=10; i<12; i+=1){
@@ -456,11 +456,12 @@ void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
 
 	//check that move is legal
 	if (  ((1ll << endTile) & getLegalMoves(piece, startTile)) == 0  ){
-
+        std::cerr<<"illegal move from " << startTile << " to " << endTile << "!\nPiece on start tile can not move there!" << std::endl;
 		exit(-1);
 	}
 
 	if ((piece & 1) ^ turn){
+        std::cerr<<"illegal move from " << startTile << " to " << endTile << "!\nNot the correct turn!" << std::endl;
 		exit(-1);
 	}
 
@@ -590,7 +591,7 @@ void CFBoard::forceMovePiece(int startTile, int endTile, int pawnPromotionType) 
 
 	}
 
-	turn = ~turn;
+	turn = !turn;
 
 
 	//from now on, our state is illegitimate
@@ -598,6 +599,9 @@ void CFBoard::forceMovePiece(int startTile, int endTile, int pawnPromotionType) 
 
 }
 
+void CFBoard::forceFlipTurn() {
+    turn = !turn;
+}
 
 void CFBoard::undoLastMove() {
 	if (backupStock == 0) { //check that we even have backups
@@ -606,8 +610,8 @@ void CFBoard::undoLastMove() {
 
 
 	//if so, set our state
-	std::cout << pawnBoard << std::endl;
-	std::cout << pawnBoardBackups[0] << std::endl;
+	// std::cout << pawnBoard << std::endl;
+	// std::cout << pawnBoardBackups[0] << std::endl;
 
 	pawnBoard = pawnBoardBackups[0];
 	knightBoard = knightBoardBackups[0] ;
@@ -685,9 +689,9 @@ uint64_t CFBoard::getCardinals(int tile, bool color) {
     return (\
     (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard & columnMap ))) - 1)) & (columnMap >> (64 - (tile>>3<<3))) | \
     (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard))) - 1)) & (rowMap & ((1ll<<tile)-1)) | \
-    (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1)) & -(allBoard & ~((1ll << (tile+1))-1))) << 1) -1 \
+    (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1)) & (1+(~(allBoard & ~((1ll << (tile+1))-1))))) << 1) -1 \
     & (rowMap & ~((1ll << (tile+1))-1))) | (tile != 63)*\
-    ((((allBoard & ~((1ll << (tile+1))-1) & columnMap) & -(allBoard & ~((1ll << (tile+1))-1) & columnMap)) << 1) -1\
+    ((((allBoard & ~((1ll << (tile+1))-1) & columnMap) & (1+(~(allBoard & ~((1ll << (tile+1))-1) & columnMap)))) << 1) -1\
     & (columnMap & ~((1ll << (tile+1))-1))) ) & (~getColorBitBoard(color));
 }
 
@@ -720,9 +724,9 @@ uint64_t CFBoard::getDiagonals(int tile, bool color) {
     return (\
     (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard & slashMap ))) - 1)) & (slashMap & ((1ll<<tile)-1)) | \
     (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard & bslashMap))) - 1)) & (bslashMap & ((1ll<<tile)-1)) | \
-    (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1) & bslashMap) & -(allBoard & ~((1ll << (tile+1))-1) & bslashMap)) << 1) -1 \
+    (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1) & bslashMap) & (1+(~(allBoard & ~((1ll << (tile+1))-1) & bslashMap)))) << 1) -1 \
     & (bslashMap & ~((1ll << (tile+1))-1))) | (tile != 63)*\
-    ((((allBoard & ~((1ll << (tile+1))-1) & slashMap) & -(allBoard & ~((1ll << (tile+1))-1) & slashMap)) << 1) -1\
+    ((((allBoard & ~((1ll << (tile+1))-1) & slashMap) & (1+(~(allBoard & ~((1ll << (tile+1))-1) & slashMap)))) << 1) -1\
     & (slashMap & ~((1ll << (tile+1))-1))) ) & (~getColorBitBoard(color));
 }
 
@@ -750,7 +754,7 @@ uint64_t CFBoard::getKingPattern(int tile, bool color) {
     int row = tile >> 3;
     uint64_t allyBoard = getColorBitBoard(color);
 
-    kingPattern = \
+    kingPattern = (\
     (1ll << (tile - 1))*(column > 0) | \
     (1ll << (tile - 8))*(row > 0) | \
     (1ll << (tile + 1))*(column < 7) | \
@@ -758,7 +762,7 @@ uint64_t CFBoard::getKingPattern(int tile, bool color) {
     (1ll << (tile - 9))*(column > 0 && row > 0) | \
     (1ll << (tile + 7))*(column > 0 && row < 7) | \
     (1ll << (tile - 7))*(column < 7 && row > 0) | \
-    (1ll << (tile + 9))*(column < 7 && row < 7);
+    (1ll << (tile + 9))*(column < 7 && row < 7)) & (~allyBoard);
 
     if (tile!=60 && tile!=4){
         return kingPattern;
@@ -802,7 +806,7 @@ uint64_t CFBoard::getPawnPattern(int tile, bool color) {
         } else {
             if (!(((allyBoard | enemyBoard) >> (tile + 8)) & 1)) { // front
                 pawnPattern += (1ll << (tile + 8));
-                if ((row == 1) && (((allyBoard | enemyBoard) >> (tile + 16)) &
+                if ((row == 1) && !(((allyBoard | enemyBoard) >> (tile + 16)) &
                                    1)) { // frontfront
                     pawnPattern += (1ll << (tile + 16));
                 }
@@ -829,7 +833,7 @@ uint64_t CFBoard::getPawnPattern(int tile, bool color) {
         } else {
             if (!(((allyBoard | enemyBoard) >> (tile - 8)) & 1)) { // front
                 pawnPattern += (1ll << (tile - 8));
-                if ((row == 6) && (((allyBoard | enemyBoard) >> (tile - 16)) &
+                if ((row == 6) && !(((allyBoard | enemyBoard) >> (tile - 16)) &
                                    1)) { // frontfront
                     pawnPattern += (1ll << (tile - 16));
                 }

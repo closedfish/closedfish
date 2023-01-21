@@ -18,7 +18,8 @@ set(EXE_SOURCES
     "SwitchMain.cpp")
 set(EXE_HEADERS 
     "SwitchMain.h")
-    
+
+add_compile_definitions(CMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
 add_executable(${EXECUTABLE} 
     ${EXE_SOURCES}
     ${EXE_HEADERS})
@@ -36,6 +37,12 @@ target_link_libraries(${EXECUTABLE} PUBLIC
     ${INPUT}    
     ${OUTPUT}
     ${OPENING}
+    ${BI}
+    ${DFS1P}
+    ${SF}
+    ${WRAP}
+    ${LOGGER}
+    ${ENGINE}
     JsonCpp::JsonCpp
 )
 
