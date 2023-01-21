@@ -107,6 +107,7 @@ int main(int argc, char *argv[]) {
 	debug << "[INFO] a.testDFS() done" << std::endl;
 
 	CFBoard board;
+	board.forceFlipTurn();
 	SwitchEngine engine(board, &logger);
 
 	srand(time(NULL));
