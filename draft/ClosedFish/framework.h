@@ -6,8 +6,6 @@
 
 #include "ChessBotUI.h"
 #include "Timers.h"
-//#include "HarrisCorner.h"
-#include "OpenCV.h"
 #include <thread>
 
 #include "targetver.h"
