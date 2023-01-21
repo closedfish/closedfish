@@ -18,7 +18,16 @@ Closedfish::Move ClosedfishEngine::getNextMove() {
 		std::cerr << "BREAKTHROUGH\n";
 		Breakthrough2 b;
 		b.setBoardPointer(currentBoard);
+		Closedfish::Move breakthrough = b.getNextMove();
+		if (std::get<0>(breakthrough) == 0 && std::get<1>(breakthrough) == 0) {
+			doDFS1PFlag = 1;
+			DFS1P d;
+			d.setBoardPointer(currentBoard);
+			lastMove = d.getNextMove();
+			return lastMove;
+		}
 		lastMove = b.getNextMove();
+		std::cerr << std::get<0>(lastMove) << ' ' << std::get<1>(lastMove) << "BREAKTHROUGH\n";
 	}
 	return lastMove;
 }

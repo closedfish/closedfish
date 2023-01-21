@@ -134,8 +134,9 @@ int main(int argc, char *argv[]) {
 	Stockfish::Position::init();
 
 	ClosedfishEngine a;
-	CFBoard board = CFBoard("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1BQ/R7/1B1K2RN w - - 0 1");
+	CFBoard board = CFBoard("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1BQ/R7/1B1K2RN b - - 0 1");
 	a.setBoardPointer(&board);
+	std::cerr << board.getReprLegalMove(7, 0) << '\n';
 	for (int _ = 0; _ < 15; _++) {
 		Closedfish::Move m = a.getNextMove();
 		debug << "Move from :" << std::get<0>(m) << " to " << std::get<1>(m) << " with gradient dist: " << std::get<2>(m) << '\n';

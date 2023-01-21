@@ -67,6 +67,7 @@ vector<int> Breakthrough2::mainBreak(CFBoard board, int color)
 	// checks every square for a piece
 	for(int sq = 0; sq < 64; sq++)
 	{
+		// cerr << sq << '\n';
 		// if there is a piece there
 		int p = board.getPieceFromCoords(sq);
 		if (p>=0 && p%2==0)
@@ -112,14 +113,17 @@ vector<int> Breakthrough2::dfsBreak(CFBoard board, int start, uint64_t ends, int
 	for (int sq = 0; sq < 64; sq++)
 	{
 		//pruned using our alpha beta
-		// if (start == 47) {
-		// 	cerr << start << ' ' << sq << '\n';
-		// }
 		if (((1ll << sq) & ends) > 0)
 		{
 			board.movePiece(start, sq);
 			vector<int> temp;
 			line = dfsPruneForce(board, 0,1, temp, pruneval);
+			// if (start == 47 && sq == 29) {
+			// 	cerr << start << ' ' << sq << '\n';
+			// 	for (auto x: line)
+			// 		cerr << x << ' ';
+			// 	cerr << '\n';
+			// }
 			board.undoLastMove();
 			if (line[0] > pruneval)
 			{
@@ -128,6 +132,9 @@ vector<int> Breakthrough2::dfsBreak(CFBoard board, int start, uint64_t ends, int
 			}
 		}
 	}
+	// for (auto x: ans) {
+	// 	cerr << x << '\n';
+	// }
 	if (ans[0] == 0)
 	{
 		vector<int> nob;
@@ -148,21 +155,40 @@ vector<int> Breakthrough2::dfsPruneForce(CFBoard board, int depth, int color, ve
 	}
 	else
 	{
+	// cerr << board.getRepr() << ' ' << color << '\n';
 		vector<vector<int>> v2;
-		if (color == 0)
-		{
-			for (int sq = 0; sq < 64; sq++)
-			{
+		if (color == 0) {// white moving
+			for (int sq = 0; sq < 64; sq++) {
 				int p = board.getPieceFromCoords(sq);
-				if (p >= 0 && p % 2 == color)
-				{
+				if (p >= 0 && p % 2 == color) {
 					uint64_t moves = board.getLegalMoves(p, sq);
 					// checks if any piece was captured
 					int capt = 0;
-					for (int sq2 = 0; sq2 < 64; sq2++)
-					{
-						if (((1ll << sq2) & moves) > 0)
-						{
+					for (int sq2 = 0; sq2 < 64; sq2++) {
+						if (((1ll << sq2) & moves) > 0) {
+							cerr << "FUCK\n" << sq << ' ' << sq2 << '\n';
+							v.push_back(sq);
+							v.push_back(sq2);
+							board.movePiece(sq, sq2);
+							if (SFNeval(board) < eval - depthval(depth))
+								continue;
+							v2.push_back(dfsPruneForce(board, depth + 1, color + 1, v,eval));
+							board.undoLastMove();
+							return(minmaxsort(v2, color));
+						}
+					}
+				}
+			}
+		} else { // black moving
+			for (int sq = 0; sq < 64; sq++) {
+				int p = board.getPieceFromCoords(sq);
+				if (p >= 0 && p % 2 == color) {
+					uint64_t moves = board.getLegalMoves(p, sq);
+					// checks if any piece was captured
+					int capt = 0;
+					for (int sq2 = 0; sq2 < 64; sq2++) {
+						if (((1ll << sq2) & moves) > 0) {
+							cerr << "FUCK\n" << sq << ' ' << sq2 << '\n';
 							v.push_back(sq);
 							v.push_back(sq2);
 							board.movePiece(sq, sq2);
@@ -208,10 +234,11 @@ vector<int> Breakthrough2::minmaxsort(vector<vector<int>> v, int color)
 Closedfish::Move Breakthrough2::getNextMove() {
 	cerr << "breakthrough get next move\n";
 	vector<int> v = mainBreak(*currentBoard, currentBoard->getCurrentPlayer());
-	// for (auto x: v) {
-	// 	cerr << x << ' ';
-	// }
-	// cerr << '\n';
+	cerr << v.size() << '\n';
+	for (auto x: v) {
+		cerr << x << ' ';
+	}
+	cerr << '\n';
 	if (v.size() <= 2 || v[0] < 1) {
 		return make_tuple(0, 0, 0.0);
 	} else {
