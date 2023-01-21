@@ -206,7 +206,7 @@ namespace WeakPawns{
 	}
 
 	/**
-	 * @brief Checks if a pawn is isolated (if there are no ally pawns on the same coloms and on col+1 and col-1)
+	 * @brief Checks if a pawn is isolated (if there are no ally pawns on col+1 and col-1)
 	 * @param board : current CFboard
 	 * @param tile : index of tile of the pawn (0...63)
 	 * 
@@ -224,10 +224,6 @@ namespace WeakPawns{
 			if(board.getPieceFromCoords(i*8 + pj - 1) == color){
 				return false;
 			}
-			if((board.getPieceFromCoords(i*8 + pj)) == color && (i != pi)){
-				return false;
-			}
-			
 
 		}
 		return true;	
