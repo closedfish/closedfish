@@ -4,6 +4,17 @@ Main repository for Closedfish
 The aim of this project is to create a chess engine, to improve the
 `stockfish` engine by additionally considering closed positions in chess.
 
+## Buliding Instructions
+
+This project is a CMake project, so a C++ compiler (`gcc` recommended in general, `mingw` recommended for Windows as `x86_64-12.2.0-release-posix-seh-ucrt-rt_v10-rev2` is tested, and it compiles successfully), `make`, and `cmake` installed. Note that `g++17` standard is required. The project building process is summarized (and automated) in [a GitHub Action](https://github.com/closedfish/closedfish/blob/main/.github/workflows/cmake.yml). Here are the simple instructions:
+
+1. Clone the repository, also make sure all submodules are cloned (this includes `stockfish` and `vcpkg`).
+2. Download the NNUE data file by navigating into `external/stockfish/src` and run `make net`.
+3. (optional) Compile the Stockfish project (see [detailed information](https://github.com/official-stockfish/Stockfish) for description of compilation on different machine architectures). For simple, standard and portable configuration, one would run `make -j build ARCH=x86-64`.
+4. Navigate back to the project directory, and run `cmake -B build`. (Build variants can be configured between `Debug` and `Release`)
+5. Run `cmake --build build` to actually build the executable. (The option whether to build the main executable or not, and whether to build the test or not, can be set in `CMakeLists.txt` in the topmost directory)
+6. Look for the compiled binary `Executable.exe` (or with respective file extension for other operating systems), normally it should be at `build/app/Debug/Executable.exe`.
+
 ## Members (name surname, github username, trello username, [role])
 
 - Sirawit Pongnakintr, plumsirawit, plumsirawit, git leader
