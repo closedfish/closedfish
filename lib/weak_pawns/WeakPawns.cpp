@@ -154,7 +154,7 @@ namespace WeakPawns{
 	 */
 	bool isConnected(CFBoard &board, int &tile){
 		
-		bool color = board.getPieceFromCoords(tile)%2;
+		int color = board.getPieceFromCoords(tile)%2;
 		
 		int pi = tile/8;
 		int pj = tile%8;
