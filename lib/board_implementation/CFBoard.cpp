@@ -456,12 +456,12 @@ void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
 
 	//check that move is legal
 	if (  ((1ll << endTile) & getLegalMoves(piece, startTile)) == 0  ){
-        std::cerr<<"illegal move from " << startTile << " to " << endTile << "!\nPiece on start tile can not move there!";
+        std::cerr<<"illegal move from " << startTile << " to " << endTile << "!\nPiece on start tile can not move there!" << std::endl;
 		exit(-1);
 	}
 
 	if ((piece & 1) ^ turn){
-        std::cerr<<"illegal move from " << startTile << " to " << endTile << "!\nNot the correct turn!";
+        std::cerr<<"illegal move from " << startTile << " to " << endTile << "!\nNot the correct turn!" << std::endl;
 		exit(-1);
 	}
 

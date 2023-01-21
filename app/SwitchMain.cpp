@@ -76,8 +76,8 @@ void CLIGameLoop(SwitchEngine &engine) {
 			exit(1);
 		}
 		debug << "[INFO] Waiting for opponent\'s move" << std::endl;
-		std::string opponentMove = "g8f6";
-		// std::cin >> opponentMove;
+		std::string opponentMove;
+		std::cin >> opponentMove;
 		// quick sanity check
 		if (opponentMove.size() == 4 && 'a' <= opponentMove[0] &&
 				opponentMove[0] <= 'h' && 'a' <= opponentMove[2] &&
@@ -133,8 +133,11 @@ int main(int argc, char *argv[]) {
 	Stockfish::Eval::NNUE::init();
 	Stockfish::Position::init();
 
-	DFS1P a;
-	a.testDFS();
+	// DFS1P a;
+	// a.testDFS();
+
+	debug << "[INFO] a.testDFS() done" << std::endl;
+	return 0;
 
 	CFBoard board;
 	SwitchEngine engine(board, &logger);
