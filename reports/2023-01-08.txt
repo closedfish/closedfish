@@ -97,3 +97,10 @@ Nadja:
 		-Help Andrei for 5 hours to work on breakthroughs in closed positions.
 		-Study chess material and analyze closed positions
 		-Clean-up my local branches
+
+Cassidy: 
+	This week:
+		got very sick during vacation (hospitalized during the whole second week) and was on strong meds during this week so I didn't do anything :((
+		excused absence sent by coach normally
+	Next week:
+		-using the data provided by the testing team, test each of the functions I have thought of and find the best one.
