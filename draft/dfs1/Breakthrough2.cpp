@@ -137,16 +137,12 @@ vector<int> dfsPruneForce(CFBoard board, int depth, int color, vector<int> v, fl
 	else
 	{
 		vector<vector<int>> v2;
-		if (color == 0)
-		{
 			for (int sq = 0; sq < 64; sq++)
 			{
 				int p = board.getPieceFromCoords(sq);
 				if (p >= 0 && p % 2 == color)
 				{
 					uint64_t moves = board.getLegalMoves(p, sq);
-					// checks if any piece was captured
-					int capt = 0;
 					for (int sq2 = 0; sq2 < 64; sq2++)
 					{
 						if (((1ll << sq2) & moves) > 0)
@@ -163,7 +159,6 @@ vector<int> dfsPruneForce(CFBoard board, int depth, int color, vector<int> v, fl
 					}
 				}
 			}
-		}
 	}
 }
 
@@ -194,3 +189,265 @@ vector<int> minmaxsort(vector<vector<int>> v, int color)
 }
 
 
+int intfromPos(string s)
+{
+	return 0;
+}
+
+
+
+vector<int> knightmoves()
+{
+	vector<int> v = { -21,-19, -10,-6, 6,10,19,21 };
+	return v;
+}
+
+vector<int> bishopmoves()
+{
+	vector<int> v;
+	for (int i = 1; i < 9; i++)
+	{
+		v.push_back(-7 * i);
+		v.push_back(7 * i);
+		v.push_back(-9 * i);
+		v.push_back(9 * i);
+	}
+	return v;
+}
+
+vector<int> rookmoves()
+{
+	vector<int> v;
+	for (int i = 1; i < 9; i++)
+	{
+		v.push_back(-8 * i);
+		v.push_back(8 * i);
+		v.push_back(-1 * i);
+		v.push_back(i);
+	}
+}
+
+vector<int> queenmoves()
+{
+	vector<int> v;
+	vector<int> v2;
+	v = bishopmoves();
+	v2 = rookmoves();
+	v2.insert(v2.end(), v2.begin(), v.end());
+	return v2;
+}
+
+vector<int> converter(string a, int color, CFBoard board)
+{
+	int start = 0;
+	int end = 0;
+	if (color == 0)
+	{
+		if (a.length() == 2)
+		{
+			end = intfromPos(a);
+			if (board.getPieceFromCoords(end + 8) == 0)
+				start = end + 8;
+			else
+				start = end + 16;
+		}
+		else if (a.length() == 3)
+		{
+			char pie = a[0];
+			if (a[2] = '+')
+				return (converter(a.substr(1, 2), color, board));
+			if (pie != 'O')
+				end = intfromPos(a.substr(1, 2));
+			else
+				end = 62;
+			switch(pie)
+			{
+				case 'N':
+				{
+					for (int i : knightmoves())
+					{
+						int sq = end + i;
+						if (sq >= 0 && sq <= 63)
+						{
+							if (board.getPieceFromCoords(sq) == 2)
+								start = sq;
+						}
+					}
+					break;
+				}
+				case 'B':
+				{
+					for (int i : bishopmoves())
+					{
+						int sq = end + i;
+						if (sq >= 0 && sq <= 63)
+						{
+							if (board.getPieceFromCoords(sq) == 4)
+								start = sq;
+						}
+					}
+					break;
+				}
+				case 'R':
+				{
+					for (int i : rookmoves())
+					{
+						int sq = end + i;
+						if (sq >= 0 && sq <= 63)
+						{
+							if (board.getPieceFromCoords(sq) == 4)
+								start = sq;
+						}
+					}
+					break;
+				}
+				case 'Q':
+				{
+					for (int i : queenmoves())
+					{
+						int sq = end + i;
+						if (sq >= 0 && sq <= 63)
+						{
+							if (board.getPieceFromCoords(sq) == 4)
+								start = sq;
+						}
+					}
+					break;
+				}
+				case 'x':
+				{
+					if (board.getPieceFromCoords(end + 7) == 0)
+						start = end + 7;
+					else
+						start = end + 9;
+					break;
+				}
+				case 'O':
+				{
+					start = 60;
+
+				}
+			}
+		}
+		else if (a.length() == 4)
+		{
+			char pie = a[0];
+			if (a[2] = '+')
+				return (converter(a.substr(1, 3), color, board));
+			end = 62;
+			switch (pie)
+			{
+			case 'N':
+			{
+				bool isRowWise = isdigit(a[1]);
+				uint64_t t = (board.getPieceColorBitBoard(2));
+				uint64_t knightPlace = ~0ull;
+				while (t)
+				{
+					uint64_t temp = __builtin_ctzll(t);
+					t ^= 1ull << temp;
+					if (isRowWise) {
+						if ((temp >> 3ull) == a[1] - 48) {
+							knightPlace = temp;
+						}
+					}
+					else {
+						if ((temp & 7ull) == a[1] - 48) {
+							knightPlace = temp;
+						}
+					}
+				}
+				break;
+			}
+			case 'B':
+			{
+				bool isRowWise = isdigit(a[1]);
+				uint64_t t = (board.getPieceColorBitBoard(2));
+				uint64_t bishopPlace = ~0ull;
+				while (t)
+				{
+					uint64_t temp = __builtin_ctzll(t);
+					t ^= 1ull << temp;
+					if (isRowWise) {
+						if ((temp >> 3ull) == a[1] - 48) {
+							bishopPlace = temp;
+						}
+					}
+					else {
+						if ((temp & 7ull) == a[1] - 48) {
+							bishopPlace = temp;
+						}
+					}
+				}
+				break;
+			}
+			case 'R':
+			{
+				bool isRowWise = isdigit(a[1]);
+				uint64_t t = (board.getPieceColorBitBoard(2));
+				uint64_t rookPlace = ~0ull;
+				while (t)
+				{
+					uint64_t temp = __builtin_ctzll(t);
+					t ^= 1ull << temp;
+					if (isRowWise) {
+						if ((temp >> 3ull) == a[1] - 48) {
+							rookPlace = temp;
+						}
+					}
+					else {
+						if ((temp & 7ull) == a[1] - 48) {
+							rookPlace = temp;
+						}
+					}
+				}
+				break;
+			}
+			case 'Q':
+			{
+				bool isRowWise = isdigit(a[1]);
+				uint64_t t = (board.getPieceColorBitBoard(2));
+				uint64_t queenPlace = ~0ull;
+				while (t)
+				{
+					uint64_t temp = __builtin_ctzll(t);
+					t ^= 1ull << temp;
+					if (isRowWise) {
+						if ((temp >> 3ull) == a[1] - 48) {
+							queenPlace = temp;
+						}
+					}
+					else {
+						if ((temp & 7ull) == a[1] - 48) {
+							queenPlace = temp;
+						}
+					}
+				}
+				break;
+			}
+			case 'x':
+			{
+				return (converter(a.substr(1, 3), color, board));
+			}
+			}
+		}
+		else if (a.length() == 5)
+		{
+				char pie = a[0];
+				if (pie == 'O')
+				{
+					start = 60;
+					end = 58;
+				}
+				else
+					return (converter(a.substr(1, 4), color, board));
+
+		}
+		else if(a.length() == 6)
+			return (converter(a.substr(1, 5), color, board));
+	}
+	vector<int> v;
+	v.push_back(start);
+	v.push_back(end);
+	return v;
+}
