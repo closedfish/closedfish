@@ -64,7 +64,7 @@ void findRects(cv::Mat &img, cv::Scalar low, cv::Scalar high, cv::Scalar low1, c
     vector<std::vector<cv::Point>> contours;
     findContours(mask, contours, cv::RETR_TREE, cv::CHAIN_APPROX_SIMPLE);
 
-    //cv::imshow("maska", mask);
+    cv::imshow("maska", img);
     for (size_t i = 0; i < contours.size(); ++i) {
         Rect boundRect = cv::boundingRect(contours[i]);
         if (abs(boundRect.width - boundRect.height) <= 2 && boundRect.width > 35) {//adds only squares
@@ -150,8 +150,41 @@ int matchPiece(Board& board,char* filename,Point coord, vector<pair<char, Mat>> 
     return max;
 }
 Mat getTemplates(string file) {
-    return imread("C:\\Users\\dimit\\Desktop\\cps\\" + file+".png");
+    return imread("C:\\Users\\dimit\\Desktop\\cps" + file + ".png");
 }
+/// RETURN BOARD TAKE THIS
+
+string returnFen(Board board) {//naive
+    string mainstring;
+    for (int i = 0; i < 8; i++) {
+        int coun = 0;
+        string rowstring;
+        for (int j = 0; j<8; j++) {
+            coun = 0;
+            for (int p = 0; p < board.Pieces.size(); p++) {
+                if (board.Pieces[p].position.cord == i) {
+                    if (coun != 0) {
+                        rowstring += to_string(coun) + board.Pieces[p].type;
+                        coun = 0;
+                    }
+                    else {
+                        rowstring += + board.Pieces[p].type;
+                        coun = 0;
+                    }
+                }
+                else {
+                    rowstring += to_string(coun);
+                    coun += 1;
+                }
+            }
+        }
+        string steve = "/";
+        mainstring += rowstring + steve;
+    }
+    return mainstring;
+};
+
+/// END RETURN BOARD
 int  main() {  //when merging into the algo code change the name for the call
     //this func finds the board and initializes the main board class accordingly, storing all the data
     bool playerColor;
@@ -163,7 +196,7 @@ int  main() {  //when merging into the algo code change the name for the call
     * create piece object with converting razvan's square index to chess tile cords
     * add piece to board.pieces
     */
-    pair<char, Mat> bk{ 'k',getTemplates("black_king") };
+    pair<char, Mat> bk('k', getTemplates("black_king"));
     templates.push_back(bk);
     pair<char, Mat> bq{ 'q', getTemplates("black_queen") };
     templates.push_back(bk);
@@ -226,7 +259,7 @@ int  main() {  //when merging into the algo code change the name for the call
         }
         if (rects[i].rec.br().y > board.bottom) {
             board.bottom = rects[i].rec.br().y;
-        }
+        }  
 
     };
     ///storin the pieces
@@ -249,6 +282,7 @@ int  main() {  //when merging into the algo code change the name for the call
     Point p4(board.left + 20, board.bottom - board.width / 16);
     rectangle(orig,p1,p2, Scalar(255, 0, 0) ,2,LINE_8); 
     rectangle(orig, p3, p4, Scalar(255, 0, 0), 2, LINE_8);
+    cout << returnFen(board) << endl;
     imshow("orig", orig);
     cv::waitKey(0);
 

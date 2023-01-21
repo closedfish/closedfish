@@ -42,7 +42,7 @@ Tile::Tile(char character, int cord) {
 }
 Piece::Piece() {
 	this->position = Tile('a', 1);
-	this->type = 'pawn';
+	this->type = 'p';
 }
 Piece::Piece(char type,Tile position) {
 	this->type = type;
