@@ -1,20 +1,5 @@
 #include "StockfishConnect.h"
 
-/**
- * @brief converts closedfish board to stockfish board
- *
- * @param cfb closedfish board
- * @param pos stockfish board
- * @param states stockfish statelist pointer
- */
-void convert_CFBoard_to_Stockfish_Position(CFBoard cfb,
-																					 Stockfish::Position &pos,
-																					 Stockfish::StateListPtr &states) {
-	std::string fen = cfb.toFEN();
-	states = Stockfish::StateListPtr(new std::deque<Stockfish::StateInfo>(1));
-	pos.set(fen, false, &states->back(), Stockfish::Threads.main());
-}
-
 // look at uci.cpp for reference
 std::string call_stockfish(Stockfish::Position &pos,
 													 Stockfish::StateListPtr &states,
@@ -48,12 +33,6 @@ std::string call_stockfish(Stockfish::Position &pos,
 	}
 	cout << "bestmove not found" << std::endl;
 	return "bestmove not found";
-}
-
-int parseAN(std::string str) {
-	int row = 7 - (str[1] - '1');
-	int col = str[0] - 'a';
-	return row * 8 + col;
 }
 
 Closedfish::Move StockfishEngine::getNextMove() {

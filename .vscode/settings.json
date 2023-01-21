@@ -151,5 +151,8 @@
     "**/.vscode/**"
   ],
   "editor.insertSpaces": false,
-  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, IndentWidth: 2, TabWidth: 2, UseTab: Always }"
+  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, IndentWidth: 2, TabWidth: 2, UseTab: Always }",
+  "cmake.configureSettings": {
+    "CMAKE_BUILD_TYPE": "${buildType}"
+  }
 }

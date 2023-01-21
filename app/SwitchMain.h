@@ -1,15 +1,15 @@
 #pragma once
 
-#include "ConnectUISAI.h"
-#include "GeneralRegression.h"
-#include "closenessAI.h"
-#include "input.h"
-#include "output.h"
+#include <ConnectUISAI.h>
+#include <GeneralRegression.h>
+#include <closenessAI.h>
+#include <input.h>
+#include <output.h>
 
 #include <CFBoard.h>
 #include <ClosedfishConnect.h>
 #include <SwitchEngine.h>
-#include <logger.h>
+#include <utils.h>
 
 #include <cstdio>
 #include <filesystem>
