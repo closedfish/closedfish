@@ -42,6 +42,17 @@ This week:
 Next week:
 	- Finish the one person dfs and help out on other algorithms.
 	- Help with building connectors between components of the project.
+
+Cassidy:
+This week:
+	-Did statistical tests on the different regression bases I though of.
+	-I first obtained the biase for each basis and found that it was close to zero therefore the data given to me was good to work with.
+	-computed empirical quadratic risk for each basis and finally was able to chose a basis and therefore finalyse the implementation of the closeness ai: the square difference basis was the best in the end (confiremed my initial intution, though I am dissapointed the erf or arctan basis didn't work out :( )
+Next week:
+	-merge everything to main.
+	-review implementation of the board representation and check with UI team that we agree on way of comunitation and also with the algo team.
+	-make sure the Eigen library works with cmake on mac and windows (should be good but there a few bugs to fix.
+	-prepare final presentation of the project.
 	
 Sirawit:
 This week:
