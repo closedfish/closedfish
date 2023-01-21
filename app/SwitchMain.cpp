@@ -34,6 +34,11 @@ void CLIGameLoop(SwitchEngine &engine) {
 		try {
 			Closedfish::Move nm = engine.getNextMove();
 			debug << toAN(std::get<0>(nm)) << toAN(std::get<1>(nm)) << std::endl;
+			debug << "[INFO] getReprLegalMove\n"
+						<< engine.currentBoard->getReprLegalMove(
+									 engine.currentBoard->getPieceFromCoords(std::get<0>(nm)),
+									 std::get<0>(nm))
+						<< std::endl;
 			engine.processMove(nm);
 		} catch (std::string st) {
 			debug << "[ERROR] " << st << std::endl;
@@ -100,7 +105,6 @@ int main(int argc, char *argv[]) {
 	// a.testDFS();
 
 	debug << "[INFO] a.testDFS() done" << std::endl;
-	return 0;
 
 	CFBoard board;
 	SwitchEngine engine(board, &logger);

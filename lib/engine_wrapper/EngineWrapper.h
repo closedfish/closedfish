@@ -48,8 +48,6 @@ public:
 	 * third element <float> is the evaluation of the move we're gonna make.
 	 */
 	virtual Move getNextMove() = 0; // pure virtual function
-
-protected:
 	CFBoard *currentBoard;
 };
 }; // namespace Closedfish
