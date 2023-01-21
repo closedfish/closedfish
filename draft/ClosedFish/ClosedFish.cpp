@@ -10,7 +10,7 @@
 #define ARGB(A, R, G, B) (COLORREF)(((unsigned int)A<<24) + (unsigned int)(B<<16) + (unsigned int)(G<<8) + (unsigned int)(R))
 
 #pragma region globalVariables //these are my global variables, which i will not mix with the windows objects
-bmpClass bc(false);
+bmpClass bc = NULL;
 timer tmr;
 #pragma endregion globalVariables
 
@@ -54,6 +54,13 @@ void consoleTest()//testing different stuff using the console
         std::cin >> nr;
         switch (nr)
         {
+        case -18:
+            bc = bmpClass(true);
+            //bc.send_input("c1f4");
+            break;
+        case -19:
+            cout<<" "<<bc.castleLeft()<<" " << bc.castleRight() << "\n";
+            break;
         case -1:
             FreeConsole();
             break;
