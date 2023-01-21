@@ -31,6 +31,27 @@ void chessGameLoop(SwitchEngine &engine) {
 void CLIGameLoop(SwitchEngine &engine) {
 	while (true) {
 		debug << "[DEBUG] CLIGameLoop" << std::endl;
+		debug << "[INFO] getReprLegalMove\n"
+						<< engine.currentBoard->getRepr()
+						<< std::endl;
+		debug << "[INFO] Waiting for opponent\'s move" << std::endl;
+		std::string opponentMove;
+		std::cin >> opponentMove;
+		if (opponentMove.size() == 4 && 'a' <= opponentMove[0] &&
+				opponentMove[0] <= 'h' && 'a' <= opponentMove[2] &&
+				opponentMove[2] <= 'h' && '1' <= opponentMove[1] &&
+				opponentMove[1] <= '8' && '1' <= opponentMove[3] &&
+				opponentMove[3] <= '8') {
+			Closedfish::Move opp = std::make_tuple(parseAN(opponentMove.substr(0, 2)),
+													parseAN(opponentMove.substr(2, 2)), 0.0);
+			debug << "[DEBUG] " << std::get<0>(opp) << " " << std::get<1>(opp)
+						<< std::endl;
+			engine.processMove(opp);
+		} else {
+			debug << "[DEBUG] Invalid move string!, got [" << opponentMove
+						<< "]: " << opponentMove.size() << std::endl;
+			throw "Invalid move string!";
+		}
 		try {
 			Closedfish::Move nm = engine.getNextMove();
 			debug << toAN(std::get<0>(nm)) << toAN(std::get<1>(nm)) << std::endl;
