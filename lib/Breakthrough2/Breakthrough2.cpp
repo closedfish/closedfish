@@ -98,6 +98,9 @@ vector<int> Breakthrough2::dfsBreak(CFBoard board, int start, uint64_t ends, flo
 	for (int sq = 0; sq < 64; sq++)
 	{
 		//pruned using our alpha beta
+		// if (start == 47) {
+		// 	cerr << start << ' ' << sq << '\n';
+		// }
 		if (((1ll << sq) & ends) > 0)
 		{
 			board.movePiece(start, sq);
@@ -192,6 +195,16 @@ vector<int> Breakthrough2::minmaxsort(vector<vector<int>> v, int color)
 }
 
 Closedfish::Move Breakthrough2::getNextMove() {
+	cerr << "breakthrough get next move\n";
 	vector<int> v = mainBreak(*currentBoard, currentBoard->getCurrentPlayer());
+	// for (auto x: v) {
+	// 	cerr << x << ' ';
+	// }
+	// cerr << '\n';
+	if (v.size() <= 2 || v[0] < 1) {
+		return make_tuple(0, 0, 0.0);
+	} else {
+		return make_tuple(v[2], v[3], v[0]);
+	}
 }
 

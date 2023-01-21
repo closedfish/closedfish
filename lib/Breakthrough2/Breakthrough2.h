@@ -4,6 +4,7 @@
 #include <WeakPawns.h>
 #include <EngineWrapper.h>
 #include <stockfish_naive_eval.h>
+#include <BitOperations.h>
 
 class Breakthrough2 : public Closedfish::ChessEngine {
 public:

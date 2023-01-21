@@ -12,5 +12,6 @@ public:
 	ClosedfishEngine() : ChessEngine() {}
 	Closedfish::Move getNextMove();
 private:
+	bool doDFS1PFlag = 1;
 	Closedfish::Move lastMove;
 };
