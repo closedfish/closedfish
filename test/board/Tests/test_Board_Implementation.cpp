@@ -3,33 +3,33 @@ using namespace std;
 
 
 TEST_CASE("PieceId to Char is correct", "[board]") {
-    REQUIRE(pieceCharToId(0) == 'P');
-    REQUIRE(pieceCharToId(1) == 'p');
-    REQUIRE(pieceCharToId(2) == 'N');
-    REQUIRE(pieceCharToId(3) == 'n');
-    REQUIRE(pieceCharToId(4) == 'B');
-    REQUIRE(pieceCharToId(5) == 'b');
-    REQUIRE(pieceCharToId(6) == 'R');
-    REQUIRE(pieceCharToId(7) == 'r');
-    REQUIRE(pieceCharToId(8) == 'Q');
-    REQUIRE(pieceCharToId(9) == 'q');
-    REQUIRE(pieceCharToId(10) == 'K');
-    REQUIRE(pieceCharToId(11) == 'k');
+    REQUIRE(CFBoard().pieceIdToChar(0) == 'P');
+    REQUIRE(CFBoard().pieceIdToChar(1) == 'p');
+    REQUIRE(CFBoard().pieceIdToChar(2) == 'N');
+    REQUIRE(CFBoard().pieceIdToChar(3) == 'n');
+    REQUIRE(CFBoard().pieceIdToChar(4) == 'B');
+    REQUIRE(CFBoard().pieceIdToChar(5) == 'b');
+    REQUIRE(CFBoard().pieceIdToChar(6) == 'R');
+    REQUIRE(CFBoard().pieceIdToChar(7) == 'r');
+    REQUIRE(CFBoard().pieceIdToChar(8) == 'Q');
+    REQUIRE(CFBoard().pieceIdToChar(9) == 'q');
+    REQUIRE(CFBoard().pieceIdToChar(10) == 'K');
+    REQUIRE(CFBoard().pieceIdToChar(11) == 'k');
 }
 
 TEST_CASE("Char to PieceId is correct", "[board]") {
-    REQUIRE(pieceCharToId('P') == 0);
-    REQUIRE(pieceCharToId('p') == 1);
-    REQUIRE(pieceCharToId('N') == 2);
-    REQUIRE(pieceCharToId('n')) == 3);
-    REQUIRE(pieceCharToId('B') == 4);
-    REQUIRE(pieceCharToId('b') == 5);
-    REQUIRE(pieceCharToId('R') == 6);
-    REQUIRE(pieceCharToId('r') == 7);
-    REQUIRE(pieceCharToId('Q') == 8);
-    REQUIRE(pieceCharToId('q') == 9);
-    REQUIRE(pieceCharToId('K') == 10);
-    REQUIRE(pieceCharToId('k') == 11);
+    REQUIRE(CFBoard().pieceCharToId('P') == 0);
+    REQUIRE(CFBoard().pieceCharToId('p') == 1);
+    REQUIRE(CFBoard().pieceCharToId('N') == 2);
+    REQUIRE(CFBoard().pieceCharToId('n') == 3);
+    REQUIRE(CFBoard().pieceCharToId('B') == 4);
+    REQUIRE(CFBoard().pieceCharToId('b') == 5);
+    REQUIRE(CFBoard().pieceCharToId('R') == 6);
+    REQUIRE(CFBoard().pieceCharToId('r') == 7);
+    REQUIRE(CFBoard().pieceCharToId('Q') == 8);
+    REQUIRE(CFBoard().pieceCharToId('q') == 9);
+    REQUIRE(CFBoard().pieceCharToId('K') == 10);
+    REQUIRE(CFBoard().pieceCharToId('k') == 11);
 }
 
 TEST_CASE("Get color BitBoard", "[board]") {
@@ -150,7 +150,6 @@ TEST_CASE("Board from FEN is correct", "[board]") {
 
            
 
-}
 void test_getKnightPattern() {
     std::vector<std::tuple<int, bool, CFBoard, uint64_t>> tests = {
         std::make_tuple(0, false, CFBoard(), 0x20400),

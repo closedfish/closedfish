@@ -1,9 +1,9 @@
 set(BOARD_TEST
     "board_tests")
 set(BOARD_TEST_SOURCES
-    "test_Board_Implementation.cpp")
+    "Tests/test_Board_Implementation.cpp")
 set(BOARD_TEST_HEADERS 
-    "test_Board_Implementation.h")
+    "Tests/test_Board_Implementation.h")
 
 add_executable(${BOARD_TEST} ${BOARD_TEST_SOURCES})
 find_package(Catch2 CONFIG REQUIRED)
