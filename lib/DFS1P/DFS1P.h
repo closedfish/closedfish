@@ -53,7 +53,7 @@ public:
 	 * @return A 64-sized array of relative distance from startTile to each tile.
 	 */
 	std::array<int, 64>
-	distFromTileToTilesAsPiece(CFBoard &board, int halfPieceId, int startTile);
+	distFromTileToTilesAsPiece(CFBoard &board, int halfPieceId, int startTile, uint64_t& opponentPanwsAttackingBoard);
 
 	/**
 	 * @brief This function takes a CFBoard, a heatMap and returns the "distance"
@@ -64,7 +64,7 @@ public:
 	 *
 	 * @return An integer represents the "distance".
 	 */
-	int distFromHeatmap(CFBoard &board, int (&heatMap)[6][8][8]);
+	int distFromHeatmap(CFBoard &board, int (&heatMap)[6][8][8], uint64_t& opponentPanwsAttackingBoard);
 
 	/**
 * @brief This function takes a pointer to a CFBoard, the current depth, the
@@ -81,7 +81,8 @@ storing all lines that we have searched.
 */
 	void DFS1pAux(CFBoard *currentBoard, int depth, int maxDepth,
 								std::vector<Closedfish::Move> curLine,
-								std::vector<std::vector<Closedfish::Move>> &possibleLines);
+								std::vector<std::vector<Closedfish::Move>> &possibleLines,
+								uint64_t& opponentPanwsAttackingBoard);
 
 	void testDFS();
 };
