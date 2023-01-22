@@ -37,19 +37,29 @@ if(MT)
 # Enable multi-threading
 find_package(Threads REQUIRED)
 
-# Link executable with thread library
-target_link_libraries(${EXECUTABLE} Threads::Threads)
+find_package(jsoncpp CONFIG REQUIRED)
+target_link_libraries(${EXECUTABLE} PUBLIC 
+    ${SC}
+    ${GC}
+    ${CUI}
+    ${PLAY}
+    ${INPUT}    
+    ${OUTPUT}
+    ${OPENING}
+    ${BI}
+    ${SF}
+    ${WRAP}
+    ${LOGGER}
+    ${ENGINE}
+    JsonCpp::JsonCpp
+	Threads::Threads)
 
 # Set number of threads for program
 set(THREADS 6)
 
 target_compile_definitions(${EXECUTABLE} PRIVATE NUM_THREADS=${THREADS})
 
-endif()
-
-if (${ENABLE_WARNINGS})
-    target_set_warnings(TARGET ${EXECUTABLE} ENABLE ON AS_ERROR OFF)
-endif()
+else(MT)
 
 find_package(jsoncpp CONFIG REQUIRED)
 target_link_libraries(${EXECUTABLE} PUBLIC 
@@ -68,4 +78,8 @@ target_link_libraries(${EXECUTABLE} PUBLIC
     JsonCpp::JsonCpp
 )
 
+endif(MT)
 
+if (${ENABLE_WARNINGS})
+    target_set_warnings(TARGET ${EXECUTABLE} ENABLE ON AS_ERROR OFF)
+endif()
