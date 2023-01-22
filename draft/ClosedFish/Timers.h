@@ -42,13 +42,15 @@ namespace timers
 				std::this_thread::sleep_for(std::chrono::milliseconds(_timer.delay));
 				if (_timer.shutdown == true)
 					break;
+				while (!bm->canILookForPieces());
 				bool move = bm->detectMove();
 				if (move == true)
 				{
+					std::cout << "S-a intamplat nebunia\n";
 					//Algo runs
 				}
 			}
 		});
 		t.detach();
 	}
-}
+}	
