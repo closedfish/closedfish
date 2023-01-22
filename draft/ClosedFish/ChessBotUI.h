@@ -4,10 +4,12 @@
 #include <opencv2/imgcodecs/imgcodecs.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
+#include <chrono>
 #include <Windows.h>
 #include <iostream>
 #include <atlimage.h>
 #include <utility>
+#include <future>
 #include <sys/stat.h>
 #include "class_decl.h"
 
@@ -52,7 +54,7 @@ public:
 	}
 	void addPiece(int value, int pos)
 	{
-		char _type;
+		char _type = '*';
 		switch (value)
 		{
 		case 0:
@@ -92,8 +94,11 @@ public:
 			_type = 'p';
 			break;
 		}
-		auto _pos = this->indexToCords(pos);
-		board.Pieces.push_back(Piece(_type, Tile(_pos.first, _pos.second)));
+		if (_type != '*')
+		{
+			auto _pos = this->indexToCords(pos);
+			board.Pieces.push_back(Piece(_type, Tile(_pos.first, _pos.second)));
+		}
 	}
 
 	int getCol()
@@ -175,7 +180,7 @@ public:
 			boardB = coord.second.second;
 			sideW = (boardR - boardL) / 8;
 			sideH = (boardB - boardT) / 8;
-			//*
+			/*
 			_opencv->computePercentage("sq9", sideW);
 			_opencv->computePercentage("sq17", sideW);
 			_opencv->computePercentage("sq18", sideW);
@@ -415,18 +420,88 @@ public:
 
 	void findAllPieces(bool detColor = false)
 	{
+		BIGLOCK = true;
+		auto start = std::chrono::high_resolution_clock::now();
+
 		memcpy(oldPieces, piece, sizeof(int) * 64);
 		split_the_board();
 		saveAllSquares();
-		//Call to Dimitrije's thing for each square
+		std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+		bool lock1 = false, lock2 = false, lock3 = false, lock4 = false, lock5 = false, lock6 = false;
+		auto ptr = files;
+		auto openCVPtr = this->_opencv;
+		auto _sideW = this->sideW;
+
 		for (int i = 0; i < 64; ++i)
 		{
 			if (piece[i] != -1)
 			{
-				piece[i] = this->_opencv->matchPiecePerc((std::string)files[i], this->sideW);
-				std::cout << piece[i] << " <> " << i << "\n";
+				//std::thread sutaLaSuta([this, i]() {
+				//piece[i] = _opencv->matchPiecePerc((std::string)files[i], sideW);
+				//});
+				//sutaLaSuta.detach();
 			}
 		}
+
+#pragma region MA_ARUNC_PE_GEAM
+		//*
+		//Call to Dimitrije's thing for each square
+		int added = 0;
+		auto t1 = std::async(std::launch::async,[this]() {
+			for (int i = 0; i < 16; ++i)
+			{
+				if (piece[i] != -1)
+				{
+					//std::thread sutaLaSuta([this, i]() {
+					piece[i] = _opencv->matchPiecePerc((std::string)files[i], sideW);
+					//});
+					//sutaLaSuta.detach();
+				}
+			}
+		});
+		auto t2 = std::async(std::launch::async,[this]() {
+			for (int i = 16; i < 32; ++i)
+			{
+				if (piece[i] != -1)
+				{
+					//std::thread sutaLaSuta([this, i]() {
+					piece[i] = _opencv->matchPiecePerc((std::string)files[i], sideW);
+					//});
+					//sutaLaSuta.detach();
+				}
+			}
+		});
+		auto t3 = std::async(std::launch::async,[this]() {
+			for (int i = 32; i < 48; ++i)
+			{
+				if (piece[i] != -1)
+				{
+					//std::thread sutaLaSuta([this, i]() {
+					piece[i] = _opencv->matchPiecePerc((std::string)files[i], sideW);
+					//});
+					//sutaLaSuta.detach();
+				}
+			}
+		});
+		auto t4 = std::async(std::launch::async,[this]() {
+			for (int i = 48; i < 64; ++i)
+			{
+				if (piece[i] != -1)
+				{
+					//std::thread sutaLaSuta([this, i]() {
+					piece[i] = _opencv->matchPiecePerc((std::string)files[i], sideW);
+					//});
+					//sutaLaSuta.detach();
+				}
+			}
+		});
+		t1.get();
+		t2.get();
+		t3.get();
+		t4.get();
+		//*/
+
+#pragma endregion
 		if (detColor == true)
 		{
 			for (int i = 0; i < 64; ++i)
@@ -456,27 +531,32 @@ public:
 		int rookCol = 0 + (1 - _opencv->getCol()) * 6;
 		if (piece[0] != rookCol)
 		{
-			std::cout << "No more caste left" << _opencv->getCol() << " __ " << piece[0] << " " << rookCol << "\n";
+			//std::cout << "No more caste left" << _opencv->getCol() << " __ " << piece[0] << " " << rookCol << "\n";
 			castleL = false;
 		}
 		if (piece[7] != rookCol)
 		{
-			std::cout << "No more caste right\n";
+			//std::cout << "No more caste right\n";
 			castleR = false;
 		}
 		int kingCol = 4 + (1 - _opencv->getCol()) * 6;
 		if (piece[4] != kingCol && _opencv->getCol() == true)
 		{
-			std::cout << "No more castels\n";
+			//std::cout << "No more castels\n";
 			castleL = false;
 			castleR = false;
 		}
 		if (piece[3] != kingCol && _opencv->getCol() == false)
 		{
-			std::cout << "No more castels\n";
+			//std::cout << "No more castels\n";
 			castleL = false;
 			castleR = false;
 		}
+
+		BIGLOCK = false;
+
+		auto end = std::chrono::high_resolution_clock::now();
+		std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "\n";
 
 	}
 
@@ -517,6 +597,11 @@ public:
 
 	void changeBg(BYTE* buffer, int _size);
 
+	bool canILookForPieces()
+	{
+		return !BIGLOCK;
+	}
+
 private:
 
 	/// <summary>
@@ -543,6 +628,12 @@ private:
 	int col1Orig = 7771734, col2Orig = 15658706;
 
 	bool castleL = true, castleR = true;
+
+	bool BIGLOCK = false;
+
+	std::vector<int> pieces1, pieces2, pieces3, pieces4, pieces5, pieces6;
+
+	//std::thread t1, t2, t3, t4, t5, t6;
 
 	CImage ci = CImage();
 
