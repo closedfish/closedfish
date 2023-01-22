@@ -117,8 +117,16 @@ int main(int argc, char *argv[]) {
 	Stockfish::Eval::NNUE::init();
 	Stockfish::Position::init();
 
-	// DFS1P a;
-	// a.testDFS();
+	ClosedfishEngine a;
+	// CFBoard board = CFBoard("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R b - - 0 1");
+	// a.setBoardPointer(&board);
+	// std::cerr << board.getRepr() << '\n';
+	// for (int _ = 0; _ < 20; _++) {
+	// 	Closedfish::Move m = a.getNextMove();
+	// 	debug << "Move from :" << std::get<0>(m) << " to " << std::get<1>(m) << " with gradient dist: " << std::get<2>(m) << '\n';
+	// 	board.movePiece(std::get<0>(m), std::get<1>(m));
+	// 	board.forceFlipTurn();
+	// }
 
 	debug << "[INFO] a.testDFS() done" << std::endl;
 	return 0;
