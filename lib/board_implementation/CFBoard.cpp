@@ -46,15 +46,14 @@ int main(){
     return 0;
 }
 */
-
 /*
 #include "NaiveCheckCheck.cpp"
 
 int main(){
 
-    CFBoard board = CFBoard("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1BQ/R7/1B1K2RN b - - 0 1");
+    CFBoard board = CFBoard("rn1q1rk1/pnpp2pp/1p2p3/5p2/2PPP3/2P3P1/P1QN1P1P/R1B1K2R w KQ e6 0 1");
 
-    std::cout << board.getReprLegalMove(7, 0) << '\n';
+    std::cout << board.getReprLegalMove(10, 60) << '\n';
 
     
 }
@@ -561,7 +560,7 @@ void CFBoard::forceMovePiece(int startTile, int endTile, int pawnPromotionType) 
 	}
 
 
-	if (~turn) { // white
+	if (!turn) { // white
 		if ((piece >> 1) == 3) { // rook
 			if (startTile == 63) {
 				castleCheck &= ~1;
@@ -811,11 +810,11 @@ uint64_t CFBoard::getKingPattern(int tile, bool color) {
     // If you customized the whole board into an illegal position, this part may crash the code.
     uint64_t board = whiteBoard | blackBoard;
     if (castle>>1){ //long
-        bool longsideoccupied = ((board << (tile - 1)) & 1) | ((board << (tile - 2)) & 1) | ((board << (tile - 3)) & 1);
+        bool longsideoccupied = ((board >> (tile - 1)) & 1) | ((board >> (tile - 2)) & 1) | ((board >> (tile - 3)) & 1);
         if (!longsideoccupied){kingPattern += (1ll << (tile-2));}
     }
     if (castle&1){ //short
-        bool shortsideoccupied = ((board << (tile + 1)) & 1) | ((board << (tile + 2)) & 1);
+        bool shortsideoccupied = ((board >> (tile + 1)) & 1) | ((board >> (tile + 2)) & 1);
         if (!shortsideoccupied){kingPattern += (1ll << (tile+2));}
     }
 
