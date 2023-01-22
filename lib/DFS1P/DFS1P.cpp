@@ -135,7 +135,7 @@ void DFS1P::DFS1pAux(CFBoard* currentBoard, int depth, int maxDepth, std::vector
 			// Unsimulate the move
 			curLine.pop_back();
 			currentBoard->undoLastMove();
-			currentBoard->forceFlipTurn();
+			currentBoard->undoLastMove();
 		}
 	}
 }
@@ -242,7 +242,7 @@ Closedfish::Move DFS1P::getNextMove() {
 		// Undo all simulated moves after calculating
 		for (auto move: line) {
 			currentBoard->undoLastMove();
-			currentBoard->forceFlipTurn();
+			currentBoard->undoLastMove();
 		}
 	}
 	// cerr << "Time taken: " << total_time << '\n';
