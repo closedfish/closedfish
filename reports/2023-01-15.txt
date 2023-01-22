@@ -64,3 +64,7 @@ Week 4: Optimized a large part of the process for getting legal moves in the boa
 Week 5: Suggested changes to algorithm to the current iteration, and studied some of the repository.
 Week 6: Implemented a helper function for blunder subsection of the algorithm. Participated in discussion about the project build
   and plans for connectors: the plan now is to build a master function for the algorithm, and put 2 weeks of discussion into effect.
+Dimitrije:
+This week:
+	Implemented and tested two more piece recognition algorithms, edited the the code inputs and outputs and optimized the programs.
+Next week: Merge with Razvan, finish piece recognition, do FEN board export.
