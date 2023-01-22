@@ -7,3 +7,13 @@ Ariel:
 - Wrote code to format the output for switch in different ways
 - Finished training switch
 - Worked on the presentation (switch, test, and generator parts)
+
+Ba Cong:
+This week:
+  Finished one person DFS, optimized it to run faster in calculating heatmap distance.
+  Debugged Breakthrough2 to correctly prune for both persons.
+  Finished Closedfish connectors with one person DFS and Breakthrough2.
+  Found new tests to help remove bugs from CFBoard.
+Next week:
+  Go to the presentation.
+  Do well in the finals.
