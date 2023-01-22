@@ -482,7 +482,7 @@ void CFBoard::removePiece(int tile) {
 void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
 	int piece = getPieceFromCoords(startTile);
 
-	//check that move is legal
+        //check that move is syntactically legal
 	if (  ((1ll << endTile) & getLegalMoves(piece, startTile)) == 0  ){
         std::cerr<<"illegal move from " << startTile << " to " << endTile << "!\nPiece on start tile can not move there!" << std::endl;
 		exit(-1);
@@ -492,6 +492,14 @@ void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
         std::cerr<<"illegal move from " << startTile << " to " << endTile << "!\nNot the correct turn!" << std::endl;
 		exit(-1);
 	}
+
+        //check that move doesn't put us in check
+        if (naiveCheckCheck(turn)){
+            std::cerr<<"illegal move from " << startTile << " to " << endTile << "!\nPuts or keeps us in check !" << std::endl;
+            exit (-1);
+        }
+
+
 
 
 	//call force move piece
@@ -628,7 +636,15 @@ void CFBoard::forceMovePiece(int startTile, int endTile, int pawnPromotionType) 
 }
 
 void CFBoard::forceFlipTurn() {
+
+    //make a backup of our state
+    backupState();
+
+    //force flip turn
     turn = !turn;
+
+    //mark state as illegitimate
+    isStateLegal = false;
 }
 
 void CFBoard::undoLastMove() {

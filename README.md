@@ -1,4 +1,10 @@
 # closedfish [![CMake](https://github.com/closedfish/closedfish/actions/workflows/cmake.yml/badge.svg)](https://github.com/closedfish/closedfish/actions/workflows/cmake.yml)
+
+<p align="center">
+  <img src="https://i.imgur.com/fNH2h2f.png" width="250" title="A parody on the stockfish logo">
+</p>
+
+
 The main repository for Closedfish. 
 
 The aim of this project is to create a chess engine, to improve the
