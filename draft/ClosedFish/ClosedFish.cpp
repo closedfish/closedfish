@@ -11,7 +11,7 @@
 
 #pragma region globalVariables //these are my global variables, which i will not mix with the windows objects
 bmpClass bc = NULL;
-timer tmr;
+timer tmrTransOnTop, tmrCheckMove;
 #pragma endregion globalVariables
 
 
@@ -56,10 +56,11 @@ void consoleTest()//testing different stuff using the console
         {
         case -18:
             bc = bmpClass(true);
+            bc.send_input("g8f6");
             //bc.send_input("c1f4");
             break;
         case -19:
-            cout<<" "<<bc.castleLeft()<<" " << bc.castleRight() << "\n";
+            std::cout<<" "<<bc.castleLeft()<<" " << bc.castleRight() << "\n";
             break;
         case -1:
             FreeConsole();
@@ -88,7 +89,7 @@ void consoleTest()//testing different stuff using the console
         }
         break;
         case -14:
-            tmr.shutdown = true;
+            tmrTransOnTop.shutdown = true;
             break;
         case -4:
             bc.testRemoveBg();
@@ -130,7 +131,7 @@ void SetWindowOnTop(HWND hWnd)
 {
     if (!SetWindowPos(hWndTrans, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE))
     {
-        std::cout << "->" << tmr.shutdown << "\n";
+        std::cout << "->" << tmrTransOnTop.shutdown << "\n";
         displayError();
     }
 }
@@ -184,7 +185,7 @@ BOOL DisplayTransparent(HINSTANCE hInst, int nCmdShow)
 
     //This puts the window back on top
     //It s needed for when something pops up above the text window
-    timers::start_timer(tmr, SetWindowOnTop, hWndTrans, 500);
+    timers::start_timer(tmrTransOnTop, SetWindowOnTop, hWndTrans, 500);
 
     return TRUE;
 }
@@ -340,7 +341,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             break;
         case BN_CLICKED://the one button was clicked
         {
-            bc.printSq(0);
+            std::thread t([&](){
+            bc = new bmpClass(true);
+            tmrCheckMove.delay = 2000;
+            timers::moveDetection(tmrCheckMove, &bc);
+            std::cout << "Cox";
+            });
+            t.detach();
         }
         break;
         default:
@@ -396,7 +403,7 @@ LRESULT CALLBACK WndProcT(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         switch (wmId)
         {
         case IDM_EXIT:
-            tmr.shutdown = true;
+            tmrTransOnTop.shutdown = true;
             FreeConsole();
             t1.join();
             DestroyWindow(hWnd);
@@ -451,11 +458,11 @@ LRESULT CALLBACK WndProcT(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     }
     break;
     case WM_DESTROY:
-        tmr.shutdown = true;
+        tmrTransOnTop.shutdown = true;
         DestroyWindow(hWnd);
         break;
     case WM_CLOSE:
-        tmr.shutdown = true;
+        tmrTransOnTop.shutdown = true;
         DestroyWindow(hWnd);
         break;
     default:
