@@ -2,8 +2,8 @@
 
 #include "color_def.h"
 #include <opencv2/core/types.hpp>
-#include<tuple>
-#include<iostream>
+#include <tuple>
+#include <iostream>
 using namespace std;
 
 class Square {
@@ -38,7 +38,6 @@ public:
 };
 class Board {
 public:
-	vector<Piece> pieces;
 	int width;
 	int height;
 	int left;
@@ -48,5 +47,5 @@ public:
 	std::vector<Tile> Tiles;
 	std::vector<Piece> Pieces;
 	Board();
-	Board(int,int,int,int);
+	Board(int, int, int, int);
 };

@@ -1,5 +1,6 @@
 #include "class_decl.h"
 #include "color_def.h"
+
 Square::Square() {
 	this->rec = cv::Rect();
 	this->position = cv::Point();
@@ -19,8 +20,8 @@ Board::Board() {
 
 }
 Board::Board(int left, int right, int top, int bottom) {
-	this->height = bottom-top;
-	this->width = right-left;
+	this->height = bottom - top;
+	this->width = right - left;
 	this->left = left;
 	this->right = right;
 	this->top = top;
@@ -42,9 +43,9 @@ Tile::Tile(char character, int cord) {
 }
 Piece::Piece() {
 	this->position = Tile('a', 1);
-	this->type = 'p';
+	this->type = 'pawn';
 }
-Piece::Piece(char type,Tile position) {
+Piece::Piece(char type, Tile position) {
 	this->type = type;
 	this->position = position;
 }
