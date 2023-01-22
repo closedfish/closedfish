@@ -11,7 +11,7 @@ target_include_directories(${ENGINE} PUBLIC
     "./"
     "${CMAKE_BINARY_DIR}/configured_files/include")
 
-target_link_libraries(${ENGINE} PUBLIC ${BI} ${WRAP} ${SF} ${UTILS} ${SC} ${GC} ${PLAY})
+target_link_libraries(${ENGINE} PUBLIC ${BI} ${WRAP} ${SF} ${UTILS} ${SC} ${GC})
 
 if (${ENABLE_WARNINGS})
     target_set_warnings(TARGET ${ENGINE} ENABLE ON AS_ERROR OFF)

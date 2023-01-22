@@ -16,50 +16,21 @@ int main(){
     
     //CFBoard testBoard = CFBoard("8/8/8/8/8/8/8/8 w - -");
     CFBoard testBoard = CFBoard();
-    //CFBoard testBoard = CFBoard("rnb1kbnr/ppp1pppp/4q3/8/8/2N5/PPPP1PPP/R1BQKBNR w KQkq - 2 4"); // wrong legal moves for bishop
+    //CFBoard testBoard = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP1B2/PpP3QR/1P1N1N2/R4BK1 w - - 0 1"); // wrong legal moves for bishop
     // cout << board.naiveCheckCheck(0) << '\n';
-    testBoard.movePiece(52, 36);
-    std::cout << testBoard.getRepr() << std::endl;
-    testBoard.movePiece(11, 27);
-    std::cout << testBoard.getRepr() << std::endl;
-    // std::cout << testBoard.getReprLegalMove(testBoard.getPieceFromCoords(36), 36) << std::endl; 
-    testBoard.movePiece(36, 27);
-    std::cout << testBoard.getRepr() << std::endl;
-    testBoard.movePiece(3, 27);
-    std::cout << testBoard.getRepr() << std::endl;
-    testBoard.movePiece(57,42);
-    std::cout << testBoard.getRepr() << std::endl;
-    testBoard.movePiece(27, 20);
-    std::cout << testBoard.getRepr() << std::endl;
-    std::cout << testBoard.getReprLegalMove(4, 61) << std::endl; 
+    std::cout << testBoard.getReprLegalMove(0, 51); 
 
-    testBoard.movePiece(61, 52);
-    std::cout << testBoard.getRepr() << std::endl;
     
-    
-    //for (int i=10; i<12; i+=1){
+    for (int i=10; i<12; i+=1){
         // std::cout << testBoard.getReprLegalMove(i, 0) << std::endl;
-        //std::cout << testBoard.getReprLegalMove(i, 36) << std::endl;}
+        std::cout << testBoard.getReprLegalMove(i, 36) << std::endl;
+    }
     
     
     
     return 0;
 }
 */
-
-/*
-#include "NaiveCheckCheck.cpp"
-
-int main(){
-
-    CFBoard board = CFBoard("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1BQ/R7/1B1K2RN b - - 0 1");
-
-    std::cout << board.getReprLegalMove(7, 0) << '\n';
-
-    
-}
-*/
-
 
 // ----- Constructors, Formatting, Representation -----
 
@@ -483,7 +454,7 @@ void CFBoard::removePiece(int tile) {
 void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
 	int piece = getPieceFromCoords(startTile);
 
-        //check that move is syntactically legal
+	//check that move is legal
 	if (  ((1ll << endTile) & getLegalMoves(piece, startTile)) == 0  ){
         std::cerr<<"illegal move from " << startTile << " to " << endTile << "!\nPiece on start tile can not move there!" << std::endl;
 		exit(-1);
@@ -493,14 +464,6 @@ void CFBoard::movePiece(int startTile, int endTile, int pawnPromotionType){
         std::cerr<<"illegal move from " << startTile << " to " << endTile << "!\nNot the correct turn!" << std::endl;
 		exit(-1);
 	}
-
-        //check that move doesn't put us in check
-        if (naiveCheckCheck(turn)){
-            std::cerr<<"illegal move from " << startTile << " to " << endTile << "!\nPuts or keeps us in check !" << std::endl;
-            exit (-1);
-        }
-
-
 
 
 	//call force move piece
@@ -617,7 +580,7 @@ void CFBoard::forceMovePiece(int startTile, int endTile, int pawnPromotionType) 
 			castle = castleCheck & 3;
 		}
 		castleCheck = castleCheck & ~castle;
-		if (abs(startTile - endTile) == 3) {
+		if (abs(startTile - endTile) == 2) {
 			removePiece(startTile - 4);
 			addPiece(6 + (piece & 1), startTile - 1);
 		}
@@ -637,15 +600,7 @@ void CFBoard::forceMovePiece(int startTile, int endTile, int pawnPromotionType) 
 }
 
 void CFBoard::forceFlipTurn() {
-
-    //make a backup of our state
-    backupState();
-
-    //force flip turn
     turn = !turn;
-
-    //mark state as illegitimate
-    isStateLegal = false;
 }
 
 void CFBoard::undoLastMove() {
@@ -731,11 +686,9 @@ uint64_t CFBoard::getCardinals(int tile, bool color) {
     // most significant bit: (1ll << (63 - __builtin_clzll(b)))
     
     // up | left | right | down
-
     return (\
-
-    ((tile>>3<<3 != 0) * ~((1ll << (63 - (__builtin_clzll( (((1ll<<tile)-1) & allBoard & columnMap) | (columnMap & (1 + ~columnMap)) )&63))) - 1)) & (columnMap >> (64 - (tile>>3<<3))) | \
-    ((tile&7 != 0) * ~((1ll << (63 - (__builtin_clzll( (((1ll<<tile)-1) & allBoard) | (rowMap & (1 + ~rowMap)) )&63))) - 1)) & (rowMap & ((1ll<<tile)-1)) | \
+    (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard & columnMap ))) - 1)) & (columnMap >> (64 - (tile>>3<<3))) | \
+    (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard))) - 1)) & (rowMap & ((1ll<<tile)-1)) | \
     (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1)) & (1+(~(allBoard & ~((1ll << (tile+1))-1))))) << 1) -1 \
     & (rowMap & ~((1ll << (tile+1))-1))) | (tile != 63)*\
     ((((allBoard & ~((1ll << (tile+1))-1) & columnMap) & (1+(~(allBoard & ~((1ll << (tile+1))-1) & columnMap)))) << 1) -1\
@@ -769,12 +722,12 @@ uint64_t CFBoard::getDiagonals(int tile, bool color) {
                         ((1ll << (8*7 + ((bslashId + 7)&7)) ) * !((7-row < bslashId)^(7-7 < bslashId)));
 
     return (\
-    ((tile != 0) * (~((1ll << (63 - (__builtin_clzll( (((1ll<<tile)-1) & allBoard & slashMap) | (bslashMap & (1 + ~bslashMap)) )&63))) - 1)) & (slashMap & ((1ll<<tile)-1))) | \
-    ((tile != 0) * (~((1ll << (63 - (__builtin_clzll( (((1ll<<tile)-1) & allBoard & bslashMap) | (bslashMap & (1 + ~bslashMap)) )&63))) - 1)) & (bslashMap & ((1ll<<tile)-1))) | \
-    ((tile != 63)*((((allBoard & ~((1ll << (tile+1))-1) & bslashMap) & (1+(~(allBoard & ~((1ll << (tile+1))-1) & bslashMap)))) << 1) -1 \
-    & (bslashMap & ~((1ll << (tile+1))-1)))) | ((tile != 63)*\
-    ((((allBoard & ~((1ll << (tile+1))-1) & slashMap) & (1+(~(allBoard & ~((1ll << (tile+1))-1) & slashMap)))) << 1) -1 &\
-    (slashMap & ~((1ll << (tile+1))-1))) )) & (~getColorBitBoard(color));
+    (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard & slashMap ))) - 1)) & (slashMap & ((1ll<<tile)-1)) | \
+    (~((1ll << (63 - __builtin_clzll( ((1ll<<tile)-1) & allBoard & bslashMap))) - 1)) & (bslashMap & ((1ll<<tile)-1)) | \
+    (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1) & bslashMap) & (1+(~(allBoard & ~((1ll << (tile+1))-1) & bslashMap)))) << 1) -1 \
+    & (bslashMap & ~((1ll << (tile+1))-1))) | (tile != 63)*\
+    ((((allBoard & ~((1ll << (tile+1))-1) & slashMap) & (1+(~(allBoard & ~((1ll << (tile+1))-1) & slashMap)))) << 1) -1\
+    & (slashMap & ~((1ll << (tile+1))-1))) ) & (~getColorBitBoard(color));
 }
 
 

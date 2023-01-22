@@ -38,7 +38,6 @@ set(DFS1P DepthFirstSearchOnePerson)
 set(HMP Heatmap)
 set(WEAKP WeakPawns)
 set(CMAKE_CXX_COMPILER_ID "MSVC")
-set(BT2 Breakthrough2)
 
 set(EXECUTABLE Executable)
 

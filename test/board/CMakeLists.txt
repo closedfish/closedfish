@@ -1,9 +1,9 @@
 set(BOARD_TEST
     "board_tests")
 set(BOARD_TEST_SOURCES
-    "Tests/test_Board_Implementation.cpp")
+    "test_from_fen.cpp" "test_to_fen.cpp" "test_naive_check_check.cpp")
 set(BOARD_TEST_HEADERS 
-    "Tests/test_Board_Implementation.h")
+    "test_from_fen.h" "test_to_fen.h" "test_naive_check_check.h")
 
 add_executable(${BOARD_TEST} ${BOARD_TEST_SOURCES})
 find_package(Catch2 CONFIG REQUIRED)

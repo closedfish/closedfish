@@ -1,10 +1,6 @@
 #pragma once
-
-#ifndef GENREG_H
-#define GENREG_H
 // #include "C:\Users\Cassi\Downloads\eigen-3.4.0\eigen-3.4.0\Eigen\Dense"
 #include <Eigen/Dense>
-#include <vector>
 
 /*
  *@brief This is the funtion class that will enables us to have an array of
@@ -61,7 +57,7 @@ public:
 	 *@return the actual computated value of the function
 	 */
 
-	float Eval(std::vector<int> l_top_pons, std::vector<int> l_bottom_pons) {
+	float Eval(int *l_top_pons, int *l_bottom_pons) {
 		if (difference_type == 1) {
 			if (height == 2) {
 				return Eval_help(l_top_pons);
@@ -81,7 +77,7 @@ public:
 	 *@return the actual computated value of the function
 	 */
 
-	float Eval_help(std::vector<int> l_top_pons, std::vector<int> l_bottom_pons) {
+	float Eval_help(int *l_top_pons, int *l_bottom_pons) {
 		int t = l_top_pons[placement];
 		int b = l_bottom_pons[placement];
 
@@ -104,7 +100,7 @@ public:
 	 *@return the actual computated value of the function
 	 */
 
-	float Eval_help(std::vector<int> l) {
+	float Eval_help(int *l) {
 		int pon1 = l[placement];
 		int pon2 = l[placement + 1];
 
@@ -143,8 +139,7 @@ public:
 	 *middle of the board (of height 3.5)
 	 */
 
-	float AveragePos(std::vector<int> l_top_pons,
-									 std::vector<int> l_bottom_pons) {
+	float AveragePos(int *l_top_pons, int *l_bottom_pons) {
 		int tot_sum = 0;
 		double pon_count = 0;
 
@@ -181,11 +176,9 @@ private:
 namespace TheRegression {
 Eigen::MatrixXd setUpQ(Func *basis, int **X, int dimension,
 											 int num_data_points);
-Eigen::VectorXd setUpYVect(std::vector<double> data_outputs,
-													 int num_data_points);
-Eigen::VectorXd bestFitF(Func *basis, std::vector<std::vector<int>> X,
-												 std::vector<double> data_outputs, int dimension,
-												 int num_data_points);
+Eigen::VectorXd setUpYVect(double *data_outputs, int num_data_points);
+Eigen::VectorXd bestFitF(Func *basis, int **X, double *data_outputs,
+												 int dimension, int num_data_points);
 } // namespace TheRegression
 namespace SqrtDifBasis {
 Func *GenerateBasis();
@@ -200,13 +193,9 @@ namespace SqrtAbsDifBasis {
 Func *GenerateBasis();
 }
 namespace EvaluationFunction {
-void init();
-float Evaluate(std::vector<int> l_top_pons, std::vector<int> l_bottom_pons,
-							 int dimension);
-float TestAi(int **test_data_points, double *outputs, int dimension,
-						 int num_data_points);
-static Func *basis;
-static Eigen::VectorXd theta;
+Eigen::VectorXd getTheta();
+float Evaluate(Func *basis, Eigen::VectorXd theta, int *l_top_pons,
+							 int *l_bottom_pons, int dimension);
+float TestAi(Func *basis, Eigen::VectorXd theta, int **test_data_points,
+						 double *outputs, int dimension, int num_data_points);
 } // namespace EvaluationFunction
-
-#endif

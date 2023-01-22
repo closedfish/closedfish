@@ -41,10 +41,12 @@ Tile::Tile(char character, int cord) {
 	this->cord = cord;
 }
 Piece::Piece() {
+	this->color = WHITE;
 	this->position = Tile('a', 1);
-	this->type = 'p';
+	this->type = 'pawn';
 }
-Piece::Piece(char type,Tile position) {
+Piece::Piece(char type,COLOR color,Tile position) {
+	this->color = color;
 	this->type = type;
 	this->position = position;
 }

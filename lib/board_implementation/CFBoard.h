@@ -29,7 +29,7 @@ public:
 		enPassantTarget(enPassantTarget), castleCheck(castleCheck),
 		blackBoard(blackBoard), whiteBoard(whiteBoard), turn(turn) {}
 
-        void fromFEN(std::string FEN);
+	void fromFEN(std::string FEN); // TO DO
 	std::string toFEN();
 
 
@@ -360,7 +360,7 @@ private:
 
 
 	//--------THE BACKUP OF VALUES FROM PREVIOUS STATES
-	const static int backupCount = 10;
+	const static int backupCount = 4;
 	int backupStock = 0; //how many backups we have in stock
 
 	uint64_t* pawnBoardBackups;

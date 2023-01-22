@@ -32,9 +32,10 @@ public:
 class Piece {
 public:
 	char type;
+	COLOR color;
 	Tile position;
 	Piece();
-	Piece(char, Tile);
+	Piece(char, COLOR, Tile);
 };
 class Board {
 public:

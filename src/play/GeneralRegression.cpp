@@ -23,8 +23,8 @@ namespace TheRegression {
  *@return Q: an eigen matrix as described above.
  */
 
-Eigen::MatrixXd setUpQ(Func *basis, std::vector<std::vector<int>> X,
-											 int dimension, int num_data_points) {
+Eigen::MatrixXd setUpQ(Func *basis, int **X, int dimension,
+											 int num_data_points) {
 	Eigen::MatrixXd Q(num_data_points, dimension);
 
 	for (int j = 0; j < dimension; j++) {
@@ -44,8 +44,7 @@ Eigen::MatrixXd setUpQ(Func *basis, std::vector<std::vector<int>> X,
  *@return Y: the vector described above.
  */
 
-Eigen::VectorXd setUpYVect(std::vector<double> data_outputs,
-													 int num_data_points) {
+Eigen::VectorXd setUpYVect(double *data_outputs, int num_data_points) {
 	Eigen::VectorXd Y(num_data_points);
 	for (int i = 0; i < num_data_points; i++) {
 		Y(i) = data_outputs[i];
@@ -74,9 +73,8 @@ Eigen::VectorXd setUpYVect(std::vector<double> data_outputs,
  *basis of functions to best approximate the data.
  */
 
-Eigen::VectorXd bestFitF(Func *basis, std::vector<std::vector<int>> X,
-												 std::vector<double> data_outputs, int dimension,
-												 int num_data_points) {
+Eigen::VectorXd bestFitF(Func *basis, int **X, double *data_outputs,
+												 int dimension, int num_data_points) {
 
 	Eigen::MatrixXd Q = setUpQ(basis, X, dimension, num_data_points);
 	Eigen::VectorXd Y = setUpYVect(data_outputs, num_data_points);
@@ -204,8 +202,8 @@ Func *GenerateBasis() {
 
 namespace EvaluationFunction {
 
-float Evaluate(std::vector<int> l_top_pons, std::vector<int> l_bottom_pons,
-							 int dimension) {
+float Evaluate(Func *basis, Eigen::VectorXd theta, int *l_top_pons,
+							 int *l_bottom_pons, int dimension) {
 	float output_val = 0;
 	for (int i = 0; i < dimension; i++) {
 		output_val += basis[i].Eval(l_top_pons, l_bottom_pons) * theta[i];
@@ -226,13 +224,13 @@ float Evaluate(std::vector<int> l_top_pons, std::vector<int> l_bottom_pons,
  *@return emp_risk: the empirical risk of the outputed data.
  */
 
-float TestAi(std::vector<std::vector<int>> test_data_points, double *outputs,
-						 int dimension, int num_data_points) {
+float TestAi(Func *basis, Eigen::VectorXd theta, int **test_data_points,
+						 double *outputs, int dimension, int num_data_points) {
 	float emp_risk = 0;
 
 	for (int i = 0; i < num_data_points; i++) {
 		emp_risk +=
-				pow(outputs[i] - Evaluate(test_data_points[2 * i],
+				pow(outputs[i] - Evaluate(basis, theta, test_data_points[2 * i],
 																	test_data_points[2 * i + 1], dimension),
 						2);
 	}
@@ -1756,16 +1754,13 @@ void init() {
 		data_outputs[i] = 0.99;
 	}
 
-	
 #pragma endregion
-
 
 	int dimension = 23;
 	int num_data_points = 500;
 
 	theta = TheRegression::bestFitF(basis, X, data_outputs, dimension,
 																	num_data_points);
-	
 }
 
 } // namespace EvaluationFunction
