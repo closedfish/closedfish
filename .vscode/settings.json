@@ -113,7 +113,10 @@
     "xstring": "cpp",
     "xtr1common": "cpp",
     "xtree": "cpp",
-    "xutility": "cpp"
+    "xutility": "cpp",
+    "coroutine": "cpp",
+    "resumable": "cpp",
+    "filesystem": "cpp"
   },
   "C_Cpp.errorSquiggles": "Disabled",
   "C_Cpp_Runner.cCompilerPath": "gcc",
@@ -148,5 +151,8 @@
     "**/.vscode/**"
   ],
   "editor.insertSpaces": false,
-  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, IndentWidth: 2, TabWidth: 2, UseTab: Always }"
+  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, IndentWidth: 2, TabWidth: 2, UseTab: Always }",
+  "cmake.configureSettings": {
+    "CMAKE_BUILD_TYPE": "${buildType}"
+  }
 }

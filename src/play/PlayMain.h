@@ -1,11 +1,10 @@
 #pragma once
-#include <iostream>
-#include "closenessAI.h"
+#include <string>
 
- /**
-  * @brief Function descr.
-  * 
-  * @param Example param
-  * 
-  * @return descr. of return value 
-  */
+/**
+ * Main switch openness function.
+ * Gives the openness evaluation (between 0.0: closed to 1.0: open)
+ *
+ * @param fen board in FEN format
+ */
+float evaluateOpenness(std::string fen);

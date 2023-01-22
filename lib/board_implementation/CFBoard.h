@@ -1,13 +1,12 @@
 #pragma once
 
 #ifdef _MSC_VER
-#include <nmmintrin.h>
 #include <immintrin.h>
+#include <nmmintrin.h>
 #define __builtin_popcountll _mm_popcnt_u64
 #define __builtin_ctzll _tzcnt_u64
 #define __builtin_clzll _lzcnt_u64
 #endif
-
 #include <iostream>
 #include <stdint.h>
 
@@ -30,7 +29,7 @@ public:
 		enPassantTarget(enPassantTarget), castleCheck(castleCheck),
 		blackBoard(blackBoard), whiteBoard(whiteBoard), turn(turn) {}
 
-	void fromFEN(std::string FEN); // TO DO
+        void fromFEN(std::string FEN);
 	std::string toFEN();
 
 
@@ -203,7 +202,12 @@ public:
 	*/
 	void forceMovePiece(int starttile, int endtile, int pawnPromotionType = -1);
 
-
+	/**
+	* @brief Force flipping turn for one-person dfs.
+	*
+	* @return void.
+	*/
+	void forceFlipTurn();
 
 
 	/**
@@ -356,7 +360,7 @@ private:
 
 
 	//--------THE BACKUP OF VALUES FROM PREVIOUS STATES
-	const static int backupCount = 4;
+	const static int backupCount = 10;
 	int backupStock = 0; //how many backups we have in stock
 
 	uint64_t* pawnBoardBackups;
