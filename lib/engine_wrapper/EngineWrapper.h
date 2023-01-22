@@ -49,6 +49,7 @@ public:
 	 */
 	virtual Move getNextMove() = 0; // pure virtual function
 
+protected:
 	CFBoard *currentBoard;
 };
 }; // namespace Closedfish
