@@ -24,3 +24,9 @@ This week:
 -Made a new and working piece recognition with Razvan.
 -Made a FEN export from board object.
 -Debugged everything with Razvan.
+
+Antonia:
+-fixed the definition of isIsolated and isConnected in WeakPawns.cpp
+-tested PieceMovements.cpp
+-fixed build errors
+-worked on the slides of the presentation of weak pawns and algo
