@@ -7,7 +7,7 @@
 #include <output.h>
 
 #include <CFBoard.h>
-#include <DFS1P.h>
+#include <ClosedfishConnect.h>
 #include <SwitchEngine.h>
 #include <utils.h>
 
