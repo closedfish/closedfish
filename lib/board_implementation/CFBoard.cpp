@@ -56,8 +56,8 @@ int main(){
     std::cout << board.getReprLegalMove(10, 60) << '\n';
 
     
-}
-*/
+}*/
+
 
 
 // ----- Constructors, Formatting, Representation -----
@@ -716,9 +716,8 @@ uint64_t CFBoard::getCardinals(int tile, bool color) {
     // up | left | right | down
 
     return (\
-
-    ((tile>>3<<3 != 0) * ~((1ll << (63 - (__builtin_clzll( (((1ll<<tile)-1) & allBoard & columnMap) | (columnMap & (1 + ~columnMap)) )&63))) - 1)) & (columnMap >> (64 - (tile>>3<<3))) | \
-    ((tile&7 != 0) * ~((1ll << (63 - (__builtin_clzll( (((1ll<<tile)-1) & allBoard) | (rowMap & (1 + ~rowMap)) )&63))) - 1)) & (rowMap & ((1ll<<tile)-1)) | \
+    (((tile>>3<<3) != 0) * ~((1ll << (63 - (__builtin_clzll( (((1ll<<tile)-1) & allBoard & columnMap) | (columnMap & (1 + ~columnMap)) )&63))) - 1)) & (columnMap >> (64 - (tile>>3<<3))) | \
+    (((tile&7) != 0) * ~((1ll << (63 - (__builtin_clzll( (((1ll<<tile)-1) & allBoard) | (rowMap & (1 + ~rowMap)) )&63))) - 1)) & (rowMap & ((1ll<<tile)-1)) | \
     (tile != 63)*((((allBoard & ~((1ll << (tile+1))-1)) & (1+(~(allBoard & ~((1ll << (tile+1))-1))))) << 1) -1 \
     & (rowMap & ~((1ll << (tile+1))-1))) | (tile != 63)*\
     ((((allBoard & ~((1ll << (tile+1))-1) & columnMap) & (1+(~(allBoard & ~((1ll << (tile+1))-1) & columnMap)))) << 1) -1\
@@ -752,7 +751,7 @@ uint64_t CFBoard::getDiagonals(int tile, bool color) {
                         ((1ll << (8*7 + ((bslashId + 7)&7)) ) * !((7-row < bslashId)^(7-7 < bslashId)));
 
     return (\
-    ((tile != 0) * (~((1ll << (63 - (__builtin_clzll( (((1ll<<tile)-1) & allBoard & slashMap) | (bslashMap & (1 + ~bslashMap)) )&63))) - 1)) & (slashMap & ((1ll<<tile)-1))) | \
+    ((tile != 0) * (~((1ll << (63 - (__builtin_clzll( (((1ll<<tile)-1) & allBoard & slashMap) | (slashMap & (1 + ~slashMap)) )&63))) - 1)) & (slashMap & ((1ll<<tile)-1))) | \
     ((tile != 0) * (~((1ll << (63 - (__builtin_clzll( (((1ll<<tile)-1) & allBoard & bslashMap) | (bslashMap & (1 + ~bslashMap)) )&63))) - 1)) & (bslashMap & ((1ll<<tile)-1))) | \
     ((tile != 63)*((((allBoard & ~((1ll << (tile+1))-1) & bslashMap) & (1+(~(allBoard & ~((1ll << (tile+1))-1) & bslashMap)))) << 1) -1 \
     & (bslashMap & ~((1ll << (tile+1))-1)))) | ((tile != 63)*\
