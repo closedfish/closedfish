@@ -608,7 +608,7 @@ void CFBoard::forceMovePiece(int startTile, int endTile, int pawnPromotionType) 
 			castle = castleCheck & 3;
 		}
 		castleCheck = castleCheck & ~castle;
-		if (abs(startTile - endTile) == 3) {
+		if (endTile < startTile) {
 			removePiece(startTile - 4);
 			addPiece(6 + (piece & 1), startTile - 1);
 		}
