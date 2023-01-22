@@ -171,9 +171,9 @@ bool bmpClass::sendClick(int posX, int posY)
 	click[0].type = (long long int)INPUT_MOUSE;
 	click[0].mi = mInp;
 
-	int sent = SendInput((UINT)1, click, sizeof(click));
+	mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, curPos.x, curPos.y, NULL, NULL);
 
-	return sent == 1;
+	return true;
 #else
 	//for some reason this is the always the active block
 	//but adding 64-bit compatibility will make this safer
@@ -207,6 +207,14 @@ void bmpClass::send_input(char* inpt)
 	c2 = *(inpt + 2);
 	l1 = *(inpt + 1);
 	l2 = *(inpt + 3);
+
+	if (this->_opencv->getCol() == false)
+	{
+		c1 = 'h' - c1 + 'a';
+		c2 = 'h' - c2 + 'a';
+		l1 = '9' - l1 + '0';
+		l2 = '9' - l2 + '0';
+	}
 
 	std::cout << c1 << l1 << " " << c2 << l2 << "\n";
 
@@ -576,7 +584,7 @@ void bmpClass::split_the_board()
 		this->getBoardColours(this->col1, this->col2);
 	}
 
-	auto start = std::chrono::high_resolution_clock::now();
+	//auto start = std::chrono::high_resolution_clock::now();
 
 	BYTE* bits;
 	BITMAPINFO bi;
@@ -611,7 +619,7 @@ void bmpClass::split_the_board()
 
 			else
 			{
-				piece[i * 8 + j] = 1000;
+				piece[i * 8 + j] = 0;
 			}
 			
 
@@ -651,7 +659,7 @@ void bmpClass::split_the_board()
 	delete[] bits;
 	delete[] buffer;
 
-	auto end = std::chrono::high_resolution_clock::now();
+	//auto end = std::chrono::high_resolution_clock::now();
 	//std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(start - end).count();
 }
 
