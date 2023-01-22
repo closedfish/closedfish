@@ -3,8 +3,8 @@
 #include <ClosedfishConnect.h>
 #include <EngineWrapper.h>
 #include <StockfishConnect.h>
-#include <logger.h>
 #include <tuple>
+#include <utils.h>
 
 class SwitchEngine : public Closedfish::ChessEngine {
 public:
@@ -15,9 +15,11 @@ public:
 	 * @param board
 	 * @param logger
 	 */
-	SwitchEngine() : ChessEngine() {}
-	SwitchEngine(CFBoard &board, Closedfish::Logger &logger);
+	SwitchEngine() : ChessEngine(), status(Status::OPEN) {}
+	SwitchEngine(CFBoard &board, Closedfish::Logger *logger);
 	Closedfish::Move getNextMove();
+	Closedfish::Logger
+			*logger; // should be accessed publicly as a substitute for std::cout.
 
 private:
 	ClosedfishEngine *closedfish;
