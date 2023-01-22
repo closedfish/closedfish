@@ -32,6 +32,10 @@ Next week:
 	  - Continue writing test functions
 	  - Continue working with the switch team to train the AI
 	  - Help Merge the project
+Dimitrije:
+This week: Implemented and tested two more piece recognition functions, edited code input and output to match others' and optimized some functions.
+
+Next week: Merge with Razvan, add FEN board export and make a new piece recognition.
 
 
 Ba Cong:
