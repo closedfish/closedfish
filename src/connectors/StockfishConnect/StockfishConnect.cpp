@@ -8,13 +8,13 @@ std::string call_stockfish(Stockfish::Position &pos,
 	auto &cout = logger ? logger->cout : std::cerr;
 	cout << "Calling Stockfish" << std::endl;
 	limits.time[Stockfish::WHITE] = limits.time[Stockfish::BLACK] =
-			Stockfish::TimePoint(1000);
+			Stockfish::TimePoint(1700);
 	limits.startTime = Stockfish::now();
 	Stockfish::Threads.start_thinking(pos, states, limits, ponderMode);
 	std::string line;
 	// wait for stockfish threads to finish
 	std::this_thread::sleep_until(std::chrono::system_clock::now() +
-																std::chrono::seconds(1));
+																std::chrono::seconds(2));
 	Stockfish::Threads.stop = true;
 	if (!logger) {
 		cout << "Done" << std::endl;
@@ -28,6 +28,9 @@ std::string call_stockfish(Stockfish::Position &pos,
 		if (cmd == "bestmove") {
 			std::string bestmove;
 			lstream >> bestmove;
+			std::string garbage;
+			while (lstream >> garbage)
+				;
 			return bestmove;
 		}
 	}
