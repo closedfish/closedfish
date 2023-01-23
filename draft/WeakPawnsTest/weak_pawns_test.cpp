@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-#include "../../lib/weak_pawns/WeakPawns.cpp"
-#include "../../lib/weak_pawns/PieceMovements.cpp"
+//#include "../../lib/weak_pawns/WeakPawns.cpp"
+//#include "../../lib/weak_pawns/PieceMovements.cpp"
 #include "../../lib/board_implementation/CFBoard.h"
-#include "../../lib/board_implementation/CFBoard.cpp"
+//#include "../../lib/board_implementation/CFBoard.cpp"
 
 using namespace WeakPawns;
 
@@ -172,7 +172,7 @@ int main(){
     std::cout<<board.getRepr()<<std::endl;
     //std::cout<<board.getReprLegalMove(1, tile)<<std::endl;
     //uint64_t c= (board, 0);
-    int c = nbProtectingPieces(board, tile);
+    bool c = isIsolated(board, tile);
     std::cout<<c<<std::endl;
     return 0;
 

@@ -1,27 +1,27 @@
 #include "DFS1P.h"
+#include <time.h>
 using std::cerr;
 
-bool DFS1P::squareSafeFromOpponentPawns(const bool &currentTurn, const uint64_t& opponentPawnBoard, const int& row, const int &col) {
-	// Black's turn
-	if (currentTurn)
-		return row == 7 || ((col == 0 || !isBitSet(opponentPawnBoard, Heatmap::posToTile({row+1, col-1})))
-				&& (col == 7 || !isBitSet(opponentPawnBoard, Heatmap::posToTile({row+1, col+1}))));
-	// White's turn
-	else
-		return row == 0 || ((col == 0 || !isBitSet(opponentPawnBoard, Heatmap::posToTile({row-1, col-1})))
-				&& (col == 7 || !isBitSet(opponentPawnBoard, Heatmap::posToTile({row-1, col+1}))));
-}
+// bool DFS1P::squareSafeFromOpponentPawns(const bool &currentTurn, const uint64_t& opponentPawnBoard, const int& row, const int &col) {
+// 	// Black's turn
+// 	if (currentTurn)
+// 		return row == 7 || ((col == 0 || !isBitSet(opponentPawnBoard, (row+1<<3) + col-1))
+// 				&& (col == 7 || !isBitSet(opponentPawnBoard, (row+1<<3) + col+1)));
+// 	// White's turn
+// 	else
+// 		return row == 0 || ((col == 0 || !isBitSet(opponentPawnBoard, (row-1<<3) + col-1))
+// 				&& (col == 7 || !isBitSet(opponentPawnBoard, (row-1<<3) + col+1)));
+// }
 
 //Distance between two squares with respect to a piece's movement using BFS
-std::array<int, 64> DFS1P::distFromTileToTilesAsPiece(CFBoard& board, int halfPieceId, int startTile) {
+std::array<int, 64> DFS1P::distFromTileToTilesAsPiece(CFBoard& board, int halfPieceId, int startTile, uint64_t& opponentPanwsAttackingBoard) {
 	std::queue<int> q;
 	std::array<int, 64> dist;
 	bool currentTurn = board.getCurrentPlayer(); // 0: white, 1: black
 	uint64_t opponentPawnBoard = board.getPieceColorBitBoard(!currentTurn);
 
 	// Initialize before BFS
-	for (int i = 0; i < 64; i++)
-		dist[i] = -1;
+	dist.fill(-1);
 	dist[startTile] = 0;
 	q.push(startTile);
 
@@ -31,14 +31,15 @@ std::array<int, 64> DFS1P::distFromTileToTilesAsPiece(CFBoard& board, int halfPi
 		q.pop();
 
 		// All next tiles possible
-		uint64_t nextSquares = board.getLegalMoves(2*halfPieceId + currentTurn, curTile);
+		uint64_t nextSquares = board.getLegalMoves((halfPieceId<<1) | currentTurn, curTile);
 		for (int newTile: bitSetPositions(nextSquares)) {
 			// Already visited
 			if (dist[newTile] != -1) continue;
 			// Square not empty
 			if (board.getPieceFromCoords(newTile) != -1) continue;
 			// Square unsafe
-			if (!squareSafeFromOpponentPawns(currentTurn, opponentPawnBoard, newTile/8, newTile%8)) continue;
+			if (opponentPanwsAttackingBoard >> newTile) continue;
+			// if (!squareSafeFromOpponentPawns(currentTurn, opponentPawnBoard, newTile>>3, (newTile>>3)&1)) continue;
 
 			dist[newTile] = dist[curTile] + 1;
 			q.push(newTile);
@@ -47,7 +48,7 @@ std::array<int, 64> DFS1P::distFromTileToTilesAsPiece(CFBoard& board, int halfPi
 	return dist;
 }
 
-int DFS1P::distFromHeatmap(CFBoard& board, int (&heatMap)[6][8][8]) {
+int DFS1P::distFromHeatmap(CFBoard& board, int (&heatMap)[6][8][8], uint64_t &opponentPanwsAttackingBoard) {
 	// Value to store the total distance which is the sum over pieces over tiles which are "hot" to that piece
 	// of the heatmap value * the distance to the "hot" squares.
 	int dist = 0;
@@ -57,21 +58,21 @@ int DFS1P::distFromHeatmap(CFBoard& board, int (&heatMap)[6][8][8]) {
 
 	bool currentTurn = board.getCurrentPlayer(); // 0: white, 1: black
 
-	for (int halfPieceId = 0; halfPieceId < 6; halfPieceId++) {
+	for (int halfPieceId = 1; halfPieceId < 6; halfPieceId++) { // Skipping pawns because it's slow
 		// Get current piece positions
 		uint64_t pieceBoard = board.getPieceColorBitBoard(2*halfPieceId|currentTurn);
 		std::vector<int> pieceTiles = bitSetPositions(pieceBoard);
 
 		for (int startTile: pieceTiles) {
 			// Find distances of all square from current square, with respect to the piece
-			std::array<int, 64> distFromStart = distFromTileToTilesAsPiece(board, halfPieceId, startTile);
+			std::array<int, 64> distFromStart = distFromTileToTilesAsPiece(board, halfPieceId, startTile, opponentPanwsAttackingBoard);
 			
 			for (int i = 0; i < 8; i++) {
 				for (int j = 0; j < 8; j++) {
 					// Cold squares :cold_face:
-					if (heatMap[halfPieceId][i][j] == 0) continue;
+					if (!heatMap[halfPieceId][i][j]) continue;
 
-					int endTile = i*8+j;
+					int endTile = (i<<3)+j;
 					// Unseparated square
 					if (distFromStart[endTile] != -1) {
 						dist += heatMap[halfPieceId][i][j] * distFromStart[endTile];
@@ -86,7 +87,8 @@ int DFS1P::distFromHeatmap(CFBoard& board, int (&heatMap)[6][8][8]) {
 	return dist;
 }
 
-void DFS1P::DFS1pAux(CFBoard* currentBoard, int depth, int maxDepth, std::vector<Closedfish::Move> curLine, std::vector<std::vector<Closedfish::Move>>& possibleLines) {
+void DFS1P::DFS1pAux(CFBoard* currentBoard, int depth, int maxDepth, std::vector<Closedfish::Move> curLine, std::vector<std::vector<Closedfish::Move>>& possibleLines
+, uint64_t& opponentPanwsAttackingBoard) {
 	// Return if max depth is reached
 	if (depth == maxDepth) {
 		// Adding current line to possible lines
@@ -118,8 +120,9 @@ void DFS1P::DFS1pAux(CFBoard* currentBoard, int depth, int maxDepth, std::vector
 			// Avoid capturing
 			if (currentBoard->getPieceFromCoords(endTile) != -1) continue;
 			// Avoid unsafe moves
-			if (!squareSafeFromOpponentPawns(currentTurn,
-			currentBoard->getPieceColorBitBoard(!currentTurn), endTile/8, endTile%8)) continue;
+			// if (!squareSafeFromOpponentPawns(currentTurn,
+			// currentBoard->getPieceColorBitBoard(!currentTurn), endTile/8, endTile%8)) continue;
+			if ((opponentPanwsAttackingBoard>>endTile)&1) continue;
 			
 			// Add the move to the current line
 			curLine.push_back(std::make_tuple(startTile, endTile, 0.0));
@@ -127,12 +130,12 @@ void DFS1P::DFS1pAux(CFBoard* currentBoard, int depth, int maxDepth, std::vector
 			// Simulate the move
 			currentBoard->movePiece(startTile, endTile);
 			currentBoard->forceFlipTurn(); // skipping opponent's turn
-			DFS1pAux(currentBoard, depth+1, maxDepth, curLine, possibleLines);
+			DFS1pAux(currentBoard, depth+1, maxDepth, curLine, possibleLines, opponentPanwsAttackingBoard);
 			
 			// Unsimulate the move
 			curLine.pop_back();
 			currentBoard->undoLastMove();
-			currentBoard->forceFlipTurn();
+			currentBoard->undoLastMove();
 		}
 	}
 }
@@ -166,13 +169,13 @@ Closedfish::Move DFS1P::getNextMove() {
         if (cand2 == (int)player){return std::make_tuple(destination + backdirection*9,destination, 0.0);}
     }
 
-	float closedCoeff = 1.0;	// placeholder
-	float closedThreshold = 0.0;// for input from switch team
-	// Switch algo
-	if (closedCoeff <= closedThreshold) {
-		// Stockfish here
-		return std::make_tuple(0,0,0);
-	}
+	// float closedCoeff = 1.0;	// placeholder
+	// float closedThreshold = 0.0;// for input from switch team
+	// // Switch algo
+	// if (closedCoeff <= closedThreshold) {
+	// 	// Stockfish here
+	// 	return std::make_tuple(0,0,0);
+	// }
 
 	// Build the weak pawns
 	uint64_t weakPawns = 0;
@@ -202,15 +205,24 @@ Closedfish::Move DFS1P::getNextMove() {
 	std::vector<std::vector<Closedfish::Move>> possibleLines;
 	int minDist = 1e9;
 
+	// Calculate squares protected by opponent to save time
+	uint64_t opponentPanwsAttackingBoard = WeakPawns::getBoardProtectedByPawns(*currentBoard, !currentBoard->getCurrentPlayer());
+	// cerr << WeakPawns::ReprProtectedByPawn(*currentBoard, !currentBoard->getCurrentPlayer());
+
 	// Put all possible lines into possibleLines
-	DFS1pAux(currentBoard, 0, maxDepth, {}, possibleLines);
+	DFS1pAux(currentBoard, 0, maxDepth, {}, possibleLines, opponentPanwsAttackingBoard);
 
 	// Iterate all lines
+	// float total_time = 0;
 	for (auto line: possibleLines) {
 		// Simulate all move in a line
+		int minDistInLine = 1e9;
 		for (auto move: line) {
 			currentBoard->movePiece(std::get<0>(move), std::get<1>(move));
 			currentBoard->forceFlipTurn(); // one-person dfs so we assume the opponent doesn't move
+		// clock_t tStart = clock();
+			minDistInLine = std::min(minDistInLine, distFromHeatmap(*currentBoard, heatMap, opponentPanwsAttackingBoard)); // minimum distance achieved in a line
+		// total_time += (double)(clock() - tStart)/CLOCKS_PER_SEC;
 		}
 
 		// if (currentBoard->naiveCheckCheck(currentBoard->getCurrentPlayer())) {
@@ -222,8 +234,8 @@ Closedfish::Move DFS1P::getNextMove() {
 		// }
 
 		// Check if the moves make us closer to the heatMap
-		if (distFromHeatmap(*currentBoard, heatMap) < minDist) {
-			minDist = distFromHeatmap(*currentBoard, heatMap);
+		if (minDistInLine < minDist) {
+			minDist = minDistInLine;
 			// If yes then update the most potential line
 			ansLine = line;
 		}
@@ -231,46 +243,52 @@ Closedfish::Move DFS1P::getNextMove() {
 		// Undo all simulated moves after calculating
 		for (auto move: line) {
 			currentBoard->undoLastMove();
-			currentBoard->forceFlipTurn();
+			currentBoard->undoLastMove();
 		}
 	}
+	// cerr << "Time taken: " << total_time << '\n';
 
 	// Return the first move in the potential line
-	return ansLine[0];
-}
-
-void DFS1P::testDFS() {
-	// CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
-	// CFBoard board = CFBoard("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1N1/2B1QB1R/3K3R w - - 0 1"); // no open files, >= 2 free rows
-	// CFBoard board = CFBoard("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R w - - 0 1"); // no open files, 1 free rows, no chance of winning, 3 is better than 4 for some reasons
-	CFBoard board = CFBoard("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R b - - 0 1"); // same as above but black to play
-	// CFBoard board = CFBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
-	// CFBoard board = CFBoard("2k5/p7/qp5p/1qp3pP/B1qp1pP1/3npPN1/P3PB1R/3KQ2R w - - 0 1"); // king supposed to have no legal moves
-	// std::cerr << board.getReprLegalMove(10, 59); 
-	// CFBoard board = CFBoard("2k5/p7/qp5p/1qp3pP/2qp1pP1/3npPN1/P1B1PB1R/3KQ2R w - - 0 1"); // test opponent blundering
-	// CFBoard board = CFBoard("2k5/p7/Pp5p/1Pp3pq/2Pp1pq1/3PpnN1/P1B1PB1R/3KQ2R w - - 0 1"); // test opponent blundering 2
-	// CFBoard board = CFBoard("2k5/p4q1q/Ppq1q1qp/1Ppq1qpq/2Ppqpq1/3PpnN1/P1B1PB1R/3KQ2R w - - 0 1"); // test opponent blundering 3
-	// CFBoard board = CFBoard("2kqqqqq/p2qqq2/Pp5p/1Pp3pP/2Pp1NP1/3PpPB1/P1B1P2R/3KQ2R b - - 0 1"); // test opponent blundering 4
-	// cout << board.naiveCheckCheck(0) << '\n';
-
-	setBoardPointer(&board);
-
-	// // Test dist between tiles
-	// for (int i = 0; i < 8; i++) {
-	//	 for (int j = 0; j < 8; j++) {
-	//		 int tile = i*8 + j;
-	//		 cout << distFromTileToTileAsPiece(board, 2, 61, tile) << ' ';
-	//	 }
-	//	 cout << '\n';
+	// for (auto x: ansLine) {
+	// 	cerr << std::get<0>(x) << ' ' << std::get<1>(x) << '\n';
 	// }
-
-	for (int i = 0; i < 5; i++) {
-		auto move = getNextMove();
-		int startTile = std::get<0>(move), endTile = std::get<1>(move);
-		float eval = std::get<2>(move);
-		std::cerr << startTile << ' ' << endTile << ' ' << eval << '\n';
-		board.movePiece(startTile, endTile);
-		board.forceFlipTurn(); // One person moving only
-		std::cerr << board.getRepr() << '\n';
-	}
+	Closedfish::Move ansMoveWithGradientDiff = std::make_tuple(std::get<0>(ansLine[0]), std::get<1>(ansLine[0]), distFromHeatmap(*currentBoard, heatMap, opponentPanwsAttackingBoard) - minDist);
+	return ansMoveWithGradientDiff;
 }
+
+// void DFS1P::testDFS() {
+// 	// CFBoard board = CFBoard("rkq1bnnr/2b2p1p/4pPpP/3pP1P1/p1pP2N1/PpP5/1P4K1/RNBQ1B1R w - - 0 1");
+// 	// CFBoard board = CFBoard("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1N1/2B1QB1R/3K3R w - - 0 1"); // no open files, >= 2 free rows
+// 	// CFBoard board = CFBoard("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R w - - 0 1"); // no open files, 1 free rows, no chance of winning, 3 is better than 4 for some reasons
+// 	CFBoard board = CFBoard("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R b - - 0 1"); // same as above but black to play
+// 	// CFBoard board = CFBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
+	// CFBoard board = CFBoard("rkqrbnnb/8/p5p1/Pp1p1pPp/1PpPpP1P/2P1P1BQ/R7/1B1K2RN w - - 0 1"); // starts trying breakthrough quickly
+// 	// CFBoard board = CFBoard("2k5/p7/qp5p/1qp3pP/B1qp1pP1/3npPN1/P3PB1R/3KQ2R w - - 0 1"); // king supposed to have no legal moves
+// 	// std::cerr << board.getReprLegalMove(10, 59); 
+// 	// CFBoard board = CFBoard("2k5/p7/qp5p/1qp3pP/2qp1pP1/3npPN1/P1B1PB1R/3KQ2R w - - 0 1"); // test opponent blundering
+// 	// CFBoard board = CFBoard("2k5/p7/Pp5p/1Pp3pq/2Pp1pq1/3PpnN1/P1B1PB1R/3KQ2R w - - 0 1"); // test opponent blundering 2
+// 	// CFBoard board = CFBoard("2k5/p4q1q/Ppq1q1qp/1Ppq1qpq/2Ppqpq1/3PpnN1/P1B1PB1R/3KQ2R w - - 0 1"); // test opponent blundering 3
+// 	// CFBoard board = CFBoard("2kqqqqq/p2qqq2/Pp5p/1Pp3pP/2Pp1NP1/3PpPB1/P1B1P2R/3KQ2R b - - 0 1"); // test opponent blundering 4
+// 	// cout << board.naiveCheckCheck(0) << '\n';
+
+// 	setBoardPointer(&board);
+
+// 	// // Test dist between tiles
+// 	// for (int i = 0; i < 8; i++) {
+// 	//	 for (int j = 0; j < 8; j++) {
+// 	//		 int tile = i*8 + j;
+// 	//		 cout << distFromTileToTileAsPiece(board, 2, 61, tile) << ' ';
+// 	//	 }
+// 	//	 cout << '\n';
+// 	// }
+
+// 	for (int i = 0; i < 5; i++) {
+// 		auto move = getNextMove();
+// 		int startTile = std::get<0>(move), endTile = std::get<1>(move);
+// 		float eval = std::get<2>(move);
+// 		std::cerr << startTile << ' ' << endTile << ' ' << eval << '\n';
+// 		board.movePiece(startTile, endTile);
+// 		board.forceFlipTurn(); // One person moving only
+// 		std::cerr << board.getRepr() << '\n';
+// 	}
+// }

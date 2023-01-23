@@ -1,0 +1,20 @@
+[Event "2nd General Government"]
+[Site "Krakow POL"]
+[Date "1941.10.08"]
+[Round "3"]
+[White "Paul Felix Schmidt"]
+[Black "Heinz Nowarra"]
+[Result "1-0"]
+[WhiteElo "?"]
+[BlackElo "?"]
+[ECO "C11"]
+[EventDate "?"]
+[PlyCount "53"]
+
+1. e2e4 e7e6 2. d2d4 d7d5 3. b1c3 g8f6 4. c1g5 d5e4 5. c3e4 f8e7 6. g5f6
+e7f6 7. g1f3 b8d7 8. d1d2 f6e7 9. e1c1 c7c6 10. f1d3 d8c7 11. h1e1 b7b6 12.
+c1b1 c8b7 13. e4g5 h7h6 14. g5f7 e8f7 15. e1e6 f7e6 16. d3c4+ e6f6 17. d1e1
+d7f8 18. d2c3 f6g6 19. c3d3+ g6f6 20. f3e5 b7c8 21. d3f3+ c8f5 22. g2g4
+c7c8 23. g4f5 h6h5 24. e5g6 e7b4 25. e1e6+ f8e6 26. f5e6+ f6g6 27. c4d3+
+1-0
+
