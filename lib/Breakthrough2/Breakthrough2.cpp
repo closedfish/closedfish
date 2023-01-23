@@ -80,7 +80,7 @@ vector<int> Breakthrough2::mainBreak(CFBoard board, int color) {
 			}
 		}
 	}
-	if (ans[0] == 0) {
+	if (!ans.size() || ans[0] == 0) {
 		vector<int> temp;
 		temp.push_back(0);
 		return temp;
