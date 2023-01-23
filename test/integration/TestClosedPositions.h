@@ -1,55 +1,39 @@
 #pragma once
 
-#include <ConnectUISAI.h>
-#include <GeneralRegression.h>
-#include <closenessAI.h>
-#include <input.h>
-#include <output.h>
-
 #include <CFBoard.h>
-#include <ClosedfishConnect.h>
+#include <GeneralRegression.h>
 #include <SwitchEngine.h>
-#include <utils.h>
+#include <logger.h>
 
-#include <cstdio>
 #include <filesystem>
 #include <fstream>
-#include <functional>
-#include <ios>
-#include <iostream>
+#include <random>
+#include <tuple>
 #include <vector>
 
 #include <catch2/catch_test_macros.hpp>
 
-class TestChessHelper {
+static Closedfish::Logger *logger;
+
+class TestClosedPositions {
 public:
-	TestChessHelper(std::vector<Closedfish::Move> moves) : moves(moves) {}
-	bool run(SwitchEngine &engine);
+	static bool run(SwitchEngine engine) {
+		while (true) {
+			if (engine.currentBoard->naiveCheckCheck(false))
+				return true;
+			engine.processMove(engine.getNextMove()); // our lib
+			if (engine.currentBoard->naiveCheckCheck(true))
+				return true;
+			engine.processMove(engine.getStockfishMove()); // their lib
+		}
+		return false;
+	}
 	typedef void (*OnChange)(const Stockfish::UCI::Option &);
 	static void opt(const Stockfish::UCI::Option &o) {
 		Stockfish::Eval::NNUE::init();
 	};
-	static std::vector<Closedfish::Move> convertToMoves(std::ifstream &smithRaw) {
-		std::string s;
-		std::vector<Closedfish::Move> out;
-		while (getline(smithRaw, s)) {
-			if (s[0] == '[')
-				continue;
-			std::stringstream rowstream;
-			rowstream << s;
-			while (rowstream >> s) {
-				if (s.back() == '.')
-					continue;
-				if (s[1] == '-')
-					continue;
-				out.push_back({parseAN(s.substr(0, 2)), parseAN(s.substr(2, 2)), 0.0});
-			}
-		}
-		return out;
-	}
-
 	static void init() {
-		Closedfish::Logger logger;
+		Closedfish::Logger *currentLogger = new Closedfish::Logger();
 		char *argv[1];
 		argv[0] = "";
 		Stockfish::CommandLine::init(1, argv);
@@ -76,13 +60,8 @@ public:
 		Stockfish::Search::clear(); // After threads are up
 		Stockfish::Eval::NNUE::init();
 		Stockfish::Position::init();
-
-		CFBoard board;
-		SwitchEngine engine(board, &logger);
-
+		EvaluationFunction::init();
 		srand(time(NULL));
+		logger = currentLogger;
 	}
-
-private:
-	std::vector<Closedfish::Move> moves;
 };
