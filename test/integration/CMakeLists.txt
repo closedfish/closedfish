@@ -1,9 +1,9 @@
 set(INT_TEST
     "integration_tests")
 set(INT_TEST_SOURCES
-    "TestChess.cpp" "TestChessHelper.cpp" "TestRandomMove.cpp")
+    "TestChess.cpp" "TestChessHelper.cpp" "TestRandomMove.cpp" "TestClosedPositions.cpp")
 set(INT_TEST_HEADERS
-    "TestChessHelper.h" "TestRandomMove.h")
+    "TestChessHelper.h" "TestRandomMove.h" "TestClosedPositions.h")
 
 add_compile_definitions(CMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
 add_executable(${INT_TEST} ${INT_TEST_SOURCES} ${INT_TEST_HEADERS})
