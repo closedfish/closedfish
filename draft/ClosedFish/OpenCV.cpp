@@ -291,7 +291,7 @@ double OpenCV::computePercentage(std::string filename, int side)
         }
     }
 
-    std::cout << "black and white patched for file named " << filename << " " << matchedB << " " << matchedB/sqSize << " <> " << matchedW << " " << matchedW / sqSize  << "\n";
+    //std::cout << "black and white patched for file named " << filename << " " << matchedB << " " << matchedB/sqSize << " <> " << matchedW << " " << matchedW / sqSize  << "\n";
     return max(matchedW, matchedB);
 }
 
@@ -325,7 +325,7 @@ int OpenCV::matchPiecePerc(std::string filename, int side)
         img = imread(filename);
     }
 
-    imwrite(filename + ".png", img);
+    //imwrite(filename + ".png", img);
 
     cv::Mat_<cv::Vec3b>::iterator it = img.begin<cv::Vec3b>();
     cv::Mat_<cv::Vec3b>::iterator itend = img.end<cv::Vec3b>();
@@ -394,7 +394,7 @@ int OpenCV::matchPiecePerc(std::string filename, int side)
                 match = i;
             }
         }
-        std::cout << perc << "<-\n";
+        //std::cout << perc << "<-\n";
         return match;
     }
     double perc = matchedW / sqSize;
@@ -409,11 +409,11 @@ int OpenCV::matchPiecePerc(std::string filename, int side)
             match = i;
         }
     }
-    std::cout << perc << "<-\n";
+    //std::cout << perc << "<-\n";
     return match;
 }
 
-std::string covertRankToFen(std::string rank)
+std::string covertRankToFen(std::string rank, bool _end = false)
 {
     std::string rev;
     bool pieceQ = false;
@@ -427,6 +427,10 @@ std::string covertRankToFen(std::string rank)
     }
     if (pieceQ == false)
     {
+        if (_end == true)
+        {
+            return (string)"8";
+        }
         return (string)"8/";
     }
     int curEmpty = 0;
@@ -465,6 +469,10 @@ std::string covertRankToFen(std::string rank)
             curEmpty++;
         }
     }
+    if (_end == true)
+    {
+        return ret;
+    }
     return ret + '/';
 }
 
@@ -496,6 +504,11 @@ std::string OpenCV::returnFen() {//naive
     string _fen;
     for (int i = 0; i < 8; ++i)
     {
+        if (i == 7)
+        {
+            _fen += covertRankToFen(ret[i], true);
+            continue;
+        }
         _fen += covertRankToFen(ret[i]);
     }
     return _fen;
