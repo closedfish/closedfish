@@ -30,3 +30,7 @@ Antonia:
 -tested PieceMovements.cpp
 -fixed build errors
 -worked on the slides of the presentation of weak pawns and algo
+
+Sirawit:
+- Merge everything! (wrote the engine layer, and connected the engine to the switch)
+- Bug fixes on CFBoard with integration tests.
