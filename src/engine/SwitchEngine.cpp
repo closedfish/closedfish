@@ -26,7 +26,3 @@ Closedfish::Move SwitchEngine::getNextMove() {
 		return stockfish->getNextMove();
 	}
 }
-
-Closedfish::Move SwitchEngine::getStockfishMove() {
-	return stockfish->getNextMove();
-}
