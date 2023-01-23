@@ -206,7 +206,8 @@ Closedfish::Move DFS1P::getNextMove() {
 	int minDist = 1e9;
 
 	// Calculate squares protected by opponent to save time
-	uint64_t opponentPanwsAttackingBoard = WeakPawns::getBoardProtectedByPawns(*currentBoard, currentBoard->getCurrentPlayer());
+	uint64_t opponentPanwsAttackingBoard = WeakPawns::getBoardProtectedByPawns(*currentBoard, !currentBoard->getCurrentPlayer());
+	// cerr << WeakPawns::ReprProtectedByPawn(*currentBoard, !currentBoard->getCurrentPlayer());
 
 	// Put all possible lines into possibleLines
 	DFS1pAux(currentBoard, 0, maxDepth, {}, possibleLines, opponentPanwsAttackingBoard);

@@ -97,7 +97,7 @@ int main(int argc, char *argv[]) {
 	Stockfish::Position::init();
 
 	ClosedfishEngine a;
-	// CFBoard board = CFBoard("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R b - - 0 1");
+	// CFBoard board = CFBoard("rkbq1nnr/2b2p1p/2p1pPpP/1pPpP1P1/pP1P2N1/P1NB4/4Q1K1/R1B4R w - - 6 4");
 	// a.setBoardPointer(&board);
 	// std::cerr << board.getRepr() << '\n';
 	// for (int _ = 0; _ < 20; _++) {
@@ -110,7 +110,7 @@ int main(int argc, char *argv[]) {
 	debug << "[INFO] a.testDFS() done" << std::endl;
 	return 0;
 
-	CFBoard board;
+	// CFBoard board;
 	SwitchEngine engine(board, &logger);
 
 	srand(time(NULL));
