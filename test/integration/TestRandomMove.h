@@ -1,6 +1,7 @@
 #pragma once
 
 #include <CFBoard.h>
+#include <GeneralRegression.h>
 #include <SwitchEngine.h>
 #include <logger.h>
 
@@ -60,6 +61,7 @@ public:
 		Stockfish::Search::clear(); // After threads are up
 		Stockfish::Eval::NNUE::init();
 		Stockfish::Position::init();
+		EvaluationFunction::init();
 		srand(time(NULL));
 		logger = currentLogger;
 	}
