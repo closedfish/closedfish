@@ -20,7 +20,6 @@ public:
 	Closedfish::Move getNextMove();
 	Closedfish::Logger
 			*logger; // should be accessed publicly as a substitute for std::cout.
-	Closedfish::Move getStockfishMove();
 
 private:
 	ClosedfishEngine *closedfish;
