@@ -7,6 +7,7 @@
 #include <chrono>
 #include <Windows.h>
 #include <iostream>
+#include <fstream>
 #include <atlimage.h>
 #include <utility>
 #include <future>
@@ -195,8 +196,13 @@ public:
 			_opencv->computePercentage("sq59", sideW);
 			_opencv->computePercentage("sq60", sideW);
 			//*/
+			_inp[0] = 'a';
+			_inp[1] = '0';
+			_inp[2] = 'a';
+			_inp[3] = '0';
+			_inp[4] = '\0';
 			this->findAllPieces(true);
-			this->returnFen();
+			this->_returnFen();
 		}
 		minColMatch = 0.9 * sideW * sideH;
 	}
@@ -569,7 +575,7 @@ public:
 		return castleR;
 	}
 
-	std::string returnFen()
+	std::string _returnFen()
 	{
 		std::cout << _opencv->returnFen();
 		return _opencv->returnFen();
@@ -582,6 +588,27 @@ public:
 		{
 			if (piece[i] != oldPieces[i])
 			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	bool checkForNewMove()
+	{
+		char inp[5];
+		ifstream fin("out.txt");
+		fin >> inp;
+		for (int i = 0; i < 5; ++i)
+		{
+			if (inp[i] != _inp[i])
+			{
+				this->send_input(inp);
+				_inp[0] = inp[0];
+				_inp[1] = inp[2];
+				_inp[2] = inp[3];
+				_inp[3] = inp[4];
+				_inp[4] = inp[5];
 				return true;
 			}
 		}
@@ -602,6 +629,10 @@ public:
 		return !BIGLOCK;
 	}
 
+	char* inpp()
+	{
+		return _inp;
+	}
 private:
 
 	/// <summary>
@@ -630,6 +661,8 @@ private:
 	bool castleL = true, castleR = true;
 
 	bool BIGLOCK = false;
+
+	char _inp[5];
 
 	std::vector<int> pieces1, pieces2, pieces3, pieces4, pieces5, pieces6;
 
