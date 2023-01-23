@@ -1,6 +1,4 @@
-#define CATCH_CONFIG_MAIN
 #include "TestChessHelper.h"
-#include <catch2/catch_test_macros.hpp>
 
 void testOnGame(std::string game) {
 	std::ifstream in((std::filesystem::path(CMAKE_SOURCE_DIR) / "test" /
