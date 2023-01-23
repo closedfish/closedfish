@@ -1,0 +1,17 @@
+[Event "7th olm final"]
+[Site "Stockholm SWE"]
+[Date "1937.08.01"]
+[Round "2"]
+[White "Vincenzo Castaldi"]
+[Black "Savielly Tartakower"]
+[Result "1-0"]
+[WhiteElo "?"]
+[BlackElo "?"]
+[ECO "C41"]
+[EventDate "1937.07.31"]
+[PlyCount "31"]
+
+1. e2e4 e7e5 2. g1f3 d7d6 3. d2d4 g8f6 4. b1c3 b8d7 5. f1e2 f8e7 6. e1g1
+h7h6 7. b2b3 c7c6 8. c1b2 d8c7 9. d1d2 g7g5 10. f1d1 d7f8 11. d4e5 d6e5 12.
+f3e5 c8e6 13. c3b5 c7b8 14. d2a5 e7d8 15. d1d8+ b8d8 16. b5c7+ 1-0
+

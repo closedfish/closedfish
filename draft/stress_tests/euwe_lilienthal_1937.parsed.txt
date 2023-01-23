@@ -1,0 +1,28 @@
+[Event "7th olm final"]
+[Site "Stockholm SWE"]
+[Date "1937.08.07"]
+[Round "11"]
+[White "Max Euwe"]
+[Black "Andre Lilienthal"]
+[Result "0-1"]
+[WhiteElo "?"]
+[BlackElo "?"]
+[ECO "E33"]
+[EventDate "1937.07.31"]
+[PlyCount "142"]
+
+1. d2d4 g8f6 2. c2c4 e7e6 3. b1c3 f8b4 4. d1c2 b8c6 5. g1f3 d7d6 6. a2a3
+b4c3+ 7. c2c3 d8e7 8. b2b4 a7a5 9. b4b5 c6b8 10. g2g3 e8g8 11. f1g2 a5a4
+12. e1g1 f8e8 13. c1b2 b8d7 14. f1d1 e6e5 15. d4e5 d6e5 16. c3b4 e5e4 17.
+b4e7 e8e7 18. f3g5 e4e3 19. b2f6 e3f2+ 20. g1f2 g7f6 21. g5e4 g8g7 22. e4c3
+d7c5 23. c3d5 e7d7 24. h2h4 a8b8 25. a1c1 b7b6 26. d5b4 d7d1 27. c1d1 c8g4
+28. d1d4 h7h5 29. b4a6 b8e8 30. a6c5 b6c5 31. d4e4 g4e6 32. e4e3 e8b8 33.
+e3c3 g7g6 34. g2c6 g6f5 35. c6f3 f5e5 36. e2e3 b8d8 37. f2e2 d8h8 38. c3c1
+h8g8 39. e2f2 g8d8 40. c1d1 d8d1 41. f3d1 e6c4 42. d1a4 c4d3 43. f2e1 e5d5
+44. a4d1 d3g6 45. d1e2 c5c4 46. e1d2 d5c5 47. d2c3 c5b5 48. e2c4+ b5a4 49.
+c3b2 f6f5 50. c4d3 f7f6 51. d3c4 a4a5 52. b2c3 a5b6 53. c3b4 c7c5+ 54. b4c3
+b6c7 55. c4g8 c7d6 56. a3a4 g6e8 57. c3b3 e8c6 58. g8h7 d6e5 59. h7g6 e5e4
+60. g6h5 e4e3 61. a4a5 c6d5+ 62. b3c3 f5f4 63. g3f4 e3f4 64. a5a6 f6f5 65.
+a6a7 f4e5 66. h5f7 d5b7 67. h4h5 f5f4 68. h5h6 e5f6 69. h6h7 f6g7 70. c3c4
+f4f3 71. f7d5 f3f2 0-1
+

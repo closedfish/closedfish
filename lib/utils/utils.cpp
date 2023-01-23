@@ -24,7 +24,8 @@ void convert_CFBoard_to_Stockfish_Position(CFBoard cfb,
 std::string toAN(int pos) {
 	int row = pos >> 3;
 	int col = pos & 7;
-	return std::string({(char)col + 'a', 7 - (char)row + '1'});
+	return std::string(
+			{static_cast<char>(col + 'a'), static_cast<char>(7 - row + '1')});
 }
 
 /**
