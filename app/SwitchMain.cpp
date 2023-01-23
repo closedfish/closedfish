@@ -14,6 +14,7 @@ std::ostream null_stream(&null_buffer);
 #define debug null_stream
 #endif
 
+/*
 Closedfish::Move InputFromUI() { return {0, 0, 0.0}; }
 
 void chessGameLoop(SwitchEngine &engine) {
@@ -49,18 +50,11 @@ void debugGameLoop(SwitchEngine &engine) {
 	}
 	debug << "[ALL GOOD]" << std::endl;
 }
+*/
+
 void CLIGameLoop(SwitchEngine &engine) {
 	while (true) {
 		debug << "[DEBUG] CLIGameLoop" << std::endl;
-		try {
-			Closedfish::Move nm = engine.getNextMove();
-			debug << toAN(std::get<0>(nm)) << toAN(std::get<1>(nm)) << std::endl;
-			engine.processMove(nm);
-		} catch (std::string st) {
-			debug << "[ERROR] " << st << std::endl;
-			exit(1);
-		}
-		debug << "[INFO] Waiting for opponent\'s move" << std::endl;
 		std::string opponentMove;
 		std::cin >> opponentMove;
 		// quick sanity check
@@ -80,6 +74,15 @@ void CLIGameLoop(SwitchEngine &engine) {
 						<< "]: " << opponentMove.size() << std::endl;
 			throw "Invalid move string!";
 		}
+		try {
+			Closedfish::Move nm = engine.getNextMove();
+			debug << toAN(std::get<0>(nm)) << toAN(std::get<1>(nm)) << std::endl;
+			engine.processMove(nm);
+		} catch (std::string st) {
+			debug << "[ERROR] " << st << std::endl;
+			exit(1);
+		}
+		debug << "[INFO] Waiting for opponent\'s move" << std::endl;
 	}
 }
 
@@ -116,16 +119,7 @@ int main(int argc, char *argv[]) {
 	Stockfish::Search::clear(); // After threads are up
 	Stockfish::Eval::NNUE::init();
 	Stockfish::Position::init();
-
-	ClosedfishEngine a;
-	// CFBoard board =
-	// CFBoard("rkqr1nnb/4b3/8/p3p1p1/Pp1pPpPp/1PpP1P1P/R1P4N/1NKQBB1R b - - 0
-	// 1"); a.setBoardPointer(&board); std::cerr << board.getRepr() << '\n'; for
-	// (int _ = 0; _ < 20; _++) { 	Closedfish::Move m = a.getNextMove(); 	debug
-	// << "Move from :" << std::get<0>(m) << " to " << std::get<1>(m) << " with
-	// gradient dist: " << std::get<2>(m) << '\n'; board.movePiece(std::get<0>(m),
-	// std::get<1>(m)); 	board.forceFlipTurn();
-	// }
+	EvaluationFunction::init();
 
 	CFBoard board;
 	SwitchEngine engine(board, &logger);
@@ -133,11 +127,7 @@ int main(int argc, char *argv[]) {
 	srand(time(NULL));
 
 	debug << "[INFO] Setup done" << std::endl;
-	debugGameLoop(engine);
-	// if (MODE_CLI)
-	// 	CLIGameLoop(engine);
-	// else
-	// 	chessGameLoop(engine);
+	CLIGameLoop(engine);
 
 	return 0;
 }
