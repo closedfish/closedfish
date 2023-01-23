@@ -1,0 +1,16 @@
+[Event "Stockholm Olympiad"]
+[Site "Stockholm SWE"]
+[Date "1937.08.04"]
+[Round "7"]
+[White "Karlis Alexander Ozols"]
+[Black "Peter Reid"]
+[Result "1-0"]
+[WhiteElo "?"]
+[BlackElo "?"]
+[ECO "A25"]
+[EventDate "?"]
+[PlyCount "15"]
+
+1. c2c4 e7e5 2. b1c3 b8c6 3. g2g3 f8c5 4. f1g2 d7d6 5. e2e3 g8f6 6. g1e2
+c8e6 7. c3d5 c6b4 8. d5b4 1-0
+
