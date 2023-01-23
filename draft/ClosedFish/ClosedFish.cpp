@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "ClosedFish.h"
 #include <iostream>
+#include <fstream>
 
 #define MAX_LOADSTRING 100
 
@@ -12,6 +13,7 @@
 #pragma region globalVariables //these are my global variables, which i will not mix with the windows objects
 bmpClass bc = NULL;
 timer tmrTransOnTop, tmrCheckMove;
+bool started = false;
 #pragma endregion globalVariables
 
 
@@ -23,7 +25,13 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 HWND hWndTrans;
 LPCWSTR TClassName = L"TransparentOveray";
 HRGN hRgn;
-LPCSTR curStatus = "Testing...";
+LPCSTR curStatus = "Engine started"; //The engine starts when the UI starts
+LPCTSTR consoleName = "Executable.exe"; 
+HWND consoleH;
+STARTUPINFO si;
+PROCESS_INFORMATION pi;
+TCHAR szFilePath[MAX_PATH];
+DWORD processId;
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -55,8 +63,10 @@ void consoleTest()//testing different stuff using the console
         switch (nr)
         {
         case -18:
-            bc = bmpClass(true);
-            bc.send_input("g8f6");
+            keybd_event(0x41, 0, KEYEVENTF_EXTENDEDKEY | 0, NULL);
+            keybd_event(0x41, 0, KEYEVENTF_KEYUP, NULL);
+            //bc = bmpClass(true);
+            //bc.send_input("g8f6");
             //bc.send_input("c1f4");
             break;
         case -19:
@@ -109,6 +119,7 @@ void consoleTest()//testing different stuff using the console
 
 void displayError()
 {
+#if _DEBUG
     DWORD dw = GetLastError();
 
     LPVOID lpMsgBuf;
@@ -124,7 +135,8 @@ void displayError()
         0, NULL);
 
     MessageBox(NULL, (LPCTSTR)lpMsgBuf, TEXT("Error"), MB_OK);
-    ExitProcess(dw);
+    //ExitProcess(dw);
+#endif
 }
 
 void SetWindowOnTop(HWND hWnd)
@@ -191,6 +203,36 @@ BOOL DisplayTransparent(HINSTANCE hInst, int nCmdShow)
 }
 #pragma endregion testFunc
 
+void startConsole()
+{
+
+    ZeroMemory(&si, sizeof(si));
+    si.cb = sizeof(si);
+    ZeroMemory(&pi, sizeof(pi));
+    GetModuleFileName(NULL, szFilePath, MAX_PATH);
+    PathRemoveFileSpec(szFilePath);
+    PathAppend(szFilePath, _T("Executable.exe"));
+
+    CreateProcessA(szFilePath,
+        NULL, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi);
+
+    consoleH = (HWND)pi.hProcess;
+}
+
+
+BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam)
+{
+    std::cout << "AA\n";
+    DWORD windowProcessId;
+    GetWindowThreadProcessId(hwnd, &windowProcessId);
+    if (windowProcessId == processId)
+    {
+        consoleH = hwnd;
+        return false;
+    }
+    return true;
+}
+
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     _In_opt_ HINSTANCE hPrevInstance,
     _In_ LPWSTR    lpCmdLine,
@@ -200,8 +242,27 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: Place code here.
-    t1 = std::thread(consoleTest);
+    //t1 = std::thread(consoleTest);
 
+    ofstream fout("out.txt");
+
+    fout << "a0a0";
+
+    fout.close();
+
+    Sleep(100);
+
+    startConsole();
+
+    processId = GetProcessId(pi.hProcess);
+
+    std::cout<<EnumWindows(EnumWindowsProc, 0);
+
+    Sleep(100);
+
+    MessageBox(NULL, (LPCTSTR)"Please note that when you press start, make sure that nothing covers the chessboard. Enjoy!", TEXT("Keep in Mind!!!"), MB_OK);
+
+    ShowWindow((HWND)pi.hProcess, SW_MINIMIZE);
 
     // Initialize global strings
     if (LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING) == 0)
@@ -335,19 +396,25 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
             break;
         case IDM_EXIT:
-            std::cout << "Sterge";
-            FreeConsole();
-            t1.join();
+            TerminateProcess(pi.hProcess, 1);
+            CloseHandle(consoleH);
+            TerminateProcess(GetCurrentProcess(), 0);
             break;
         case BN_CLICKED://the one button was clicked
         {
-            std::thread t([&](){
-            bc = new bmpClass(true);
-            tmrCheckMove.delay = 2000;
-            timers::moveDetection(tmrCheckMove, &bc);
-            std::cout << "Cox";
-            });
-            t.detach();
+            if (started == false) {
+                ShowWindow((HWND)GetCurrentProcess(), SW_MINIMIZE);
+                std::thread t([&]() {
+                    bc = new bmpClass(true);
+                    //bc.send_input("a6e2");
+                    tmrCheckMove.delay = 2000;
+                    timers::moveDetection(tmrCheckMove, &bc, consoleH);
+                    std::cout << "Cox";
+                });
+                t.detach();
+                started = true;
+            }
+
         }
         break;
         default:
@@ -364,12 +431,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     }
     break;
     case WM_DESTROY:
+        TerminateProcess(pi.hProcess, 1);
+        CloseHandle(consoleH);
+        TerminateProcess(GetCurrentProcess(), 0);
         WndProcT(hWndTrans, WM_DESTROY, NULL, NULL);
         FreeConsole();
-        t1.join();
+        //t1.join();
         PostQuitMessage(0);
         break;
     case WM_CLOSE:
+        TerminateProcess(pi.hProcess, 1);
+        CloseHandle(consoleH);
+        TerminateProcess(GetCurrentProcess(), 0);
         DestroyWindow(hWnd);
         DestroyWindow(hWndTrans);
         FreeConsole();
@@ -403,6 +476,9 @@ LRESULT CALLBACK WndProcT(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         switch (wmId)
         {
         case IDM_EXIT:
+            TerminateProcess(pi.hProcess, 1);
+            CloseHandle(consoleH);
+            TerminateProcess(GetCurrentProcess(), 0);
             tmrTransOnTop.shutdown = true;
             FreeConsole();
             t1.join();
@@ -458,10 +534,16 @@ LRESULT CALLBACK WndProcT(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     }
     break;
     case WM_DESTROY:
+        TerminateProcess(pi.hProcess, 1);
+        CloseHandle(consoleH);
+        TerminateProcess(GetCurrentProcess(), 0);
         tmrTransOnTop.shutdown = true;
         DestroyWindow(hWnd);
         break;
     case WM_CLOSE:
+        TerminateProcess(pi.hProcess, 1);
+        CloseHandle(consoleH);
+        TerminateProcess(GetCurrentProcess(), 0);
         tmrTransOnTop.shutdown = true;
         DestroyWindow(hWnd);
         break;
