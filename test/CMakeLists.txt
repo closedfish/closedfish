@@ -6,6 +6,7 @@ set(TEST_HEADERS
     "TestMain.hpp")
 
 add_subdirectory(board)
+add_subdirectory(integration)
 add_executable(${TEST_MAIN} ${TEST_SOURCES})
 find_package(Catch2 CONFIG REQUIRED)
 target_link_libraries(${TEST_MAIN} PRIVATE Catch2::Catch2 Catch2::Catch2WithMain)

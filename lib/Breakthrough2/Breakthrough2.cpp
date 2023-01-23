@@ -29,23 +29,18 @@ using namespace WeakPawns;
 * blackbox for a weak pawns function
 */
 
-float Breakthrough2::depthval(int n)
-{
-	if (n >= 10)
-	{
-		return 0.2;
-	}
-	else
-	{
-		return (2.2 - 0.2 * n);
+float Breakthrough2::depthval(int n) {
+	if (n >= 10) {
+		return 200;
+	} else {
+		return (220 - 20 * n);
 	}
 }
 
 /*
 * blacbox of stockfishs naive eval
 */
-int Breakthrough2::SFNeval(CFBoard board)
-{
+int Breakthrough2::SFNeval(CFBoard board) {
 	return stockfishNaiveEval(board);
 }
 
@@ -57,8 +52,7 @@ int Breakthrough2::SFNeval(CFBoard board)
 * the integer and decimal part of the evaluation
 * currently only for white 
 */
-vector<int> Breakthrough2::mainBreak(CFBoard board, int color)
-{
+vector<int> Breakthrough2::mainBreak(CFBoard board, int color) {
 	vector<int> line;
 	vector<int> ans;
 	line.push_back(0);
@@ -69,29 +63,24 @@ vector<int> Breakthrough2::mainBreak(CFBoard board, int color)
 	else
 		pruneval = -1e6;
 	// checks every square for a piece
-	for(int sq = 0; sq < 64; sq++)
-	{
+	for(int sq = 0; sq < 64; sq++) {
 		// cerr << sq << '\n';
 		// if there is a piece there
 		int p = board.getPieceFromCoords(sq);
-		if (p>=0 && p%2==0)
-		{
+		if (p>=0 && p%2==0) {
 			// if it has a move that intersects with a breakthrough square
 			uint64_t moves = board.getLegalMoves(p,sq) & blunderBoard(board, (color+1)%2);
-			if (moves > 0)
-			{
+			if (moves > 0) {
 				//run the dfs
 				line = dfsBreak(board, sq, moves, pruneval);
-				if (line[0] > pruneval)
-				{
+				if (line[0] > pruneval) {
 					ans = line;
 					pruneval = ans[0];
 				}
 			}
 		}
 	}
-	if (ans[0] == 0)
-	{
+	if (ans[0] == 0) {
 		vector<int> temp;
 		temp.push_back(0);
 		return temp;
@@ -114,35 +103,37 @@ vector<int> Breakthrough2::dfsBreak(CFBoard board, int start, uint64_t ends, int
 	vector<int> line;
 	vector<int> ans;
 	// evaluation of the prune
-	for (int sq = 0; sq < 64; sq++)
-	{
+	for (int sq = 0; sq < 64; sq++) {
 		//pruned using our alpha beta
-		if (((1ll << sq) & ends) > 0)
-		{
+		if (((1ll << sq) & ends) > 0) {
 			// cerr << "1st move: " << start << ' ' << sq << '\n';
 			board.movePiece(start, sq);
 			vector<int> temp;
 			line = dfsPruneForce(board, 0,1, temp, pruneval);
-			// if (start == 47 && sq == 29) {
+			// if (start == 43 && sq == 25) {
 			// 	cerr << start << ' ' << sq << '\n';
 			// 	for (auto x: line)
 			// 		cerr << x << ' ';
 			// 	cerr << '\n';
 			// }
 			board.undoLastMove();
-			if (line[0] > pruneval)
-			{
+			if (line[0] > pruneval) {
 				ans = line;
 				pruneval = line[0];
 			}
+			// cerr << start << ' ' << sq << '\n';
 			// cerr << line.size() << '\n';
 			// for (auto x: line) 
 			// 	cerr << x << ' ';
 			// cerr << '\n' << board.getRepr();
 		}
 	}
-	if (ans[0] == 0)
-	{
+	// cerr << ans.size() << '\n';
+	// for (auto x: ans) {
+	// 	cerr << x << ' ';
+	// }
+	// cerr << '\n';
+	if (!ans.size() || ans[0] == 0) {
 		vector<int> nob;
 		nob.push_back(0);
 		return nob;
@@ -154,13 +145,10 @@ vector<int> Breakthrough2::dfsPruneForce(CFBoard board, int depth, int color, ve
 {
 	color = color % 2;
 	if (depth == 5)	{
-		// cerr << "Max depth reached\n";
-		vector<int> tempeval;
-		tempeval.push_back(SFNeval(board));
-		return tempeval;
-	}
-	else {
-	// cerr << board.getRepr() << ' ' << color << '\n';
+		cerr << "Max depth reached\nEval: " << SFNeval(board) << '\n';
+		return {SFNeval(board)};
+	} else {
+	cerr << board.getRepr() << ' ' << color << '\n';
 		vector<vector<int>> v2;
 		for (int sq = 0; sq < 64; sq++) {
 			int p = board.getPieceFromCoords(sq);
@@ -176,6 +164,7 @@ vector<int> Breakthrough2::dfsPruneForce(CFBoard board, int depth, int color, ve
 						// cerr << "Before prune: " << color << ' ' << depth << ' ' << sq << ' ' << sq2 << '\n';
 						// cerr << "Eval: " << SFNeval(board) << '\n';
 						if ((color == 0 && SFNeval(board) < eval - depthval(depth)) || ((color == 1 && SFNeval(board) > eval + depthval(depth)))) {
+							// cerr << "Pruned\n";
 							board.undoLastMove();
 							v.pop_back();
 							v.pop_back();
@@ -197,8 +186,7 @@ vector<int> Breakthrough2::dfsPruneForce(CFBoard board, int depth, int color, ve
 
 vector<int> Breakthrough2::minmaxsort(vector<vector<int>> v, int color)
 {
-	if (color == 0)
-	{
+	if (color == 0) {
 		int max = v[0][0];
 		for (vector<int> v2 : v)
 			if (v2[0] > max)
@@ -207,9 +195,7 @@ vector<int> Breakthrough2::minmaxsort(vector<vector<int>> v, int color)
 			if (v2[0] >= max - 1)
 				if (max - v2[0] == v2[1])
 					return v2;
-	}
-	else
-	{
+	} else {
 		int min = v[0][0];
 		for (vector<int> v2 : v)
 			if (v2[0] < min)
@@ -223,7 +209,7 @@ vector<int> Breakthrough2::minmaxsort(vector<vector<int>> v, int color)
 
 Closedfish::Move Breakthrough2::getNextMove() {
 	vector<int> v = mainBreak(*currentBoard, currentBoard->getCurrentPlayer());
-	// cerr << v.size() << '\n';
+	// cerr << "Ans line size: " << v.size() << '\n';
 	// for (auto x: v) {
 	// 	cerr << x << ' ';
 	// }

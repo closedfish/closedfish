@@ -1,0 +1,21 @@
+[Event "7th olm final"]
+[Site "Stockholm SWE"]
+[Date "1937.08.10"]
+[Round "15"]
+[White "Paul Keres"]
+[Black "Samuel Reshevsky"]
+[Result "1-0"]
+[WhiteElo "?"]
+[BlackElo "?"]
+[ECO "C88"]
+[EventDate "1937.07.31"]
+[PlyCount "69"]
+
+1. e2e4 e7e5 2. g1f3 b8c6 3. f1b5 a7a6 4. b5a4 g8f6 5. e1g1 f8e7 6. f1e1
+b7b5 7. a4b3 d7d6 8. c2c3 c6a5 9. b3c2 c7c5 10. d2d4 d8c7 11. a2a4 b5b4 12.
+c3b4 c5b4 13. h2h3 e8g8 14. b1d2 c8e6 15. d2f1 f8c8 16. f1e3 g7g6 17. b2b3
+f6h5 18. c1b2 e7f6 19. a1c1 e5d4 20. f3d4 c7d7 21. c1b1 c8c5 22. d4f5 e6f5
+23. e4f5 f6b2 24. b1b2 a8e8 25. c2d3 d7c6 26. d1g4 c6b6 27. b2e2 c5e5 28.
+f5g6 h7g6 29. d3g6 f7g6 30. g4g6+ g8h8 31. e3f5 e8e6 32. g6h5+ h8g8 33.
+h5g5+ g8f8 34. g5g7+ f8e8 35. f5d6+ 1-0
+
