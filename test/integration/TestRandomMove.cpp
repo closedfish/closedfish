@@ -10,10 +10,10 @@ TEST_CASE("SwitchEngine runs correctly with random moves", "[board]") {
 		RandomMoveEngine rme(board);
 		REQUIRE(TestRandomMove::run(swe, rme));
 	}
-	// SECTION("RandomMoveEngine against RandomMoveEngine") {
-	// 	CFBoard board;
-	// 	RandomMoveEngine rme1(board);
-	// 	RandomMoveEngine rme2(board);
-	// 	REQUIRE(TestRandomMove::run(rme1, rme2));
-	// }
+	SECTION("RandomMoveEngine against RandomMoveEngine") {
+		CFBoard board;
+		RandomMoveEngine rme1(board);
+		RandomMoveEngine rme2(board);
+		REQUIRE(TestRandomMove::run(rme1, rme2));
+	}
 }

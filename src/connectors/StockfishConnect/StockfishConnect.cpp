@@ -43,6 +43,7 @@ Closedfish::Move StockfishEngine::getNextMove() {
 	Stockfish::StateListPtr states;
 	convert_CFBoard_to_Stockfish_Position(*currentBoard, pos, states);
 	std::string out = call_stockfish(pos, states, {}, false, logger);
+	Stockfish::Threads.set(size_t(Stockfish::Options["Threads"]));
 	if (out.size() != 4) {
 		throw "Stockfish invalid output";
 	}
