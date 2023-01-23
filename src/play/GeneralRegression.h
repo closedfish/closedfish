@@ -82,12 +82,12 @@ public:
 	 */
 
 	float Eval_help(std::vector<int> l_top_pons, std::vector<int> l_bottom_pons) {
-		int t = l_top_pons[placement];
-		int b = l_bottom_pons[placement];
-
 		if (func_num == 0) {
 			return 0;
 		}
+
+		int t = l_top_pons[placement];
+		int b = l_bottom_pons[placement];
 
 		if (func_num == 1) {
 			return SquareDistance(t, b);
